@@ -1,0 +1,34 @@
+CC     = "c:\matlab\r2006a\sys\lcc\bin\lcc.exe"
+LD     = "c:\matlab\r2006a\sys\lcc\bin\lcclnk.exe"
+LIBCMD = "c:\matlab\r2006a\sys\lcc\bin\lcclib.exe"
+CFLAGS = -c -Zp8 -DMATLAB_MEX_FILE -noregistrylookup
+LDFLAGS = -s -dll -L"c:\matlab\r2006a\sys\lcc\lib"
+LIBFLAGS = 
+
+OBJECTS = \
+	"MPC_framework_sfun.obj"\
+	"MPC_framework_sfun_registry.obj"\
+	"c1_MPC_framework.obj"\
+	"lccstub.obj"\
+	"c:\matlab\r2006a\sys\lcc\mex\lccdef.def"\
+	"c:\matlab\r2006a\stateflow\c\debugger\lib\win32\sfc_debuglcc.lib"\
+	"c:\matlab\r2006a\stateflow\c\mex\lib\win32\sfc_mexlcc.lib"\
+	"c:\matlab\r2006a\extern\lib\win32\lcc\libmex.lib"\
+	"c:\matlab\r2006a\extern\lib\win32\lcc\libmx.lib"\
+	"c:\matlab\r2006a\extern\lib\win32\lcc\libfixedpoint.lib"\
+	"c:\matlab\r2006a\extern\lib\win32\lcc\libut.lib"\
+	"c:\matlab\r2006a\toolbox\dspblks\lib\win32\dsp_dyn_rt_lcc.lib"\
+
+INCLUDE_PATH= -I"c:\matlab\r2006a\sys\lcc\include"  -I"c:\matlab\r2006a\extern\include"  -I"c:\matlab\r2006a\simulink\include"  -I"c:\matlab\r2006a\stateflow\c\mex\include"  -I"c:\matlab\r2006a\stateflow\c\debugger\include"  -I"c:\matlab\r2006a\toolbox\eml\lib\dsp"  -I"c:\users\developer\mpc555 robot simulink\mpc-robot\sfprj\build\mpc_framework\sfun\src"  -I"c:\users\developer\mpc555 robot simulink\mpc-robot" 
+ 
+
+MPC_framework_sfun.mexw32 : $(MAKEFILE) $(OBJECTS)
+	$(LD) $(LDFLAGS) -o MPC_framework_sfun.mexw32 @MPC_framework_sfun.lmko
+MPC_framework_sfun.obj :	"MPC_framework_sfun.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "MPC_framework_sfun.c"
+MPC_framework_sfun_registry.obj :	"MPC_framework_sfun_registry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "MPC_framework_sfun_registry.c"
+c1_MPC_framework.obj :	"c1_MPC_framework.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c1_MPC_framework.c"
+lccstub.obj :	"c:\matlab\r2006a\sys\lcc\mex\lccstub.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c:\matlab\r2006a\sys\lcc\mex\lccstub.c"

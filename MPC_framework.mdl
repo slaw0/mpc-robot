@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.265"
+    ComputedModelVersion    "1.272"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -44,10 +44,10 @@ Model {
   Created		  "Tue Dec 17 14:33:00 2013"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "opra"
+  LastModifiedBy	  "Developer"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Dec 18 12:12:52 2013"
-  ModelVersionFormat	  "1.%<AutoIncrement:265>"
+  LastModifiedDate	  "Fri Mar 14 17:41:20 2014"
+  ModelVersionFormat	  "1.%<AutoIncrement:272>"
   ConfigurationManager	  "None"
   TargetProperties	  "DataTag0"
   LinearizationMsg	  "none"
@@ -529,6 +529,23 @@ Model {
       SampleTime	      "-1"
     }
     Block {
+      BlockType		      Scope
+      ModelBased	      off
+      TickLabels	      "OneTimeTick"
+      ZoomMode		      "on"
+      Grid		      "on"
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitDataPoints	      on
+      MaxDataPoints	      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      "S-Function"
       FunctionName	      "system"
       SFunctionModules	      "''"
@@ -596,7 +613,7 @@ Model {
   }
   System {
     Name		    "MPC_framework"
-    Location		    [385, 99, 1790, 1021]
+    Location		    [2, 74, 1278, 946]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -915,7 +932,7 @@ Model {
 	  fifo_queue_length	  "8"
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
-	  t			  "-1"
+	  t			  "init_1_message_frequency"
 	  enablePassThru	  off
 	}
 	Block {
@@ -1687,8 +1704,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"init_ack_messages receiver"
-	Location		[1225, 499, 1723, 799]
-	Open			off
+	Location		[231, 373, 729, 673]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1724,7 +1741,7 @@ Model {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "CAN Message Unpacking\n(CANdb)"
-	    Location		    [844, 189, 1663, 499]
+	    Location		    [279, 320, 1098, 630]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1766,7 +1783,7 @@ Model {
 	      BlockType		      Reference
 	      Name		      "Compare\nTo Constant"
 	      Ports		      [1, 1]
-	      Position		      [335, 65, 365, 95]
+	      Position		      [335, 64, 470, 96]
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Comp"
 "are\nTo Constant"
 	      SourceType	      "Compare To Constant"
@@ -1779,14 +1796,14 @@ Model {
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
 	      relop		      "=="
-	      const		      "hex2dec('14')"
+	      const		      "init_ack_sync_message"
 	      LogicOutDataTypeMode    "uint8"
 	      ZeroCross		      off
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "init_ack_sync received"
-	      Position		      [440, 73, 470, 87]
+	      Position		      [605, 73, 635, 87]
 	      IconDisplay	      "Port number"
 	      BusOutputAsStruct	      off
 	    }
@@ -1834,7 +1851,7 @@ Model {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "CAN Message Unpacking\n(CANdb)1"
-	    Location		    [844, 189, 1663, 499]
+	    Location		    [343, 220, 1162, 530]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1876,7 +1893,7 @@ Model {
 	      BlockType		      Reference
 	      Name		      "Compare\nTo Constant"
 	      Ports		      [1, 1]
-	      Position		      [335, 65, 365, 95]
+	      Position		      [335, 63, 465, 97]
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Comp"
 "are\nTo Constant"
 	      SourceType	      "Compare To Constant"
@@ -1889,14 +1906,14 @@ Model {
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
 	      relop		      "=="
-	      const		      "hex2dec('15')"
+	      const		      "init_ack_async_message"
 	      LogicOutDataTypeMode    "uint8"
 	      ZeroCross		      off
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "init_ack_async received"
-	      Position		      [440, 73, 470, 87]
+	      Position		      [655, 73, 685, 87]
 	      IconDisplay	      "Port number"
 	      BusOutputAsStruct	      off
 	    }
@@ -2340,7 +2357,6 @@ Model {
       Name		      "request_incremental_value sender"
       Ports		      [0, 0, 1]
       Position		      [995, 294, 1095, 336]
-      FontSize		      10
       TreatAsAtomicUnit	      on
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
@@ -2386,8 +2402,6 @@ Model {
 	  Name			  "TouCAN Transmit"
 	  Ports			  [1]
 	  Position		  [375, 125, 475, 165]
-	  FontName		  "Arial"
-	  FontSize		  10
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
 	  ShowPortLabels	  on
@@ -2413,8 +2427,6 @@ Model {
 	  Position		  [110, 116, 310, 174]
 	  UserDataPersistent	  on
 	  UserData		  "DataTag11"
-	  FontName		  "Arial"
-	  FontSize		  10
 	  SourceBlock		  "canblocks/CAN Message Packing\n(CANdb)"
 	  SourceType		  "CAN Message Packing (CANdb)"
 	}
@@ -2690,6 +2702,28 @@ Model {
 	  DstPort		  1
 	}
       }
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Floating\nScope"
+      Ports		      []
+      Position		      [185, 14, 215, 46]
+      IOType		      "viewer"
+      List {
+	ListType		IOSignalStrings
+	set0ParseKeys		"16"
+	set0Sigs		"State Machine:o1"
+      }
+      Floating		      on
+      Location		      [587, 485, 911, 724]
+      Open		      off
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
     }
     Line {
       SrcBlock		      "State Machine"
@@ -3956,17 +3990,17 @@ Stateflow {
 		name                 		"MPC_framework"
 		created              		"17-Dec-2013 14:36:37"
 		isLibrary            		0
-		firstTarget          		35
+		firstTarget          		37
 		sfVersion            		64014000
 	}
 
 	chart {
 		id                                        		2
 		name                                      		"State Machine"
-		windowPosition                            		[-3 25.5 1440 732]
-		viewLimits                                		[0 1413.258 0 704.352]
-		zoomFactor                                		1.012
-		screen                                    		[1 1 1920 1080 1.333333333333333]
+		windowPosition                            		[-6 36 960 684]
+		viewLimits                                		[0 1383.345 0 978.077]
+		zoomFactor                                		1.509
+		screen                                    		[1 1 1280 1024 1.333333333333333]
 		treeNode                                  		[0 5 0 0]
 		firstTransition                           		10
 		viewObj                                   		2
@@ -3986,9 +4020,9 @@ Stateflow {
 	state {
 		id                           		3
 		labelString                  		"INIT\n"
-						"entry: init_out_value=1;\n"
+						"entry: init_out_value=init_1_message;\n"
 						"init_out_enable=1;"
-		position                     		[48.465 55.66 184.875 61.125]
+		position                     		[18.2366 55.66 235.8494 71.2925]
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[2 0 5 4]
@@ -4004,9 +4038,9 @@ Stateflow {
 		id                           		4
 		labelString                  		"INIT_ACK\n"
 						"entry: init_out_enable=0;\n"
-						"init_out_value=2;\n"
+						"init_out_value=init_2_message;\n"
 						"init_out_trigger=1;"
-		position                     		[29.59 164.035 136.3155 63.7454]
+		position                     		[29.59 164.035 226.8948 88.9349]
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[2 0 3 0]
@@ -4103,19 +4137,19 @@ Stateflow {
 
 	transition {
 		id             		10
-		labelPosition  		[65.412 30.141 8.345 15.15]
+		labelPosition  		[39.864 30.141 9.052 18.077]
 		fontSize       		12
 		src {
-			intersection		[0 0 1 0 65.4118 25.66 0 0]
+			intersection		[0 0 1 0 39.864 25.66 0 0]
 		}
 		dst {
 			id          		3
-			intersection		[1 0 -1 0.0917 65.4118 55.66 0 0]
+			intersection		[1 0 -1 0.0917 39.864 55.66 0 0]
 		}
-		midPoint       		[65.4118 37.0515]
+		midPoint       		[39.864 37.0515]
 		chart          		2
 		linkNode       		[2 0 11]
-		dataLimits     		[63.012 67.812 25.66 55.66]
+		dataLimits     		[37.464 42.264 25.66 55.66]
 		subviewer      		2
 		drawStyle      		SMART
 		executionOrder 		1
@@ -4124,20 +4158,20 @@ Stateflow {
 	transition {
 		id             		11
 		labelString    		"[init_ack_sync==1 && init_ack_async==1]"
-		labelPosition  		[26.432 130.338 220.762 15.15]
+		labelPosition  		[72.84 145.866 228.56 18.077]
 		fontSize       		12
 		src {
 			id          		3
-			intersection		[4 -1 0 0.4078 48.465 91.8563 0 74.2115]
+			intersection		[3 0 1 0.8147 61.9499 126.9525 0 74.2114]
 		}
 		dst {
 			id          		4
-			intersection		[4 -1 0 0.8578 29.59 173.1 0 -74.2115]
+			intersection		[1 0 -1 0.1426 61.9499 164.035 0 -77.2227]
 		}
-		midPoint       		[13.3392 135.1257]
+		midPoint       		[61.9499 142.0392]
 		chart          		2
 		linkNode       		[2 10 13]
-		dataLimits     		[11.261 48.465 91.856 175.5]
+		dataLimits     		[59.55 64.35 126.952 164.035]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4150,7 +4184,7 @@ Stateflow {
 
 	transition {
 		id             		12
-		labelPosition  		[457.352 148.674 8.345 15.15]
+		labelPosition  		[457.352 148.674 9.052 18.077]
 		fontSize       		12
 		src {
 			intersection		[0 0 1 0 459.2894 149.0487 0 0]
@@ -4169,20 +4203,20 @@ Stateflow {
 
 	transition {
 		id             		13
-		labelPosition  		[197.175 178.285 8.345 15.15]
+		labelPosition  		[252.724 178.287 9.052 18.077]
 		fontSize       		12
 		src {
 			id          		4
-			intersection		[2 1 0 0.4883 165.9055 195.1619 0 0.5625]
+			intersection		[2 1 0 0.35 256.4848 195.1619 0 0.5625]
 		}
 		dst {
 			id          		5
 			intersection		[4 -1 0 0.725 270.2561 195.1619 0 -0.5625]
 		}
-		midPoint       		[216.0886 195.16]
+		midPoint       		[259.4091 195.1619]
 		chart          		2
 		linkNode       		[2 11 0]
-		dataLimits     		[165.906 270.256 192.76 197.56]
+		dataLimits     		[256.485 270.256 192.762 197.562]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4194,7 +4228,7 @@ Stateflow {
 	transition {
 		id             		14
 		labelString    		"stop_button/stop_trigger=1;"
-		labelPosition  		[551.537 235.871 146.416 15.15]
+		labelPosition  		[551.537 235.871 152.751 18.077]
 		fontSize       		12
 		src {
 			id          		6
@@ -4221,7 +4255,7 @@ Stateflow {
 	transition {
 		id             		15
 		labelString    		"[positive_button==1]"
-		labelPosition  		[557.257 103.19 107.726 15.15]
+		labelPosition  		[557.257 103.19 112.017 18.077]
 		fontSize       		12
 		src {
 			id          		7
@@ -4249,7 +4283,7 @@ Stateflow {
 	transition {
 		id             		16
 		labelString    		"[negative_button==1]"
-		labelPosition  		[554.788 279.679 111.519 15.15]
+		labelPosition  		[554.788 279.679 116.543 18.077]
 		fontSize       		12
 		src {
 			id          		7
@@ -4276,7 +4310,7 @@ Stateflow {
 	transition {
 		id             		17
 		labelString    		"[positive_button==2]"
-		labelPosition  		[571.152 319.29 107.726 15.15]
+		labelPosition  		[571.152 319.29 112.017 18.077]
 		fontSize       		12
 		src {
 			id          		6
@@ -4303,7 +4337,7 @@ Stateflow {
 	transition {
 		id             		18
 		labelString    		"[negative_button==2]"
-		labelPosition  		[538.351 411.371 111.519 15.15]
+		labelPosition  		[538.351 411.371 116.543 18.077]
 		fontSize       		12
 		src {
 			id          		6
@@ -4557,7 +4591,7 @@ Stateflow {
 	data {
 		id                            		33
 		name                          		"controller_enable"
-		linkNode                      		[2 32 0]
+		linkNode                      		[2 32 34]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -4571,15 +4605,53 @@ Stateflow {
 		dataType                      		"uint8"
 	}
 
+	data {
+		id                            		34
+		name                          		"init_1_message"
+		linkNode                      		[2 33 35]
+		scope                         		CONSTANT_DATA
+		machine                       		1
+		props {
+			initialValue		"init_1_message"
+			type {
+				method    		SF_PARAMETERIZED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				expression		"uint8"
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint8"
+	}
+
+	data {
+		id                            		35
+		name                          		"init_2_message"
+		linkNode                      		[2 34 0]
+		scope                         		CONSTANT_DATA
+		machine                       		1
+		props {
+			initialValue		"init_2_message"
+			type {
+				method    		SF_PARAMETERIZED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				expression		"uint8"
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint8"
+	}
+
 	instance {
-		id     		34
+		id     		36
 		name   		"State Machine"
 		machine		1
 		chart  		2
 	}
 
 	target {
-		id                        		35
+		id                        		37
 		name                      		"sfun"
 		description               		"Default Simulink S-Function Target."
 		machine                   		1

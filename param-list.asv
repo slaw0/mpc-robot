@@ -1,0 +1,7 @@
+%% MPC555 robot controller model parameter list
+clear
+clc
+
+%% CAN communication parameters
+init_1_message_frequency = 0.01;
+
