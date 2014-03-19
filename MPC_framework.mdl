@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.272"
+    ComputedModelVersion    "1.283"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -46,8 +46,8 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Developer"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Mar 14 17:41:20 2014"
-  ModelVersionFormat	  "1.%<AutoIncrement:272>"
+  LastModifiedDate	  "Wed Mar 19 14:24:46 2014"
+  ModelVersionFormat	  "1.%<AutoIncrement:283>"
   ConfigurationManager	  "None"
   TargetProperties	  "DataTag0"
   LinearizationMsg	  "none"
@@ -90,7 +90,7 @@ Model {
   ExtModeLogAll		  on
   ExtModeAutoUpdateStatusClock on
   BufferReuse		  on
-  ProdHWDeviceType	  "32-bit Generic"
+  ProdHWDeviceType	  "Motorola PowerPC"
   ShowModelReferenceBlockVersion off
   ShowModelReferenceBlockIO off
   Array {
@@ -159,16 +159,6 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  4
-	  Array {
-	    Type		    "Cell"
-	    Dimension		    5
-	    Cell		    "ZeroExternalMemoryAtStartup"
-	    Cell		    "ZeroInternalMemoryAtStartup"
-	    Cell		    "InitFltsAndDblsToZero"
-	    Cell		    "OptimizeModelRefInitCode"
-	    Cell		    "NoFixptDivByZeroProtection"
-	    PropName		    "DisabledProps"
-	  }
 	  Version		  "1.2.0"
 	  BlockReduction	  on
 	  BooleanDataType	  on
@@ -192,8 +182,8 @@ Model {
 	  InitFltsAndDblsToZero	  on
 	  NoFixptDivByZeroProtection off
 	  EfficientFloat2IntCast  off
-	  OptimizeModelRefInitCode off
-	  LifeSpan		  "inf"
+	  OptimizeModelRefInitCode on
+	  LifeSpan		  "1"
 	  BufferReusableBoundary  on
 	}
 	Simulink.DebuggingCC {
@@ -264,11 +254,11 @@ Model {
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
 	  ProdBitPerLong	  32
-	  ProdIntDivRoundTo	  "Undefined"
-	  ProdEndianess		  "Unspecified"
+	  ProdIntDivRoundTo	  "Zero"
+	  ProdEndianess		  "BigEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdHWDeviceType	  "32-bit Generic"
+	  ProdHWDeviceType	  "Motorola PowerPC"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
@@ -299,15 +289,17 @@ Model {
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
-	    Cell		    "IncludeHyperlinkInReport"
+	    Cell		    "TargetLang"
 	    PropName		    "DisabledProps"
 	  }
 	  Version		  "1.2.0"
-	  SystemTargetFile	  "grt.tlc"
+	  SystemTargetFile	  "mpc555rt.tlc"
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
-	  TemplateMakefile	  "grt_default_tmf"
+	  TemplateMakefile	  "mpc555rt.tmf"
+	  Description		  "Embedded Target for Motorola MPC555 (real-t"
+"ime target)"
 	  GenerateReport	  off
 	  SaveLog		  off
 	  RTWVerbose		  on
@@ -318,6 +310,7 @@ Model {
 	  TLCAssert		  off
 	  ProcessScriptMode	  "Default"
 	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  "mpc555rt_make_rtw_hook"
 	  ConfigAtBuild		  off
 	  IncludeHyperlinkInReport off
 	  LaunchReport		  off
@@ -328,31 +321,10 @@ Model {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      9
-	      Array {
-		Type			"Cell"
-		Dimension		16
-		Cell			"IgnoreCustomStorageClasses"
-		Cell			"InsertBlockDesc"
-		Cell			"SFDataObjDesc"
-		Cell			"SimulinkDataObjDesc"
-		Cell			"DefineNamingRule"
-		Cell			"SignalNamingRule"
-		Cell			"ParamNamingRule"
-		Cell			"InlinedPrmAccess"
-		Cell			"CustomSymbolStr"
-		Cell			"CustomSymbolStrGlobalVar"
-		Cell			"CustomSymbolStrType"
-		Cell			"CustomSymbolStrField"
-		Cell			"CustomSymbolStrFcn"
-		Cell			"CustomSymbolStrBlkIO"
-		Cell			"CustomSymbolStrTmpVar"
-		Cell			"CustomSymbolStrMacro"
-		PropName		"DisabledProps"
-	      }
 	      Version		      "1.2.0"
 	      ForceParamTrailComments off
 	      GenerateComments	      on
-	      IgnoreCustomStorageClasses on
+	      IgnoreCustomStorageClasses off
 	      IncHierarchyInIds	      off
 	      MaxIdLength	      31
 	      PreserveName	      off
@@ -380,32 +352,21 @@ Model {
 	      InlinedPrmAccess	      "Literals"
 	      ReqsInCode	      off
 	    }
-	    Simulink.GRTTargetCC {
+	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      10
 	      Array {
 		Type			"Cell"
-		Dimension		13
-		Cell			"IncludeMdlTerminateFcn"
-		Cell			"CombineOutputUpdateFcns"
-		Cell			"SuppressErrorStatus"
-		Cell			"ERTCustomFileBanners"
-		Cell			"GenerateSampleERTMain"
-		Cell			"GenerateTestInterfaces"
-		Cell			"MultiInstanceERTCode"
-		Cell			"PurelyIntegerCode"
-		Cell			"SupportNonFinite"
-		Cell			"SupportComplex"
-		Cell			"SupportAbsoluteTime"
-		Cell			"SupportContinuousTime"
-		Cell			"SupportNonInlinedSFcns"
+		Dimension		1
+		Cell			"ExecutionProfilingNumSamples"
 		PropName		"DisabledProps"
 	      }
 	      Version		      "1.2.0"
-	      TargetFcnLib	      "ansi_tfl_tmw.mat"
-	      TargetLibSuffix	      ""
-	      TargetPreCompLibLocation ""
-	      GenFloatMathFcnCalls    "ANSI_C"
+	      TargetFcnLib	      "codewarrior_tfl_tmw.mat"
+	      TargetLibSuffix	      ".a"
+	      TargetPreCompLibLocation "C:\\MATLAB\\R2006a\\toolbox\\rtw\\targ"
+"ets\\mpc555dk\\drivers\\lib\\CODE_WARRIOR"
+	      GenFloatMathFcnCalls    "ISO_C"
 	      UtilityFuncGeneration   "Auto"
 	      GenerateFullHeader      on
 	      GenerateSampleERTMain   off
@@ -413,31 +374,191 @@ Model {
 	      IsPILTarget	      off
 	      ModelReferenceCompliant on
 	      IncludeMdlTerminateFcn  on
-	      CombineOutputUpdateFcns off
+	      CombineOutputUpdateFcns on
 	      SuppressErrorStatus     off
 	      IncludeERTFirstTime     on
 	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
-	      ERTCustomFileBanners    off
+	      ERTCustomFileBanners    on
 	      SupportAbsoluteTime     on
 	      LogVarNameModifier      "rt_"
-	      MatFileLogging	      on
+	      MatFileLogging	      off
 	      MultiInstanceERTCode    off
 	      SupportNonFinite	      on
 	      SupportComplex	      on
 	      PurelyIntegerCode	      off
-	      SupportContinuousTime   on
-	      SupportNonInlinedSFcns  on
-	      ExtMode		      off
-	      ExtModeStaticAlloc      off
-	      ExtModeTesting	      off
-	      ExtModeStaticAllocSize  1000000
-	      ExtModeTransport	      0
-	      ExtModeMexFile	      "ext_comm"
-	      RTWCAPISignals	      off
-	      RTWCAPIParams	      off
-	      RTWCAPIStates	      off
-	      GenerateASAP2	      off
+	      SupportContinuousTime   off
+	      SupportNonInlinedSFcns  off
+	      SystemTargetFile	      "mpc555rt.tlc"
+	      DialogCategory	      0
+	      Array {
+		Type			"Handle"
+		Dimension		1
+		Simulink.ERTTargetCC {
+		  $BackupClass		  "Simulink.TargetCC"
+		  $ObjectID		  11
+		  Version		  "1.2.0"
+		  TargetFcnLib		  "codewarrior_tfl_tmw.mat"
+		  TargetLibSuffix	  ".a"
+		  TargetPreCompLibLocation "C:\\MATLAB\\R2006a\\toolbox\\rtw\\"
+"targets\\mpc555dk\\drivers\\lib\\CODE_WARRIOR"
+		  GenFloatMathFcnCalls	  "ISO_C"
+		  UtilityFuncGeneration	  "Auto"
+		  GenerateFullHeader	  on
+		  GenerateSampleERTMain	  off
+		  GenerateTestInterfaces  off
+		  IsPILTarget		  off
+		  ModelReferenceCompliant on
+		  IncludeMdlTerminateFcn  on
+		  CombineOutputUpdateFcns on
+		  SuppressErrorStatus	  off
+		  IncludeERTFirstTime	  on
+		  ERTFirstTimeCompliant	  off
+		  IncludeFileDelimiter	  "Auto"
+		  ERTCustomFileBanners	  on
+		  SupportAbsoluteTime	  on
+		  LogVarNameModifier	  "rt_"
+		  MatFileLogging	  off
+		  MultiInstanceERTCode	  off
+		  SupportNonFinite	  on
+		  SupportComplex	  on
+		  PurelyIntegerCode	  off
+		  SupportContinuousTime	  off
+		  SupportNonInlinedSFcns  off
+		  GenerateErtSFunction	  off
+		  GenerateASAP2		  off
+		  ExtMode		  off
+		  ExtModeTransport	  0
+		  ExtModeStaticAlloc	  off
+		  ExtModeStaticAllocSize  1000000
+		  ExtModeTesting	  off
+		  ExtModeMexFile	  "ext_comm"
+		  InlinedParameterPlacement "NonHierarchical"
+		  TargetOS		  "BareBoardExample"
+		  MultiInstanceErrorCode  "Error"
+		  RateGroupingCode	  on
+		  RootIOFormat		  "Individual arguments"
+		  RTWCAPISignals	  off
+		  RTWCAPIParams		  off
+		  RTWCAPIStates		  off
+		  ERTSrcFileBannerTemplate "ert_code_template.cgt"
+		  ERTHdrFileBannerTemplate "ert_code_template.cgt"
+		  ERTDataSrcFileTemplate  "ert_code_template.cgt"
+		  ERTDataHdrFileTemplate  "ert_code_template.cgt"
+		  ERTCustomFileTemplate	  "example_file_process.tlc"
+		  InitialValueSource	  "Model"
+		  ModuleNamingRule	  "Unspecified"
+		  SignalDisplayLevel	  10
+		  ParamTuneLevel	  10
+		  GlobalDataDefinition	  "Auto"
+		  DataDefinitionFile	  "global.c"
+		  GlobalDataReference	  "Auto"
+		  DataReferenceFile	  "global.h"
+		  GRTInterface		  off
+		  EnableUserReplacementTypes off
+		  Array {
+		    Type		    "Struct"
+		    Dimension		    1
+		    MATStruct {
+		    double		    ""
+		    single		    ""
+		    int32		    ""
+		    int16		    ""
+		    int8		    ""
+		    uint32		    ""
+		    uint16		    ""
+		    uint8		    ""
+		    boolean		    ""
+		    int			    ""
+		    uint		    ""
+		    char		    ""
+		    }
+		    PropName		    "ReplacementTypes"
+		  }
+		  MemSecPackage		  "--- None ---"
+		  MemSecDataConstants	  "Default"
+		  MemSecDataIO		  "Default"
+		  MemSecDataInternal	  "Default"
+		  MemSecDataParameters	  "Default"
+		  MemSecFuncInitTerm	  "Default"
+		  MemSecFuncExecute	  "Default"
+		}
+		PropName		"Components"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType__toolbox_rtw_targ"
+"ets_mpc555dk_mpc555dk_mpc555rt_MPC555_OPTIMIZATION_SWITCH"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "speed"
+		  Value			  1
+		  String		  "size"
+		  Value			  2
+		  String		  "debug"
+		  Value			  3
+		  String		  "custom"
+		}
+		Name			"MPC555_OPTIMIZATION_SWITCH"
+		Value			"speed"
+	      }
+	      CustomProperty {
+		DataType		"string"
+		Name			"MPC555_OPTIMIZATION_FLAGS"
+		Value			"' -opt speed '"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType__toolbox_rtw_targ"
+"ets_mpc555dk_mpc555dk_mpc555rt_TARGET_MEMORY_MODEL"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "RAM"
+		  Value			  1
+		  String		  "FLASH"
+		}
+		Name			"TARGET_MEMORY_MODEL"
+		Value			"FLASH"
+	      }
+	      CustomProperty {
+		DataType		"RTWOptions_EnumType__toolbox_rtw_targ"
+"ets_mpc555dk_mpc555dk_mpc555rt_BuildAction"
+		EnumStrPairs {
+		  Value			  0
+		  String		  "None"
+		  Value			  1
+		  String		  "Launch_Download_Control_Panel"
+		  Value			  2
+		  String		  "Run_via_BDM"
+		  Value			  3
+		  String		  "Debug_via_BDM"
+		}
+		Name			"BuildAction"
+		Value			"Launch_Download_Control_Panel"
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"STATIC_RTWLIB"
+		Value			on
+	      }
+	      CustomProperty {
+		DataType		"int32"
+		Name			"BaseRateMaxOverrunsValue"
+		Value			5
+	      }
+	      CustomProperty {
+		DataType		"int32"
+		Name			"SubRateMaxOverrunsValue"
+		Value			0
+	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"ExecutionProfilingEnabled"
+		Value			off
+	      }
+	      CustomProperty {
+		DataType		"int32"
+		Name			"ExecutionProfilingNumSamples"
+		Value			500
+	      }
 	    }
 	    PropName		    "Components"
 	  }
@@ -446,7 +567,8 @@ Model {
       }
       Name		      "Configuration"
       SimulationMode	      "normal"
-      CurrentDlgPage	      "Solver"
+      CurrentDlgPage	      "Real-Time Workshop/ET MPC555 real-time options "
+"(1)"
     }
     PropName		    "ConfigurationSets"
   }
@@ -613,7 +735,7 @@ Model {
   }
   System {
     Name		    "MPC_framework"
-    Location		    [2, 74, 1278, 946]
+    Location		    [469, 85, 1279, 956]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -638,7 +760,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Controller"
-	Location		[468, 164, 1739, 882]
+	Location		[-238, 171, 1030, 889]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -888,7 +1010,7 @@ Model {
       System {
 	Name			"Init 1 message sender"
 	Location		[705, 483, 1203, 783]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1067,9 +1189,25 @@ Model {
       oldBlockName	      "MPC_framework/MPC555\nResource\nConfiguration"
     }
     Block {
+      BlockType		      Scope
+      Name		      "Scope"
+      Ports		      [1]
+      Position		      [680, 59, 710, 91]
+      Floating		      off
+      Location		      [-3, 56, 1277, 997]
+      Open		      off
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
+    }
+    Block {
       BlockType		      SubSystem
       Name		      "State Machine"
-      Ports		      [4, 7, 0, 1]
+      Ports		      [4, 7]
       Position		      [370, 203, 565, 327]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
@@ -1133,13 +1271,6 @@ Model {
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "stop_button"
-	  Ports			  [0, 1]
-	  Position		  [20, 246, 40, 264]
-	  ShowOutputPort	  on
-	}
-	Block {
 	  BlockType		  Demux
 	  Name			  " Demux "
 	  Ports			  [1, 1]
@@ -1150,10 +1281,11 @@ Model {
 	  BlockType		  "S-Function"
 	  Name			  " SFunction "
 	  Tag			  "Stateflow S-Function MPC_framework 1"
-	  Ports			  [5, 8]
+	  Ports			  [4, 8]
 	  Position		  [180, 105, 230, 285]
 	  FunctionName		  "sf_sfun"
-	  PortCounts		  "[5 8]"
+	  Parameters		  "init_1_message,init_2_message"
+	  PortCounts		  "[4 8]"
 	  Port {
 	    PortNumber		    2
 	    Name		    "init_out_value"
@@ -1330,12 +1462,6 @@ Model {
 	  DstPort		  4
 	}
 	Line {
-	  SrcBlock		  "stop_button"
-	  SrcPort		  1
-	  DstBlock		  " SFunction "
-	  DstPort		  5
-	}
-	Line {
 	  Name			  "motor1_reference"
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
@@ -1377,7 +1503,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"incremental_in_value receiver"
-	Location		[787, 398, 1285, 698]
+	Location		[312, 374, 810, 674]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1704,7 +1830,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"init_ack_messages receiver"
-	Location		[231, 373, 729, 673]
+	Location		[210, 373, 708, 673]
 	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2703,41 +2829,26 @@ Model {
 	}
       }
     }
-    Block {
-      BlockType		      Scope
-      Name		      "Floating\nScope"
-      Ports		      []
-      Position		      [185, 14, 215, 46]
-      IOType		      "viewer"
-      List {
-	ListType		IOSignalStrings
-	set0ParseKeys		"16"
-	set0Sigs		"State Machine:o1"
-      }
-      Floating		      on
-      Location		      [587, 485, 911, 724]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
-    }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      1
       Points		      [40, 0; 0, 0]
       Branch {
-	Points			[0, -60]
-	DstBlock		"Init 1 message sender"
-	DstPort			1
-      }
-      Branch {
 	Points			[0, 90]
 	DstBlock		"Init 2 message sender"
 	DstPort			1
+      }
+      Branch {
+	Points			[0, -60]
+	Branch {
+	  DstBlock		  "Init 1 message sender"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, -85]
+	  DstBlock		  "Scope"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -2765,13 +2876,6 @@ Model {
       SrcPort		      3
       Points		      [155, 0]
       DstBlock		      "Init 2 message sender"
-      DstPort		      trigger
-    }
-    Line {
-      SrcBlock		      "stop_button receiver"
-      SrcPort		      1
-      Points		      [205, 0]
-      DstBlock		      "State Machine"
       DstPort		      trigger
     }
     Line {
@@ -3990,15 +4094,15 @@ Stateflow {
 		name                 		"MPC_framework"
 		created              		"17-Dec-2013 14:36:37"
 		isLibrary            		0
-		firstTarget          		37
+		firstTarget          		35
 		sfVersion            		64014000
 	}
 
 	chart {
 		id                                        		2
 		name                                      		"State Machine"
-		windowPosition                            		[-6 36 960 684]
-		viewLimits                                		[0 1383.345 0 978.077]
+		windowPosition                            		[3 25.5 954 684]
+		viewLimits                                		[0 1373.944 0 977.832]
 		zoomFactor                                		1.509
 		screen                                    		[1 1 1280 1024 1.333333333333333]
 		treeNode                                  		[0 5 0 0]
@@ -4007,11 +4111,12 @@ Stateflow {
 		visible                                   		1
 		machine                                   		1
 		subviewS {
-			zoomFactor		1.012
+			zoomFactor		1.509
 		}
 		decomposition                             		CLUSTER_CHART
-		firstEvent                                		21
-		firstData                                 		22
+		firstData                                 		20
+		updateMethod                              		DISCRETE
+		sampleTime                                		"0.01"
 		chartFileNumber                           		1
 		executeAtInitialization                   		1
 		disableImplicitCasting                    		1
@@ -4064,7 +4169,7 @@ Stateflow {
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
-		firstData                    		19
+		firstData                    		18
 		eml {
 			treatIntsAsFixpt         		0
 		}
@@ -4137,7 +4242,7 @@ Stateflow {
 
 	transition {
 		id             		10
-		labelPosition  		[39.864 30.141 9.052 18.077]
+		labelPosition  		[39.864 30.141 9.05 18.073]
 		fontSize       		12
 		src {
 			intersection		[0 0 1 0 39.864 25.66 0 0]
@@ -4158,7 +4263,7 @@ Stateflow {
 	transition {
 		id             		11
 		labelString    		"[init_ack_sync==1 && init_ack_async==1]"
-		labelPosition  		[72.84 145.866 228.56 18.077]
+		labelPosition  		[72.84 145.866 228.503 18.073]
 		fontSize       		12
 		src {
 			id          		3
@@ -4171,7 +4276,7 @@ Stateflow {
 		midPoint       		[61.9499 142.0392]
 		chart          		2
 		linkNode       		[2 10 13]
-		dataLimits     		[59.55 64.35 126.952 164.035]
+		dataLimits     		[59.55 64.35 126.953 164.035]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4184,7 +4289,7 @@ Stateflow {
 
 	transition {
 		id             		12
-		labelPosition  		[457.352 148.674 9.052 18.077]
+		labelPosition  		[457.352 148.674 9.05 18.073]
 		fontSize       		12
 		src {
 			intersection		[0 0 1 0 459.2894 149.0487 0 0]
@@ -4195,7 +4300,7 @@ Stateflow {
 		}
 		midPoint       		[457.3519 160.6737]
 		chart          		2
-		linkNode       		[5 15 14]
+		linkNode       		[5 15 16]
 		dataLimits     		[456.889 461.689 149.049 179.049]
 		subviewer      		2
 		executionOrder 		1
@@ -4203,15 +4308,15 @@ Stateflow {
 
 	transition {
 		id             		13
-		labelPosition  		[252.724 178.287 9.052 18.077]
+		labelPosition  		[252.724 178.287 9.05 18.073]
 		fontSize       		12
 		src {
 			id          		4
-			intersection		[2 1 0 0.35 256.4848 195.1619 0 0.5625]
+			intersection		[2 1 0 0.35 256.4848 195.1622 0 0.5625]
 		}
 		dst {
 			id          		5
-			intersection		[4 -1 0 0.725 270.2561 195.1619 0 -0.5625]
+			intersection		[4 -1 0 0.725 270.2561 195.1622 0 -0.5625]
 		}
 		midPoint       		[259.4091 195.1619]
 		chart          		2
@@ -4227,21 +4332,21 @@ Stateflow {
 
 	transition {
 		id             		14
-		labelString    		"stop_button/stop_trigger=1;"
-		labelPosition  		[551.537 235.871 152.751 18.077]
+		labelString    		"[negative_button==2]"
+		labelPosition  		[538.351 411.371 116.514 18.073]
 		fontSize       		12
 		src {
 			id          		6
-			intersection		[4 -1 0 0.6849 702.6555 232.8635 0 48.75]
+			intersection		[4 -1 0 0.3178 702.6555 430.1135 0 -148.5]
 		}
 		dst {
 			id          		7
-			intersection		[2 1 0 0.2623 544.4557 232.8635 0 -56.3343]
+			intersection		[2 1 0 0.915 544.4557 366.7519 0 85.1384]
 		}
-		midPoint       		[624.3772 232.8635]
+		midPoint       		[624.5097 396.3679]
 		chart          		2
-		linkNode       		[5 12 16]
-		dataLimits     		[544.456 702.655 230.463 235.263]
+		linkNode       		[5 17 0]
+		dataLimits     		[544.456 702.655 364.352 430.113]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4255,7 +4360,7 @@ Stateflow {
 	transition {
 		id             		15
 		labelString    		"[positive_button==1]"
-		labelPosition  		[557.257 103.19 112.017 18.077]
+		labelPosition  		[557.257 103.19 111.989 18.073]
 		fontSize       		12
 		src {
 			id          		7
@@ -4283,7 +4388,7 @@ Stateflow {
 	transition {
 		id             		16
 		labelString    		"[negative_button==1]"
-		labelPosition  		[554.788 279.679 116.543 18.077]
+		labelPosition  		[554.788 279.679 116.514 18.073]
 		fontSize       		12
 		src {
 			id          		7
@@ -4295,7 +4400,7 @@ Stateflow {
 		}
 		midPoint       		[701.2597 278.0869]
 		chart          		2
-		linkNode       		[5 14 17]
+		linkNode       		[5 12 17]
 		dataLimits     		[544.456 786.878 270.779 349.985]
 		stampAngle     		NaN
 		subviewer      		2
@@ -4310,7 +4415,7 @@ Stateflow {
 	transition {
 		id             		17
 		labelString    		"[positive_button==2]"
-		labelPosition  		[571.152 319.29 112.017 18.077]
+		labelPosition  		[571.152 319.29 111.989 18.073]
 		fontSize       		12
 		src {
 			id          		6
@@ -4322,35 +4427,8 @@ Stateflow {
 		}
 		midPoint       		[624.3929 342.9461]
 		chart          		2
-		linkNode       		[5 16 18]
+		linkNode       		[5 16 14]
 		dataLimits     		[544.456 702.655 330.526 354.363]
-		stampAngle     		NaN
-		subviewer      		2
-		drawStyle      		SMART
-		slide {
-			mode          		MIRROR_SLIDE
-			sticky        		BOTH_STICK
-		}
-		executionOrder 		3
-	}
-
-	transition {
-		id             		18
-		labelString    		"[negative_button==2]"
-		labelPosition  		[538.351 411.371 116.543 18.077]
-		fontSize       		12
-		src {
-			id          		6
-			intersection		[4 -1 0 0.3178 702.6555 430.1135 0 -148.5]
-		}
-		dst {
-			id          		7
-			intersection		[2 1 0 0.915 544.4557 366.7519 0 85.1384]
-		}
-		midPoint       		[624.5097 396.3679]
-		chart          		2
-		linkNode       		[5 17 0]
-		dataLimits     		[544.456 702.655 364.352 430.113]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4362,9 +4440,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		19
+		id                            		18
 		name                          		"motor_positive_value"
-		linkNode                      		[5 0 20]
+		linkNode                      		[5 0 19]
 		scope                         		CONSTANT_DATA
 		machine                       		1
 		props {
@@ -4379,9 +4457,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		20
+		id                            		19
 		name                          		"motor_negative_value"
-		linkNode                      		[5 19 0]
+		linkNode                      		[5 18 0]
 		scope                         		CONSTANT_DATA
 		machine                       		1
 		props {
@@ -4395,23 +4473,47 @@ Stateflow {
 		dataType                      		"double"
 	}
 
-	event {
-		id         		21
-		name       		"stop_button"
-		linkNode   		[2 0 0]
-		scope      		INPUT_EVENT
-		trigger    		RISING_EDGE_EVENT
-		machine    		1
-	}
-
 	data {
-		id                            		22
+		id                            		20
 		name                          		"init_out_value"
-		linkNode                      		[2 0 23]
+		linkNode                      		[2 0 21]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
 			initialValue		"0"
+			type {
+				primitive 		SF_UINT8_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint8"
+	}
+
+	data {
+		id                            		21
+		name                          		"init_out_enable"
+		linkNode                      		[2 20 22]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			initialValue		"0"
+			type {
+				primitive 		SF_UINT8_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint8"
+	}
+
+	data {
+		id                            		22
+		name                          		"init_ack_sync"
+		linkNode                      		[2 21 23]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
 			type {
 				primitive 		SF_UINT8_TYPE
 				isSigned  		1
@@ -4423,8 +4525,24 @@ Stateflow {
 
 	data {
 		id                            		23
-		name                          		"init_out_enable"
+		name                          		"init_ack_async"
 		linkNode                      		[2 22 24]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			type {
+				primitive 		SF_UINT8_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint8"
+	}
+
+	data {
+		id                            		24
+		name                          		"init_out_trigger"
+		linkNode                      		[2 23 25]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -4439,28 +4557,13 @@ Stateflow {
 	}
 
 	data {
-		id                            		24
-		name                          		"init_ack_sync"
-		linkNode                      		[2 23 25]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			type {
-				primitive 		SF_UINT8_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint8"
-	}
-
-	data {
 		id                            		25
-		name                          		"init_ack_async"
+		name                          		"stop_trigger"
 		linkNode                      		[2 24 26]
-		scope                         		INPUT_DATA
+		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
+			initialValue		"0"
 			type {
 				primitive 		SF_UINT8_TYPE
 				isSigned  		1
@@ -4472,9 +4575,9 @@ Stateflow {
 
 	data {
 		id                            		26
-		name                          		"init_out_trigger"
+		name                          		"positive_button"
 		linkNode                      		[2 25 27]
-		scope                         		OUTPUT_DATA
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			initialValue		"0"
@@ -4489,12 +4592,11 @@ Stateflow {
 
 	data {
 		id                            		27
-		name                          		"stop_trigger"
+		name                          		"negative_button"
 		linkNode                      		[2 26 28]
-		scope                         		OUTPUT_DATA
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
-			initialValue		"0"
 			type {
 				primitive 		SF_UINT8_TYPE
 				isSigned  		1
@@ -4506,75 +4608,42 @@ Stateflow {
 
 	data {
 		id                            		28
-		name                          		"positive_button"
+		name                          		"motor1_reference"
 		linkNode                      		[2 27 29]
-		scope                         		INPUT_DATA
+		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
-			initialValue		"0"
+			initialValue		"hex2dec('8000')"
 			type {
-				primitive 		SF_UINT8_TYPE
+				primitive 		SF_UINT16_TYPE
 				isSigned  		1
 				wordLength		"16"
 			}
 		}
-		dataType                      		"uint8"
+		dataType                      		"uint16"
 	}
 
 	data {
 		id                            		29
-		name                          		"negative_button"
+		name                          		"motor2_reference"
 		linkNode                      		[2 28 30]
-		scope                         		INPUT_DATA
+		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
+			initialValue		"hex2dec('8000')"
 			type {
-				primitive 		SF_UINT8_TYPE
+				primitive 		SF_UINT16_TYPE
 				isSigned  		1
 				wordLength		"16"
 			}
 		}
-		dataType                      		"uint8"
+		dataType                      		"uint16"
 	}
 
 	data {
 		id                            		30
-		name                          		"motor1_reference"
-		linkNode                      		[2 29 31]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			initialValue		"hex2dec('8000')"
-			type {
-				primitive 		SF_UINT16_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint16"
-	}
-
-	data {
-		id                            		31
-		name                          		"motor2_reference"
-		linkNode                      		[2 30 32]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			initialValue		"hex2dec('8000')"
-			type {
-				primitive 		SF_UINT16_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint16"
-	}
-
-	data {
-		id                            		32
 		name                          		"motor_stopped_value"
-		linkNode                      		[2 31 33]
+		linkNode                      		[2 29 31]
 		scope                         		CONSTANT_DATA
 		machine                       		1
 		props {
@@ -4589,9 +4658,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		33
+		id                            		31
 		name                          		"controller_enable"
-		linkNode                      		[2 32 34]
+		linkNode                      		[2 30 32]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -4606,10 +4675,11 @@ Stateflow {
 	}
 
 	data {
-		id                            		34
+		id                            		32
 		name                          		"init_1_message"
-		linkNode                      		[2 33 35]
-		scope                         		CONSTANT_DATA
+		linkNode                      		[2 31 33]
+		scope                         		PARAMETER_DATA
+		initFromWorkspace             		1
 		machine                       		1
 		props {
 			initialValue		"init_1_message"
@@ -4625,10 +4695,12 @@ Stateflow {
 	}
 
 	data {
-		id                            		35
+		id                            		33
 		name                          		"init_2_message"
-		linkNode                      		[2 34 0]
-		scope                         		CONSTANT_DATA
+		linkNode                      		[2 32 0]
+		scope                         		PARAMETER_DATA
+		initFromWorkspace             		1
+		paramIndexForInitFromWorkspace		1
 		machine                       		1
 		props {
 			initialValue		"init_2_message"
@@ -4644,17 +4716,27 @@ Stateflow {
 	}
 
 	instance {
-		id     		36
+		id     		34
 		name   		"State Machine"
 		machine		1
 		chart  		2
 	}
 
 	target {
-		id                        		37
+		id                        		35
 		name                      		"sfun"
 		description               		"Default Simulink S-Function Target."
 		machine                   		1
-		linkNode                  		[1 0 0]
+		linkNode                  		[1 0 36]
+	}
+
+	target {
+		id                        		36
+		name                      		"rtw"
+		codeFlags                 		" comments=1 statebitsets=1 databitsets=1 emitlogicalops=1 el"
+						"seifdetection=1 constantfolding=1 redundantloadelimination=0"
+						" preservenames=0 preservenameswithparent=0 exportcharts=0"
+		machine                   		1
+		linkNode                  		[1 35 0]
 	}
 }

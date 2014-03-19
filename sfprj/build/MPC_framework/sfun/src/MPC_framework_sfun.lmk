@@ -19,7 +19,7 @@ OBJECTS = \
 	"c:\matlab\r2006a\extern\lib\win32\lcc\libut.lib"\
 	"c:\matlab\r2006a\toolbox\dspblks\lib\win32\dsp_dyn_rt_lcc.lib"\
 
-INCLUDE_PATH= -I"c:\matlab\r2006a\sys\lcc\include"  -I"c:\matlab\r2006a\extern\include"  -I"c:\matlab\r2006a\simulink\include"  -I"c:\matlab\r2006a\stateflow\c\mex\include"  -I"c:\matlab\r2006a\stateflow\c\debugger\include"  -I"c:\matlab\r2006a\toolbox\eml\lib\dsp"  -I"c:\users\developer\mpc555 robot simulink\mpc-robot\sfprj\build\mpc_framework\sfun\src"  -I"c:\users\developer\mpc555 robot simulink\mpc-robot" 
+INCLUDE_PATH= -I"c:\matlab\r2006a\sys\lcc\include"  -I"c:\matlab\r2006a\extern\include"  -I"c:\matlab\r2006a\simulink\include"  -I"c:\matlab\r2006a\stateflow\c\mex\include"  -I"c:\matlab\r2006a\stateflow\c\debugger\include"  -I"c:\matlab\r2006a\toolbox\eml\lib\dsp"  -I"c:\users\opra\mpc-555 robot\mpc-robot\sfprj\build\mpc_framework\sfun\src"  -I"c:\users\opra\mpc-555 robot\mpc-robot" 
  
 
 MPC_framework_sfun.mexw32 : $(MAKEFILE) $(OBJECTS)

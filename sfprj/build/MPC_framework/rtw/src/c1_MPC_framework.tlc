@@ -1,0 +1,179 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  1 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDefines(block,system) void
+   %openfile chartConstBuf
+         #define %<block.SymbolMapping.IN_NO_ACTIVE_CHILD> (0)
+         #define %<block.SymbolMapping.IN_INIT> (1)
+         #define %<block.SymbolMapping.IN_INIT_ACK> (2)
+         #define %<block.SymbolMapping.IN_OPERATION> (3)
+         #define %<block.SymbolMapping.IN_MOVING> (1)
+         #define %<block.SymbolMapping.IN_STOPPED> (2)
+         #define %<block.SymbolMapping.IN_POSITIVE_MOVEMENT> (2)
+         #define %<block.SymbolMapping.IN_NEGATIVE_MOVEMENT> (1)
+         #define %<block.SymbolMapping.motor_stopped_value> (32768.0)
+         #define %<block.SymbolMapping.motor_positive_value> (40960.0)
+         #define %<block.SymbolMapping.motor_negative_value> (24576.0)
+   %closefile chartConstBuf
+   %return chartConstBuf
+%endfunction %% ChartDefines
+%function ChartFunctions(block,system) void
+   %openfile chartFcnsBuf
+     
+         
+         
+         
+         
+            
+            
+            
+   %closefile chartFcnsBuf
+   %return chartFcnsBuf
+%endfunction %% ChartFunctions
+%function ChartSharedFunctions(block,system) void
+   %openfile chartFcnsBuf
+   %closefile chartFcnsBuf
+   %return chartFcnsBuf
+%endfunction %% ChartSharedFunctions
+%function Outputs(block,system) void
+   %openfile codeBuf
+      switch(%<LibSFChartInstance(block)>is_c1_MPC_framework) {
+case %<block.SymbolMapping.IN_INIT>:
+if((%<LibSFInputs(block, 0, 0)> == 1) && (%<LibSFInputs(block, 1, 0)> == 1)) {
+%<LibSFChartInstance(block)>is_c1_MPC_framework = (uint8_T)%<block.SymbolMapping.IN_INIT_ACK>;
+%<LibSFOutputs(block, 2, 0)> = 0U;
+%<LibSFOutputs(block, 1, 0)> = %<LibBlockParameter(p2, "", "", 0)>;
+%<LibSFOutputs(block, 3, 0)> = 1U;
+}
+break;
+case %<block.SymbolMapping.IN_INIT_ACK>:
+%<LibSFChartInstance(block)>is_c1_MPC_framework = (uint8_T)%<block.SymbolMapping.IN_OPERATION>;
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = (uint16_T)%<block.SymbolMapping.motor_stopped_value>;
+%<LibSFOutputs(block, 6, 0)> = (uint16_T)%<block.SymbolMapping.motor_stopped_value>;
+break;
+case %<block.SymbolMapping.IN_OPERATION>:
+%<LibSFOutputs(block, 7, 0)> = 1U;
+switch(%<LibSFChartInstance(block)>is_OPERATION) {
+case %<block.SymbolMapping.IN_MOVING>:
+if(%<LibSFInputs(block, 3, 0)> == 2) {
+%<LibSFChartInstance(block)>is_MOVING = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = (uint16_T)%<block.SymbolMapping.motor_stopped_value>;
+%<LibSFOutputs(block, 6, 0)> = (uint16_T)%<block.SymbolMapping.motor_stopped_value>;
+} else if(%<LibSFInputs(block, 2, 0)> == 2) {
+%<LibSFChartInstance(block)>is_MOVING = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = (uint16_T)%<block.SymbolMapping.motor_stopped_value>;
+%<LibSFOutputs(block, 6, 0)> = (uint16_T)%<block.SymbolMapping.motor_stopped_value>;
+}
+break;
+case %<block.SymbolMapping.IN_STOPPED>:
+if(%<LibSFInputs(block, 2, 0)> == 1) {
+%<LibSFOutputs(block, 4, 0)> = 0U;
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
+%<LibSFChartInstance(block)>is_MOVING = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOVEMENT>;
+%<LibSFOutputs(block, 5, 0)> = (uint16_T)%<block.SymbolMapping.motor_positive_value>;
+} else if(%<LibSFInputs(block, 3, 0)> == 1) {
+%<LibSFOutputs(block, 4, 0)> = 0U;
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
+%<LibSFChartInstance(block)>is_MOVING = (uint8_T)%<block.SymbolMapping.IN_NEGATIVE_MOVEMENT>;
+%<LibSFOutputs(block, 5, 0)> = (uint16_T)%<block.SymbolMapping.motor_negative_value>;
+}
+break;
+default:
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = (uint16_T)%<block.SymbolMapping.motor_stopped_value>;
+%<LibSFOutputs(block, 6, 0)> = (uint16_T)%<block.SymbolMapping.motor_stopped_value>;
+break;
+}
+break;
+default:
+%<LibSFChartInstance(block)>is_c1_MPC_framework = (uint8_T)%<block.SymbolMapping.IN_INIT>;
+%<LibSFOutputs(block, 1, 0)> = %<LibBlockParameter(p1, "", "", 0)>;
+%<LibSFOutputs(block, 2, 0)> = 1U;
+break;
+}
+   %closefile codeBuf
+   %return codeBuf
+%endfunction  %% Outputs
+%function InlinedInitializerCode(block,system) Output
+   %<SLibResetSFChartInstanceAccessed(block)>\
+   %openfile initBodyBuf
+      %<LibSFChartInstance(block)>is_OPERATION = 0U;
+%<LibSFChartInstance(block)>is_MOVING = 0U;
+%<LibSFChartInstance(block)>is_c1_MPC_framework = 0U;
+%if LibBlockOutputSignalIsInBlockIO(1) || LibBlockOutputSignalStorageClass(1) != "Auto"
+%<LibSFOutputs(block, 1, 0)> = 0U;
+%endif
+%if LibBlockOutputSignalIsInBlockIO(2) || LibBlockOutputSignalStorageClass(2) != "Auto"
+%<LibSFOutputs(block, 2, 0)> = 0U;
+%endif
+%if LibBlockOutputSignalIsInBlockIO(3) || LibBlockOutputSignalStorageClass(3) != "Auto"
+%<LibSFOutputs(block, 3, 0)> = 0U;
+%endif
+%if LibBlockOutputSignalIsInBlockIO(4) || LibBlockOutputSignalStorageClass(4) != "Auto"
+%<LibSFOutputs(block, 4, 0)> = 0U;
+%endif
+%if LibBlockOutputSignalIsInBlockIO(5) || LibBlockOutputSignalStorageClass(5) != "Auto"
+%<LibSFOutputs(block, 5, 0)> = 32768U;
+%endif
+%if LibBlockOutputSignalIsInBlockIO(6) || LibBlockOutputSignalStorageClass(6) != "Auto"
+%<LibSFOutputs(block, 6, 0)> = 32768U;
+%endif
+%if LibBlockOutputSignalIsInBlockIO(7) || LibBlockOutputSignalStorageClass(7) != "Auto"
+%<LibSFOutputs(block, 7, 0)> = 0U;
+%endif
+%<LibSFChartInstance(block)>is_c1_MPC_framework = (uint8_T)%<block.SymbolMapping.IN_INIT>;
+%<LibSFOutputs(block, 1, 0)> = %<LibBlockParameter(p1, "", "", 0)>;
+%<LibSFOutputs(block, 2, 0)> = 1U;
+
+   %closefile initBodyBuf
+   %if !WHITE_SPACE(initBodyBuf)
+      /* Initialize code for chart: '%<LibGetBlockName(block)>' */
+      %<initBodyBuf>\
+   %endif
+%endfunction
+
+
+%function EnableUnboundOutputEventsCode(block,system) Output
+   %openfile initBodyBuf
+      
+   %closefile initBodyBuf
+   %if !WHITE_SPACE(initBodyBuf)
+      /* Enable code for chart: '%<LibGetBlockName(block)>' */
+      %<initBodyBuf>\
+   %endif
+%endfunction
+
+%function DisableUnboundOutputEventsCode(block,system) Output
+   %openfile initBodyBuf
+      
+   %closefile initBodyBuf
+   %if !WHITE_SPACE(initBodyBuf)
+      /* Disable code for chart: '%<LibGetBlockName(block)>' */
+      %<initBodyBuf>\
+   %endif
+%endfunction
+
+%function DumpSharedUtils(block,system) void
+%endfunction
+
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   0 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      DataTypeIdx  0\
+      IsComplex    0\
+      IsFixPoint   0\
+      With         1\
+      Dimensions   [1,1]\
+    }\
+  }
+  %return ChartDataElements
+%endfunction
