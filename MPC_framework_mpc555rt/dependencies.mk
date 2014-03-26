@@ -79,6 +79,7 @@ bin/CODE_WARRIOR/555/mpc555dk_main.o : \
 	MPC_framework_types.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/isr_types.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_mios.h\
+	../../../../../MATLAB/R2006a/rtw/c/libsrc/rtlibsrc.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc5xx.h\
 	autobuild.h
 # END TARGET bin/CODE_WARRIOR/555/mpc555dk_main.o
@@ -98,8 +99,8 @@ bin/CODE_WARRIOR/555/MPC_framework_data.o : \
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/common/can/datatypes/can_msg.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_ppm.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc533.h\
-	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/can_driver.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc535.h\
+	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/can_driver.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc555.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/can_tx_queue.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_qsmcm.h\
@@ -118,8 +119,8 @@ bin/CODE_WARRIOR/555/MPC_framework_data.o : \
 	MPC_framework_types.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/isr_types.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_mios.h\
-	../../../../../MATLAB/R2006a/rtw/c/libsrc/rtlibsrc.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc5xx.h\
+	../../../../../MATLAB/R2006a/rtw/c/libsrc/rtlibsrc.h\
 	MPC_framework_private.h
 # END TARGET bin/CODE_WARRIOR/555/MPC_framework_data.o
 
@@ -149,8 +150,8 @@ bin/CODE_WARRIOR/555/MPC_framework.o : \
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/common/can/datatypes/can_msg.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_ppm.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc533.h\
-	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/can_driver.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc535.h\
+	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/can_driver.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc555.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/can_tx_queue.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_qsmcm.h\
@@ -169,8 +170,8 @@ bin/CODE_WARRIOR/555/MPC_framework.o : \
 	MPC_framework_types.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/isr_types.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_mios.h\
-	../../../../../MATLAB/R2006a/rtw/c/libsrc/rtlibsrc.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc5xx.h\
+	../../../../../MATLAB/R2006a/rtw/c/libsrc/rtlibsrc.h\
 	MPC_framework_private.h
 # END TARGET bin/CODE_WARRIOR/555/MPC_framework.o
 

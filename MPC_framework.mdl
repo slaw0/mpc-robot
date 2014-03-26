@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.283"
+    ComputedModelVersion    "1.341"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -46,8 +46,8 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Developer"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 19 14:24:46 2014"
-  ModelVersionFormat	  "1.%<AutoIncrement:283>"
+  LastModifiedDate	  "Wed Mar 26 19:42:33 2014"
+  ModelVersionFormat	  "1.%<AutoIncrement:341>"
   ConfigurationManager	  "None"
   TargetProperties	  "DataTag0"
   LinearizationMsg	  "none"
@@ -625,6 +625,14 @@ Model {
       Interpolate	      on
     }
     Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
+    }
+    Block {
       BlockType		      Outport
       Port		      "1"
       UseBusObject	      off
@@ -735,7 +743,7 @@ Model {
   }
   System {
     Name		    "MPC_framework"
-    Location		    [469, 85, 1279, 956]
+    Location		    [6, 82, 1274, 953]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -753,7 +761,7 @@ Model {
       BlockType		      SubSystem
       Name		      "Controller"
       Ports		      [5, 2, 1]
-      Position		      [640, 417, 1135, 613]
+      Position		      [640, 517, 1135, 713]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
@@ -880,8 +888,8 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "DA_out_value sender"
-      Ports		      [2, 0, 1]
-      Position		      [1200, 483, 1325, 527]
+      Ports		      [2, 0, 0, 1]
+      Position		      [1345, 488, 1470, 532]
       TreatAsAtomicUnit	      on
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
@@ -906,6 +914,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "motor1_out"
 	  Position		  [60, 93, 90, 107]
+	  NamePlacement		  "alternate"
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -916,16 +925,17 @@ Model {
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  EnablePort
-	  Name			  "Enable"
+	  BlockType		  TriggerPort
+	  Name			  "Trigger"
 	  Ports			  []
-	  Position		  [260, 25, 280, 45]
+	  Position		  [255, 40, 275, 60]
+	  StatesWhenEnabling	  "held"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "Constant"
 	  Position		  [100, 20, 130, 50]
-	  Value			  "hex2dec('8000')"
+	  Value			  "motor_stopped_value"
 	  VectorParams1D	  on
 	  SamplingMode		  "Sample based"
 	  OutDataTypeMode	  "Inherit from 'Constant value'"
@@ -998,6 +1008,16 @@ Model {
       }
     }
     Block {
+      BlockType		      Demux
+      Name		      "Demux"
+      Ports		      [1, 2]
+      Position		      [1300, 491, 1305, 529]
+      BackgroundColor	      "black"
+      ShowName		      off
+      Outputs		      "2"
+      DisplayOption	      "bar"
+    }
+    Block {
       BlockType		      SubSystem
       Name		      "Init 1 message sender"
       Ports		      [1, 0, 1]
@@ -1010,7 +1030,7 @@ Model {
       System {
 	Name			"Init 1 message sender"
 	Location		[705, 483, 1203, 783]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1189,6 +1209,24 @@ Model {
       oldBlockName	      "MPC_framework/MPC555\nResource\nConfiguration"
     }
     Block {
+      BlockType		      Mux
+      Name		      "Mux"
+      Ports		      [2, 1]
+      Position		      [1130, 436, 1135, 474]
+      ShowName		      off
+      Inputs		      "2"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux1"
+      Ports		      [2, 1]
+      Position		      [1195, 576, 1200, 614]
+      ShowName		      off
+      Inputs		      "2"
+      DisplayOption	      "bar"
+    }
+    Block {
       BlockType		      Scope
       Name		      "Scope"
       Ports		      [1]
@@ -1207,16 +1245,11 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "State Machine"
-      Ports		      [4, 7]
-      Position		      [370, 203, 565, 327]
+      Ports		      [3, 8]
+      Position		      [325, 207, 525, 348]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
-      Array {
-	Type			"Handle"
-	Dimension		0
-	PropName		"AvailSigsLoadSave"
-      }
       MaskHideContents	      off
       MaskType		      "Stateflow"
       MaskDescription	      "Stateflow diagram"
@@ -1258,34 +1291,28 @@ Model {
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "positive_button"
+	  Name			  "primitive_button"
 	  Position		  [20, 171, 40, 189]
 	  Port			  "3"
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "negative_button"
-	  Position		  [20, 206, 40, 224]
-	  Port			  "4"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Demux
 	  Name			  " Demux "
 	  Ports			  [1, 1]
-	  Position		  [270, 350, 320, 390]
+	  Position		  [270, 390, 320, 430]
 	  Outputs		  "1"
 	}
 	Block {
 	  BlockType		  "S-Function"
 	  Name			  " SFunction "
 	  Tag			  "Stateflow S-Function MPC_framework 1"
-	  Ports			  [4, 8]
-	  Position		  [180, 105, 230, 285]
+	  Ports			  [3, 9]
+	  Position		  [180, 109, 230, 311]
 	  FunctionName		  "sf_sfun"
-	  Parameters		  "init_1_message,init_2_message"
-	  PortCounts		  "[4 8]"
+	  Parameters		  "init_1_message,init_2_message,motor_negativ"
+"e_value,motor_positive_value,motor_stopped_value"
+	  PortCounts		  "[3 9]"
 	  Port {
 	    PortNumber		    2
 	    Name		    "init_out_value"
@@ -1328,11 +1355,17 @@ Model {
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
+	  Port {
+	    PortNumber		    9
+	    Name		    "da_out_trigger"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  " Terminator "
-	  Position		  [460, 361, 480, 379]
+	  Position		  [460, 401, 480, 419]
 	}
 	Block {
 	  BlockType		  Outport
@@ -1389,6 +1422,14 @@ Model {
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "da_out_trigger"
+	  Position		  [460, 351, 480, 369]
+	  Port			  "8"
+	  IconDisplay		  "Port number"
+	  BusOutputAsStruct	  off
+	}
 	Line {
 	  SrcBlock		  " Demux "
 	  SrcPort		  1
@@ -1398,7 +1439,7 @@ Model {
 	Line {
 	  SrcBlock		  " SFunction "
 	  SrcPort		  1
-	  Points		  [0, 245]
+	  Points		  [0, 280]
 	  DstBlock		  " Demux "
 	  DstPort		  1
 	}
@@ -1449,17 +1490,10 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "positive_button"
+	  SrcBlock		  "primitive_button"
 	  SrcPort		  1
 	  DstBlock		  " SFunction "
 	  DstPort		  3
-	}
-	Line {
-	  SrcBlock		  "negative_button"
-	  SrcPort		  1
-	  Points		  [120, 0]
-	  DstBlock		  " SFunction "
-	  DstPort		  4
 	}
 	Line {
 	  Name			  "motor1_reference"
@@ -1485,7 +1519,23 @@ Model {
 	  DstBlock		  "controller_enable"
 	  DstPort		  1
 	}
+	Line {
+	  Name			  "da_out_trigger"
+	  Labels		  [0, 0]
+	  SrcBlock		  " SFunction "
+	  SrcPort		  9
+	  DstBlock		  "da_out_trigger"
+	  DstPort		  1
+	}
       }
+    }
+    Block {
+      BlockType		      Switch
+      Name		      "Switch"
+      Position		      [1240, 495, 1270, 525]
+      Criteria		      "u2 > Threshold"
+      InputSameDT	      off
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Terminator
@@ -1700,7 +1750,7 @@ Model {
 	Line {
 	  SrcBlock		  "TouCAN Receive"
 	  SrcPort		  1
-	  Points		  [30, 0; 0, -18]
+	  Points		  [30, 0; 0, -18; 70, 3]
 	  DstBlock		  "incremental_in_value unpacking"
 	  DstPort		  trigger
 	}
@@ -2171,16 +2221,16 @@ Model {
     }
     Block {
       BlockType		      SubSystem
-      Name		      "positive/negative buttons receiver"
-      Ports		      [0, 2]
+      Name		      "primitive_button receiver"
+      Ports		      [0, 1]
       Position		      [155, 284, 255, 326]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
       MaskHideContents	      off
       System {
-	Name			"positive/negative buttons receiver"
-	Location		[787, 398, 1285, 698]
+	Name			"primitive_button receiver"
+	Location		[224, 425, 755, 753]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2195,9 +2245,9 @@ Model {
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Reference
-	  Name			  "negative_button message receive"
+	  Name			  "primitive_button message receive"
 	  Ports			  [0, 2]
-	  Position		  [50, 190, 150, 230]
+	  Position		  [55, 90, 155, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
 	  ShowPortLabels	  on
@@ -2209,7 +2259,7 @@ Model {
 	  RTWMemSecDataInternal	  "Inherit from model"
 	  RTWMemSecDataParameters "Inherit from model"
 	  module		  "A"
-	  ids			  "hex2dec('09')"
+	  ids			  "hex2dec('08')"
 	  notification_type	  "Function Call Outport"
 	  auto_select_buffer	  on
 	  bufferids		  "6"
@@ -2220,9 +2270,9 @@ Model {
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "negative_button message unpacking"
+	  Name			  "primitive_button message unpacking"
 	  Ports			  [1, 1, 0, 1]
-	  Position		  [205, 195, 325, 245]
+	  Position		  [200, 96, 345, 144]
 	  UserDataPersistent	  on
 	  OpenFcn		  "open_system(gcb, 'force');"
 	  TreatAsAtomicUnit	  on
@@ -2241,7 +2291,7 @@ Model {
 	  MaskIconRotate	  "none"
 	  MaskIconUnits		  "autoscale"
 	  System {
-	    Name		    "negative_button message unpacking"
+	    Name		    "primitive_button message unpacking"
 	    Location		    [22, 105, 709, 298]
 	    Open		    off
 	    ModelBrowserVisibility  off
@@ -2282,121 +2332,7 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "negative_button received"
-	      Position		      [325, 73, 355, 87]
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Line {
-	      SrcBlock		      "Msg"
-	      SrcPort		      1
-	      DstBlock		      "CAN Message Unpacking\n(CANdb)"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "CAN Message Unpacking\n(CANdb)"
-	      SrcPort		      1
-	      DstBlock		      "negative_button received"
-	      DstPort		      1
-	    }
-	    Annotation {
-	      Name		      "Add any blocks to this subsystem that n"
-"eed to be\nexecuted each time a message is received."
-	      Position		      [175, 164]
-	      UseDisplayTextAsClickCallback off
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "positive_button message receive"
-	  Ports			  [0, 2]
-	  Position		  [55, 90, 155, 130]
-	  SourceBlock		  "mpc555toucan/TouCAN Receive"
-	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  on
-	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData off
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
-	  module		  "A"
-	  ids			  "hex2dec('08')"
-	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  on
-	  bufferids		  "7"
-	  use_queue		  off
-	  queue_length		  "3"
-	  message_type		  "Standard (11-bit identifier)"
-	  t			  "-1"
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "positive_button message unpacking"
-	  Ports			  [1, 1, 0, 1]
-	  Position		  [200, 95, 320, 145]
-	  UserDataPersistent	  on
-	  OpenFcn		  "open_system(gcb, 'force');"
-	  TreatAsAtomicUnit	  on
-	  MinAlgLoopOccurrences	  off
-	  RTWSystemCode		  "Auto"
-	  FunctionWithSeparateData off
-	  MaskHideContents	  off
-	  MaskType		  "CAN Message Unpacking (CANdb)"
-	  MaskDescription	  "CAN Message Unpacking (CANdb) Function-Call"
-" Subsystem Template"
-	  MaskHelp		  "helpview([docroot '/toolbox/can_blocks/can_"
-"blocks.map'], 'template_CANdb_msg_unpack');"
-	  MaskSelfModifiable	  on
-	  MaskIconFrame		  on
-	  MaskIconOpaque	  on
-	  MaskIconRotate	  "none"
-	  MaskIconUnits		  "autoscale"
-	  System {
-	    Name		    "positive_button message unpacking"
-	    Location		    [22, 105, 709, 298]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "Msg"
-	      Position		      [15, 73, 45, 87]
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      TriggerPort
-	      Name		      "f"
-	      Ports		      []
-	      Position		      [25, 15, 45, 35]
-	      TriggerType	      "function-call"
-	      StatesWhenEnabling      "held"
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "CAN Message Unpacking\n(CANdb)"
-	      Ports		      [1, 1]
-	      Position		      [80, 57, 245, 103]
-	      UserDataPersistent      on
-	      UserData		      "DataTag10"
-	      SourceBlock	      "canblocks/CAN Message Unpacking\n(CANdb"
-")/CAN Message Unpacking\n(CANdb)"
-	      SourceType	      "CAN Message Unpacking (CANdb)"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "positive_button received"
+	      Name		      "primitive_button received"
 	      Position		      [325, 73, 355, 87]
 	      IconDisplay	      "Port number"
 	      BusOutputAsStruct	      off
@@ -2404,7 +2340,7 @@ Model {
 	    Line {
 	      SrcBlock		      "CAN Message Unpacking\n(CANdb)"
 	      SrcPort		      1
-	      DstBlock		      "positive_button received"
+	      DstBlock		      "primitive_button received"
 	      DstPort		      1
 	    }
 	    Line {
@@ -2423,57 +2359,28 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "positive_button received"
-	  Position		  [380, 113, 410, 127]
-	  IconDisplay		  "Port number"
-	  BusOutputAsStruct	  off
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "negative_button received"
-	  Position		  [385, 213, 415, 227]
-	  Port			  "2"
+	  Name			  "primitive_button received"
+	  Position		  [410, 113, 440, 127]
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
 	Line {
-	  SrcBlock		  "positive_button message unpacking"
+	  SrcBlock		  "primitive_button message unpacking"
 	  SrcPort		  1
-	  DstBlock		  "positive_button received"
+	  DstBlock		  "primitive_button received"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "positive_button message receive"
+	  SrcBlock		  "primitive_button message receive"
 	  SrcPort		  2
-	  DstBlock		  "positive_button message unpacking"
+	  DstBlock		  "primitive_button message unpacking"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "positive_button message receive"
+	  SrcBlock		  "primitive_button message receive"
 	  SrcPort		  1
 	  Points		  [30, 0; 0, -20]
-	  DstBlock		  "positive_button message unpacking"
-	  DstPort		  trigger
-	}
-	Line {
-	  SrcBlock		  "negative_button message unpacking"
-	  SrcPort		  1
-	  Points		  [0, 0]
-	  DstBlock		  "negative_button received"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "negative_button message receive"
-	  SrcPort		  2
-	  Points		  [0, 0]
-	  DstBlock		  "negative_button message unpacking"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "negative_button message receive"
-	  SrcPort		  1
-	  Points		  [40, 0; 0, -20]
-	  DstBlock		  "negative_button message unpacking"
+	  DstBlock		  "primitive_button message unpacking"
 	  DstPort		  trigger
 	}
       }
@@ -2552,7 +2459,7 @@ Model {
 	  Ports			  [1, 1]
 	  Position		  [110, 116, 310, 174]
 	  UserDataPersistent	  on
-	  UserData		  "DataTag11"
+	  UserData		  "DataTag10"
 	  SourceBlock		  "canblocks/CAN Message Packing\n(CANdb)"
 	  SourceType		  "CAN Message Packing (CANdb)"
 	}
@@ -2645,7 +2552,7 @@ Model {
 	  Ports			  [1, 1]
 	  Position		  [205, 85, 305, 135]
 	  UserDataPersistent	  on
-	  UserData		  "DataTag12"
+	  UserData		  "DataTag11"
 	  SourceBlock		  "canblocks/CAN Message Packing\n(CANdb)"
 	  SourceType		  "CAN Message Packing (CANdb)"
 	}
@@ -2674,7 +2581,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"stop_button receiver"
-	Location		[787, 398, 1285, 698]
+	Location		[350, 329, 848, 629]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2706,7 +2613,7 @@ Model {
 	  ids			  "hex2dec('04')"
 	  notification_type	  "Function Call Outport"
 	  auto_select_buffer	  on
-	  bufferids		  "8"
+	  bufferids		  "7"
 	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
@@ -2769,7 +2676,7 @@ Model {
 	      Ports		      [1, 1]
 	      Position		      [80, 57, 245, 103]
 	      UserDataPersistent      on
-	      UserData		      "DataTag13"
+	      UserData		      "DataTag12"
 	      SourceBlock	      "canblocks/CAN Message Unpacking\n(CANdb"
 ")/CAN Message Unpacking\n(CANdb)"
 	      SourceType	      "CAN Message Unpacking (CANdb)"
@@ -2832,14 +2739,14 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      1
-      Points		      [40, 0; 0, 0]
+      Points		      [80, 0]
       Branch {
-	Points			[0, 90]
+	Points			[0, 85]
 	DstBlock		"Init 2 message sender"
 	DstPort			1
       }
       Branch {
-	Points			[0, -60]
+	Points			[0, -65]
 	Branch {
 	  DstBlock		  "Init 1 message sender"
 	  DstPort		  1
@@ -2854,27 +2761,28 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      2
-      Points		      [20, 0; 0, -111]
+      Points		      [60, 0; 0, -116]
       DstBlock		      "Init 1 message sender"
       DstPort		      enable
     }
     Line {
       SrcBlock		      "init_ack_messages receiver"
       SrcPort		      1
-      Points		      [55, 0; 0, -10]
+      Points		      [40, 0]
       DstBlock		      "State Machine"
       DstPort		      1
     }
     Line {
       SrcBlock		      "init_ack_messages receiver"
       SrcPort		      2
+      Points		      [40, 0]
       DstBlock		      "State Machine"
       DstPort		      2
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      3
-      Points		      [155, 0]
+      Points		      [195, 0]
       DstBlock		      "Init 2 message sender"
       DstPort		      trigger
     }
@@ -2882,78 +2790,66 @@ Model {
       Labels		      [1, 0]
       SrcBlock		      "State Machine"
       SrcPort		      4
-      Points		      [285, 0]
+      Points		      [325, 0]
       DstBlock		      "stop message sender"
       DstPort		      trigger
     }
     Line {
-      SrcBlock		      "positive/negative buttons receiver"
+      SrcBlock		      "primitive_button receiver"
       SrcPort		      1
-      Points		      [45, 0; 0, -15]
+      Points		      [50, 0]
       DstBlock		      "State Machine"
       DstPort		      3
     }
     Line {
-      SrcBlock		      "positive/negative buttons receiver"
-      SrcPort		      2
-      Points		      [75, 0; 0, -5]
-      DstBlock		      "State Machine"
-      DstPort		      4
-    }
-    Line {
       SrcBlock		      "State Machine"
       SrcPort		      7
-      Points		      [0, 75]
+      Points		      [40, 0; 0, 70; 315, 0]
       Branch {
-	Points			[315, 0]
+	Points			[0, 0; 0, -30; 70, 0; 0, -80; 90, 0]
+	DstBlock		"request_incremental_value sender"
+	DstPort			enable
+      }
+      Branch {
+	Points			[0, 0]
 	Branch {
 	  DstBlock		  "Controller"
 	  DstPort		  enable
 	}
 	Branch {
-	  Points		  [375, 0]
-	  DstBlock		  "DA_out_value sender"
-	  DstPort		  enable
+	  Points		  [200, 0; 0, 125]
+	  DstBlock		  "Switch"
+	  DstPort		  2
 	}
-	Branch {
-	  Points		  [0, -30; 70, 0; 0, -80; 90, 0]
-	  DstBlock		  "request_incremental_value sender"
-	  DstPort		  enable
-	}
-      }
-      Branch {
-	Points			[-160, 0]
-	DstBlock		"incremental_out_value sender"
-	DstPort			enable
       }
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      5
-      Points		      [30, 0; 0, 155]
-      DstBlock		      "Controller"
-      DstPort		      1
+      Points		      [70, 0; 0, 160]
+      Branch {
+	Points			[0, 90]
+	DstBlock		"Controller"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Mux"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      6
-      Points		      [15, 0; 0, 180]
-      DstBlock		      "Controller"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Controller"
-      SrcPort		      1
-      Points		      [25, 0; 0, 30]
-      DstBlock		      "DA_out_value sender"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Controller"
-      SrcPort		      2
-      Points		      [25, 0; 0, -50]
-      DstBlock		      "DA_out_value sender"
-      DstPort		      2
+      Points		      [55, 0; 0, 165]
+      Branch {
+	Points			[0, 110]
+	DstBlock		"Controller"
+	DstPort			2
+      }
+      Branch {
+	DstBlock		"Mux"
+	DstPort			2
+      }
     }
     Line {
       SrcBlock		      "incremental_in_value receiver"
@@ -2974,12 +2870,65 @@ Model {
       DstBlock		      "Terminator"
       DstPort		      1
     }
+    Line {
+      SrcBlock		      "Controller"
+      SrcPort		      1
+      Points		      [25, 0; 0, 20]
+      DstBlock		      "Mux1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Controller"
+      SrcPort		      2
+      Points		      [25, 0; 0, -60]
+      DstBlock		      "Mux1"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Mux1"
+      SrcPort		      1
+      Points		      [15, 0; 0, -95]
+      DstBlock		      "Switch"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Mux"
+      SrcPort		      1
+      Points		      [70, 0; 0, 65]
+      DstBlock		      "Switch"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Switch"
+      SrcPort		      1
+      DstBlock		      "Demux"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      1
+      DstBlock		      "DA_out_value sender"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      2
+      DstBlock		      "DA_out_value sender"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "State Machine"
+      SrcPort		      8
+      Points		      [20, 0; 0, 45; 855, 0]
+      DstBlock		      "DA_out_value sender"
+      DstPort		      trigger
+    }
   }
 }
 MatData {
-  NumRecords		  14
+  NumRecords		  13
   DataRecord {
-    Tag			    DataTag13
+    Tag			    DataTag12
     Data		    "  %)30     .    ^ 4   8    (     @         %    "
 "\"     $    !     0         %  0 \"P    $    6    ;65S<V%G90    !J879A:&%N9&Q"
 "E    #@   &@%   &    \"    !$          0         !  0 :F%V80$    Q    8V]M+FU"
@@ -3012,7 +2961,7 @@ MatData {
 "!0    @    !     0    $         !0 $  4    !    !0   &IA=F$     #@         "
   }
   DataRecord {
-    Tag			    DataTag12
+    Tag			    DataTag11
     Data		    "  %)30     .    Z 4   8    (     @         %    "
 "\"     $    !     0         %  0 \"P    $    6    ;65S<V%G90    !J879A:&%N9&Q"
 "E    #@   %@%   &    \"    !$          0         !  0 :F%V80$    Q    8V]M+FU"
@@ -3045,7 +2994,7 @@ MatData {
 "0         %  0 !0    $    %    :F%V80     .          "
   }
   DataRecord {
-    Tag			    DataTag11
+    Tag			    DataTag10
     Data		    "  %)30     .    $ 8   8    (     @         %    "
 "\"     $    !     0         %  0 \"P    $    6    ;65S<V%G90    !J879A:&%N9&Q"
 "E    #@   ( %   &    \"    !$          0         !  0 :F%V80$    Q    8V]M+FU"
@@ -3079,46 +3028,12 @@ MatData {
 "   !0   &IA=F$     #@         "
   }
   DataRecord {
-    Tag			    DataTag10
-    Data		    "  %)30     .    ^ 4   8    (     @         %    "
-"\"     $    !     0         %  0 \"P    $    6    ;65S<V%G90    !J879A:&%N9&Q"
-"E    #@   &@%   &    \"    !$          0         !  0 :F%V80$    Q    8V]M+FU"
-"A=&AW;W)K<RYT;V]L8F]X+F5C;V1E<BYC86YL:6(N0V%N1$(N365S<V%G90         .      4 "
-"  8    (    \"0         %    \"     $   #.!    0         \"    S@0  *SM  5S<@"
-" Q8V]M+FUA=&AW;W)K<RYT;V]L8F]X+F5C;V1E<BYC86YL:6(N0V%N1$(N365S<V%G908U&6;8]\\"
-"W! @ (6@ .9&%T84ES17AT97)N86Q)  )I9$D !FED5'EP94D !FQE;F=T:$P \"F1B1FEL95!A=&"
-"AT !),:F%V82]L86YG+U-T<FEN9SM,  MM97-S86=E3F%M97$ ?@ !3  5<')O<&5R='E#:&%N9V5"
-"3=7!P;W)T=  B3&IA=F$O8F5A;G,O4')O<&5R='E#:&%N9V53=7!P;W)T.TP !W-I9VYA;'-T !),"
-":F%V82]U=&EL+U9E8W1O<CMX<                 %T  !T  M#86X@365S<V%G97-R \"!J879A"
-"+F)E86YS+E!R;W!E<G1Y0VAA;F=E4W5P<&]R=%C5TF172&\"[ P #20 J<')O<&5R='E#:&%N9V53"
-"=7!P;W)T4V5R:6%L:7IE9$1A=&%697)S:6]N3  (8VAI;&1R96YT !5,:F%V82]U=&EL+TAA<VAT8"
-"6)L93M,  9S;W5R8V5T !),:F%V82]L86YG+T]B:F5C=#MX<     )P<0!^  1P>'-R !!J879A+G"
-"5T:6PN5F5C=&]RV9=]6X [KP$#  -) !%C87!A8VET>4EN8W)E;65N=$D #&5L96UE;G1#;W5N=%L"
-" \"V5L96UE;G1$871A=  36TQJ879A+VQA;F<O3V)J96-T.WAP          %U<@ 36TQJ879A+FQ"
-"A;F<N3V)J96-T.Y#.6)\\0<REL @  >'     *<W( ,&-O;2YM871H=V]R:W,N=&]O;&)O>\"YE8V"
-"]D97(N8V%N;&EB+D-A;D1\"+E-I9VYA;/H>QW=M]@;* @ /20 *8GET94QA>6]U=$D \"&1A=&%4>"
-"7!E1  &9F%C=&]R6@ &:7--;V1E6@ ):7--;V1E1&5P20 &;&5N9W1H20 );6]D959A;'5E1  &;V"
-"9F<V5T20 *<VEG;F%L5'EP94D \"'-T87)T0FET6P -;&%Y;W5T4W1R:6YG<W0 $UM,:F%V82]L86"
-"YG+U-T<FEN9SM,  1N86UE<0!^  %,  QP:'ES:6-A;%5N:71Q 'X  4P #W!R;W!E<G1Y4W5P<&]"
-"R='$ ?@ \"3  5=F5T;V%B;&5#:&%N9V53=7!P;W)T=  B3&IA=F$O8F5A;G,O5F5T;V%B;&5#:&%"
-"N9V53=7!P;W)T.WAP          $_\\               \"                           <'"
-"0 #W!O<VET:79E7V)U='1O;G0  '-Q 'X !P    %P<W$ ?@ 0          $_\\             "
-"  \"                           <'0 !U-I9VYA;#%T  !Q 'X %G-R \"!J879A+F)E86YS+"
-"E9E=&]A8FQE0VAA;F=E4W5P<&]R=+E;\\\"+*=2\\_ P #20 J=F5T;V%B;&5#:&%N9V53=7!P;W)"
-"T4V5R:6%L:7IE9$1A=&%697)S:6]N3  (8VAI;&1R96YQ 'X \"$P !G-O=7)C97$ ?@ )>'     "
-"!<'$ ?@ 7<'AP>'$ ?@ ;<'!P<'!P<'!P>   #@   #     &    \"     8         !0    @"
-"               $         \"0         .    B     8    (    \"0         %    \""
-"     $   !8     0         \"    6      !24T     #@   $@    &    \"     (     "
-"    !0    @    !     0    $         !0 $  4    !    !0   &IA=F$     #@       "
-"  "
-  }
-  DataRecord {
     Tag			    DataTag9
     Data		    "  %)30     .    ^ 4   8    (     @         %    "
 "\"     $    !     0         %  0 \"P    $    6    ;65S<V%G90    !J879A:&%N9&Q"
 "E    #@   &@%   &    \"    !$          0         !  0 :F%V80$    Q    8V]M+FU"
 "A=&AW;W)K<RYT;V]L8F]X+F5C;V1E<BYC86YL:6(N0V%N1$(N365S<V%G90         .      4 "
-"  8    (    \"0         %    \"     $   #.!    0         \"    S@0  *SM  5S<@"
+"  8    (    \"0         %    \"     $   #0!    0         \"    T 0  *SM  5S<@"
 " Q8V]M+FUA=&AW;W)K<RYT;V]L8F]X+F5C;V1E<BYC86YL:6(N0V%N1$(N365S<V%G908U&6;8]\\"
 "W! @ (6@ .9&%T84ES17AT97)N86Q)  )I9$D !FED5'EP94D !FQE;F=T:$P \"F1B1FEL95!A=&"
 "AT !),:F%V82]L86YG+U-T<FEN9SM,  MM97-S86=E3F%M97$ ?@ !3  5<')O<&5R='E#:&%N9V5"
@@ -3136,15 +3051,14 @@ MatData {
 "YG+U-T<FEN9SM,  1N86UE<0!^  %,  QP:'ES:6-A;%5N:71Q 'X  4P #W!R;W!E<G1Y4W5P<&]"
 "R='$ ?@ \"3  5=F5T;V%B;&5#:&%N9V53=7!P;W)T=  B3&IA=F$O8F5A;G,O5F5T;V%B;&5#:&%"
 "N9V53=7!P;W)T.WAP          $_\\               \"                           <'"
-"0 #VYE9V%T:79E7V)U='1O;G0  '-Q 'X !P    %P<W$ ?@ 0          $_\\             "
-"  \"                           <'0 !U-I9VYA;#%T  !Q 'X %G-R \"!J879A+F)E86YS+"
-"E9E=&]A8FQE0VAA;F=E4W5P<&]R=+E;\\\"+*=2\\_ P #20 J=F5T;V%B;&5#:&%N9V53=7!P;W)"
-"T4V5R:6%L:7IE9$1A=&%697)S:6]N3  (8VAI;&1R96YQ 'X \"$P !G-O=7)C97$ ?@ )>'     "
-"!<'$ ?@ 7<'AP>'$ ?@ ;<'!P<'!P<'!P>   #@   #     &    \"     8         !0    @"
-"               $         \"0         .    B     8    (    \"0         %    \""
-"     $   !8     0         \"    6      !24T     #@   $@    &    \"     (     "
-"    !0    @    !     0    $         !0 $  4    !    !0   &IA=F$     #@       "
-"  "
+"0 $7!R:6UI=&EV95]M97-S86=E=   <W$ ?@ '     7!S<0!^ !           3_P           "
+"    (                          !P=  '4VEG;F%L,70  '$ ?@ 6<W( (&IA=F$N8F5A;G,N"
+"5F5T;V%B;&5#:&%N9V53=7!P;W)TN5OP(LIU+S\\#  -) \"IV971O86)L94-H86YG95-U<'!O<G1"
+"397)I86QI>F5D1&%T859E<G-I;VY,  AC:&EL9')E;G$ ?@ (3  &<V]U<F-E<0!^  EX<     %P"
+"<0!^ !=P>'!X<0!^ !MP<'!P<'!P<'!X#@   #     &    \"     8         !0    @     "
+"          $         \"0         .    B     8    (    \"0         %    \"     "
+"$   !8     0         \"    6      !24T     #@   $@    &    \"     (         !"
+"0    @    !     0    $         !0 $  4    !    !0   &IA=F$     #@         "
   }
   DataRecord {
     Tag			    DataTag8
@@ -3458,12 +3372,12 @@ MatData {
 "(    #0         %    \"     4    !     0         &    %        -T\"     0    "
 "$    )          X    X    !@    @    &          4    (     0    $    !       "
 "   D    (               .    .     8    (    !@         %    \"     $    !   "
-"  0         )    \"           :OA #@   #@    &    \"     8         !0    @   "
-" !     0    $         \"0    @            @0 X    X    !@    @    &          "
-"4    (     0    $    !          D    (            Z#\\.    .     8    (    !@"
-"         %    \"     $    !     0         )    \"            / _#@   $     & "
-"   \"     T         !0    @    !    !     $         !@   !     9     @    ,  "
-"  \"    #@   $@    &    \"     T         !0    @    %     0    $         !@  "
+"  0         )    \"         \" A Y!#@   #@    &    \"     8         !0    @  "
+"  !     0    $         \"0    @            P0 X    X    !@    @    &         "
+" 4    (     0    $    !          D    (            Z#\\.    .     8    (    !"
+"@         %    \"     $    !     0         )    \"            / _#@   $     &"
+"    \"     T         !0    @    !    !     $         !@   !     %    !0    8 "
+"   $    #@   $@    &    \"     T         !0    @    %     0    $         !@  "
 " !0       #= @    $    !    \"@         .    ,     8    (    \"0(        %   "
 " \"     $    !     0         \"  $       X   !(    !@    @    -          4   "
 " (    !0    $    !          8    4        W0(    !     0    @         #@   $@"
@@ -3905,12 +3819,12 @@ MatData {
 "(    #0         %    \"     4    !     0         &    %        -T\"     0    "
 "$    )          X    X    !@    @    &          4    (     0    $    !       "
 "   D    (               .    .     8    (    !@         %    \"     $    !   "
-"  0         )    \"           :OA #@   #@    &    \"     8         !0    @   "
-" !     0    $         \"0    @            @0 X    X    !@    @    &          "
-"4    (     0    $    !          D    (            Z#\\.    .     8    (    !@"
-"         %    \"     $    !     0         )    \"            / _#@   $     & "
-"   \"     T         !0    @    !    !     $         !@   !     9     @    ,  "
-"  \"    #@   $@    &    \"     T         !0    @    %     0    $         !@  "
+"  0         )    \"         \" A Y!#@   #@    &    \"     8         !0    @  "
+"  !     0    $         \"0    @            P0 X    X    !@    @    &         "
+" 4    (     0    $    !          D    (            Z#\\.    .     8    (    !"
+"@         %    \"     $    !     0         )    \"            / _#@   $     &"
+"    \"     T         !0    @    !    !     $         !@   !     %    !0    8 "
+"   $    #@   $@    &    \"     T         !0    @    %     0    $         !@  "
 " !0       #= @    $    !    \"@         .    ,     8    (    \"0(        %   "
 " \"     $    !     0         \"  $       X   !(    !@    @    -          4   "
 " (    !0    $    !          8    4        W0(    !     0    @         #@   $@"
@@ -4094,27 +4008,28 @@ Stateflow {
 		name                 		"MPC_framework"
 		created              		"17-Dec-2013 14:36:37"
 		isLibrary            		0
-		firstTarget          		35
+		firstTarget          		43
 		sfVersion            		64014000
 	}
 
 	chart {
 		id                                        		2
 		name                                      		"State Machine"
-		windowPosition                            		[3 25.5 954 684]
-		viewLimits                                		[0 1373.944 0 977.832]
-		zoomFactor                                		1.509
+		windowPosition                            		[-3 25.5 960 690]
+		viewLimits                                		[0 1145.625 42.711 860.211]
+		zoomFactor                                		1.25
 		screen                                    		[1 1 1280 1024 1.333333333333333]
 		treeNode                                  		[0 5 0 0]
-		firstTransition                           		10
+		firstTransition                           		16
 		viewObj                                   		2
-		visible                                   		1
 		machine                                   		1
 		subviewS {
-			zoomFactor		1.509
+			x1        		124.869
+			y1        		193.454
+			zoomFactor		1.25
 		}
 		decomposition                             		CLUSTER_CHART
-		firstData                                 		20
+		firstData                                 		26
 		updateMethod                              		DISCRETE
 		sampleTime                                		"0.01"
 		chartFileNumber                           		1
@@ -4159,17 +4074,15 @@ Stateflow {
 
 	state {
 		id                           		5
-		labelString                  		"OPERATION\n"
-						"during: controller_enable=1;"
-		position                     		[270.2561 14.3689 1062.1584 657.3796]
+		labelString                  		"OPERATION"
+		position                     		[289.6845 14.3689 1522.9251 1044.3203]
 		fontSize                     		12
 		chart                        		2
-		treeNode                     		[2 6 0 3]
-		firstTransition              		15
+		treeNode                     		[2 8 0 3]
+		firstTransition              		20
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
-		firstData                    		18
 		eml {
 			treatIntsAsFixpt         		0
 		}
@@ -4177,11 +4090,16 @@ Stateflow {
 
 	state {
 		id                           		6
-		labelString                  		"MOVING"
-		position                     		[702.6555 63.5487 604.253 537.3613]
+		labelString                  		"STOPPED\n"
+						"entry: motor1_reference=motor_stopped_value;\n"
+						"motor2_reference=motor_stopped_value;\n"
+						"da_out_trigger=1;\n"
+						"during: da_out_trigger=0;\n"
+						"exit: stop_trigger=0;"
+		position                     		[408.5745 126.4223 310.9251 113.9184]
 		fontSize                     		12
 		chart                        		2
-		treeNode                     		[5 8 0 7]
+		treeNode                     		[7 0 0 9]
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -4192,14 +4110,13 @@ Stateflow {
 
 	state {
 		id                           		7
-		labelString                  		"STOPPED\n"
-						"entry: motor1_reference=motor_stopped_value;\n"
-						"motor2_reference=motor_stopped_value;\n"
-						"exit: stop_trigger=0;"
-		position                     		[282.4055 179.0487 262.0502 205.1296]
+		labelString                  		"PRIMITIVE\n"
+						"during: controller_enable=0;"
+		position                     		[300.291 71.8661 892.2327 959.265]
 		fontSize                     		12
 		chart                        		2
-		treeNode                     		[5 0 6 0]
+		treeNode                     		[5 6 8 0]
+		firstTransition              		18
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -4210,12 +4127,13 @@ Stateflow {
 
 	state {
 		id                           		8
-		labelString                  		"POSITIVE_MOVEMENT\n"
-						"entry: motor1_reference=motor_positive_value;"
-		position                     		[713.3279 98.785 438.0187 115.9161]
+		labelString                  		"CONTROLLER\n"
+						"during: controller_enable=1;"
+		position                     		[1201.1157 65.7487 557.0096 580.0219]
 		fontSize                     		12
 		chart                        		2
-		treeNode                     		[6 0 0 9]
+		treeNode                     		[5 0 0 7]
+		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -4226,12 +4144,129 @@ Stateflow {
 
 	state {
 		id                           		9
-		labelString                  		"NEGATIVE_MOVEMENT\n"
-						"entry: motor1_reference=motor_negative_value;"
-		position                     		[736.8537 349.9847 403.9762 138.3979]
+		labelString                  		"MOVING"
+		position                     		[323.8044 488.8737 854.2929 516.9374]
 		fontSize                     		12
 		chart                        		2
-		treeNode                     		[6 0 8 0]
+		treeNode                     		[7 10 6 0]
+		subviewer                    		2
+		type                         		OR_STATE
+		decomposition                		SET_STATE
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		10
+		labelString                  		"SEGMENT_1"
+		position                     		[335.2285 527.229 834.4683 217.6204]
+		fontSize                     		12
+		arrowSize                    		12.339
+		chart                        		2
+		treeNode                     		[9 13 0 11]
+		subviewer                    		2
+		type                         		AND_STATE
+		decomposition                		CLUSTER_STATE
+		executionOrder               		1
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		11
+		labelString                  		"SEGMENT_2"
+		position                     		[348.4735 751.4778 810.2542 244.1783]
+		fontSize                     		12
+		arrowSize                    		12.339
+		chart                        		2
+		treeNode                     		[9 15 10 0]
+		subviewer                    		2
+		type                         		AND_STATE
+		decomposition                		CLUSTER_STATE
+		executionOrder               		2
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		12
+		labelString                  		"POSITIVE_MOV\n"
+						"entry:\n"
+						"motor1_reference=motor_positive_value;\n"
+						"da_out_trigger=1;\n"
+						"during:\n"
+						"da_out_trigger=0;"
+		position                     		[364.7725 581.7739 334.2521 140.2695]
+		fontSize                     		12
+		arrowSize                    		11.912
+		chart                        		2
+		treeNode                     		[10 0 13 0]
+		subviewer                    		2
+		type                         		OR_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		13
+		labelString                  		"NEGATIVE_MOV\n"
+						"entry:\n"
+						"motor1_reference=motor_negative_value;\n"
+						"da_out_trigger=1;\n"
+						"during:\n"
+						"da_out_trigger=0;"
+		position                     		[743.722 555.2055 350.7177 143.7188]
+		fontSize                     		12
+		arrowSize                    		11.912
+		chart                        		2
+		treeNode                     		[10 0 0 12]
+		subviewer                    		2
+		type                         		OR_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		14
+		labelString                  		"POSITIVE_MOV\n"
+						"entry:\n"
+						"motor2_reference=motor_positive_value;\n"
+						"da_out_trigger=1;\n"
+						"during:\n"
+						"da_out_trigger=0;"
+		position                     		[366.3565 790.1089 380.8224 183.1818]
+		fontSize                     		12
+		arrowSize                    		11.912
+		chart                        		2
+		treeNode                     		[11 0 15 0]
+		subviewer                    		2
+		type                         		OR_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		15
+		labelString                  		"NEGATIVE_MOV\n"
+						"entry:\n"
+						"motor2_reference=motor_negative_value;\n"
+						"da_out_trigger=1;\n"
+						"during:\n"
+						"da_out_trigger=0;"
+		position                     		[763.5021 781.2026 369.3502 195.1572]
+		fontSize                     		12
+		arrowSize                    		11.912
+		chart                        		2
+		treeNode                     		[11 0 0 14]
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -4241,8 +4276,8 @@ Stateflow {
 	}
 
 	transition {
-		id             		10
-		labelPosition  		[39.864 30.141 9.05 18.073]
+		id             		16
+		labelPosition  		[39.864 30.141 8.433 16.842]
 		fontSize       		12
 		src {
 			intersection		[0 0 1 0 39.864 25.66 0 0]
@@ -4253,7 +4288,7 @@ Stateflow {
 		}
 		midPoint       		[39.864 37.0515]
 		chart          		2
-		linkNode       		[2 0 11]
+		linkNode       		[2 0 17]
 		dataLimits     		[37.464 42.264 25.66 55.66]
 		subviewer      		2
 		drawStyle      		SMART
@@ -4261,54 +4296,50 @@ Stateflow {
 	}
 
 	transition {
-		id             		11
+		id             		17
 		labelString    		"[init_ack_sync==1 && init_ack_async==1]"
-		labelPosition  		[72.84 145.866 228.503 18.073]
+		labelPosition  		[48.713 133.279 233.325 16.842]
 		fontSize       		12
 		src {
 			id          		3
-			intersection		[3 0 1 0.8147 61.9499 126.9525 0 74.2114]
+			intersection		[3 0 1 0.911 39.234 126.9525 0 96.9273]
 		}
 		dst {
 			id          		4
-			intersection		[1 0 -1 0.1426 61.9499 164.035 0 -77.2227]
+			intersection		[1 0 -1 0.0665 44.6785 164.035 0 -96.9273]
 		}
-		midPoint       		[61.9499 142.0392]
+		midPoint       		[42.1337 142.0349]
 		chart          		2
-		linkNode       		[2 10 13]
-		dataLimits     		[59.55 64.35 126.953 164.035]
+		linkNode       		[2 16 19]
+		dataLimits     		[39.234 47.078 126.953 164.035]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
-		slide {
-			mode          		MIRROR_SLIDE
-			sticky        		SRC_STICK
-		}
 		executionOrder 		1
 	}
 
 	transition {
-		id             		12
-		labelPosition  		[457.352 148.674 9.05 18.073]
+		id             		18
+		labelPosition  		[619.146 95.925 8.433 16.842]
 		fontSize       		12
 		src {
-			intersection		[0 0 1 0 459.2894 149.0487 0 0]
+			intersection		[0 0 0 0 635.1407 101.2916 0 0]
 		}
 		dst {
-			id          		7
-			intersection		[1 0 -1 0.675 459.2894 179.0487 0 0]
+			id          		6
+			intersection		[1 0 -1 0.675 618.449 126.4223 0 0]
 		}
-		midPoint       		[457.3519 160.6737]
+		midPoint       		[624.2589 109.4867]
 		chart          		2
-		linkNode       		[5 15 16]
-		dataLimits     		[456.889 461.689 149.049 179.049]
+		linkNode       		[7 0 21]
+		dataLimits     		[616.049 635.141 101.292 126.422]
 		subviewer      		2
 		executionOrder 		1
 	}
 
 	transition {
-		id             		13
-		labelPosition  		[252.724 178.287 9.05 18.073]
+		id             		19
+		labelPosition  		[269.938 178.287 8.433 16.842]
 		fontSize       		12
 		src {
 			id          		4
@@ -4316,268 +4347,178 @@ Stateflow {
 		}
 		dst {
 			id          		5
-			intersection		[4 -1 0 0.725 270.2561 195.1622 0 -0.5625]
+			intersection		[4 -1 0 0.8269 289.6845 195.1622 0 -0.5625]
 		}
-		midPoint       		[259.4091 195.1619]
+		midPoint       		[269.5457 195.1622]
 		chart          		2
-		linkNode       		[2 11 0]
-		dataLimits     		[256.485 270.256 192.762 197.562]
+		linkNode       		[2 17 0]
+		dataLimits     		[256.485 289.685 192.762 197.562]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
-		slide {
-		}
 		executionOrder 		1
 	}
 
 	transition {
-		id             		14
-		labelString    		"[negative_button==2]"
-		labelPosition  		[538.351 411.371 116.514 18.073]
+		id             		20
+		labelPosition  		[653.732 48.089 8.433 16.842]
 		fontSize       		12
 		src {
-			id          		6
-			intersection		[4 -1 0 0.3178 702.6555 430.1135 0 -148.5]
+			intersection		[0 0 1 0 649.3324 41.8661 0 0]
 		}
 		dst {
 			id          		7
-			intersection		[2 1 0 0.915 544.4557 366.7519 0 85.1384]
+			intersection		[1 0 -1 0.3912 649.3324 71.8661 0 0]
 		}
-		midPoint       		[624.5097 396.3679]
+		midPoint       		[649.3324 51.0889]
 		chart          		2
-		linkNode       		[5 17 0]
-		dataLimits     		[544.456 702.655 364.352 430.113]
-		stampAngle     		NaN
+		linkNode       		[5 0 0]
+		dataLimits     		[646.932 651.732 41.866 71.866]
 		subviewer      		2
 		drawStyle      		SMART
-		slide {
-			mode          		MIRROR_SLIDE
-			sticky        		BOTH_STICK
-		}
 		executionOrder 		1
 	}
 
 	transition {
-		id             		15
-		labelString    		"[positive_button==1]"
-		labelPosition  		[557.257 103.19 111.989 18.073]
+		id             		21
+		labelString    		"[primitive_button==5]"
+		labelPosition  		[300.285 364.26 115.257 16.842]
 		fontSize       		12
 		src {
-			id          		7
-			intersection		[2 1 0 0.0951 544.4557 198.5487 0 19.5]
-		}
-		dst {
-			id          		8
-			intersection		[4 -1 0 0.7487 713.3279 127.9132 0 51.1355]
-		}
-		midPoint       		[586.9594 156.2931]
-		chart          		2
-		linkNode       		[5 0 12]
-		dataLimits     		[544.456 713.328 121.307 198.549]
-		stampAngle     		NaN
-		subviewer      		2
-		drawStyle      		SMART
-		slide {
-			mode          		MIRROR_SLIDE
-			sticky        		BOTH_STICK
-			midPointSticky		1
-		}
-		executionOrder 		1
-	}
-
-	transition {
-		id             		16
-		labelString    		"[negative_button==1]"
-		labelPosition  		[554.788 279.679 116.514 18.073]
-		fontSize       		12
-		src {
-			id          		7
-			intersection		[2 1 0 0.477 544.4557 276.8885 0 2.8125]
-		}
-		dst {
 			id          		9
-			intersection		[1 0 -1 0.1179 784.4782 349.9847 0 -4.3125]
-		}
-		midPoint       		[701.2597 278.0869]
-		chart          		2
-		linkNode       		[5 12 17]
-		dataLimits     		[544.456 786.878 270.779 349.985]
-		stampAngle     		NaN
-		subviewer      		2
-		slide {
-			mode          		MIRROR_SLIDE
-			sticky        		BOTH_STICK
-			midPointSticky		1
-		}
-		executionOrder 		2
-	}
-
-	transition {
-		id             		17
-		labelString    		"[positive_button==2]"
-		labelPosition  		[571.152 319.29 111.989 18.073]
-		fontSize       		12
-		src {
-			id          		6
-			intersection		[4 -1 0 0.4588 702.6555 354.3635 0 -72.75]
+			intersection		[1 0 -1 0.0726 385.8218 488.8737 0 -178.2153]
 		}
 		dst {
-			id          		7
-			intersection		[2 1 0 0.7501 544.4557 332.926 0 51.3125]
+			id          		6
+			intersection		[4 -1 0 0.4391 408.5745 190.3221 0 205.4811]
 		}
-		midPoint       		[624.3929 342.9461]
+		midPoint       		[406.5696 308.6775]
 		chart          		2
-		linkNode       		[5 16 14]
-		dataLimits     		[544.456 702.655 330.526 354.363]
+		linkNode       		[7 18 25]
+		dataLimits     		[382.633 417.227 187.922 488.874]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
 		slide {
 			mode          		MIRROR_SLIDE
 			sticky        		BOTH_STICK
+			midPointSticky		1
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		22
+		labelString    		"[primitive_button==1]"
+		labelPosition  		[542.689 275.755 115.257 16.842]
+		fontSize       		12
+		arrowSize      		11.912
+		src {
+			id          		6
+			intersection		[3 0 1 0.4063 593.158 240.3407 0 -26.2075]
+		}
+		dst {
+			id          		12
+			intersection		[1 0 -1 0.6833 593.158 581.7739 0 26.2075]
+		}
+		midPoint       		[593.158 412.1355]
+		chart          		2
+		linkNode       		[7 23 24]
+		dataLimits     		[589.584 596.732 240.341 581.774]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+		}
+		executionOrder 		4
+	}
+
+	transition {
+		id             		23
+		labelString    		"[primitive_button==3]"
+		labelPosition  		[752.635 268.622 115.257 16.842]
+		fontSize       		12
+		arrowSize      		11.912
+		src {
+			id          		6
+			intersection		[2 1 0 0.6829 719.4997 204.2216 0 -9.3955]
+		}
+		dst {
+			id          		13
+			intersection		[1 0 -1 0.2128 818.3577 555.2055 0 9.3955]
+		}
+		midPoint       		[815.6662 337.3354]
+		chart          		2
+		linkNode       		[7 25 22]
+		dataLimits     		[719.5 821.931 204.222 555.206]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
 		}
 		executionOrder 		2
 	}
 
-	data {
-		id                            		18
-		name                          		"motor_positive_value"
-		linkNode                      		[5 0 19]
-		scope                         		CONSTANT_DATA
-		machine                       		1
-		props {
-			initialValue		"hex2dec('A000')"
-			type {
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
+	transition {
+		id             		24
+		labelString    		"[primitive_button==2]"
+		labelPosition  		[649.389 442.074 115.257 16.842]
+		fontSize       		12
+		arrowSize      		11.912
+		src {
+			id          		6
+			intersection		[3 0 1 0.0665 698.8232 240.3407 0 -142.9577]
 		}
-		dataType                      		"double"
+		dst {
+			id          		14
+			intersection		[1 0 -1 0.8733 698.9375 790.1089 0 142.9577]
+		}
+		midPoint       		[698.8841 520.8321]
+		chart          		2
+		linkNode       		[7 22 0]
+		dataLimits     		[695.364 702.511 240.341 790.109]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+		}
+		executionOrder 		3
 	}
 
-	data {
-		id                            		19
-		name                          		"motor_negative_value"
-		linkNode                      		[5 18 0]
-		scope                         		CONSTANT_DATA
-		machine                       		1
-		props {
-			initialValue		"hex2dec('6000')"
-			type {
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
+	transition {
+		id             		25
+		labelString    		"[primitive_button==4]"
+		labelPosition  		[926.325 300.009 115.257 16.842]
+		fontSize       		12
+		arrowSize      		11.912
+		src {
+			id          		6
+			intersection		[2 1 0 0.5582 719.4997 190.013 0 -50.3277]
 		}
-		dataType                      		"double"
-	}
-
-	data {
-		id                            		20
-		name                          		"init_out_value"
-		linkNode                      		[2 0 21]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			initialValue		"0"
-			type {
-				primitive 		SF_UINT8_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
+		dst {
+			id          		15
+			intersection		[1 0 -1 0.9098 1099.5406 781.2026 0 336.0385]
 		}
-		dataType                      		"uint8"
-	}
-
-	data {
-		id                            		21
-		name                          		"init_out_enable"
-		linkNode                      		[2 20 22]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			initialValue		"0"
-			type {
-				primitive 		SF_UINT8_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
+		midPoint       		[1093.0614 490.4868]
+		chart          		2
+		linkNode       		[7 21 23]
+		dataLimits     		[719.5 1106.224 190.013 781.203]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			mode          		MIRROR_SLIDE
+			sticky        		BOTH_STICK
+			midPointSticky		1
 		}
-		dataType                      		"uint8"
-	}
-
-	data {
-		id                            		22
-		name                          		"init_ack_sync"
-		linkNode                      		[2 21 23]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			type {
-				primitive 		SF_UINT8_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint8"
-	}
-
-	data {
-		id                            		23
-		name                          		"init_ack_async"
-		linkNode                      		[2 22 24]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			type {
-				primitive 		SF_UINT8_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint8"
-	}
-
-	data {
-		id                            		24
-		name                          		"init_out_trigger"
-		linkNode                      		[2 23 25]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			initialValue		"0"
-			type {
-				primitive 		SF_UINT8_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint8"
-	}
-
-	data {
-		id                            		25
-		name                          		"stop_trigger"
-		linkNode                      		[2 24 26]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			initialValue		"0"
-			type {
-				primitive 		SF_UINT8_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint8"
+		executionOrder 		1
 	}
 
 	data {
 		id                            		26
-		name                          		"positive_button"
-		linkNode                      		[2 25 27]
-		scope                         		INPUT_DATA
+		name                          		"init_out_value"
+		linkNode                      		[2 0 27]
+		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
 			initialValue		"0"
@@ -4592,8 +4533,25 @@ Stateflow {
 
 	data {
 		id                            		27
-		name                          		"negative_button"
+		name                          		"init_out_enable"
 		linkNode                      		[2 26 28]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			initialValue		"0"
+			type {
+				primitive 		SF_UINT8_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint8"
+	}
+
+	data {
+		id                            		28
+		name                          		"init_ack_sync"
+		linkNode                      		[2 27 29]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -4607,59 +4565,41 @@ Stateflow {
 	}
 
 	data {
-		id                            		28
-		name                          		"motor1_reference"
-		linkNode                      		[2 27 29]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			initialValue		"hex2dec('8000')"
-			type {
-				primitive 		SF_UINT16_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint16"
-	}
-
-	data {
 		id                            		29
-		name                          		"motor2_reference"
+		name                          		"init_ack_async"
 		linkNode                      		[2 28 30]
-		scope                         		OUTPUT_DATA
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
-			initialValue		"hex2dec('8000')"
 			type {
-				primitive 		SF_UINT16_TYPE
+				primitive 		SF_UINT8_TYPE
 				isSigned  		1
 				wordLength		"16"
 			}
 		}
-		dataType                      		"uint16"
+		dataType                      		"uint8"
 	}
 
 	data {
 		id                            		30
-		name                          		"motor_stopped_value"
+		name                          		"init_out_trigger"
 		linkNode                      		[2 29 31]
-		scope                         		CONSTANT_DATA
+		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
-			initialValue		"hex2dec('8000')"
+			initialValue		"0"
 			type {
-				primitive 		SF_DOUBLE_TYPE
+				primitive 		SF_UINT8_TYPE
 				isSigned  		1
 				wordLength		"16"
 			}
 		}
-		dataType                      		"double"
+		dataType                      		"uint8"
 	}
 
 	data {
 		id                            		31
-		name                          		"controller_enable"
+		name                          		"stop_trigger"
 		linkNode                      		[2 30 32]
 		scope                         		OUTPUT_DATA
 		machine                       		1
@@ -4676,8 +4616,95 @@ Stateflow {
 
 	data {
 		id                            		32
-		name                          		"init_1_message"
+		name                          		"primitive_button"
 		linkNode                      		[2 31 33]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			initialValue		"0"
+			type {
+				primitive 		SF_UINT8_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint8"
+	}
+
+	data {
+		id                            		33
+		name                          		"motor1_reference"
+		linkNode                      		[2 32 34]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			initialValue		"hex2dec('8000')"
+			type {
+				primitive 		SF_UINT16_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint16"
+	}
+
+	data {
+		id                            		34
+		name                          		"motor2_reference"
+		linkNode                      		[2 33 35]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			initialValue		"hex2dec('8000')"
+			type {
+				primitive 		SF_UINT16_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint16"
+	}
+
+	data {
+		id                            		35
+		name                          		"motor_stopped_value"
+		linkNode                      		[2 34 36]
+		scope                         		PARAMETER_DATA
+		initFromWorkspace             		1
+		paramIndexForInitFromWorkspace		4
+		machine                       		1
+		props {
+			initialValue		"hex2dec('8000')"
+			type {
+				primitive 		SF_UINT16_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint16"
+	}
+
+	data {
+		id                            		36
+		name                          		"controller_enable"
+		linkNode                      		[2 35 37]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			initialValue		"0"
+			type {
+				primitive 		SF_UINT8_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint8"
+	}
+
+	data {
+		id                            		37
+		name                          		"init_1_message"
+		linkNode                      		[2 36 38]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		machine                       		1
@@ -4695,9 +4722,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		33
+		id                            		38
 		name                          		"init_2_message"
-		linkNode                      		[2 32 0]
+		linkNode                      		[2 37 39]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		1
@@ -4715,28 +4742,81 @@ Stateflow {
 		dataType                      		"uint8"
 	}
 
+	data {
+		id                            		39
+		name                          		"motor_positive_value"
+		linkNode                      		[2 38 40]
+		scope                         		PARAMETER_DATA
+		initFromWorkspace             		1
+		paramIndexForInitFromWorkspace		3
+		machine                       		1
+		props {
+			type {
+				primitive 		SF_UINT16_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint16"
+	}
+
+	data {
+		id                            		40
+		name                          		"motor_negative_value"
+		linkNode                      		[2 39 41]
+		scope                         		PARAMETER_DATA
+		initFromWorkspace             		1
+		paramIndexForInitFromWorkspace		2
+		machine                       		1
+		props {
+			type {
+				primitive 		SF_UINT16_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint16"
+	}
+
+	data {
+		id                            		41
+		name                          		"da_out_trigger"
+		linkNode                      		[2 40 0]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			initialValue		"0"
+			type {
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"double"
+	}
+
 	instance {
-		id     		34
+		id     		42
 		name   		"State Machine"
 		machine		1
 		chart  		2
 	}
 
 	target {
-		id                        		35
+		id                        		43
 		name                      		"sfun"
 		description               		"Default Simulink S-Function Target."
 		machine                   		1
-		linkNode                  		[1 0 36]
+		linkNode                  		[1 0 44]
 	}
 
 	target {
-		id                        		36
+		id                        		44
 		name                      		"rtw"
 		codeFlags                 		" comments=1 statebitsets=1 databitsets=1 emitlogicalops=1 el"
 						"seifdetection=1 constantfolding=1 redundantloadelimination=0"
 						" preservenames=0 preservenameswithparent=0 exportcharts=0"
 		machine                   		1
-		linkNode                  		[1 35 0]
+		linkNode                  		[1 43 0]
 	}
 }

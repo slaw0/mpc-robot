@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.282
+ * Model version                        : 1.340
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Wed Mar 19 14:11:59 2014
+ * Real-Time Workshop file generated on : Wed Mar 26 19:04:35 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Wed Mar 19 14:11:59 2014
+ * C source code generated on           : Wed Mar 26 19:04:35 2014
  */
 
 #ifndef _RTW_HEADER_MPC_framework_types_h_
@@ -17,8 +17,12 @@
 #define _CSC1_MPC_FRAMEWORK_CHARTSTRUCT_
 
 typedef struct {
-  uint8_T is_MOVING;
   uint8_T is_OPERATION;
+  uint8_T is_PRIMITIVE;
+  uint8_T is_SEGMENT_1;
+  uint8_T is_SEGMENT_2;
+  uint8_T is_active_SEGMENT_1;
+  uint8_T is_active_SEGMENT_2;
   uint8_T is_c1_MPC_framework;
 } CSc1_MPC_framework_ChartStruct;
 

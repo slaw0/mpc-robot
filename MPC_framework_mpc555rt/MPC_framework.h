@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.282
+ * Model version                        : 1.340
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Wed Mar 19 14:11:59 2014
+ * Real-Time Workshop file generated on : Wed Mar 26 19:04:35 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Wed Mar 19 14:11:59 2014
+ * C source code generated on           : Wed Mar 26 19:04:35 2014
  */
 
 #ifndef _RTW_HEADER_MPC_framework_h_
@@ -20,6 +20,7 @@
 #include <stddef.h>
 #include <string.h>
 #include "rtwtypes.h"
+#include "rtlibsrc.h"
 #include "can_msg.h"
 #include "mpc5xx.h"
 #include "can_driver.h"
@@ -55,30 +56,30 @@
 
 /* Block signals (auto storage) */
 typedef struct {
-  CAN_FRAME Datarealtime;               /* '<S40>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime;               /* '<S29>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime_h;             /* '<S40>/CAN Receive (S-Function)' */
   CAN_FRAME Datarealtime_p;             /* '<S41>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_d;             /* '<S50>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_a;             /* '<S48>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_pr;            /* '<S29>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_k;             /* '<S66>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime_b;             /* '<S48>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime_k;             /* '<S62>/CAN Receive (S-Function)' */
   CAN_FRAME stopmessagepacking;         /* '<S12>/stop message packing' */
   CAN_FRAME request_incremental_valuemessa; /* '<S11>/request_incremental_value message packing' */
   CAN_FRAME incremental_out_valuemessagep; /* '<S8>/incremental_out_value message packing' */
   CAN_FRAME initmessagepacking;         /* '<S4>/init message packing' */
   CAN_FRAME initmessagepacking_b;       /* '<S3>/init message packing' */
   CAN_FRAME DA_out_valuemessagepacking; /* '<S2>/DA_out_value message packing' */
-  real_T CANMessageUnpackingCANdb;      /* '<S67>/CAN Message Unpacking (CANdb)' */
+  real_T CANMessageUnpackingCANdb;      /* '<S63>/CAN Message Unpacking (CANdb)' */
   real_T CANMessageUnpackingCANdb_e;    /* '<S39>/CAN Message Unpacking (CANdb)' */
   real_T CANMessageUnpackingCANdb_m;    /* '<S38>/CAN Message Unpacking (CANdb)' */
   real_T CANMessageUnpackingCANdb_o;    /* '<S30>/CAN Message Unpacking (CANdb)' */
   real_T CANMessageUnpackingCANdb_c;    /* '<S30>/CAN Message Unpacking (CANdb)' */
   real_T CANMessageUnpackingCANdb_n;    /* '<S30>/CAN Message Unpacking (CANdb)' */
+  real_T da_out_trigger;                /* '<Root>/State Machine' */
+  uint16_T Switch[2];                   /* '<Root>/Switch' */
   uint16_T motor1_reference;            /* '<Root>/State Machine' */
   uint16_T motor2_reference;            /* '<Root>/State Machine' */
   uint16_T motor1_reference_j;          /* '<S1>/motor1_reference' */
   uint16_T motor2_reference_l;          /* '<S1>/motor2_reference' */
-  uint8_T CANMessageUnpackingCANdb_ee; /* '<S51>/CAN Message Unpacking (CANdb)' */
-  uint8_T CANMessageUnpackingCANdb_g;   /* '<S49>/CAN Message Unpacking (CANdb)' */
+  uint8_T CANMessageUnpackingCANdb_l;   /* '<S49>/CAN Message Unpacking (CANdb)' */
   uint8_T Compare;                      /* '<S43>/Compare' */
   uint8_T Compare_i;                    /* '<S42>/Compare' */
   uint8_T init_out_value;               /* '<Root>/State Machine' */
@@ -91,10 +92,9 @@ typedef struct {
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
   CSc1_MPC_framework_ChartStruct StateMachine; /* '<Root>/State Machine' */
-  int_T Controller_MODE;                /* '<Root>/Controller' */
-  int_T DA_out_valuesender_MODE;        /* '<Root>/DA_out_value sender' */
-  int_T Init1messagesender_MODE;        /* '<Root>/Init 1 message sender' */
   int_T incremental_out_valuesender_MO; /* '<Root>/incremental_out_value sender' */
+  int_T Controller_MODE;                /* '<Root>/Controller' */
+  int_T Init1messagesender_MODE;        /* '<Root>/Init 1 message sender' */
   int_T request_incremental_valuesende; /* '<Root>/request_incremental_value sender' */
 } D_Work_MPC_framework;
 
@@ -102,18 +102,31 @@ typedef struct {
 typedef struct {
   ZCSigState stopmessagesender_ZCE;     /* '<Root>/stop message sender' */
   ZCSigState Init2messagesender_ZCE;    /* '<Root>/Init 2 message sender' */
+  ZCSigState DA_out_valuesender_ZCE;    /* '<Root>/DA_out_value sender' */
 } PrevZCSigStates_MPC_framework;
 
 /* Parameters (auto storage) */
 struct _Parameters_MPC_framework {
-  real_T Constant_Value;                /* Expression: hex2dec('8000')
-                                         * '<S2>/Constant'
-                                         */
-  real_T Constant_Value_g;              /* Computed Parameter: Value
+  real_T Constant_Value;                /* Computed Parameter: Value
                                          * '<S42>/Constant'
                                          */
   real_T Constant_Value_h;              /* Computed Parameter: Value
                                          * '<S43>/Constant'
+                                         */
+  uint16_T Constant_Value_i;            /* Expression: motor_stopped_value
+                                         * '<S2>/Constant'
+                                         */
+  uint16_T SFunction_p3;                /* Expression: motor_negative_value
+                                         * '<Root>/State Machine'
+                                         */
+  uint16_T SFunction_p4;                /* Expression: motor_positive_value
+                                         * '<Root>/State Machine'
+                                         */
+  uint16_T SFunction_p5;                /* Expression: motor_stopped_value
+                                         * '<Root>/State Machine'
+                                         */
+  uint8_T Switch_Threshold;             /* Computed Parameter: Threshold
+                                         * '<Root>/Switch'
                                          */
   uint8_T SFunction_p1;                 /* Expression: init_1_message
                                          * '<Root>/State Machine'
@@ -187,7 +200,7 @@ extern RT_MODEL_MPC_framework *MPC_framework_M;
  * '<S7>'   : MPC_framework/incremental_in_value receiver
  * '<S8>'   : MPC_framework/incremental_out_value sender
  * '<S9>'   : MPC_framework/init_ack_messages receiver
- * '<S10>'  : MPC_framework/positive//negative buttons receiver
+ * '<S10>'  : MPC_framework/primitive_button receiver
  * '<S11>'  : MPC_framework/request_incremental_value sender
  * '<S12>'  : MPC_framework/stop message sender
  * '<S13>'  : MPC_framework/stop_button receiver
@@ -225,28 +238,24 @@ extern RT_MODEL_MPC_framework *MPC_framework_M;
  * '<S45>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive/Non-Configurable Outport Control1
  * '<S46>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive1/Configurable Outport Control
  * '<S47>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive1/Non-Configurable Outport Control1
- * '<S48>'  : MPC_framework/positive//negative buttons receiver/negative_button message receive
- * '<S49>'  : MPC_framework/positive//negative buttons receiver/negative_button message unpacking
- * '<S50>'  : MPC_framework/positive//negative buttons receiver/positive_button message receive
- * '<S51>'  : MPC_framework/positive//negative buttons receiver/positive_button message unpacking
- * '<S52>'  : MPC_framework/positive//negative buttons receiver/negative_button message receive/Configurable Outport Control
- * '<S53>'  : MPC_framework/positive//negative buttons receiver/negative_button message receive/Non-Configurable Outport Control1
- * '<S54>'  : MPC_framework/positive//negative buttons receiver/positive_button message receive/Configurable Outport Control
- * '<S55>'  : MPC_framework/positive//negative buttons receiver/positive_button message receive/Non-Configurable Outport Control1
- * '<S56>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit
- * '<S57>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Configurable Outport Control
- * '<S58>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Non-Configurable Inport Control
- * '<S59>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Pass through output
- * '<S60>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Pass through output/Pass through input
- * '<S61>'  : MPC_framework/stop message sender/TouCAN Transmit
- * '<S62>'  : MPC_framework/stop message sender/TouCAN Transmit/Configurable Outport Control
- * '<S63>'  : MPC_framework/stop message sender/TouCAN Transmit/Non-Configurable Inport Control
- * '<S64>'  : MPC_framework/stop message sender/TouCAN Transmit/Pass through output
- * '<S65>'  : MPC_framework/stop message sender/TouCAN Transmit/Pass through output/Pass through input
- * '<S66>'  : MPC_framework/stop_button receiver/TouCAN Receive
- * '<S67>'  : MPC_framework/stop_button receiver/stop_button message packing
- * '<S68>'  : MPC_framework/stop_button receiver/TouCAN Receive/Configurable Outport Control
- * '<S69>'  : MPC_framework/stop_button receiver/TouCAN Receive/Non-Configurable Outport Control1
+ * '<S48>'  : MPC_framework/primitive_button receiver/primitive_button message receive
+ * '<S49>'  : MPC_framework/primitive_button receiver/primitive_button message unpacking
+ * '<S50>'  : MPC_framework/primitive_button receiver/primitive_button message receive/Configurable Outport Control
+ * '<S51>'  : MPC_framework/primitive_button receiver/primitive_button message receive/Non-Configurable Outport Control1
+ * '<S52>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit
+ * '<S53>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Configurable Outport Control
+ * '<S54>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Non-Configurable Inport Control
+ * '<S55>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Pass through output
+ * '<S56>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Pass through output/Pass through input
+ * '<S57>'  : MPC_framework/stop message sender/TouCAN Transmit
+ * '<S58>'  : MPC_framework/stop message sender/TouCAN Transmit/Configurable Outport Control
+ * '<S59>'  : MPC_framework/stop message sender/TouCAN Transmit/Non-Configurable Inport Control
+ * '<S60>'  : MPC_framework/stop message sender/TouCAN Transmit/Pass through output
+ * '<S61>'  : MPC_framework/stop message sender/TouCAN Transmit/Pass through output/Pass through input
+ * '<S62>'  : MPC_framework/stop_button receiver/TouCAN Receive
+ * '<S63>'  : MPC_framework/stop_button receiver/stop_button message packing
+ * '<S64>'  : MPC_framework/stop_button receiver/TouCAN Receive/Configurable Outport Control
+ * '<S65>'  : MPC_framework/stop_button receiver/TouCAN Receive/Non-Configurable Outport Control1
  */
 
 #endif                                  /* _RTW_HEADER_MPC_framework_h_ */

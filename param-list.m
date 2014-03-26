@@ -9,3 +9,9 @@ init_1_message = uint8(1);
 init_2_message = uint8(2);
 init_ack_sync_message = uint8(20);
 init_ack_async_message = uint8(21);
+
+%% Control parameters
+DA_max = uint16(hex2dec('FFFF'));
+motor_stopped_value = DA_max/2;
+motor_positive_value = DA_max * 0.6;
+motor_negative_value = DA_max * 0.4;

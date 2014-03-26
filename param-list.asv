@@ -5,3 +5,12 @@ clc
 %% CAN communication parameters
 init_1_message_frequency = 0.01;
 
+init_1_message = uint8(1);
+init_2_message = uint8(2);
+init_ack_sync_message = uint8(20);
+init_ack_async_message = uint8(21);
+
+%% Control parameters
+DA_max = uint16(hex2dec('FFFF'));
+motor_stopped_value = DA_max;
+motor_positive_value = uint16(hex2dec(
