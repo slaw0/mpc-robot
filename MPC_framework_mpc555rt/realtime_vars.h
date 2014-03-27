@@ -3,9 +3,9 @@
  *
  * Real-Time Workshop code generation for Simulink model "MPC_framework.mdl".
  *
- * Model Version              : 1.340
+ * Model Version              : 1.386
  * Real-Time Workshop version : 6.4  (R2006a)  03-Feb-2006
- * C source code generated on : Wed Mar 26 19:04:35 2014
+ * C source code generated on : Thu Mar 27 19:08:22 2014
  *
  * Description  : Header file to define model dependent variables required
  *                by the build process. This file is included by

@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.340
+ * Model version                        : 1.386
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Wed Mar 26 19:04:35 2014
+ * Real-Time Workshop file generated on : Thu Mar 27 19:08:21 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Wed Mar 26 19:04:35 2014
+ * C source code generated on           : Thu Mar 27 19:08:22 2014
  */
 
 #include "MPC_framework.h"
@@ -91,6 +91,7 @@ void MPC_frame_StateMachine_Init(void)
   MPC_framework_B.motor2_reference = 32768U;
   MPC_framework_B.controller_enable = 0U;
   MPC_framework_B.da_out_trigger = 0.0;
+  MPC_framework_B.operation_mode = 0U;
   MPC_framework_DWork.StateMachine.is_c1_MPC_framework =
     (uint8_T)MPC_framework_IN_INIT;
   MPC_framework_B.init_out_value = MPC_framework_P.SFunction_p1;
@@ -118,6 +119,7 @@ void MPC_fram_StateMachine(void)
       (uint8_T)MPC_framework_IN_OPERATION;
     MPC_framework_DWork.StateMachine.is_OPERATION =
       (uint8_T)MPC_framework_IN_PRIMITIVE;
+    MPC_framework_B.operation_mode = 1U;
     MPC_framework_DWork.StateMachine.is_PRIMITIVE =
       (uint8_T)MPC_framework_IN_STOPPED;
     MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p5;
@@ -127,13 +129,23 @@ void MPC_fram_StateMachine(void)
    case MPC_framework_IN_OPERATION:
     switch(MPC_framework_DWork.StateMachine.is_OPERATION) {
      case MPC_framework_IN_CONTROLLER:
-      MPC_framework_B.controller_enable = 1U;
+      if(MPC_framework_B.CANMessageUnpackingCANdb_d == 1.0) {
+        MPC_framework_DWork.StateMachine.is_OPERATION =
+          (uint8_T)MPC_framework_IN_PRIMITIVE;
+        MPC_framework_B.operation_mode = 1U;
+        MPC_framework_DWork.StateMachine.is_PRIMITIVE =
+          (uint8_T)MPC_framework_IN_STOPPED;
+        MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p5;
+        MPC_framework_B.motor2_reference = MPC_framework_P.SFunction_p5;
+        MPC_framework_B.da_out_trigger = 1.0;
+      } else {
+        MPC_framework_B.controller_enable = 1U;
+      }
       break;
      case MPC_framework_IN_PRIMITIVE:
-      MPC_framework_B.controller_enable = 0U;
-      switch(MPC_framework_DWork.StateMachine.is_PRIMITIVE) {
-       case MPC_framework_IN_MOVING:
-        if(MPC_framework_B.CANMessageUnpackingCANdb_l == 5) {
+      if(MPC_framework_B.CANMessageUnpackingCANdb_d == 2.0) {
+        switch(MPC_framework_DWork.StateMachine.is_PRIMITIVE) {
+         case MPC_framework_IN_MOVING:
           MPC_framework_DWork.StateMachine.is_SEGMENT_2 =
             (uint8_T)MPC_framewor_IN_NO_ACTIVE_CHILD;
           MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 0U;
@@ -141,86 +153,111 @@ void MPC_fram_StateMachine(void)
             (uint8_T)MPC_framewor_IN_NO_ACTIVE_CHILD;
           MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 0U;
           MPC_framework_DWork.StateMachine.is_PRIMITIVE =
+            (uint8_T)MPC_framewor_IN_NO_ACTIVE_CHILD;
+          break;
+         case MPC_framework_IN_STOPPED:
+          MPC_framework_B.stop_trigger = 0U;
+          MPC_framework_DWork.StateMachine.is_PRIMITIVE =
+            (uint8_T)MPC_framewor_IN_NO_ACTIVE_CHILD;
+          break;
+        }
+        MPC_framework_DWork.StateMachine.is_OPERATION =
+          (uint8_T)MPC_framework_IN_CONTROLLER;
+        MPC_framework_B.operation_mode = 2U;
+      } else {
+        MPC_framework_B.controller_enable = 0U;
+        switch(MPC_framework_DWork.StateMachine.is_PRIMITIVE) {
+         case MPC_framework_IN_MOVING:
+          if(MPC_framework_B.CANMessageUnpackingCANdb_l == 5) {
+            MPC_framework_DWork.StateMachine.is_SEGMENT_2 =
+              (uint8_T)MPC_framewor_IN_NO_ACTIVE_CHILD;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 0U;
+            MPC_framework_DWork.StateMachine.is_SEGMENT_1 =
+              (uint8_T)MPC_framewor_IN_NO_ACTIVE_CHILD;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 0U;
+            MPC_framework_DWork.StateMachine.is_PRIMITIVE =
+              (uint8_T)MPC_framework_IN_STOPPED;
+            MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p5;
+            MPC_framework_B.motor2_reference = MPC_framework_P.SFunction_p5;
+            MPC_framework_B.da_out_trigger = 1.0;
+          } else {
+            switch(MPC_framework_DWork.StateMachine.is_SEGMENT_1) {
+             case MPC_framework_IN_NEGATIVE_MOV:
+              MPC_framework_B.da_out_trigger = 0.0;
+              break;
+             case MPC_framework_IN_POSITIVE_MOV:
+              MPC_framework_B.da_out_trigger = 0.0;
+              break;
+            }
+            switch(MPC_framework_DWork.StateMachine.is_SEGMENT_2) {
+             case MPC_framework_IN_NEGATIVE_MOV:
+              MPC_framework_B.da_out_trigger = 0.0;
+              break;
+             case MPC_framework_IN_POSITIVE_MOV:
+              MPC_framework_B.da_out_trigger = 0.0;
+              break;
+            }
+          }
+          break;
+         case MPC_framework_IN_STOPPED:
+          if(MPC_framework_B.CANMessageUnpackingCANdb_l == 4) {
+            MPC_framework_B.stop_trigger = 0U;
+            MPC_framework_DWork.StateMachine.is_PRIMITIVE =
+              (uint8_T)MPC_framework_IN_MOVING;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 1U;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 1U;
+            MPC_framework_DWork.StateMachine.is_SEGMENT_2 =
+              (uint8_T)MPC_framework_IN_NEGATIVE_MOV;
+            MPC_framework_B.motor2_reference = MPC_framework_P.SFunction_p3;
+            MPC_framework_B.da_out_trigger = 1.0;
+          } else if(MPC_framework_B.CANMessageUnpackingCANdb_l == 3) {
+            MPC_framework_B.stop_trigger = 0U;
+            MPC_framework_DWork.StateMachine.is_PRIMITIVE =
+              (uint8_T)MPC_framework_IN_MOVING;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 1U;
+            MPC_framework_DWork.StateMachine.is_SEGMENT_1 =
+              (uint8_T)MPC_framework_IN_NEGATIVE_MOV;
+            MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p3;
+            MPC_framework_B.da_out_trigger = 1.0;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 1U;
+          } else if(MPC_framework_B.CANMessageUnpackingCANdb_l == 2) {
+            MPC_framework_B.stop_trigger = 0U;
+            MPC_framework_DWork.StateMachine.is_PRIMITIVE =
+              (uint8_T)MPC_framework_IN_MOVING;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 1U;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 1U;
+            MPC_framework_DWork.StateMachine.is_SEGMENT_2 =
+              (uint8_T)MPC_framework_IN_POSITIVE_MOV;
+            MPC_framework_B.motor2_reference = MPC_framework_P.SFunction_p4;
+            MPC_framework_B.da_out_trigger = 1.0;
+          } else if(MPC_framework_B.CANMessageUnpackingCANdb_l == 1) {
+            MPC_framework_B.stop_trigger = 0U;
+            MPC_framework_DWork.StateMachine.is_PRIMITIVE =
+              (uint8_T)MPC_framework_IN_MOVING;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 1U;
+            MPC_framework_DWork.StateMachine.is_SEGMENT_1 =
+              (uint8_T)MPC_framework_IN_POSITIVE_MOV;
+            MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p4;
+            MPC_framework_B.da_out_trigger = 1.0;
+            MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 1U;
+          } else {
+            MPC_framework_B.da_out_trigger = 0.0;
+          }
+          break;
+         default:
+          MPC_framework_DWork.StateMachine.is_PRIMITIVE =
             (uint8_T)MPC_framework_IN_STOPPED;
           MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p5;
           MPC_framework_B.motor2_reference = MPC_framework_P.SFunction_p5;
           MPC_framework_B.da_out_trigger = 1.0;
-        } else {
-          switch(MPC_framework_DWork.StateMachine.is_SEGMENT_1) {
-           case MPC_framework_IN_NEGATIVE_MOV:
-            MPC_framework_B.da_out_trigger = 0.0;
-            break;
-           case MPC_framework_IN_POSITIVE_MOV:
-            MPC_framework_B.da_out_trigger = 0.0;
-            break;
-          }
-          switch(MPC_framework_DWork.StateMachine.is_SEGMENT_2) {
-           case MPC_framework_IN_NEGATIVE_MOV:
-            MPC_framework_B.da_out_trigger = 0.0;
-            break;
-           case MPC_framework_IN_POSITIVE_MOV:
-            MPC_framework_B.da_out_trigger = 0.0;
-            break;
-          }
+          break;
         }
-        break;
-       case MPC_framework_IN_STOPPED:
-        if(MPC_framework_B.CANMessageUnpackingCANdb_l == 4) {
-          MPC_framework_B.stop_trigger = 0U;
-          MPC_framework_DWork.StateMachine.is_PRIMITIVE =
-            (uint8_T)MPC_framework_IN_MOVING;
-          MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 1U;
-          MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 1U;
-          MPC_framework_DWork.StateMachine.is_SEGMENT_2 =
-            (uint8_T)MPC_framework_IN_NEGATIVE_MOV;
-          MPC_framework_B.motor2_reference = MPC_framework_P.SFunction_p3;
-          MPC_framework_B.da_out_trigger = 1.0;
-        } else if(MPC_framework_B.CANMessageUnpackingCANdb_l == 3) {
-          MPC_framework_B.stop_trigger = 0U;
-          MPC_framework_DWork.StateMachine.is_PRIMITIVE =
-            (uint8_T)MPC_framework_IN_MOVING;
-          MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 1U;
-          MPC_framework_DWork.StateMachine.is_SEGMENT_1 =
-            (uint8_T)MPC_framework_IN_NEGATIVE_MOV;
-          MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p3;
-          MPC_framework_B.da_out_trigger = 1.0;
-          MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 1U;
-        } else if(MPC_framework_B.CANMessageUnpackingCANdb_l == 2) {
-          MPC_framework_B.stop_trigger = 0U;
-          MPC_framework_DWork.StateMachine.is_PRIMITIVE =
-            (uint8_T)MPC_framework_IN_MOVING;
-          MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 1U;
-          MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 1U;
-          MPC_framework_DWork.StateMachine.is_SEGMENT_2 =
-            (uint8_T)MPC_framework_IN_POSITIVE_MOV;
-          MPC_framework_B.motor2_reference = MPC_framework_P.SFunction_p4;
-          MPC_framework_B.da_out_trigger = 1.0;
-        } else if(MPC_framework_B.CANMessageUnpackingCANdb_l == 1) {
-          MPC_framework_B.stop_trigger = 0U;
-          MPC_framework_DWork.StateMachine.is_PRIMITIVE =
-            (uint8_T)MPC_framework_IN_MOVING;
-          MPC_framework_DWork.StateMachine.is_active_SEGMENT_1 = 1U;
-          MPC_framework_DWork.StateMachine.is_SEGMENT_1 =
-            (uint8_T)MPC_framework_IN_POSITIVE_MOV;
-          MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p4;
-          MPC_framework_B.da_out_trigger = 1.0;
-          MPC_framework_DWork.StateMachine.is_active_SEGMENT_2 = 1U;
-        } else {
-          MPC_framework_B.da_out_trigger = 0.0;
-        }
-        break;
-       default:
-        MPC_framework_DWork.StateMachine.is_PRIMITIVE =
-          (uint8_T)MPC_framework_IN_STOPPED;
-        MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p5;
-        MPC_framework_B.motor2_reference = MPC_framework_P.SFunction_p5;
-        MPC_framework_B.da_out_trigger = 1.0;
-        break;
       }
       break;
      default:
       MPC_framework_DWork.StateMachine.is_OPERATION =
         (uint8_T)MPC_framework_IN_PRIMITIVE;
+      MPC_framework_B.operation_mode = 1U;
       MPC_framework_DWork.StateMachine.is_PRIMITIVE =
         (uint8_T)MPC_framework_IN_STOPPED;
       MPC_framework_B.motor1_reference = MPC_framework_P.SFunction_p5;
@@ -242,20 +279,23 @@ void MPC_fram_StateMachine(void)
 
 void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
 {
+  /* local block i/o variables */
+  uint8_T rtb_Compare;
+  uint8_T rtb_Edge;
 
   {                                     /* Sample time: [0.01s, 0.0s] */
     rate_monotonic_scheduler();
   }
 
-  /* Block: <S29>/CAN Receive (S-Function)
+  /* Block: <S48>/CAN Receive (S-Function)
    * Receive CAN message 
    */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime),&GlobalModuleCAN_A,3) ==
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime),&GlobalModuleCAN_A,5) ==
    MSG_RECEIVED ){
 
-    /* Output and update for function-call system: '<S7>/incremental_in_value unpacking' */
+    /* Output and update for function-call system: '<S12>/CAN Message Unpacking (CANdb)' */
 
-    /*--- S-Function Block: <S30>/CAN Message Unpacking (CANdb) ---*/
+    /*--- S-Function Block: <S46>/CAN Message Unpacking (CANdb) ---*/
     {
       /* final input words that contain all signals as read from the message */
       uint32_T input_word0 = 0;
@@ -278,286 +318,6 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
         | (MPC_framework_B.Datarealtime.DATA[5] << 8)
         | (MPC_framework_B.Datarealtime.DATA[6] << 16)
         | (MPC_framework_B.Datarealtime.DATA[7] << 24);
-
-      /* --------------- START Unpacking CANdb signal cntr1 ------------------ 
-       *  startBit                = 32
-       *  length                  = 16
-       *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = UNSIGNED
-       *  signalType              = STANDARD
-       *  offset                  = 0.0 
-       *  factor                  = 1.0 
-       * -----------------------------------------------------------------------*/
-
-      {
-        /* create temporary storage for unpacking */
-        uint32_T working_word0;
-
-        /* -- unpack the signal --- */
-        working_word0 = input_word1;
-
-        /* The signal is to be unpacked in little endian format
-           No need to reverse the bytes in each word */
-
-        unscaledSignal = working_word0;
-        unscaledSignal &= 0xFFFF;
-      }
-
-      {
-        /* map scaledValue back to a real taking care of sign */
-        MPC_framework_B.CANMessageUnpackingCANdb_o = (real64_T) unscaledSignal;
-
-        /* no scaling required */
-      }
-
-      /* ------ END Unpacking CANdb signal cntr1  ----- */
-
-      /* --------------- START Unpacking CANdb signal cntr2 ------------------ 
-       *  startBit                = 16
-       *  length                  = 16
-       *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = UNSIGNED
-       *  signalType              = STANDARD
-       *  offset                  = 0.0 
-       *  factor                  = 1.0 
-       * -----------------------------------------------------------------------*/
-
-      {
-        /* create temporary storage for unpacking */
-        uint32_T working_word0;
-
-        /* -- unpack the signal --- */
-        working_word0 = input_word0;
-
-        /* The signal is to be unpacked in little endian format
-           No need to reverse the bytes in each word */
-
-        unscaledSignal = working_word0 >> 16;
-        unscaledSignal &= 0xFFFF;
-      }
-
-      {
-        /* map scaledValue back to a real taking care of sign */
-        MPC_framework_B.CANMessageUnpackingCANdb_c = (real64_T) unscaledSignal;
-
-        /* no scaling required */
-      }
-
-      /* ------ END Unpacking CANdb signal cntr2  ----- */
-
-      /* --------------- START Unpacking CANdb signal cntr3 ------------------ 
-       *  startBit                = 0
-       *  length                  = 16
-       *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = UNSIGNED
-       *  signalType              = STANDARD
-       *  offset                  = 0.0 
-       *  factor                  = 1.0 
-       * -----------------------------------------------------------------------*/
-
-      {
-        /* create temporary storage for unpacking */
-        uint32_T working_word0;
-
-        /* -- unpack the signal --- */
-        working_word0 = input_word0;
-
-        /* The signal is to be unpacked in little endian format
-           No need to reverse the bytes in each word */
-
-        unscaledSignal = working_word0;
-        unscaledSignal &= 0xFFFF;
-      }
-
-      {
-        /* map scaledValue back to a real taking care of sign */
-        MPC_framework_B.CANMessageUnpackingCANdb_n = (real64_T) unscaledSignal;
-
-        /* no scaling required */
-      }
-
-      /* ------ END Unpacking CANdb signal cntr3  ----- */
-    }
-  }
-
-  if(0.0 > 0.0) {
-    if(MPC_framework_DWork.incremental_out_valuesender_MO == SUBSYS_DISABLED) {
-    }
-    MPC_framework_DWork.incremental_out_valuesender_MO = SUBSYS_ENABLED;
-  } else if(MPC_framework_DWork.incremental_out_valuesender_MO ==
-   SUBSYS_ENABLED) {
-
-    MPC_framework_DWork.incremental_out_valuesender_MO = SUBSYS_DISABLED;
-  }
-  if(MPC_framework_DWork.incremental_out_valuesender_MO == SUBSYS_ENABLED) {
-
-    /* Output and update for enable system: '<Root>/incremental_out_value sender' */
-
-    /*--- S-Function Block: <S8>/incremental_out_value message packing ---*/
-    {
-      /* final output words that individual signals are |'d into */
-      uint32_T output_word0 = 0;
-      uint32_T output_word1 = 0;
-
-      /* variable to hold each scaled signal to be packed */
-      uint32_T scaledSignal = 0;
-
-      /* --------------- START Packing CANdb signal cntr1 ------------------ 
-       *  startBit                = 0
-       *  length                  = 16
-       *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = UNSIGNED
-       *  signalType              = STANDARD
-       *  offset                  = 0.0 
-       *  factor                  = 1.0 
-       * -----------------------------------------------------------------------*/
-
-      /* -- Scaling and Offset --- */
-      {
-        /* no scaling required */
-        real64_T result = MPC_framework_B.CANMessageUnpackingCANdb_o;
-
-        /* saturate the result */
-        if (result > 65535.0) {
-          result = 65535.0;
-        }
-        else if (result < 0.0) {
-          result = 0.0;
-        }
-
-        /* Cast to an integer type 
-         * rather than round.
-         * This will ensure that we stay within the 
-         * allowable range.
-         */
-        scaledSignal = (uint32_T) result;
-      }
-
-      {
-        /* create temporary storage for packing */
-        uint32_T working_word0;
-
-        /* -- pack the signal --- */
-        scaledSignal &= 0xFFFF;
-        working_word0 = scaledSignal;
-
-        /* The signal is to be packed in little endian format
-           No need to reverse the bytes in each word */
-
-        output_word0 |= working_word0;
-      }
-
-      /* ------ END Packing CANdb signal cntr1  ----- */
-
-      /* --------------- START Packing CANdb signal cntr2 ------------------ 
-       *  startBit                = 16
-       *  length                  = 16
-       *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = UNSIGNED
-       *  signalType              = STANDARD
-       *  offset                  = 0.0 
-       *  factor                  = 1.0 
-       * -----------------------------------------------------------------------*/
-
-      /* -- Scaling and Offset --- */
-      {
-        /* no scaling required */
-        real64_T result = MPC_framework_B.CANMessageUnpackingCANdb_c;
-
-        /* saturate the result */
-        if (result > 65535.0) {
-          result = 65535.0;
-        }
-        else if (result < 0.0) {
-          result = 0.0;
-        }
-
-        /* Cast to an integer type 
-         * rather than round.
-         * This will ensure that we stay within the 
-         * allowable range.
-         */
-        scaledSignal = (uint32_T) result;
-      }
-
-      {
-        /* create temporary storage for packing */
-        uint32_T working_word0;
-
-        /* -- pack the signal --- */
-        scaledSignal &= 0xFFFF;
-        working_word0 = scaledSignal << 16;
-
-        /* The signal is to be packed in little endian format
-           No need to reverse the bytes in each word */
-
-        output_word0 |= working_word0;
-      }
-
-      /* ------ END Packing CANdb signal cntr2  ----- */
-
-      /* CAN message byte array is not guaranteed to be word aligned,
-       * copy bytes individually from the output_words */
-      MPC_framework_B.incremental_out_valuemessagep.DATA[0] =
-        (uint8_T) output_word0;
-
-      MPC_framework_B.incremental_out_valuemessagep.DATA[1] =
-        (uint8_T) (output_word0 >> 8);
-
-      MPC_framework_B.incremental_out_valuemessagep.DATA[2] =
-        (uint8_T) (output_word0 >> 16);
-
-      MPC_framework_B.incremental_out_valuemessagep.DATA[3] =
-        (uint8_T) (output_word0 >> 24);
-
-      MPC_framework_B.incremental_out_valuemessagep.DATA[4] =
-        (uint8_T) output_word1;
-
-      MPC_framework_B.incremental_out_valuemessagep.DATA[5] =
-        (uint8_T) (output_word1 >> 8);
-
-      MPC_framework_B.incremental_out_valuemessagep.DATA[6] =
-        (uint8_T) (output_word1 >> 16);
-
-      MPC_framework_B.incremental_out_valuemessagep.DATA[7] =
-        (uint8_T) (output_word1 >> 24);
-    }
-
-    /* Send message using priority queue and shared TouCAN buffer(s) */
-    sendCanMessage(&GlobalModuleCAN_A,&MPC_framework_B.incremental_out_valuemessagep);
-  }
-
-  /* Block: <S40>/CAN Receive (S-Function)
-   * Receive CAN message 
-   */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_h),&GlobalModuleCAN_A,4)
-   == MSG_RECEIVED ){
-
-    /* Output and update for function-call system: '<S9>/CAN Message Unpacking (CANdb)' */
-
-    /*--- S-Function Block: <S38>/CAN Message Unpacking (CANdb) ---*/
-    {
-      /* final input words that contain all signals as read from the message */
-      uint32_T input_word0 = 0;
-      uint32_T input_word1 = 0;
-
-      /* variable to hold each unscaled unpacked signal */
-      uint32_T unscaledSignal = 0;
-
-      /* CAN message byte array is not guaranteed to be word aligned,
-       * copy bytes individually to the input_words */
-
-      input_word0 |=
-        MPC_framework_B.Datarealtime_h.DATA[0]
-        | (MPC_framework_B.Datarealtime_h.DATA[1] << 8)
-        | (MPC_framework_B.Datarealtime_h.DATA[2] << 16)
-        | (MPC_framework_B.Datarealtime_h.DATA[3] << 24);
-
-      input_word1 |=
-        MPC_framework_B.Datarealtime_h.DATA[4]
-        | (MPC_framework_B.Datarealtime_h.DATA[5] << 8)
-        | (MPC_framework_B.Datarealtime_h.DATA[6] << 16)
-        | (MPC_framework_B.Datarealtime_h.DATA[7] << 24);
 
       /* --------------- START Unpacking CANdb signal init_ack_sync ------------------ 
        *  startBit                = 0
@@ -593,22 +353,22 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
       /* ------ END Unpacking CANdb signal init_ack_sync  ----- */
     }
 
-    /* RelationalOperator: '<S42>/Compare' incorporates:
-     *  Constant: '<S42>/Constant'
+    /* RelationalOperator: '<S50>/Compare' incorporates:
+     *  Constant: '<S50>/Constant'
      */
     MPC_framework_B.Compare_i = (MPC_framework_B.CANMessageUnpackingCANdb_m ==
       MPC_framework_P.Constant_Value);
   }
 
-  /* Block: <S41>/CAN Receive (S-Function)
+  /* Block: <S49>/CAN Receive (S-Function)
    * Receive CAN message 
    */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_p),&GlobalModuleCAN_A,5)
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_p),&GlobalModuleCAN_A,6)
    == MSG_RECEIVED ){
 
-    /* Output and update for function-call system: '<S9>/CAN Message Unpacking (CANdb)1' */
+    /* Output and update for function-call system: '<S12>/CAN Message Unpacking (CANdb)1' */
 
-    /*--- S-Function Block: <S39>/CAN Message Unpacking (CANdb) ---*/
+    /*--- S-Function Block: <S47>/CAN Message Unpacking (CANdb) ---*/
     {
       /* final input words that contain all signals as read from the message */
       uint32_T input_word0 = 0;
@@ -666,22 +426,22 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
       /* ------ END Unpacking CANdb signal init_ack_async  ----- */
     }
 
-    /* RelationalOperator: '<S43>/Compare' incorporates:
-     *  Constant: '<S43>/Constant'
+    /* RelationalOperator: '<S51>/Compare' incorporates:
+     *  Constant: '<S51>/Constant'
      */
     MPC_framework_B.Compare = (MPC_framework_B.CANMessageUnpackingCANdb_e ==
       MPC_framework_P.Constant_Value_h);
   }
 
-  /* Block: <S48>/CAN Receive (S-Function)
+  /* Block: <S61>/CAN Receive (S-Function)
    * Receive CAN message 
    */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_b),&GlobalModuleCAN_A,6)
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_b),&GlobalModuleCAN_A,7)
    == MSG_RECEIVED ){
 
-    /* Output and update for function-call system: '<S10>/primitive_button message unpacking' */
+    /* Output and update for function-call system: '<S14>/primitive_button message unpacking' */
 
-    /*--- S-Function Block: <S49>/CAN Message Unpacking (CANdb) ---*/
+    /*--- S-Function Block: <S62>/CAN Message Unpacking (CANdb) ---*/
     {
       /* final input words that contain all signals as read from the message */
       uint32_T input_word0 = 0;
@@ -746,6 +506,73 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
     }
   }
 
+  /* Block: <S33>/CAN Receive (S-Function)
+   * Receive CAN message 
+   */
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_pd),&GlobalModuleCAN_A,3)
+   == MSG_RECEIVED ){
+
+    /* Output and update for function-call system: '<S9>/async_request message unpacking' */
+
+    /*--- S-Function Block: <S34>/CAN Message Unpacking (CANdb) ---*/
+    {
+      /* final input words that contain all signals as read from the message */
+      uint32_T input_word0 = 0;
+      uint32_T input_word1 = 0;
+
+      /* variable to hold each unscaled unpacked signal */
+      uint32_T unscaledSignal = 0;
+
+      /* CAN message byte array is not guaranteed to be word aligned,
+       * copy bytes individually to the input_words */
+
+      input_word0 |=
+        MPC_framework_B.Datarealtime_pd.DATA[0]
+        | (MPC_framework_B.Datarealtime_pd.DATA[1] << 8)
+        | (MPC_framework_B.Datarealtime_pd.DATA[2] << 16)
+        | (MPC_framework_B.Datarealtime_pd.DATA[3] << 24);
+
+      input_word1 |=
+        MPC_framework_B.Datarealtime_pd.DATA[4]
+        | (MPC_framework_B.Datarealtime_pd.DATA[5] << 8)
+        | (MPC_framework_B.Datarealtime_pd.DATA[6] << 16)
+        | (MPC_framework_B.Datarealtime_pd.DATA[7] << 24);
+
+      /* --------------- START Unpacking CANdb signal async_request ------------------ 
+       *  startBit                = 0
+       *  length                  = 8
+       *  desiredSignalByteLayout = LittleEndian 
+       *  dataType                = UNSIGNED
+       *  signalType              = STANDARD
+       *  offset                  = 0.0 
+       *  factor                  = 1.0 
+       * -----------------------------------------------------------------------*/
+
+      {
+        /* create temporary storage for unpacking */
+        uint32_T working_word0;
+
+        /* -- unpack the signal --- */
+        working_word0 = input_word0;
+
+        /* The signal is to be unpacked in little endian format
+           No need to reverse the bytes in each word */
+
+        unscaledSignal = working_word0;
+        unscaledSignal &= 0xFF;
+      }
+
+      {
+        /* map scaledValue back to a real taking care of sign */
+        MPC_framework_B.CANMessageUnpackingCANdb_d = (real64_T) unscaledSignal;
+
+        /* no scaling required */
+      }
+
+      /* ------ END Unpacking CANdb signal async_request  ----- */
+    }
+  }
+
   /* Stateflow: '<Root>/State Machine' */
   MPC_fram_StateMachine();
 
@@ -758,10 +585,10 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
   }
   if(MPC_framework_DWork.Controller_MODE == SUBSYS_ENABLED) {
 
-    /* Inport: '<S1>/motor1_reference' */
+    /* Inport: '<S2>/motor1_reference' */
     MPC_framework_B.motor1_reference_j = MPC_framework_B.motor1_reference;
 
-    /* Inport: '<S1>/motor2_reference' */
+    /* Inport: '<S2>/motor2_reference' */
     MPC_framework_B.motor2_reference_l = MPC_framework_B.motor2_reference;
   }
 
@@ -781,7 +608,7 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
 
     /* Output and update for trigger system: '<Root>/DA_out_value sender' */
 
-    /*--- S-Function Block: <S2>/DA_out_value message packing ---*/
+    /*--- S-Function Block: <S3>/DA_out_value message packing ---*/
     {
       /* final output words that individual signals are |'d into */
       uint32_T output_word0 = 0;
@@ -956,7 +783,7 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
 
     /* Output and update for enable system: '<Root>/Init 1 message sender' */
 
-    /*--- S-Function Block: <S3>/init message packing ---*/
+    /*--- S-Function Block: <S5>/init message packing ---*/
     {
       /* final output words that individual signals are |'d into */
       uint32_T output_word0 = 0;
@@ -1042,7 +869,7 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
 
     /* Output and update for trigger system: '<Root>/Init 2 message sender' */
 
-    /*--- S-Function Block: <S4>/init message packing ---*/
+    /*--- S-Function Block: <S6>/init message packing ---*/
     {
       /* final output words that individual signals are |'d into */
       uint32_T output_word0 = 0;
@@ -1125,6 +952,362 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
   MPC_framework_PrevZCSigState.Init2messagesender_ZCE =
     MPC_framework_B.init_out_trigger > 0 ? POS_ZCSIG : ZERO_ZCSIG;
 
+  /* Block: <S37>/CAN Receive (S-Function)
+   * Receive CAN message 
+   */
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_pr),&GlobalModuleCAN_A,4)
+   == MSG_RECEIVED ){
+
+    /* Output and update for function-call system: '<S10>/incremental_in_value unpacking' */
+
+    /*--- S-Function Block: <S38>/CAN Message Unpacking (CANdb) ---*/
+    {
+      /* final input words that contain all signals as read from the message */
+      uint32_T input_word0 = 0;
+      uint32_T input_word1 = 0;
+
+      /* variable to hold each unscaled unpacked signal */
+      uint32_T unscaledSignal = 0;
+
+      /* CAN message byte array is not guaranteed to be word aligned,
+       * copy bytes individually to the input_words */
+
+      input_word0 |=
+        MPC_framework_B.Datarealtime_pr.DATA[0]
+        | (MPC_framework_B.Datarealtime_pr.DATA[1] << 8)
+        | (MPC_framework_B.Datarealtime_pr.DATA[2] << 16)
+        | (MPC_framework_B.Datarealtime_pr.DATA[3] << 24);
+
+      input_word1 |=
+        MPC_framework_B.Datarealtime_pr.DATA[4]
+        | (MPC_framework_B.Datarealtime_pr.DATA[5] << 8)
+        | (MPC_framework_B.Datarealtime_pr.DATA[6] << 16)
+        | (MPC_framework_B.Datarealtime_pr.DATA[7] << 24);
+
+      /* --------------- START Unpacking CANdb signal cntr1 ------------------ 
+       *  startBit                = 0
+       *  length                  = 24
+       *  desiredSignalByteLayout = LittleEndian 
+       *  dataType                = UNSIGNED
+       *  signalType              = STANDARD
+       *  offset                  = 0.0 
+       *  factor                  = 1.0 
+       * -----------------------------------------------------------------------*/
+
+      {
+        /* create temporary storage for unpacking */
+        uint32_T working_word0;
+
+        /* -- unpack the signal --- */
+        working_word0 = input_word0;
+
+        /* The signal is to be unpacked in little endian format
+           No need to reverse the bytes in each word */
+
+        unscaledSignal = working_word0;
+        unscaledSignal &= 0xFFFFFF;
+      }
+
+      {
+        /* map scaledValue back to a real taking care of sign */
+        MPC_framework_B.CANMessageUnpackingCANdb_o = (real64_T) unscaledSignal;
+
+        /* no scaling required */
+      }
+
+      /* ------ END Unpacking CANdb signal cntr1  ----- */
+
+      /* --------------- START Unpacking CANdb signal cntr2 ------------------ 
+       *  startBit                = 24
+       *  length                  = 24
+       *  desiredSignalByteLayout = LittleEndian 
+       *  dataType                = UNSIGNED
+       *  signalType              = STANDARD
+       *  offset                  = 0.0 
+       *  factor                  = 1.0 
+       * -----------------------------------------------------------------------*/
+
+      {
+        /* create temporary storage for unpacking */
+        uint32_T working_word0;
+        uint32_T working_word1;
+
+        /* -- unpack the signal --- */
+        working_word0 = input_word0;
+
+        working_word1 = input_word1;
+
+        /* The signal is to be unpacked in little endian format
+           No need to reverse the bytes in each word */
+
+        unscaledSignal = working_word0 >> 24;
+        unscaledSignal |= working_word1 << 8;
+        unscaledSignal &= 0xFFFFFF;
+      }
+
+      {
+        /* map scaledValue back to a real taking care of sign */
+        MPC_framework_B.CANMessageUnpackingCANdb_c = (real64_T) unscaledSignal;
+
+        /* no scaling required */
+      }
+
+      /* ------ END Unpacking CANdb signal cntr2  ----- */
+    }
+  }
+
+  /* RelationalOperator: '<S1>/Compare' */
+  rtb_Compare = (MPC_framework_B.operation_mode > ((uint8_T)0U));
+
+  if(rtb_Compare > 0U) {
+    if(MPC_framework_DWork.incremental_out_valuesender_MO == SUBSYS_DISABLED) {
+    }
+    MPC_framework_DWork.incremental_out_valuesender_MO = SUBSYS_ENABLED;
+  } else if(MPC_framework_DWork.incremental_out_valuesender_MO ==
+   SUBSYS_ENABLED) {
+
+    MPC_framework_DWork.incremental_out_valuesender_MO = SUBSYS_DISABLED;
+  }
+  if(MPC_framework_DWork.incremental_out_valuesender_MO == SUBSYS_ENABLED) {
+
+    /* Output and update for enable system: '<Root>/incremental_out_value sender' */
+
+    {
+      real_T tmp;
+
+      /* Gain: '<S11>/Gain' */
+      tmp = fmod(floor(MPC_framework_B.CANMessageUnpackingCANdb_o *
+        MPC_framework_P.Gain_Gain), 65536.0);
+      if(tmp < 0.0) {
+        tmp += 65536.0;
+      }
+      MPC_framework_B.Gain = (uint16_T)tmp;
+
+      /* Gain: '<S11>/Gain1' */
+      tmp = fmod(floor(MPC_framework_B.CANMessageUnpackingCANdb_c *
+        MPC_framework_P.Gain1_Gain), 65536.0);
+      if(tmp < 0.0) {
+        tmp += 65536.0;
+      }
+      MPC_framework_B.Gain1 = (uint16_T)tmp;
+    }
+
+    /*--- S-Function Block: <S11>/incremental_out_value message packing ---*/
+    {
+      /* final output words that individual signals are |'d into */
+      uint32_T output_word0 = 0;
+      uint32_T output_word1 = 0;
+
+      /* variable to hold each scaled signal to be packed */
+      uint32_T scaledSignal = 0;
+
+      /* --------------- START Packing CANdb signal cntr1 ------------------ 
+       *  startBit                = 0
+       *  length                  = 16
+       *  desiredSignalByteLayout = LittleEndian 
+       *  dataType                = UNSIGNED
+       *  signalType              = STANDARD
+       *  offset                  = 0.0 
+       *  factor                  = 1.0 
+       * -----------------------------------------------------------------------*/
+
+      /* -- Scaling and Offset --- */
+
+      {
+
+        /* widen the input datatype, uint16_T, 
+           to the processor word size, uint32_T,
+           for the scaling calculation */
+
+        uint32_T result = (uint32_T) MPC_framework_B.Gain;
+
+        /* no scaling required */
+
+        scaledSignal = result;
+      }
+
+      {
+        /* create temporary storage for packing */
+        uint32_T working_word0;
+
+        /* -- pack the signal --- */
+        scaledSignal &= 0xFFFF;
+        working_word0 = scaledSignal;
+
+        /* The signal is to be packed in little endian format
+           No need to reverse the bytes in each word */
+
+        output_word0 |= working_word0;
+      }
+
+      /* ------ END Packing CANdb signal cntr1  ----- */
+
+      /* --------------- START Packing CANdb signal cntr2 ------------------ 
+       *  startBit                = 16
+       *  length                  = 16
+       *  desiredSignalByteLayout = LittleEndian 
+       *  dataType                = UNSIGNED
+       *  signalType              = STANDARD
+       *  offset                  = 0.0 
+       *  factor                  = 1.0 
+       * -----------------------------------------------------------------------*/
+
+      /* -- Scaling and Offset --- */
+
+      {
+
+        /* widen the input datatype, uint16_T, 
+           to the processor word size, uint32_T,
+           for the scaling calculation */
+
+        uint32_T result = (uint32_T) MPC_framework_B.Gain1;
+
+        /* no scaling required */
+
+        scaledSignal = result;
+      }
+
+      {
+        /* create temporary storage for packing */
+        uint32_T working_word0;
+
+        /* -- pack the signal --- */
+        scaledSignal &= 0xFFFF;
+        working_word0 = scaledSignal << 16;
+
+        /* The signal is to be packed in little endian format
+           No need to reverse the bytes in each word */
+
+        output_word0 |= working_word0;
+      }
+
+      /* ------ END Packing CANdb signal cntr2  ----- */
+
+      /* CAN message byte array is not guaranteed to be word aligned,
+       * copy bytes individually from the output_words */
+      MPC_framework_B.incremental_out_valuemessagep.DATA[0] =
+        (uint8_T) output_word0;
+
+      MPC_framework_B.incremental_out_valuemessagep.DATA[1] =
+        (uint8_T) (output_word0 >> 8);
+
+      MPC_framework_B.incremental_out_valuemessagep.DATA[2] =
+        (uint8_T) (output_word0 >> 16);
+
+      MPC_framework_B.incremental_out_valuemessagep.DATA[3] =
+        (uint8_T) (output_word0 >> 24);
+
+      MPC_framework_B.incremental_out_valuemessagep.DATA[4] =
+        (uint8_T) output_word1;
+
+      MPC_framework_B.incremental_out_valuemessagep.DATA[5] =
+        (uint8_T) (output_word1 >> 8);
+
+      MPC_framework_B.incremental_out_valuemessagep.DATA[6] =
+        (uint8_T) (output_word1 >> 16);
+
+      MPC_framework_B.incremental_out_valuemessagep.DATA[7] =
+        (uint8_T) (output_word1 >> 24);
+    }
+
+    /* Send message using priority queue and shared TouCAN buffer(s) */
+    sendCanMessage(&GlobalModuleCAN_A,&MPC_framework_B.incremental_out_valuemessagep);
+  }
+
+  /* RelationalOperator: '<S4>/FixPt Relational Operator' incorporates:
+   *  UnitDelay: '<S4>/Delay Input1'
+   */
+  rtb_Edge = (MPC_framework_B.operation_mode !=
+    MPC_framework_DWork.DelayInput1_DSTATE);
+
+  if((rtb_Edge > 0) &&
+   (MPC_framework_PrevZCSigState.operation_mode_changedsender_ZCE == 0)) {
+
+    /* Output and update for trigger system: '<Root>/operation_mode_changed sender' */
+
+    /*--- S-Function Block: <S13>/operation_mode_changed message packing ---*/
+    {
+      /* final output words that individual signals are |'d into */
+      uint32_T output_word0 = 0;
+      uint32_T output_word1 = 0;
+
+      /* variable to hold each scaled signal to be packed */
+      uint32_T scaledSignal = 0;
+
+      /* --------------- START Packing CANdb signal operation_mode ------------------ 
+       *  startBit                = 0
+       *  length                  = 8
+       *  desiredSignalByteLayout = LittleEndian 
+       *  dataType                = UNSIGNED
+       *  signalType              = STANDARD
+       *  offset                  = 0.0 
+       *  factor                  = 1.0 
+       * -----------------------------------------------------------------------*/
+
+      /* -- Scaling and Offset --- */
+
+      {
+
+        /* widen the input datatype, uint8_T, 
+           to the processor word size, uint32_T,
+           for the scaling calculation */
+
+        uint32_T result = (uint32_T) MPC_framework_B.operation_mode;
+
+        /* no scaling required */
+
+        scaledSignal = result;
+      }
+
+      {
+        /* create temporary storage for packing */
+        uint32_T working_word0;
+
+        /* -- pack the signal --- */
+        scaledSignal &= 0xFF;
+        working_word0 = scaledSignal;
+
+        /* The signal is to be packed in little endian format
+           No need to reverse the bytes in each word */
+
+        output_word0 |= working_word0;
+      }
+
+      /* ------ END Packing CANdb signal operation_mode  ----- */
+
+      /* CAN message byte array is not guaranteed to be word aligned,
+       * copy bytes individually from the output_words */
+      MPC_framework_B.operation_mode_changedmessage.DATA[0] =
+        (uint8_T) output_word0;
+
+      MPC_framework_B.operation_mode_changedmessage.DATA[1] =
+        (uint8_T) (output_word0 >> 8);
+
+      MPC_framework_B.operation_mode_changedmessage.DATA[2] =
+        (uint8_T) (output_word0 >> 16);
+
+      MPC_framework_B.operation_mode_changedmessage.DATA[3] =
+        (uint8_T) (output_word0 >> 24);
+
+      MPC_framework_B.operation_mode_changedmessage.DATA[4] =
+        (uint8_T) output_word1;
+
+      MPC_framework_B.operation_mode_changedmessage.DATA[5] =
+        (uint8_T) (output_word1 >> 8);
+
+      MPC_framework_B.operation_mode_changedmessage.DATA[6] =
+        (uint8_T) (output_word1 >> 16);
+
+      MPC_framework_B.operation_mode_changedmessage.DATA[7] =
+        (uint8_T) (output_word1 >> 24);
+    }
+
+    /* Send message using priority queue and shared TouCAN buffer(s) */
+    sendCanMessage(&GlobalModuleCAN_A,&MPC_framework_B.operation_mode_changedmessage);
+  }
+  MPC_framework_PrevZCSigState.operation_mode_changedsender_ZCE = rtb_Edge > 0 ?
+    POS_ZCSIG : ZERO_ZCSIG;
+
   if(MPC_framework_B.controller_enable > 0U) {
     if(MPC_framework_DWork.request_incremental_valuesende == SUBSYS_DISABLED) {
     }
@@ -1142,7 +1325,7 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
 
     /* Output and update for trigger system: '<Root>/stop message sender' */
 
-    /*--- S-Function Block: <S12>/stop message packing ---*/
+    /*--- S-Function Block: <S16>/stop message packing ---*/
     {
       /* final output words that individual signals are |'d into */
       uint32_T output_word0 = 0;
@@ -1225,15 +1408,15 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
   MPC_framework_PrevZCSigState.stopmessagesender_ZCE =
     MPC_framework_B.stop_trigger > 0 ? POS_ZCSIG : ZERO_ZCSIG;
 
-  /* Block: <S62>/CAN Receive (S-Function)
+  /* Block: <S75>/CAN Receive (S-Function)
    * Receive CAN message 
    */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_k),&GlobalModuleCAN_A,7)
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_k),&GlobalModuleCAN_A,8)
    == MSG_RECEIVED ){
 
-    /* Output and update for function-call system: '<S13>/stop_button message packing' */
+    /* Output and update for function-call system: '<S17>/stop_button message packing' */
 
-    /*--- S-Function Block: <S63>/CAN Message Unpacking (CANdb) ---*/
+    /*--- S-Function Block: <S76>/CAN Message Unpacking (CANdb) ---*/
     {
       /* final input words that contain all signals as read from the message */
       uint32_T input_word0 = 0;
@@ -1291,6 +1474,9 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
       /* ------ END Unpacking CANdb signal stop_button  ----- */
     }
   }
+
+  /* Update for UnitDelay: '<S4>/Delay Input1' */
+  MPC_framework_DWork.DelayInput1_DSTATE = MPC_framework_B.operation_mode;
 }
 
 /* Model step function for TID1 */
@@ -1302,7 +1488,7 @@ void MPC_framework_step1(void)          /* Sample time: [0.1s, 0.0s] */
 
     /* Output and update for enable system: '<Root>/request_incremental_value sender' */
 
-    /*--- S-Function Block: <S11>/request_incremental_value message packing ---*/
+    /*--- S-Function Block: <S15>/request_incremental_value message packing ---*/
     {
       /* final output words that individual signals are |'d into */
       uint32_T output_word0 = 0;
@@ -1420,12 +1606,12 @@ void MPC_framework_initialize(boolean_T firstTime)
       void *pVoidBlockIORegion;
 
       pVoidBlockIORegion = (void *)(&MPC_framework_B.Datarealtime);
-      for (i = 0; i < 5; i++) {
+      for (i = 0; i < 6; i++) {
         ((CAN_FRAME*)pVoidBlockIORegion)[i] = CAN_FRAME_GROUND;
       }
 
       pVoidBlockIORegion = (void *)(&MPC_framework_B.stopmessagepacking);
-      for (i = 0; i < 6; i++) {
+      for (i = 0; i < 7; i++) {
         ((CAN_FRAME*)pVoidBlockIORegion)[i] = CAN_FRAME_GROUND;
       }
 
@@ -1537,75 +1723,89 @@ void MPC_framework_initialize(boolean_T firstTime)
 
     /* -- Resource Configuration : MPC555dkConfig::TOUCAN : [END] --- */
 
-    /* Initialize TouCAN module CAN_A, buffer 3 for operation with polling.
-     * Received message identifier 0x7
-     */
-    initCanRx(&GlobalModuleCAN_A,3,CAN_MESSAGE_STANDARD,7);
-
-    /* Start for enable system: '<Root>/incremental_out_value sender' */
-
-    /*--- S-Function Block: <S8>/incremental_out_value message packing ---*/
-    MPC_framework_B.incremental_out_valuemessagep.ID = 6U;
-    MPC_framework_B.incremental_out_valuemessagep.type = 0U;
-    MPC_framework_B.incremental_out_valuemessagep.LENGTH = 4U;
-
-    /* Initialize TouCAN module CAN_A, buffer 4 for operation with polling.
+    /* Initialize TouCAN module CAN_A, buffer 5 for operation with polling.
      * Received message identifier 0x2
      */
-    initCanRx(&GlobalModuleCAN_A,4,CAN_MESSAGE_STANDARD,2);
-
-    /* Initialize TouCAN module CAN_A, buffer 5 for operation with polling.
-     * Received message identifier 0x3
-     */
-    initCanRx(&GlobalModuleCAN_A,5,CAN_MESSAGE_STANDARD,3);
+    initCanRx(&GlobalModuleCAN_A,5,CAN_MESSAGE_STANDARD,2);
 
     /* Initialize TouCAN module CAN_A, buffer 6 for operation with polling.
+     * Received message identifier 0x3
+     */
+    initCanRx(&GlobalModuleCAN_A,6,CAN_MESSAGE_STANDARD,3);
+
+    /* Initialize TouCAN module CAN_A, buffer 7 for operation with polling.
      * Received message identifier 0x8
      */
-    initCanRx(&GlobalModuleCAN_A,6,CAN_MESSAGE_STANDARD,8);
+    initCanRx(&GlobalModuleCAN_A,7,CAN_MESSAGE_STANDARD,8);
+
+    /* Initialize TouCAN module CAN_A, buffer 3 for operation with polling.
+     * Received message identifier 0xc
+     */
+    initCanRx(&GlobalModuleCAN_A,3,CAN_MESSAGE_STANDARD,12);
 
     /* Start for trigger system: '<Root>/DA_out_value sender' */
 
-    /*--- S-Function Block: <S2>/DA_out_value message packing ---*/
+    /*--- S-Function Block: <S3>/DA_out_value message packing ---*/
     MPC_framework_B.DA_out_valuemessagepacking.ID = 6U;
     MPC_framework_B.DA_out_valuemessagepacking.type = 0U;
     MPC_framework_B.DA_out_valuemessagepacking.LENGTH = 6U;
 
     /* Start for enable system: '<Root>/Init 1 message sender' */
 
-    /*--- S-Function Block: <S3>/init message packing ---*/
+    /*--- S-Function Block: <S5>/init message packing ---*/
     MPC_framework_B.initmessagepacking_b.ID = 1U;
     MPC_framework_B.initmessagepacking_b.type = 0U;
     MPC_framework_B.initmessagepacking_b.LENGTH = 1U;
 
     /* Start for trigger system: '<Root>/Init 2 message sender' */
 
-    /*--- S-Function Block: <S4>/init message packing ---*/
+    /*--- S-Function Block: <S6>/init message packing ---*/
     MPC_framework_B.initmessagepacking.ID = 1U;
     MPC_framework_B.initmessagepacking.type = 0U;
     MPC_framework_B.initmessagepacking.LENGTH = 1U;
 
+    /* Initialize TouCAN module CAN_A, buffer 4 for operation with polling.
+     * Received message identifier 0x7
+     */
+    initCanRx(&GlobalModuleCAN_A,4,CAN_MESSAGE_STANDARD,7);
+
+    /* Start for enable system: '<Root>/incremental_out_value sender' */
+
+    /*--- S-Function Block: <S11>/incremental_out_value message packing ---*/
+    MPC_framework_B.incremental_out_valuemessagep.ID = 10U;
+    MPC_framework_B.incremental_out_valuemessagep.type = 0U;
+    MPC_framework_B.incremental_out_valuemessagep.LENGTH = 4U;
+
+    /* Start for trigger system: '<Root>/operation_mode_changed sender' */
+
+    /*--- S-Function Block: <S13>/operation_mode_changed message packing ---*/
+    MPC_framework_B.operation_mode_changedmessage.ID = 13U;
+    MPC_framework_B.operation_mode_changedmessage.type = 0U;
+    MPC_framework_B.operation_mode_changedmessage.LENGTH = 1U;
+
     /* Start for enable system: '<Root>/request_incremental_value sender' */
 
-    /*--- S-Function Block: <S11>/request_incremental_value message packing ---*/
+    /*--- S-Function Block: <S15>/request_incremental_value message packing ---*/
     MPC_framework_B.request_incremental_valuemessa.ID = 0U;
     MPC_framework_B.request_incremental_valuemessa.type = 0U;
     MPC_framework_B.request_incremental_valuemessa.LENGTH = 1U;
 
     /* Start for trigger system: '<Root>/stop message sender' */
 
-    /*--- S-Function Block: <S12>/stop message packing ---*/
+    /*--- S-Function Block: <S16>/stop message packing ---*/
     MPC_framework_B.stopmessagepacking.ID = 5U;
     MPC_framework_B.stopmessagepacking.type = 0U;
     MPC_framework_B.stopmessagepacking.LENGTH = 1U;
 
-    /* Initialize TouCAN module CAN_A, buffer 7 for operation with polling.
+    /* Initialize TouCAN module CAN_A, buffer 8 for operation with polling.
      * Received message identifier 0x4
      */
-    initCanRx(&GlobalModuleCAN_A,7,CAN_MESSAGE_STANDARD,4);
+    initCanRx(&GlobalModuleCAN_A,8,CAN_MESSAGE_STANDARD,4);
   }
 
   MPC_framework_PrevZCSigState.stopmessagesender_ZCE = POS_ZCSIG;
+
+  MPC_framework_PrevZCSigState.operation_mode_changedsender_ZCE = POS_ZCSIG;
 
   MPC_framework_PrevZCSigState.Init2messagesender_ZCE = POS_ZCSIG;
 
@@ -1613,6 +1813,9 @@ void MPC_framework_initialize(boolean_T firstTime)
 
   /*atomic Subsystem Block: '<Root>/State Machine' */
   MPC_frame_StateMachine_Init();
+
+  /* InitializeConditions for UnitDelay: '<S4>/Delay Input1' */
+  MPC_framework_DWork.DelayInput1_DSTATE = MPC_framework_P.DelayInput1_X0;
 }
 
 /* Model terminate function */
