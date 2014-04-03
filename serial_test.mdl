@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.23"
+    ComputedModelVersion    "1.36"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -46,8 +46,8 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Developer"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 26 18:36:30 2014"
-  ModelVersionFormat	  "1.%<AutoIncrement:23>"
+  LastModifiedDate	  "Thu Apr 03 16:41:59 2014"
+  ModelVersionFormat	  "1.%<AutoIncrement:36>"
   ConfigurationManager	  "None"
   TargetProperties	  "DataTag0"
   LinearizationMsg	  "none"
@@ -691,6 +691,19 @@ Model {
       MinMaxOverflowLogging   "UseLocalSettings"
     }
     Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      InputSameDT	      on
+      OutDataTypeMode	      "Same as first input"
+      OutDataType	      "sfix(16)"
+      OutScaling	      "2^0"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Switch
       Criteria		      "u2 >= Threshold"
       Threshold		      "0"
@@ -703,6 +716,13 @@ Model {
     }
     Block {
       BlockType		      Terminator
+    }
+    Block {
+      BlockType		      UnitDelay
+      X0		      "0"
+      SampleTime	      "1"
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
     }
   }
   AnnotationDefaults {
@@ -724,7 +744,7 @@ Model {
   }
   System {
     Name		    "serial_test"
-    Location		    [474, 141, 1270, 975]
+    Location		    [472, 84, 1272, 970]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -740,9 +760,9 @@ Model {
     ReportName		    "simulink-default.rpt"
     Block {
       BlockType		      Reference
-      Name		      "Compare\nTo Constant"
+      Name		      "Compare\nTo Constant2"
       Ports		      [1, 1]
-      Position		      [310, 280, 340, 310]
+      Position		      [520, 345, 550, 375]
       SourceBlock	      "simulink/Logic and Bit\nOperations/Compare\nTo "
 "Constant"
       SourceType	      "Compare To Constant"
@@ -761,12 +781,11 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "Compare\nTo Constant1"
-      Ports		      [1, 1]
-      Position		      [340, 490, 370, 520]
-      SourceBlock	      "simulink/Logic and Bit\nOperations/Compare\nTo "
-"Constant"
-      SourceType	      "Compare To Constant"
+      Name		      "Counter\nFree-Running"
+      Ports		      [0, 1]
+      Position		      [155, 225, 185, 255]
+      SourceBlock	      "simulink/Sources/Counter\nFree-Running"
+      SourceType	      "Counter Free-Running"
       ShowPortLabels	      on
       SystemSampleTime	      "-1"
       FunctionWithSeparateData off
@@ -775,17 +794,14 @@ Model {
       RTWMemSecDataConstants  "Inherit from model"
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
-      relop		      ">"
-      const		      "0"
-      LogicOutDataTypeMode    "boolean"
-      ZeroCross		      off
+      NumBits		      "8"
+      tsamp		      "-1"
     }
     Block {
       BlockType		      Reference
-      Name		      "MIOS Digital Out"
+      Name		      "MIOS Digital Out2"
       Ports		      [1]
-      Position		      [385, 277, 450, 313]
-      FontSize		      10
+      Position		      [590, 342, 655, 378]
       SourceBlock	      "mpc555drivers/Modular Input//Output\nSystem (MI"
 "OS1)/MIOS Digital Out"
       SourceType	      "MPC555 Digital Output (MPIOSM)"
@@ -798,28 +814,6 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       bits		      "[0]"
-      init		      "0"
-      t			      "-1"
-      enablePassThru	      off
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "MIOS Digital Out1"
-      Ports		      [1]
-      Position		      [415, 487, 480, 523]
-      FontSize		      10
-      SourceBlock	      "mpc555drivers/Modular Input//Output\nSystem (MI"
-"OS1)/MIOS Digital Out"
-      SourceType	      "MPC555 Digital Output (MPIOSM)"
-      ShowPortLabels	      on
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      bits		      "[1]"
       init		      "0"
       t			      "-1"
       enablePassThru	      off
@@ -848,10 +842,9 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "Serial Receive"
+      Name		      "Serial Receive2"
       Ports		      [0, 2]
-      Position		      [130, 186, 230, 224]
-      FontSize		      10
+      Position		      [355, 281, 455, 319]
       SourceBlock	      "mpc555drivers/Serial Communications\nInterface "
 "(SCI)/Serial Receive"
       SourceType	      "MPC555 Serial Communications Interface Receive"
@@ -866,42 +859,22 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "Serial Receive1"
-      Ports		      [0, 2]
-      Position		      [170, 396, 270, 434]
-      FontSize		      10
-      SourceBlock	      "mpc555drivers/Serial Communications\nInterface "
-"(SCI)/Serial Receive"
-      SourceType	      "MPC555 Serial Communications Interface Receive"
-      module		      "2"
-      show_length	      off
-      max_length	      "1"
-      show_reset	      off
-      show_bytes_read	      on
-      show_flags	      off
-      show_overrun	      off
-      T			      "0.1"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Serial Transmit"
-      Ports		      [2]
-      Position		      [295, 185, 395, 225]
-      FontSize		      10
+      Name		      "Serial Transmit2"
+      Ports		      [1]
+      Position		      [295, 220, 395, 260]
       SourceBlock	      "mpc555drivers/Serial Communications\nInterface "
 "(SCI)/Serial Transmit"
       SourceType	      "SCI Transmit"
       module		      "1"
-      show_length	      on
+      show_length	      off
       show_num_sent	      off
       T			      "-1"
     }
     Block {
       BlockType		      Reference
-      Name		      "Serial Transmit1"
+      Name		      "Serial Transmit3"
       Ports		      [2]
-      Position		      [335, 395, 435, 435]
-      FontSize		      10
+      Position		      [545, 255, 645, 295]
       SourceBlock	      "mpc555drivers/Serial Communications\nInterface "
 "(SCI)/Serial Transmit"
       SourceType	      "SCI Transmit"
@@ -911,57 +884,37 @@ Model {
       T			      "-1"
     }
     Line {
-      SrcBlock		      "Serial Receive"
+      SrcBlock		      "Counter\nFree-Running"
+      SrcPort		      1
+      DstBlock		      "Serial Transmit2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Compare\nTo Constant2"
       SrcPort		      1
       Points		      [0, 0]
-      DstBlock		      "Serial Transmit"
+      DstBlock		      "MIOS Digital Out2"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Serial Receive"
+      SrcBlock		      "Serial Receive2"
       SrcPort		      2
-      Points		      [0, 0; 20, 0]
+      Points		      [45, 0]
       Branch {
-	DstBlock		"Serial Transmit"
-	DstPort			2
-      }
-      Branch {
-	Points			[0, 80]
-	DstBlock		"Compare\nTo Constant"
+	DstBlock		"Compare\nTo Constant2"
 	DstPort			1
       }
-    }
-    Line {
-      SrcBlock		      "Serial Receive1"
-      SrcPort		      1
-      Points		      [0, 0]
-      DstBlock		      "Serial Transmit1"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Serial Receive1"
-      SrcPort		      2
-      Points		      [0, 0; 20, 0]
       Branch {
-	DstBlock		"Serial Transmit1"
+	Points			[25, 0]
+	DstBlock		"Serial Transmit3"
 	DstPort			2
       }
-      Branch {
-	Points			[0, 80]
-	DstBlock		"Compare\nTo Constant1"
-	DstPort			1
-      }
     }
     Line {
-      SrcBlock		      "Compare\nTo Constant"
+      SrcBlock		      "Serial Receive2"
       SrcPort		      1
-      DstBlock		      "MIOS Digital Out"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Compare\nTo Constant1"
-      SrcPort		      1
-      DstBlock		      "MIOS Digital Out1"
+      Points		      [35, 0; 0, -25]
+      DstBlock		      "Serial Transmit3"
       DstPort		      1
     }
   }
@@ -1004,7 +957,7 @@ MatData {
 "    $     0              !          %     0    0         !0         #     @  "
 "  ,         !@         &     0              !P         '    !P              "
 "\"          '    !P    @         \"0         (     0    <         \"@        "
-" #     @    8         \"P         )     0              #          *    #     "
+" #     @    8         \"P         )     0    H         #          *    #     "
 "          #0         *    #     T         #@         +                       "
 "        \"     0    (         #P         +                               \"  "
 "   0   !          $          +                               \"     0   !(   "
@@ -1395,7 +1348,7 @@ MatData {
 "    $     0              !          %     0    0         !0         #     @  "
 "  ,         !@         &     0              !P         '    !P              "
 "\"          '    !P    @         \"0         (     0    <         \"@        "
-" #     @    8         \"P         )     0              #          *    #     "
+" #     @    8         \"P         )     0    H         #          *    #     "
 "          #0         *    #     T         #@         +                       "
 "        \"     0    (         #P         +                               \"  "
 "   0   !          $          +                               \"     0   !(   "

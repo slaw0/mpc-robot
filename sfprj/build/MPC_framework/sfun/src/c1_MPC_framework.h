@@ -10,7 +10,7 @@
 /* Type Definitions */
 typedef struct {
   SimStruct *S;
-  void *c1_testPointAddrMap[13];
+  void *c1_testPointAddrMap[14];
   uint32_T chartNumber;
   uint32_T instanceNumber;
   uint16_T c1_motor_negative_value;
@@ -28,6 +28,7 @@ typedef struct {
   uint8_T c1_is_active_SEGMENT_2;
   uint8_T c1_is_active_c1_MPC_framework;
   uint8_T c1_is_c1_MPC_framework;
+  uint8_T c1_tp_CONFIG;
   uint8_T c1_tp_CONTROLLER;
   uint8_T c1_tp_INIT;
   uint8_T c1_tp_INIT_ACK;

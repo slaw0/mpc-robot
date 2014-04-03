@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model serial_test.
  *
- * Model version                        : 1.22
+ * Model version                        : 1.35
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Wed Mar 26 18:24:19 2014
+ * Real-Time Workshop file generated on : Thu Apr 03 16:38:13 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Wed Mar 26 18:24:19 2014
+ * C source code generated on           : Thu Apr 03 16:38:14 2014
  */
 
 #include "serial_test.h"
@@ -15,6 +15,9 @@
 
 /* Block signals (auto storage) */
 BlockIO_serial_test serial_test_B;
+
+/* Block states (auto storage) */
+D_Work_serial_test serial_test_DWork;
 
 /* Real-time model */
 RT_MODEL_serial_test serial_test_M_;
@@ -70,23 +73,21 @@ void serial_test_step1(void)            /* Sample time: [0.1s, 0.0s] */
   uint16_T rtb_Switch;
   uint16_T rtb_BitwiseOperator1;
   uint16_T rtb_BitwiseOperator;
-  uint16_T rtb_Switch_b;
-  uint16_T rtb_BitwiseOperator1_f;
-  uint16_T rtb_BitwiseOperator_n;
-  uint8_T rtb_SerialReceive1_o1;
+  uint8_T rtb_FixPtSwitch;
+  uint8_T rtb_FixPtSum1;
+  uint8_T rtb_Output;
   boolean_T rtb_Compare;
-  boolean_T rtb_Compare_c;
 
   {
     uint32_T tmpVar = (1 <= 1U) ? 1 : 1U;
-    serial_test_B.SerialReceive_o2 = general_get_string_sci1(
-      &rtb_SerialReceive1_o1,tmpVar);
+    serial_test_B.SerialReceive2_o2 = general_get_string_sci1(
+     &rtb_Output,tmpVar);
   }
 
   /* RelationalOperator: '<S1>/Compare' incorporates:
    *  Constant: '<S1>/Constant'
    */
-  rtb_Compare = (serial_test_B.SerialReceive_o2 > serial_test_P.Constant_Value);
+  rtb_Compare = (serial_test_B.SerialReceive2_o2 > serial_test_P.Constant_Value);
 
   /* Output and update for atomic system: '<S3>/Subsystem' */
   {
@@ -95,100 +96,64 @@ void serial_test_step1(void)            /* Sample time: [0.1s, 0.0s] */
     /* System : <S3>/Subsystem */
     EID();
 
-    /* Output and update for atomic system: '<S9>/fd' */
+    /* Output and update for atomic system: '<S10>/fd' */
 
-    /* Switch: '<S12>/Switch' incorporates:
-     *  Constant: '<S12>/Constant'
-     *  Constant: '<S12>/masks'
+    /* Switch: '<S13>/Switch' incorporates:
+     *  Constant: '<S13>/Constant'
+     *  Constant: '<S13>/masks'
      */
     if(rtb_Compare) {
-      rtb_Switch_b = serial_test_P.masks_Value;
+      rtb_Switch = serial_test_P.masks_Value;
     } else {
-      rtb_Switch_b = serial_test_P.Constant_Value_l;
+      rtb_Switch = serial_test_P.Constant_Value_i;
     }
 
-    /* S-Function (sfix_bitop): '<S12>/Bitwise Operator1' incorporates:
-     *  S-Function (sfun_get_expr): '<S12>/RTW memory get'
+    /* S-Function (sfix_bitop): '<S13>/Bitwise Operator1' incorporates:
+     *  S-Function (sfun_get_expr): '<S13>/RTW memory get'
      */
-    /* Bitwise Block: '<S12>/Bitwise Operator1'
+    /* Bitwise Block: '<S13>/Bitwise Operator1'
      * AND
      */
-    rtb_BitwiseOperator1_f = (((uint16_T)(MIOS1.MPIOSM32DR.R ))) &
+    rtb_BitwiseOperator1 = (((uint16_T)(MIOS1.MPIOSM32DR.R ))) &
       (serial_test_P.BitwiseOperator1_BitMask);
 
-    /* S-Function (sfix_bitop): '<S12>/Bitwise Operator' */
-    /* Bitwise Block: '<S12>/Bitwise Operator'
+    /* S-Function (sfix_bitop): '<S13>/Bitwise Operator' */
+    /* Bitwise Block: '<S13>/Bitwise Operator'
      * OR
      */
-    rtb_BitwiseOperator_n = (rtb_Switch_b) | (rtb_BitwiseOperator1_f);
+    rtb_BitwiseOperator = (rtb_Switch) | (rtb_BitwiseOperator1);
 
-    /* S-Function (sfun_set_expr): '<S12>/RTW memory set' */
+    /* S-Function (sfun_set_expr): '<S13>/RTW memory set' */
 
-    MIOS1.MPIOSM32DR.R = (VUINT16) rtb_BitwiseOperator_n;
+    MIOS1.MPIOSM32DR.R = (VUINT16) rtb_BitwiseOperator;
 
     /* user code (Output function Trailer) */
     /* System : <S3>/Subsystem */
     EIE();
   }
 
-  general_send_string_sci1(&rtb_SerialReceive1_o1,serial_test_B.SerialReceive_o2);
+  general_send_string_sci2(&rtb_Output,serial_test_B.SerialReceive2_o2);
 
-  {
-    uint32_T tmpVar = (1 <= 1U) ? 1 : 1U;
-    serial_test_B.SerialReceive1_o2 = general_get_string_sci2(
-      &rtb_SerialReceive1_o1,tmpVar);
-  }
+  /* UnitDelay: '<S2>/Output' */
+  rtb_Output = serial_test_DWork.Output_DSTATE;
 
-  /* RelationalOperator: '<S2>/Compare' incorporates:
-   *  Constant: '<S2>/Constant'
+  general_send_string_sci1(&rtb_Output,1);
+
+  /* Sum: '<S5>/FixPt Sum1' incorporates:
+   *  Constant: '<S5>/FixPt Constant'
    */
-  rtb_Compare_c = (serial_test_B.SerialReceive1_o2 >
-    serial_test_P.Constant_Value_a);
+  rtb_FixPtSum1 = (uint8_T)((uint32_T)rtb_Output +
+    (uint32_T)serial_test_P.FixPtConstant_Value);
 
-  /* Output and update for atomic system: '<S4>/Subsystem' */
-  {
-
-    /* user code (Output function Header) */
-    /* System : <S4>/Subsystem */
-    EID();
-
-    /* Output and update for atomic system: '<S16>/fd' */
-
-    /* Switch: '<S19>/Switch' incorporates:
-     *  Constant: '<S19>/Constant'
-     *  Constant: '<S19>/masks'
-     */
-    if(rtb_Compare_c) {
-      rtb_Switch = serial_test_P.masks_Value_i;
-    } else {
-      rtb_Switch = serial_test_P.Constant_Value_f;
-    }
-
-    /* S-Function (sfix_bitop): '<S19>/Bitwise Operator1' incorporates:
-     *  S-Function (sfun_get_expr): '<S19>/RTW memory get'
-     */
-    /* Bitwise Block: '<S19>/Bitwise Operator1'
-     * AND
-     */
-    rtb_BitwiseOperator1 = (((uint16_T)(MIOS1.MPIOSM32DR.R ))) &
-      (serial_test_P.BitwiseOperator1_BitMas_d);
-
-    /* S-Function (sfix_bitop): '<S19>/Bitwise Operator' */
-    /* Bitwise Block: '<S19>/Bitwise Operator'
-     * OR
-     */
-    rtb_BitwiseOperator = (rtb_Switch) | (rtb_BitwiseOperator1);
-
-    /* S-Function (sfun_set_expr): '<S19>/RTW memory set' */
-
-    MIOS1.MPIOSM32DR.R = (VUINT16) rtb_BitwiseOperator;
-
-    /* user code (Output function Trailer) */
-    /* System : <S4>/Subsystem */
-    EIE();
+  /* Switch: '<S6>/FixPt Switch' */
+  if(rtb_FixPtSum1 > serial_test_P.FixPtSwitch_Threshold) {
+    rtb_FixPtSwitch = ((uint8_T)0U);
+  } else {
+    rtb_FixPtSwitch = rtb_FixPtSum1;
   }
 
-  general_send_string_sci2(&rtb_SerialReceive1_o1,serial_test_B.SerialReceive1_o2);
+  /* Update for UnitDelay: '<S2>/Output' */
+  serial_test_DWork.Output_DSTATE = rtb_FixPtSwitch;
 }
 
 void serial_test_step(int_T tid) {
@@ -220,6 +185,11 @@ void serial_test_initialize(boolean_T firstTime)
 
     (void) memset(((void *) &serial_test_B),0,
      sizeof(BlockIO_serial_test));
+
+    /* states (dwork) */
+
+    (void) memset((char_T *) &serial_test_DWork,0,
+     sizeof(D_Work_serial_test));
 
     /* -- Resource Configuration : MPC555dkConfig::SYSTEM_CLOCKS : [START] --- */
 
@@ -334,15 +304,10 @@ void serial_test_initialize(boolean_T firstTime)
     MIOS1.MPIOSM32DDR.R |= (VUINT16) 0x1;
     MIOS1.MPIOSM32DR.R = ( MIOS1.MPIOSM32DR.R & (VUINT16) 0xFFFE ) | (VUINT16)
       0x0;
-
-    /* Initialize MIOS Digital Out                                                 
-       Bits          [ 1 ]                                                        
-       Initial Value [ 0 ]                                                        
-     */
-    MIOS1.MPIOSM32DDR.R |= (VUINT16) 0x2;
-    MIOS1.MPIOSM32DR.R = ( MIOS1.MPIOSM32DR.R & (VUINT16) 0xFFFD ) | (VUINT16)
-      0x0;
   }
+
+  /* InitializeConditions for UnitDelay: '<S2>/Output' */
+  serial_test_DWork.Output_DSTATE = serial_test_P.Output_X0;
 }
 
 /* Model terminate function */

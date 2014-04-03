@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.386
+ * Model version                        : 1.430
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Thu Mar 27 19:08:21 2014
+ * Real-Time Workshop file generated on : Thu Apr 03 19:00:51 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Thu Mar 27 19:08:22 2014
+ * C source code generated on           : Thu Apr 03 19:00:52 2014
  */
 
 #include "MPC_framework.h"
@@ -15,9 +15,9 @@
 
 /* Block parameters (auto storage) */
 Parameters_MPC_framework MPC_framework_P = {
-  3.9061903953552246E-003 ,             /* Gain_Gain : '<S11>/Gain'
+  3.9061903953552246E-003 ,             /* Gain_Gain : '<S10>/Gain'
                                          */
-  3.9061903953552246E-003 ,             /* Gain1_Gain : '<S11>/Gain1'
+  3.9061903953552246E-003 ,             /* Gain1_Gain : '<S10>/Gain1'
                                          */
   20.0 ,                                /* Constant_Value : '<S50>/Constant'
                                          */
@@ -33,15 +33,17 @@ Parameters_MPC_framework MPC_framework_P = {
                                          */
   0U ,                                  /* Switch_Threshold : '<Root>/Switch'
                                          */
-  0U ,                                  /* DelayInput1_X0 : '<S4>/Delay Input1'
+  0U ,                                  /* DelayInput1_X0 : '<S56>/Delay Input1'
+                                         */
+  0U ,                                  /* DelayInput1_X0_k : '<S82>/Delay Input1'
                                          */
   1U ,                                  /* SFunction_p1 : '<Root>/State Machine'
                                          */
   2U ,                                  /* SFunction_p2 : '<Root>/State Machine'
                                          */
-  1U ,                                  /* Constant_Value_f : '<S15>/Constant'
+  1U ,                                  /* Constant_Value_f : '<S14>/Constant'
                                          */
-  1U                                    /* Constant_Value_n : '<S16>/Constant'
+  1U                                    /* Constant_Value_n : '<S15>/Constant'
                                          */
 };
 

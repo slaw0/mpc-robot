@@ -3,9 +3,9 @@
  *
  * Real-Time Workshop code generation for Simulink model "serial_test.mdl".
  *
- * Model Version              : 1.22
+ * Model Version              : 1.35
  * Real-Time Workshop version : 6.4  (R2006a)  03-Feb-2006
- * C source code generated on : Wed Mar 26 18:24:19 2014
+ * C source code generated on : Thu Apr 03 16:38:14 2014
  *
  * Description  : Header file to define model dependent variables required
  *                by the build process. This file is included by

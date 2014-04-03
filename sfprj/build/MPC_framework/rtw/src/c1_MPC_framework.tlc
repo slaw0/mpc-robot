@@ -12,11 +12,12 @@
          #define %<block.SymbolMapping.IN_INIT_ACK> (2)
          #define %<block.SymbolMapping.IN_OPERATION> (3)
          #define %<block.SymbolMapping.IN_STOPPED> (2)
-         #define %<block.SymbolMapping.IN_PRIMITIVE> (2)
-         #define %<block.SymbolMapping.IN_CONTROLLER> (1)
+         #define %<block.SymbolMapping.IN_PRIMITIVE> (3)
+         #define %<block.SymbolMapping.IN_CONTROLLER> (2)
          #define %<block.SymbolMapping.IN_MOVING> (1)
          #define %<block.SymbolMapping.IN_POSITIVE_MOV> (2)
          #define %<block.SymbolMapping.IN_NEGATIVE_MOV> (1)
+         #define %<block.SymbolMapping.IN_CONFIG> (1)
    %closefile chartConstBuf
    %return chartConstBuf
 %endfunction %% ChartDefines
@@ -27,9 +28,195 @@
          
          
          
+         static void %<block.SymbolMapping.OPERATION>(%<LibSFPassThruPairs(block,1)> %<LibSFPassThruDummy(block)>);
             
             
             
+            static void %<block.SymbolMapping.OPERATION>(%<LibSFPassThruPairs(block,1)> %<LibSFPassThruDummy(block)>)
+{
+switch(%<LibSFChartInstance(block)>is_OPERATION) {
+case %<block.SymbolMapping.IN_CONFIG>:
+if(%<LibSFInputs(block, 3, 0)> == 2.0) {
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONTROLLER>;
+%<LibSFOutputs(block, 9, 0)> = 2U;
+} else if(%<LibSFInputs(block, 3, 0)> == 5.0) {
+%<LibSFOutputs(block, 10, 0)> = 3U;
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
+%<LibSFOutputs(block, 9, 0)> = 3U;
+} else if(%<LibSFInputs(block, 3, 0)> == 4.0) {
+%<LibSFOutputs(block, 10, 0)> = 2U;
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
+%<LibSFOutputs(block, 9, 0)> = 3U;
+} else if(%<LibSFInputs(block, 3, 0)> == 3.0) {
+%<LibSFOutputs(block, 10, 0)> = 1U;
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
+%<LibSFOutputs(block, 9, 0)> = 3U;
+} else if(%<LibSFInputs(block, 3, 0)> == 1.0) {
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_PRIMITIVE>;
+%<LibSFOutputs(block, 9, 0)> = 1U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+} else {
+%<LibSFOutputs(block, 7, 0)> = 0U;
+%<LibSFOutputs(block, 10, 0)> = 0U;
+}
+break;
+case %<block.SymbolMapping.IN_CONTROLLER>:
+if(%<LibSFInputs(block, 3, 0)> == 1.0) {
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_PRIMITIVE>;
+%<LibSFOutputs(block, 9, 0)> = 1U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+} else if(%<LibSFInputs(block, 3, 0)> == 6.0) {
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
+%<LibSFOutputs(block, 9, 0)> = 3U;
+} else {
+%<LibSFOutputs(block, 7, 0)> = 1U;
+}
+break;
+case %<block.SymbolMapping.IN_PRIMITIVE>:
+if(%<LibSFInputs(block, 3, 0)> == 2.0) {
+switch(%<LibSFChartInstance(block)>is_PRIMITIVE) {
+case %<block.SymbolMapping.IN_MOVING>:
+%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 0U;
+%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 0U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+break;
+case %<block.SymbolMapping.IN_STOPPED>:
+%<LibSFOutputs(block, 4, 0)> = 0U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+break;
+}
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONTROLLER>;
+%<LibSFOutputs(block, 9, 0)> = 2U;
+} else if(%<LibSFInputs(block, 3, 0)> == 6.0) {
+switch(%<LibSFChartInstance(block)>is_PRIMITIVE) {
+case %<block.SymbolMapping.IN_MOVING>:
+%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 0U;
+%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 0U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+break;
+case %<block.SymbolMapping.IN_STOPPED>:
+%<LibSFOutputs(block, 4, 0)> = 0U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+break;
+}
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
+%<LibSFOutputs(block, 9, 0)> = 3U;
+} else {
+%<LibSFOutputs(block, 7, 0)> = 0U;
+switch(%<LibSFChartInstance(block)>is_PRIMITIVE) {
+case %<block.SymbolMapping.IN_MOVING>:
+if(%<LibSFInputs(block, 2, 0)> == 5) {
+%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 0U;
+%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 0U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+} else {
+switch(%<LibSFChartInstance(block)>is_SEGMENT_1) {
+case %<block.SymbolMapping.IN_NEGATIVE_MOV>:
+%<LibSFOutputs(block, 8, 0)> = 0.0;
+break;
+case %<block.SymbolMapping.IN_POSITIVE_MOV>:
+%<LibSFOutputs(block, 8, 0)> = 0.0;
+break;
+default:
+%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+break;
+}
+switch(%<LibSFChartInstance(block)>is_SEGMENT_2) {
+case %<block.SymbolMapping.IN_NEGATIVE_MOV>:
+%<LibSFOutputs(block, 8, 0)> = 0.0;
+break;
+case %<block.SymbolMapping.IN_POSITIVE_MOV>:
+%<LibSFOutputs(block, 8, 0)> = 0.0;
+break;
+default:
+%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+break;
+}
+}
+break;
+case %<block.SymbolMapping.IN_STOPPED>:
+if(%<LibSFInputs(block, 2, 0)> == 4) {
+%<LibSFOutputs(block, 4, 0)> = 0U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 1U;
+%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 1U;
+%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_NEGATIVE_MOV>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p3, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+} else if(%<LibSFInputs(block, 2, 0)> == 3) {
+%<LibSFOutputs(block, 4, 0)> = 0U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 1U;
+%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_NEGATIVE_MOV>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p3, "", "", 0)>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 1U;
+%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+} else if(%<LibSFInputs(block, 2, 0)> == 2) {
+%<LibSFOutputs(block, 4, 0)> = 0U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 1U;
+%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 1U;
+%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+} else if(%<LibSFInputs(block, 2, 0)> == 1) {
+%<LibSFOutputs(block, 4, 0)> = 0U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 1U;
+%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
+%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 1U;
+%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+} else {
+%<LibSFOutputs(block, 8, 0)> = 0.0;
+}
+break;
+default:
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+break;
+}
+}
+break;
+default:
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_PRIMITIVE>;
+%<LibSFOutputs(block, 9, 0)> = 1U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0;
+break;
+}
+}
    %closefile chartFcnsBuf
    %return chartFcnsBuf
 %endfunction %% ChartFunctions
@@ -59,123 +246,7 @@ case %<block.SymbolMapping.IN_INIT_ACK>:
 %<LibSFOutputs(block, 8, 0)> = 1.0;
 break;
 case %<block.SymbolMapping.IN_OPERATION>:
-switch(%<LibSFChartInstance(block)>is_OPERATION) {
-case %<block.SymbolMapping.IN_CONTROLLER>:
-if(%<LibSFInputs(block, 3, 0)> == 1.0) {
-%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_PRIMITIVE>;
-%<LibSFOutputs(block, 9, 0)> = 1U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
-%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
-%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0;
-} else {
-%<LibSFOutputs(block, 7, 0)> = 1U;
-}
-break;
-case %<block.SymbolMapping.IN_PRIMITIVE>:
-if(%<LibSFInputs(block, 3, 0)> == 2.0) {
-switch(%<LibSFChartInstance(block)>is_PRIMITIVE) {
-case %<block.SymbolMapping.IN_MOVING>:
-%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
-%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 0U;
-%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
-%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 0U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
-break;
-case %<block.SymbolMapping.IN_STOPPED>:
-%<LibSFOutputs(block, 4, 0)> = 0U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
-break;
-}
-%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONTROLLER>;
-%<LibSFOutputs(block, 9, 0)> = 2U;
-} else {
-%<LibSFOutputs(block, 7, 0)> = 0U;
-switch(%<LibSFChartInstance(block)>is_PRIMITIVE) {
-case %<block.SymbolMapping.IN_MOVING>:
-if(%<LibSFInputs(block, 2, 0)> == 5) {
-%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
-%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 0U;
-%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_NO_ACTIVE_CHILD>;
-%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 0U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
-%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
-%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0;
-} else {
-switch(%<LibSFChartInstance(block)>is_SEGMENT_1) {
-case %<block.SymbolMapping.IN_NEGATIVE_MOV>:
-%<LibSFOutputs(block, 8, 0)> = 0.0;
-break;
-case %<block.SymbolMapping.IN_POSITIVE_MOV>:
-%<LibSFOutputs(block, 8, 0)> = 0.0;
-break;
-}
-switch(%<LibSFChartInstance(block)>is_SEGMENT_2) {
-case %<block.SymbolMapping.IN_NEGATIVE_MOV>:
-%<LibSFOutputs(block, 8, 0)> = 0.0;
-break;
-case %<block.SymbolMapping.IN_POSITIVE_MOV>:
-%<LibSFOutputs(block, 8, 0)> = 0.0;
-break;
-}
-}
-break;
-case %<block.SymbolMapping.IN_STOPPED>:
-if(%<LibSFInputs(block, 2, 0)> == 4) {
-%<LibSFOutputs(block, 4, 0)> = 0U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
-%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 1U;
-%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 1U;
-%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_NEGATIVE_MOV>;
-%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p3, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0;
-} else if(%<LibSFInputs(block, 2, 0)> == 3) {
-%<LibSFOutputs(block, 4, 0)> = 0U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
-%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 1U;
-%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_NEGATIVE_MOV>;
-%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p3, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0;
-%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 1U;
-} else if(%<LibSFInputs(block, 2, 0)> == 2) {
-%<LibSFOutputs(block, 4, 0)> = 0U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
-%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 1U;
-%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 1U;
-%<LibSFChartInstance(block)>is_SEGMENT_2 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
-%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0;
-} else if(%<LibSFInputs(block, 2, 0)> == 1) {
-%<LibSFOutputs(block, 4, 0)> = 0U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
-%<LibSFChartInstance(block)>is_active_SEGMENT_1 = 1U;
-%<LibSFChartInstance(block)>is_SEGMENT_1 = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV>;
-%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p4, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0;
-%<LibSFChartInstance(block)>is_active_SEGMENT_2 = 1U;
-} else {
-%<LibSFOutputs(block, 8, 0)> = 0.0;
-}
-break;
-default:
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
-%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
-%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0;
-break;
-}
-}
-break;
-default:
-%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_PRIMITIVE>;
-%<LibSFOutputs(block, 9, 0)> = 1U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
-%<LibSFOutputs(block, 5, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
-%<LibSFOutputs(block, 6, 0)> = %<LibBlockParameter(p5, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0;
-break;
-}
+%<block.SymbolMapping.OPERATION>(%<LibSFPassThruArgs(block,1)>);
 break;
 default:
 %<LibSFChartInstance(block)>is_c1_MPC_framework = (uint8_T)%<block.SymbolMapping.IN_INIT>;
@@ -221,7 +292,10 @@ break;
 %<LibSFOutputs(block, 8, 0)> = 0.0;
 %endif
 %if LibBlockOutputSignalIsInBlockIO(9) || LibBlockOutputSignalStorageClass(9) != "Auto"
-%<LibSFOutputs(block, 9, 0)> = 0U;
+%<LibSFOutputs(block, 9, 0)> = MAX_uint8_T;
+%endif
+%if LibBlockOutputSignalIsInBlockIO(10) || LibBlockOutputSignalStorageClass(10) != "Auto"
+%<LibSFOutputs(block, 10, 0)> = 0U;
 %endif
 %<LibSFChartInstance(block)>is_c1_MPC_framework = (uint8_T)%<block.SymbolMapping.IN_INIT>;
 %<LibSFOutputs(block, 1, 0)> = %<LibBlockParameter(p1, "", "", 0)>;

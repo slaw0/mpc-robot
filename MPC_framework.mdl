@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.387"
+    ComputedModelVersion    "1.431"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -46,8 +46,8 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Developer"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 27 19:27:21 2014"
-  ModelVersionFormat	  "1.%<AutoIncrement:387>"
+  LastModifiedDate	  "Thu Apr 03 19:07:09 2014"
+  ModelVersionFormat	  "1.%<AutoIncrement:431>"
   ConfigurationManager	  "None"
   TargetProperties	  "DataTag0"
   LinearizationMsg	  "none"
@@ -641,6 +641,17 @@ Model {
       Interpolate	      on
     }
     Block {
+      BlockType		      Logic
+      Operator		      "AND"
+      Inputs		      "2"
+      IconShape		      "rectangular"
+      AllPortsSameDT	      on
+      OutDataTypeMode	      "Logical (see Configuration Parameters: Optimiza"
+"tion)"
+      LogicDataType	      "uint(8)"
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Mux
       Inputs		      "4"
       DisplayOption	      "none"
@@ -663,9 +674,6 @@ Model {
       SamplingMode	      "auto"
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
-    }
-    Block {
-      BlockType		      Reference
     }
     Block {
       BlockType		      RelationalOperator
@@ -769,7 +777,7 @@ Model {
   }
   System {
     Name		    "MPC_framework"
-    Location		    [-44, 103, 1224, 974]
+    Location		    [2, 78, 1278, 957]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -809,14 +817,14 @@ Model {
       BlockType		      SubSystem
       Name		      "Controller"
       Ports		      [5, 2, 1]
-      Position		      [640, 517, 1135, 713]
+      Position		      [645, 517, 1140, 713]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
       MaskHideContents	      off
       System {
 	Name			"Controller"
-	Location		[-168, 206, 1100, 924]
+	Location		[6, 162, 1274, 880]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1010,9 +1018,9 @@ Model {
 	  Position		  [360, 95, 460, 135]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -1024,7 +1032,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "-1"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Line {
 	  SrcBlock		  "DA_out_value message packing"
@@ -1064,24 +1072,6 @@ Model {
       ShowName		      off
       Outputs		      "2"
       DisplayOption	      "bar"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Detect\nChange"
-      Ports		      [1, 1]
-      Position		      [605, 725, 665, 755]
-      SourceBlock	      "simulink/Logic and Bit\nOperations/Detect\nChan"
-"ge"
-      SourceType	      "Detect Change"
-      ShowPortLabels	      on
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      vinit		      "0"
     }
     Block {
       BlockType		      SubSystem
@@ -1127,9 +1117,9 @@ Model {
 	  Position		  [325, 100, 425, 140]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -1141,7 +1131,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "init_1_message_frequency"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -1212,9 +1202,9 @@ Model {
 	  Position		  [360, 90, 460, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -1226,7 +1216,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "-1"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -1257,7 +1247,7 @@ Model {
       Name		      "MPC555\nResource\nConfiguration"
       Tag		      "RTW CONFIGURATION BLOCK"
       Ports		      []
-      Position		      [140, 45, 178, 85]
+      Position		      [345, 50, 383, 90]
       Priority		      "-100000"
       UserDataPersistent      on
       UserData		      "DataTag4"
@@ -1311,11 +1301,16 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "State Machine"
-      Ports		      [4, 9]
-      Position		      [325, 210, 525, 360]
+      Ports		      [4, 10]
+      Position		      [345, 212, 545, 373]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
+      Array {
+	Type			"Handle"
+	Dimension		0
+	PropName		"AvailSigsLoadSave"
+      }
       MaskHideContents	      off
       MaskType		      "Stateflow"
       MaskDescription	      "Stateflow diagram"
@@ -1373,19 +1368,19 @@ Model {
 	  BlockType		  Demux
 	  Name			  " Demux "
 	  Ports			  [1, 1]
-	  Position		  [270, 425, 320, 465]
+	  Position		  [270, 460, 320, 500]
 	  Outputs		  "1"
 	}
 	Block {
 	  BlockType		  "S-Function"
 	  Name			  " SFunction "
 	  Tag			  "Stateflow S-Function MPC_framework 1"
-	  Ports			  [4, 10]
-	  Position		  [180, 110, 230, 330]
+	  Ports			  [4, 11]
+	  Position		  [180, 114, 230, 356]
 	  FunctionName		  "sf_sfun"
 	  Parameters		  "init_1_message,init_2_message,motor_negativ"
 "e_value,motor_positive_value,motor_stopped_value"
-	  PortCounts		  "[4 10]"
+	  PortCounts		  "[4 11]"
 	  Port {
 	    PortNumber		    2
 	    Name		    "init_out_value"
@@ -1440,11 +1435,17 @@ Model {
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
+	  Port {
+	    PortNumber		    11
+	    Name		    "sync_command"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  " Terminator "
-	  Position		  [460, 436, 480, 454]
+	  Position		  [460, 471, 480, 489]
 	}
 	Block {
 	  BlockType		  Outport
@@ -1517,6 +1518,13 @@ Model {
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "sync_command"
+	  Position		  [460, 426, 480, 444]
+	  Port			  "10"
+	  IconDisplay		  "Port number"
+	}
 	Line {
 	  SrcBlock		  " Demux "
 	  SrcPort		  1
@@ -1526,7 +1534,7 @@ Model {
 	Line {
 	  SrcBlock		  " SFunction "
 	  SrcPort		  1
-	  Points		  [0, 315]
+	  Points		  [0, 345]
 	  DstBlock		  " Demux "
 	  DstPort		  1
 	}
@@ -1628,6 +1636,14 @@ Model {
 	  DstBlock		  "operation_mode"
 	  DstPort		  1
 	}
+	Line {
+	  Name			  "sync_command"
+	  Labels		  [0, 0]
+	  SrcBlock		  " SFunction "
+	  SrcPort		  11
+	  DstBlock		  "sync_command"
+	  DstPort		  1
+	}
       }
     }
     Block {
@@ -1669,9 +1685,9 @@ Model {
 	  Position		  [55, 90, 155, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -1680,9 +1696,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('0C')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "3"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -1835,9 +1851,9 @@ Model {
 	  Position		  [55, 90, 155, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -1846,9 +1862,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('07')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "4"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -2077,9 +2093,9 @@ Model {
 	  Position		  [360, 95, 460, 135]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -2091,7 +2107,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "-1"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -2240,9 +2256,9 @@ Model {
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Comp"
 "are\nTo Constant"
 	      SourceType	      "Compare To Constant"
-	      ShowPortLabels	      "on"
+	      ShowPortLabels	      on
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -2251,7 +2267,7 @@ Model {
 	      relop		      "=="
 	      const		      "init_ack_sync_message"
 	      LogicOutDataTypeMode    "uint8"
-	      ZeroCross		      "off"
+	      ZeroCross		      off
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -2350,9 +2366,9 @@ Model {
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Comp"
 "are\nTo Constant"
 	      SourceType	      "Compare To Constant"
-	      ShowPortLabels	      "on"
+	      ShowPortLabels	      on
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -2361,7 +2377,7 @@ Model {
 	      relop		      "=="
 	      const		      "init_ack_async_message"
 	      LogicOutDataTypeMode    "uint8"
-	      ZeroCross		      "off"
+	      ZeroCross		      off
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -2397,9 +2413,9 @@ Model {
 	  Position		  [40, 50, 140, 90]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -2408,9 +2424,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('02')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "5"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -2422,9 +2438,9 @@ Model {
 	  Position		  [40, 145, 140, 185]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -2433,9 +2449,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('03')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "6"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -2498,17 +2514,16 @@ Model {
     }
     Block {
       BlockType		      SubSystem
-      Name		      "operation_mode_changed sender"
-      Ports		      [1, 0, 0, 1]
-      Position		      [620, 793, 745, 837]
-      TreatAsAtomicUnit	      on
+      Name		      "operation_mode handler"
+      Ports		      [1]
+      Position		      [495, 660, 570, 700]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
       MaskHideContents	      off
       System {
-	Name			"operation_mode_changed sender"
-	Location		[2, 82, 1270, 978]
+	Name			"operation_mode handler"
+	Location		[465, 642, 929, 892]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2524,61 +2539,134 @@ Model {
 	Block {
 	  BlockType		  Inport
 	  Name			  "operation_mode"
-	  Position		  [60, 108, 90, 122]
+	  Position		  [110, 63, 130, 77]
 	  NamePlacement		  "alternate"
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "Trigger"
-	  Ports			  []
-	  Position		  [255, 40, 275, 60]
-	  StatesWhenEnabling	  "held"
-	}
-	Block {
 	  BlockType		  Reference
-	  Name			  "TouCAN Transmit"
-	  Ports			  [1]
-	  Position		  [360, 95, 460, 135]
-	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
-	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  Name			  "Detect\nChange"
+	  Ports			  [1, 1]
+	  Position		  [220, 55, 280, 85]
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Detect\n"
+"Change"
+	  SourceType		  "Detect Change"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
 	  RTWMemSecDataInternal	  "Inherit from model"
 	  RTWMemSecDataParameters "Inherit from model"
-	  module		  "A"
-	  tx_mode		  "Queued transmission with shared buffer"
-	  fifo_queue_length	  "8"
-	  bufferids		  "0"
-	  buffers_used		  "0, 1, 2"
-	  t			  "-1"
-	  enablePassThru	  "off"
+	  vinit			  "0"
 	}
 	Block {
-	  BlockType		  Reference
-	  Name			  "operation_mode_changed message packing"
-	  Ports			  [1, 1]
-	  Position		  [175, 89, 305, 141]
-	  UserDataPersistent	  on
-	  UserData		  "DataTag10"
-	  SourceBlock		  "canblocks/CAN Message Packing\n(CANdb)"
-	  SourceType		  "CAN Message Packing (CANdb)"
+	  BlockType		  SubSystem
+	  Name			  "operation_mode_changed sender"
+	  Ports			  [1, 0, 0, 1]
+	  Position		  [250, 123, 375, 167]
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "operation_mode_changed sender"
+	    Location		    [2, 82, 1270, 978]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "operation_mode"
+	      Position		      [60, 108, 90, 122]
+	      NamePlacement	      "alternate"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "Trigger"
+	      Ports		      []
+	      Position		      [255, 40, 275, 60]
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "TouCAN Transmit"
+	      Ports		      [1]
+	      Position		      [360, 95, 460, 135]
+	      SourceBlock	      "mpc555toucan/TouCAN Transmit"
+	      SourceType	      "MPC555 TouCAN Transmit"
+	      ShowPortLabels	      on
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      module		      "A"
+	      tx_mode		      "Queued transmission with shared buffer"
+	      fifo_queue_length	      "8"
+	      bufferids		      "0"
+	      buffers_used	      "0, 1, 2"
+	      t			      "-1"
+	      enablePassThru	      off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "operation_mode_changed message packing"
+	      Ports		      [1, 1]
+	      Position		      [175, 89, 305, 141]
+	      UserDataPersistent      on
+	      UserData		      "DataTag10"
+	      SourceBlock	      "canblocks/CAN Message Packing\n(CANdb)"
+	      SourceType	      "CAN Message Packing (CANdb)"
+	    }
+	    Line {
+	      SrcBlock		      "operation_mode_changed message packing"
+	      SrcPort		      1
+	      DstBlock		      "TouCAN Transmit"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "operation_mode"
+	      SrcPort		      1
+	      DstBlock		      "operation_mode_changed message packing"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Line {
-	  SrcBlock		  "operation_mode_changed message packing"
+	  SrcBlock		  "Detect\nChange"
 	  SrcPort		  1
-	  DstBlock		  "TouCAN Transmit"
-	  DstPort		  1
+	  Points		  [25, 0]
+	  DstBlock		  "operation_mode_changed sender"
+	  DstPort		  trigger
 	}
 	Line {
 	  SrcBlock		  "operation_mode"
 	  SrcPort		  1
-	  DstBlock		  "operation_mode_changed message packing"
-	  DstPort		  1
+	  Points		  [30, 0]
+	  Branch {
+	    Points		    [0, 75]
+	    DstBlock		    "operation_mode_changed sender"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Detect\nChange"
+	    DstPort		    1
+	  }
 	}
       }
     }
@@ -2613,9 +2701,9 @@ Model {
 	  Position		  [55, 90, 155, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -2624,9 +2712,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('08')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "7"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -2800,9 +2888,9 @@ Model {
 	  Position		  [375, 125, 475, 165]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -2814,7 +2902,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "-1"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -2893,9 +2981,9 @@ Model {
 	  Position		  [360, 90, 460, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -2907,7 +2995,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "-1"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -2964,9 +3052,9 @@ Model {
 	  Position		  [55, 90, 155, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -2975,9 +3063,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('04')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "8"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -3099,10 +3187,217 @@ Model {
 	}
       }
     }
+    Block {
+      BlockType		      SubSystem
+      Name		      "sync_command handler"
+      Ports		      [1]
+      Position		      [475, 587, 555, 623]
+      MinAlgLoopOccurrences   off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      MaskHideContents	      off
+      System {
+	Name			"sync_command handler"
+	Location		[220, 589, 859, 891]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "sync_command"
+	  Position		  [45, 58, 75, 72]
+	  NamePlacement		  "alternate"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Compare\nTo Zero1"
+	  Ports			  [1, 1]
+	  Position		  [190, 109, 210, 131]
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Compare"
+"\nTo Zero"
+	  SourceType		  "Compare To Zero"
+	  ShowPortLabels	  on
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  relop			  ">"
+	  LogicOutDataTypeMode	  "uint8"
+	  ZeroCross		  off
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Detect\nChange2"
+	  Ports			  [1, 1]
+	  Position		  [180, 55, 225, 75]
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Detect\n"
+"Change"
+	  SourceType		  "Detect Change"
+	  ShowPortLabels	  on
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  vinit			  "0"
+	}
+	Block {
+	  BlockType		  Logic
+	  Name			  "Logical\nOperator"
+	  Ports			  [2, 1]
+	  Position		  [250, 85, 275, 105]
+	  AllPortsSameDT	  off
+	  OutDataTypeMode	  "Boolean"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "sync_command sender"
+	  Ports			  [1, 0, 0, 1]
+	  Position		  [275, 173, 400, 217]
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "sync_command sender"
+	    Location		    [2, 82, 1270, 978]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "sync_command"
+	      Position		      [60, 108, 90, 122]
+	      NamePlacement	      "alternate"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "Trigger"
+	      Ports		      []
+	      Position		      [255, 40, 275, 60]
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "TouCAN Transmit"
+	      Ports		      [1]
+	      Position		      [360, 95, 460, 135]
+	      SourceBlock	      "mpc555toucan/TouCAN Transmit"
+	      SourceType	      "MPC555 TouCAN Transmit"
+	      ShowPortLabels	      on
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      module		      "A"
+	      tx_mode		      "Queued transmission with shared buffer"
+	      fifo_queue_length	      "8"
+	      bufferids		      "0"
+	      buffers_used	      "0, 1, 2"
+	      t			      "-1"
+	      enablePassThru	      off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "sync_command message packing"
+	      Ports		      [1, 1]
+	      Position		      [175, 89, 305, 141]
+	      UserDataPersistent      on
+	      UserData		      "DataTag15"
+	      SourceBlock	      "canblocks/CAN Message Packing\n(CANdb)"
+	      SourceType	      "CAN Message Packing (CANdb)"
+	    }
+	    Line {
+	      SrcBlock		      "sync_command"
+	      SrcPort		      1
+	      DstBlock		      "sync_command message packing"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "sync_command message packing"
+	      SrcPort		      1
+	      DstBlock		      "TouCAN Transmit"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Detect\nChange2"
+	  SrcPort		  1
+	  Points		  [5, 0]
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Compare\nTo Zero1"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  DstBlock		  "Logical\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Logical\nOperator"
+	  SrcPort		  1
+	  Points		  [55, 0]
+	  DstBlock		  "sync_command sender"
+	  DstPort		  trigger
+	}
+	Line {
+	  SrcBlock		  "sync_command"
+	  SrcPort		  1
+	  Points		  [50, 0]
+	  Branch {
+	    DstBlock		    "Detect\nChange2"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 55]
+	    Branch {
+	      DstBlock		      "Compare\nTo Zero1"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, 75]
+	      DstBlock		      "sync_command sender"
+	      DstPort		      1
+	    }
+	  }
+	}
+      }
+    }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      1
-      Points		      [110, 0]
+      Points		      [90, 0]
       Branch {
 	Points			[0, 85]
 	DstBlock		"Init 2 message sender"
@@ -3124,28 +3419,28 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      2
-      Points		      [100, 0; 0, -116]
+      Points		      [80, 0; 0, -116]
       DstBlock		      "Init 1 message sender"
       DstPort		      enable
     }
     Line {
       SrcBlock		      "init_ack_messages receiver"
       SrcPort		      1
-      Points		      [40, 0]
+      Points		      [60, 0]
       DstBlock		      "State Machine"
       DstPort		      1
     }
     Line {
       SrcBlock		      "init_ack_messages receiver"
       SrcPort		      2
-      Points		      [40, 0]
+      Points		      [60, 0]
       DstBlock		      "State Machine"
       DstPort		      2
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      3
-      Points		      [195, 0]
+      Points		      [175, 0]
       DstBlock		      "Init 2 message sender"
       DstPort		      trigger
     }
@@ -3153,42 +3448,36 @@ Model {
       Labels		      [1, 0]
       SrcBlock		      "State Machine"
       SrcPort		      4
-      Points		      [325, 0]
+      Points		      [305, 0]
       DstBlock		      "stop message sender"
       DstPort		      trigger
     }
     Line {
       SrcBlock		      "primitive_button receiver"
       SrcPort		      1
+      Points		      [70, 0]
       DstBlock		      "State Machine"
       DstPort		      3
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      7
-      Points		      [80, 0; 0, 70; 275, 0]
+      Points		      [60, 0; 0, 70; 275, 0]
       Branch {
-	Points			[0, 0; 0, -30; 70, 0; 0, -80; 90, 0]
-	DstBlock		"request_incremental_value sender"
-	DstPort			enable
+	Points			[200, 0; 0, 125]
+	DstBlock		"Switch"
+	DstPort			2
       }
       Branch {
-	Points			[0, 0]
-	Branch {
-	  DstBlock		  "Controller"
-	  DstPort		  enable
-	}
-	Branch {
-	  Points		  [200, 0; 0, 125]
-	  DstBlock		  "Switch"
-	  DstPort		  2
-	}
+	Points			[0, -30; 70, 0; 0, -80; 90, 0]
+	DstBlock		"request_incremental_value sender"
+	DstPort			enable
       }
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      5
-      Points		      [100, 0; 0, 160]
+      Points		      [80, 0; 0, 160]
       Branch {
 	Points			[-20, 0; 0, 90]
 	DstBlock		"Controller"
@@ -3202,7 +3491,7 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      6
-      Points		      [90, 0; 0, 165]
+      Points		      [70, 0; 0, 165]
       Branch {
 	Points			[-20, 0; 0, 110]
 	DstBlock		"Controller"
@@ -3230,14 +3519,14 @@ Model {
     Line {
       SrcBlock		      "Controller"
       SrcPort		      1
-      Points		      [25, 0; 0, 20]
+      Points		      [0, 20]
       DstBlock		      "Mux1"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Controller"
       SrcPort		      2
-      Points		      [25, 0; 0, -60]
+      Points		      [20, 0; 0, -60]
       DstBlock		      "Mux1"
       DstPort		      2
     }
@@ -3276,9 +3565,31 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      8
-      Points		      [70, 0; 0, 45; 805, 0]
+      Points		      [50, 0; 0, 45; 805, 0]
       DstBlock		      "DA_out_value sender"
       DstPort		      trigger
+    }
+    Line {
+      SrcBlock		      "State Machine"
+      SrcPort		      9
+      Points		      [40, 0; 0, 45]
+      Branch {
+	DstBlock		"Compare\nTo Zero"
+	DstPort			1
+      }
+      Branch {
+	Labels			[0, 0]
+	Points			[0, 260; -110, 0]
+	DstBlock		"operation_mode handler"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "async_request receiver1"
+      SrcPort		      1
+      Points		      [25, 0; 0, -25]
+      DstBlock		      "State Machine"
+      DstPort		      4
     }
     Line {
       SrcBlock		      "Compare\nTo Zero"
@@ -3287,39 +3598,12 @@ Model {
       DstPort		      enable
     }
     Line {
+      Labels		      [0, 0]
       SrcBlock		      "State Machine"
-      SrcPort		      9
-      Points		      [60, 0; 0, 45]
-      Branch {
-	Points			[0, 350]
-	Branch {
-	  Points		  [0, 75]
-	  DstBlock		  "operation_mode_changed sender"
-	  DstPort		  1
-	}
-	Branch {
-	  DstBlock		  "Detect\nChange"
-	  DstPort		  1
-	}
-      }
-      Branch {
-	DstBlock		"Compare\nTo Zero"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "async_request receiver1"
-      SrcPort		      1
-      Points		      [25, 0; 0, -40]
-      DstBlock		      "State Machine"
-      DstPort		      4
-    }
-    Line {
-      SrcBlock		      "Detect\nChange"
-      SrcPort		      1
-      Points		      [10, 0]
-      DstBlock		      "operation_mode_changed sender"
-      DstPort		      trigger
+      SrcPort		      10
+      Points		      [25, 0; 0, 215; -115, 0]
+      DstBlock		      "sync_command handler"
+      DstPort		      1
     }
     Annotation {
       Position		      [208, 518]
@@ -3328,7 +3612,40 @@ Model {
   }
 }
 MatData {
-  NumRecords		  15
+  NumRecords		  16
+  DataRecord {
+    Tag			    DataTag15
+    Data		    "  %)30     .    ^ 4   8    (     @         %    "
+"\"     $    !     0         %  0 \"P    $    6    ;65S<V%G90    !J879A:&%N9&Q"
+"E    #@   &@%   &    \"    !$          0         !  0 :F%V80$    Q    8V]M+FU"
+"A=&AW;W)K<RYT;V]L8F]X+F5C;V1E<BYC86YL:6(N0V%N1$(N365S<V%G90         .      4 "
+"  8    (    \"0         %    \"     $   #,!    0         \"    S 0  *SM  5S<@"
+" Q8V]M+FUA=&AW;W)K<RYT;V]L8F]X+F5C;V1E<BYC86YL:6(N0V%N1$(N365S<V%G908U&6;8]\\"
+"W! @ (6@ .9&%T84ES17AT97)N86Q)  )I9$D !FED5'EP94D !FQE;F=T:$P \"F1B1FEL95!A=&"
+"AT !),:F%V82]L86YG+U-T<FEN9SM,  MM97-S86=E3F%M97$ ?@ !3  5<')O<&5R='E#:&%N9V5"
+"3=7!P;W)T=  B3&IA=F$O8F5A;G,O4')O<&5R='E#:&%N9V53=7!P;W)T.TP !W-I9VYA;'-T !),"
+":F%V82]U=&EL+U9E8W1O<CMX<      .          %T  !T  QS>6YC7V-O;6UA;F1S<@ @:F%V8"
+"2YB96%N<RY0<F]P97)T>4-H86YG95-U<'!O<G18U=)D5TA@NP,  TD *G!R;W!E<G1Y0VAA;F=E4W"
+"5P<&]R=%-E<FEA;&EZ961$871A5F5R<VEO;DP \"&-H:6QD<F5N=  53&IA=F$O=71I;\"](87-H="
+"&%B;&4[3  &<V]U<F-E=  23&IA=F$O;&%N9R]/8FIE8W0[>'     \"<'$ ?@ $<'AS<@ 0:F%V8"
+"2YU=&EL+E9E8W1O<MF7?5N .Z\\! P #20 18V%P86-I='E);F-R96UE;G1)  QE;&5M96YT0V]U;"
+"G1;  ME;&5M96YT1&%T870 $UM,:F%V82]L86YG+T]B:F5C=#MX<          !=7( $UM,:F%V82"
+"YL86YG+D]B:F5C=#N0SEB?$',I; (  'AP    \"G-R #!C;VTN;6%T:'=O<FMS+G1O;VQB;W@N96"
+"-O9&5R+F-A;FQI8BY#86Y$0BY3:6=N86SZ'L=W;?8&R@( #TD \"F)Y=&5,87EO=71)  AD871A5'"
+"EP940 !F9A8W1O<EH !FES36]D95H \"6ES36]D941E<$D !FQE;F=T:$D \"6UO9&5686QU940 !"
+"F]F9G-E=$D \"G-I9VYA;%1Y<&5)  AS=&%R=$)I=%L #6QA>6]U=%-T<FEN9W-T !-;3&IA=F$O;"
+"&%N9R]3=')I;F<[3  $;F%M97$ ?@ !3  ,<&AY<VEC86Q5;FET<0!^  %,  ]P<F]P97)T>5-U<'"
+"!O<G1Q 'X  DP %79E=&]A8FQE0VAA;F=E4W5P<&]R='0 (DQJ879A+V)E86YS+U9E=&]A8FQE0VA"
+"A;F=E4W5P<&]R=#MX<          !/_                @                          '!T"
+"  QS>6YC7V-O;6UA;F1T  !S<0!^  <    !<'-Q 'X $          !/_                @  "
+"                        '!T  =3:6=N86PQ=   <0!^ !9S<@ @:F%V82YB96%N<RY6971O86"
+")L94-H86YG95-U<'!O<G2Y6_ BRG4O/P,  TD *G9E=&]A8FQE0VAA;F=E4W5P<&]R=%-E<FEA;&E"
+"Z961$871A5F5R<VEO;DP \"&-H:6QD<F5N<0!^  A,  9S;W5R8V5Q 'X \"7AP     7!Q 'X %W"
+"!X<'AQ 'X &W!P<'!P<'!P<'@     #@   #     &    \"     8         !0    @       "
+"        $         \"0         .    B     8    (    \"0         %    \"     $ "
+"  !8     0         \"    6      !24T     #@   $@    &    \"     (         !0 "
+"   @    !     0    $         !0 $  4    !    !0   &IA=F$     #@         "
+  }
   DataRecord {
     Tag			    DataTag14
     Data		    "  %)30     .    ^ 4   8    (     @         %    "
@@ -4120,347 +4437,344 @@ MatData {
   }
   DataRecord {
     Tag			    DataTag0
-    Data		    "  %)30     .    ,$L   8    (    $0         !     "
-"     $    &    :&%N9&QE   !    %P   %)45T-O;F9I9W5R871I;VXN5&%R9V5T  X   #@2@"
-"  !@    @    !          4    (    E     $    !          X    8'P  !@    @    "
-")          4    (    Z!X   $    !          (   #H'@   0   %<   \"(!   R 4  - "
-"%  !@%0  X!X  .@>             %)45T-O;F9I9W5R871I;VX 5&%R9V5T &%C=&EV94QI<W0 "
-"3&ES=$AE860 9&]W;@!.;V1E &1A=&$ 35!#-34U9&M#;VYF:6< 4UE35$5-7T-,3T-+4P!C;VYF:"
-"6=U<F%T:6]N7W1Y<&4 :&ED9&5N7V-O;F9I9W5R871I;VX 35!#-7AX7U9A<FEA;G0 -34U $]S8V"
-"EL;&%T;W)?1G)E<75E;F-Y #(P %53255?4$Q04D-27T)?348 55-)55]03%!20U)?0E]$259& %5"
-"3255?4T-#4E]\"7T1&3D@ 55-)55]30T-27T)?1$9.3 !54TE57U-#0U)?0E]%0D1& $5X=%]-;V1"
-"E7U-E<FEA; !%>'1?36]D95]397)I86Q?4W1A=&4 4WES=&5M7T9R97%U96YC>0!3>7-T96U?0VQO"
-"8VL 0TQ+3U54 ')E<V]U<F-E<P!3>7-T96U297-O=7)C97, <FEG:'0 5$]50T%. $-!3E]! %1/5"
-"4-!3E]04D]04P!4<F%N<VUI=%]\"=69F97)?3G5M8F5R #  25)17TQE=F5L $E.5%],159%3#$ 3"
-"6%S:W, 5$]50T%.7TU!4TM3 %1I;6EN9P!43U5#04Y?5$E-24Y' $-!3E]\"875D7U)A=&4 0T%.7"
-"T)I=%]2871E $YU;6)E<E]/9E]1=6%N=&$ 4V%M<&QE7U!O:6YT %)E<WEC:')O;FEZ871I;VY?2G"
-"5M<%]7:61T: !296=I<W1E<E]#;VYF:6=U<F%T:6]N %)E<75I<F53:&%R9614>$)U9F9E<@!#04Y"
-"?0@!)3E1?3$5614PR $-!3E]# $YO=$%V86EL86)L90!-97-S86=E $-!3E]#7P!)3E1?3$5614PS"
-" $-!3E]#7TY! %1/54-!3E]215-/55)#15, 5&5R;6EN871O<@!C;&%S<VME>0!S;W5R8V5,:6)R8"
-"7)Y &UP8S4U-71O=6-A;@!M<&,U-35D<FEV97)S &)L;V-K %%334-- %-#22!#;VYF:6=U<F%T:6"
-"]N %-#23$ 45--0TU?4T-) %-#25]M;V1E7V-O;G1R;VP .\"UB:70@9&%T80!,;V]P8F%C:U]M;V"
-"1E $)I=%]R871E7V%C:&EE=F5D %-#>$)2 %-Y<W1E;5]C;&]C:P!30TDR $U)3U,Q $U)3U,Q($-"
-"O;F9I9W5R871I;VX 4')E<V-A;&5R $UO9'5L=7-?0V]U;G1E<E\\V $U)3U-?0T]53E1%4@!-;V1"
-"U;'5S7TQO861?4V5N<VET:79I='D 1&ES86)L960 0VQO8VM?4')E<V-A;&5R $UO9'5L=7-?3&%T"
-"8VA?4F5G:7-T97( 36]D=6QU<U]#;W5N=&5R7S(R $UI;W-297-O=7)C97, 5&%R9V5T<T-O;6UO;"
-"D-O;F9I9P!#0U  0T-0($-O;F9I9W5R871I;VX 0T-07U)%4T]54D-%4P                    "
-"           0    (               $    $               !    !@              \" "
-"    D               @    ;               (    '0              \"    !\\      "
-"         @    E               (    )P              \"    #(               @  "
-"  W               !    .               \"    #X               @   !!         "
-"      (    20              \"    $T               @   !3              !4    5"
-"0              5    %<                                                       "
-"   0                    $          @    $               (          P    (    "
-"           ,         !     $               0         !0    $    $          4 "
-"         P    (    #          8         !@    $               <         !P   "
-"                 @         \"                     D         \"0              "
-"      H         !P                    L         \"                     P     "
-"    \"0                    T         \"@                    X         !P     "
-"               \\         \"                    !          \"0               "
-"    !$         \"P    $    '         !(         #                            "
-"    @    $              !,         #                                @    $   "
-" \"         !0         #                                @    $    6         !"
-"4         #                                @    $    8         !8         #  "
-"                              @    $    :         !<         #               "
-"                 @    $    <         !@         #                            "
-"    @    $    >         !D         #                                @    $   "
-" @         !H         #                                @    $    B         !L"
-"         #                               #0    $    %         !P         #@  "
-" \"8              !T         #@   \"8    G         !X         #P    $    F   "
-"      !\\         $    \"D              \"          $    \"D    J         \"$"
-"         $0    $    I         \"(         $@    $    2         \",         $P"
-"    $    M         \"0          @    $    N         \"4         #            "
-"                    @    $    O         \"8         #                        "
-"        @    $    Q         \"<         #                                @   "
-" $    S         \"@         #                                @    $    U     "
-"    \"D         #                                @    $    W         \"H     "
-"    #                                @    $    Y         \"L         #       "
-"                         @    $    [         \"P         #                   "
-"             @    $    ]         \"T          P   #\\              \"X       "
-"  #                                @    $    _         \"\\         #        "
-"                        @    $   !\"         #          #                    "
-"            @    $   !$         #$         #                                @"
-"    $   !&         #(         #                                @    $   !(   "
-"      #,         #                                @    $   !*         #0     "
-"    #                                @    $   !,         #4         #        "
-"                        @    $   !.         #8         #                     "
-"           @    $   !0         #<         #                                @ "
-"   $   !2         #@         #                                @    $   !4    "
-"     #D         #                                @    $   !6         #H      "
-"   #                                @    $   !8         #L         #         "
-"                       @    $   !:         #P         #                      "
-"          @    $   !<         #T         #                                @  "
-"  $   !>         #X         #                                @    $   !@     "
-"    #\\         #                                @    $   !B         $       "
-"   #                                @    $   !D         $$         #         "
-"                       @    $   !F         $(         #                      "
-"          @    $   !H         $,         #                                @  "
-"  $   !J         $0         #                                @    $   !L     "
-"    $4         #                                @    $   !N         $8       "
-"  #                                @    $   !P         $<         #          "
-"                      @    $   !R         $@         #                       "
-"         @    $   !T         $D         #                                @   "
-" $   !V         $H         #                                @    $   !X      "
-"   $L         #                                @    $   !Z         $P        "
-" #                                @    $   !\\         $T         #          "
-"                      @    $   !^         $X         #                       "
-"         @    $   \"          $\\         #                                @ "
-"   $   \"\"         %          #                                @    $   \"$ "
-"        %$         #                                @    $   \"&         %(  "
-"       #                                @    $   \"(         %,         #    "
-"                            @    $   \"*         %0         #                "
-"                @    $   \",         %4         #                            "
-"    @    $   \".         %8         #                                @    $  "
-" \"0         %<         #                                @    $   \"2        "
-" %@         #                                @    $   \"4         %D         "
-"#                                @    $   \"6         %H         #           "
-"                     @    $   \"8         %L         #                       "
-"         @    $   \":         %P         #                                @  "
-"  $   \"<         %T         #                                @    $   \">   "
-"      %X         #                                @    $   \"@         %\\   "
-"      #                                @    $   \"B         &          #     "
-"                                     \"     P    $    O    /0    $    P      "
-"    $    %     0   \"X    %    !P    $    ,    &@    $    -    '     $    L  "
-"  .0    $    M    .@         \\    #@    H    !          L    !     0    P   "
-"      #0    X         #P   !     !     @   !$    !     P   !(    !    !    !,"
-"    !    !0   !0    !    !@   !4    !    !P   !8    !    \"    !<    !    \"0"
-"   !@    !    \"@   !D    !    \"P                    4    '     0   \"@    :"
-"     0   \"D    <     0   \"H    Y     0   \"L    Z         #L    (    \"@   "
-" $    .    \"P    $    /    '@    $    9    +P    $    ?    ,0    $    A    -"
-"     $    F    -@    $    G    #          -          4    @         \"$    B "
-"        \",    D     0   !     F     0   !<    N     0   !@               8  "
-"  H     0   !$    I     0   !(    J     0   !,    K     0   !0    L     0   !"
-"4    M     0   !8         !0   \"          (0   \"(         ,    \"0    !    "
-"&@   \"8    !    '0   \"X    !    '@               @   \"@    !    &P   \"T  "
-"  !    '          !    ,P    $    @    !0   \"          (0   \"(         -0  "
-" \"0    !    (@   \"8    !    )    \"X    !    )0               0   \"@    ! "
-"   (P               0    4    !    ,0    $    %     0   #(    !    !0    $   "
-" S     0    4    !    -     $    %     0   #4    !    !0    $    V     0    4"
-"    !    -P    $    %     0   #@    !    !0    $    Y    !     H         /P  "
-"  L    !    .@   $     !    0    $@    !    1@         &    \"P    $    [    "
-"0@        !#    1     $    \\    10    $    ]    1@    $    ^    1P    $    _"
-"          8    +     0   $$   !\"         $,   !$     0   $(   !%     0   $, "
-"  !&     0   $0   !'     0   $4         !0    H         2@    L    !    1P   "
-"$L    !    2    $P    !    3    %(    !    4     0    +     0   $D   !.      "
-"   $\\   !0     0   $H   !1     0   $L         !     L    !    30   $X       "
-"  3P   %     !    3@   %$    !    3P                    (    *         %8    "
-"+     0   %$                    !    !0    $   !2     0    4    !    4P    $ "
-"   %     0   %0    !    !0    $   !5     0    4    !    5@    $    %     0   "
-"%<    !    !0    $   !8     0    4    !    60    $    %     0   %\\    %    !"
-"P    $   !:    &@    $   !;    '     $   !<    .0    $   !=    .@    $   !>  "
-"   0    4    !    8     $    %     0   &$    !    !0    $   !B     0    4    "
-"!    8P    $    %     0   &0    !    !0    $   !E     0    4    !    9@    $ "
-"   %     0   &<    !    !0    $   !H     0    4    !    :0    $    %     0   "
-"&H    !    !0    $   !K     0    4    !    ;     $    %     0   &T    !    !0"
-"    $   !N     0    4    !    ;P    $    %     0   '     !    !0    $   !Q   "
-"  0    4    !    <@    $    %     0   ',    !    !0    $   !T     0    4    !"
-"    =0    $    %     0   '8    !    !0    $   !W     0    4    !    >     $  "
-"  %     0   'D    !    !0    $   !Z     0    4    !    >P    $    %     0   '"
-"P    !    !0    $   !]     0    4    !    ?@    $    %     0   '\\    !    !0"
-"    $   \"      0    4    !    @0    $    %     0   ((    !    !0    $   \"# "
-"    0    4    !    A     $    %     0   (4    !    !0    $   \"&     0    4  "
-"  !    AP    $    %     0   (@    !    !0    $   \")     0    4    !    B@   "
-" $    %     0   (L    !    !0    $   \",     0    4    !    C0    $    %     "
-"0   (X    !    !0    $   \"/     0    4    !    D     $    %     0   )$      "
-"         X   !X    !@    @    !          4    (     0    $    !          X   "
-"!(    !@    @    -          4    (    !0    $    !          8    4        W0("
-"    !     0    $         #@   $@    &    \"     0         !0    @    !    %  "
-"   $         $    !0   !3>7-T96T@0V]N9FEG=7)A=&EO;@     .    ,     8    (    "
-"\"0(        %    \"     $    !     0         \"  $       X    X    !@    @   "
-" &          4    (     0    $    !          D    (               .    .     8"
-"    (    !@         %    \"     $    !     0         )    \"               #@"
-"   #@    &    \"     8         !0    @    !     0    $         \"0    @      "
-"         X    X    !@    @    &          4    (     0    $    !          D   "
-" (               .    .     8    (    !@         %    \"     $    !     0    "
-"     )    \"               #@   #     &    \"     D\"        !0    @    !    "
-" 0    $          @ !       .    ,     8    (    \"0(        %    \"     $    "
-"!     0         \"  $       X    X    !@    @    &          4    (     0    $"
-"    !          D    (         - 2@T$.    .     8    (    !@         %    \"  "
-"   $    !     0         )    \"         #0$G-!#@   #@    &    \"     8       "
-"  !0    @    !     0    $         \"0    @         T!)S00X   !(    !@    @   "
-" -          4    (    !0    $    !          8    4        W0(    !     0    0"
-"         #@   $@    &    \"     T         !0    @    %     0    $         !@ "
-"  !0       #= @    $    !    !0         .    2     8    (    !          %    "
-"\"     $    4     0         0    %    %1/54-!3B!#;VYF:6=U<F%T:6]N      X    P"
-"    !@    @    ) @        4    (     0    $    !          (  0      #@   $@  "
-"  &    \"     T         !0    @    %     0    $         !@   !0       #= @   "
-" $    !    \"0         .    .     8    (    !@         %    \"     $    !    "
-" 0         )    \"               #@   #@    &    \"     8         !0    @    "
-"!     0    $         \"0    @         @(0.00X    X    !@    @    &          4"
-"    (     0    $    !          D    (            ,$ .    .     8    (    !@  "
-"       %    \"     $    !     0         )    \"            .@_#@   #@    &   "
-" \"     8         !0    @    !     0    $         \"0    @           #P/PX   "
-"!     !@    @    -          4    (     0    0    !          8    0    !0    4"
-"    &    !     X   !(    !@    @    -          4    (    !0    $    !        "
-"  8    4        W0(    !     0    H         #@   #     &    \"     D\"       "
-" !0    @    !     0    $          @ !       .    2     8    (    #0         %"
-"    \"     4    !     0         &    %        -T\"     0    $    (          X"
-"   !(    !@    @    -          4    (    !0    $    !          8    4        "
-"W0(    !     0    P         #@   #@    &    \"     8         !0    @    !    "
-" 0    $         \"0    @               X   !     !@    @    -          4    ("
-"     0    0    !          8    0     @    <    (    !     X   !(    !@    @  "
-"  -          4    (    !0    $    !          8    4        W0(    !     0    "
-"T         #@   #     &    \"     D\"        !0    @    !     0    $          "
-"@ !       .    2     8    (    #0         %    \"     4    !     0         & "
-"   %        -T\"     0    $    +          X   !P    !@    @    $          4  "
-"  (     0   #H    !         !     Z    0T%.7T,@:7,@;F]T(&%V86EL86)L92!W:71H('"
-"1H:7,@35!#-7AX('!R;V-E<W-O<B!V87)I86YT+@        X   !(    !@    @    -       "
-"   4    (    !0    $    !          8    4        W0(    !     0    X         "
-"#@   $@    &    \"     T         !0    @    %     0    $         !@   !0     "
-"  #= @    $    !    $          .    .     8    (    !@         %    \"     $ "
-"   !     0         )    \"               #@   $@    &    \"     T         !0 "
-"   @    %     0    $         !@   !0       #= @    $    !    $0         .    "
-",     8    (    \"0(        %    \"     $    !     0         \"  $       X   "
-"!(    !@    @    -          4    (    !0    $    !          8    4        W0("
-"    !     0    \\         #@   $@    &    \"     T         !0    @    %     0"
-"    $         !@   !0       #= @    $    !    #@         .    2     8    (   "
-" #0         %    \"     4    !     0         &    %        -T\"     0    $   "
-" '          X   !(    !@    @    -          4    (    !0    $    !          8"
-"    4        W0(    !     0   !(         #@   $@    &    \"     T         !0 "
-"   @    %     0    $         !@   !0       #= @    $    !    $P         .    "
-"2     8    (    !          %    \"     $    5     0         0    %0   $U00S4U"
-"-61K0V]N9FEG+E1/54-!3@    X   !(    !@    @    -          4    (    !0    $  "
-"  !          8    4        W0(    !     0    8         #@   %     &    \"    "
-" 0         !0    @    !    '     $         $    !P   !-4$,U-35D:T-O;F9I9RY365"
-"-414U?0TQ/0TM3      X   !(    !@    @    -          4    (    !0    $    !   "
-"       8    4        W0(    !     0    ,         #@   $@    &    \"     T    "
-"     !0    @    %     0    $         !@   !0       #= @    $    !     @      "
-"   .    8     8    (    !          %    \"     $    K     0         0    *P  "
-" $U00U]F<F%M97=O<FLO35!#-34U\"E)E<V]U<F-E\"D-O;F9I9W5R871I;VX       X   !(   "
-" !@    @    -          4    (    !0    $    !          8    4        W0(    !"
-"     0   !4         #@   $@    &    \"     T         !0    @    %     0    $ "
-"        !@   !0       #= @    $    !    %P         .    2     8    (    #0   "
-"      %    \"     4    !     0         &    %        -T\"     0    $    9    "
-"      X   !(    !@    @    -          4    (    !0    $    !          8    4 "
-"       W0(    !     0   !L         #@   $@    &    \"     T         !0    @  "
-"  %     0    $         !@   !0       #= @    $    !    '0         .    2     "
-"8    (    #0         %    \"     4    !     0         &    %        -T\"     "
-"0    $    ?          X   !(    !@    @    -          4    (    !0    $    !  "
-"        8    4        W0(    !     0   \"$         #@   $@    &    \"     T  "
-"       !0    @    %     0    $         !@   !0       #= @    $    !    (P    "
-"     .    2     8    (    #0         %    \"     4    !     0         &    % "
-"       -T\"     0    $    E          X    P    !@    @    ) @        4    (  "
-"   0    $    !          (  0      #@   #     &    \"     D\"        !0    @  "
-"  !     0    $          @ !       .    4     8    (    !          %    \"    "
-" $    9     0         0    &0   %-T86YD87)D('1R86YS;6ET+W)E8V5I=F4         #@"
-"   #@    &    \"     8         !0    @    !     0    $         \"0    @    [L"
-"1,[L<?\"0 X    X    !@    @    &          4    (     0    $    !          D  "
-"  (          ! 4$ .    .     8    (    !@         %    \"     $    !     0   "
-"      )    \"         #0$G-!#@   $@    &    \"     T         !0    @    %    "
-" 0    $         !@   !0       #= @    $    !    )P         .    ,     8    ( "
-"   \"0(        %    \"     $    !     0         \"  $       X   !0    !@    @"
-"    $          4    (     0   !D    !         !     9    4W1A;F1A<F0@=')A;G-M"
-":70O<F5C96EV90         .    .     8    (    !@         %    \"     $    !    "
-" 0         )    \"    #NQ$SNQQ\\) #@   #@    &    \"     8         !0    @   "
-" !     0    $         \"0    @          $!00 X    X    !@    @    &          "
-"4    (     0    $    !          D    (         - 2<T$.    2     8    (    #0 "
-"        %    \"     4    !     0         &    %        -T\"     0    $    H  "
-"        X    P    !@    @    ) @        4    (     0    $    !          (  0 "
-"     #@   #@    &    \"     8         !0    @    !     0    $         \"0    "
-"@               X    P    !@    @    ) @        4    (     0    $    !       "
-"   (  0      #@   #@    &    \"     8         !0    @    !     0    $        "
-" \"0    @               X    X    !@    @    &          4    (     0    $    "
-"!          D    (               .    2     8    (    #0         %    \"     4"
-"    !     0         &    %        -T\"     0    $    J          X    P    !@ "
-"   @    ) @        4    (     0    $    !          (  0      #@   #@    &    "
+    Data		    "  %)30     .    H$H   8    (    $0         !     "
+"     $    &    :&%N9&QE   !    %P   %)45T-O;F9I9W5R871I;VXN5&%R9V5T  X   !02@"
+"  !@    @    !          4    (    DP    $    !          X   #8'@  !@    @    "
+")          4    (    J!X   $    !          (   \"H'@   0   %<   \"(!   R 4  -"
+" %   P%0  H!X  *@>             %)45T-O;F9I9W5R871I;VX 5&%R9V5T &%C=&EV94QI<W0"
+" 3&ES=$AE860 9&]W;@!.;V1E &1A=&$ 35!#-34U9&M#;VYF:6< 4UE35$5-7T-,3T-+4P!C;VYF"
+":6=U<F%T:6]N7W1Y<&4 :&ED9&5N7V-O;F9I9W5R871I;VX 35!#-7AX7U9A<FEA;G0 -34U $]S8"
+"VEL;&%T;W)?1G)E<75E;F-Y #(P %53255?4$Q04D-27T)?348 55-)55]03%!20U)?0E]$259& %"
+"53255?4T-#4E]\"7T1&3D@ 55-)55]30T-27T)?1$9.3 !54TE57U-#0U)?0E]%0D1& $5X=%]-;V"
+"1E7U-E<FEA; !%>'1?36]D95]397)I86Q?4W1A=&4 4WES=&5M7T9R97%U96YC>0!3>7-T96U?0VQ"
+"O8VL 0TQ+3U54 ')E<V]U<F-E<P!3>7-T96U297-O=7)C97, <FEG:'0 5$]50T%. $-!3E]! %1/"
+"54-!3E]04D]04P!4<F%N<VUI=%]\"=69F97)?3G5M8F5R #  25)17TQE=F5L $E.5%],159%3#$ "
+"36%S:W, 5$]50T%.7TU!4TM3 %1I;6EN9P!43U5#04Y?5$E-24Y' $-!3E]\"875D7U)A=&4 0T%."
+"7T)I=%]2871E $YU;6)E<E]/9E]1=6%N=&$ 4V%M<&QE7U!O:6YT %)E<WEC:')O;FEZ871I;VY?2"
+"G5M<%]7:61T: !296=I<W1E<E]#;VYF:6=U<F%T:6]N %)E<75I<F53:&%R9614>$)U9F9E<@!#04"
+"Y?0@!)3E1?3$5614PR $-!3E]# $YO=$%V86EL86)L90!-97-S86=E $-!3E]#7P!)3E1?3$5614P"
+"S $-!3E]#7TY! %1/54-!3E]215-/55)#15, 5&5R;6EN871O<@!C;&%S<VME>0!S;W5R8V5,:6)R"
+"87)Y &UP8S4U-71O=6-A;@!M<&,U-35D<FEV97)S &)L;V-K %%334-- %-#22!#;VYF:6=U<F%T:"
+"6]N %-#23$ 45--0TU?4T-) %-#25]M;V1E7V-O;G1R;VP .\"UB:70@9&%T80!,;V]P8F%C:U]M;"
+"V1E $)I=%]R871E7V%C:&EE=F5D %-#>$)2 %-Y<W1E;5]C;&]C:P!30TDR $U)3U,Q $U)3U,Q($"
+"-O;F9I9W5R871I;VX 4')E<V-A;&5R $UO9'5L=7-?0V]U;G1E<E\\V $U)3U-?0T]53E1%4@!-;V"
+"1U;'5S7TQO861?4V5N<VET:79I='D 1&ES86)L960 0VQO8VM?4')E<V-A;&5R $UO9'5L=7-?3&%"
+"T8VA?4F5G:7-T97( 36]D=6QU<U]#;W5N=&5R7S(R $UI;W-297-O=7)C97, 5&%R9V5T<T-O;6UO"
+";D-O;F9I9P!#0U  0T-0($-O;F9I9W5R871I;VX 0T-07U)%4T]54D-%4P                   "
+"            0    (               $    $               !    !@              \""
+"     D               @    ;               (    '0              \"    !\\     "
+"          @    E               (    )P              \"    #(               @ "
+"   W               !    .               \"    #X               @   !!        "
+"       (    20              \"    $T               @   !3              !4    "
+"50              5    %<                                                      "
+"    0                    $          @    $               (          P    (   "
+"            ,         !     $               0         !0    $    $          4"
+"          P    (    #          8         !@    $               <         !P  "
+"                  @         \"                     D         \"0             "
+"       H         !P                    L         \"                     P    "
+"     \"0                    T         \"@                    X         !P    "
+"                \\         \"                    !          \"0              "
+"     !$         \"P    $    '         !(         #                           "
+"     @    $    \"         !,         #                                @    $ "
+"   4         !0         #                                @    $    6         "
+"!4         #                                @    $    8         !8         # "
+"                               @    $    :         !<         #              "
+"                  @    $    <         !@         #                           "
+"     @    $    >         !D         #                                @    $  "
+"  @         !H         #                               #0    $    %         !"
+"L         #@   \"0              !P         #@   \"0    E         !T         #"
+"P    $    D         !X         $    \"<              !\\         $    \"<    "
+"H         \"          $0    $    G         \"$         $@    $    2         "
+"\"(         $P    $    K         \",          @    $    L         \"0        "
+" #                                @    $    M         \"4         #          "
+"                      @    $    O         \"8         #                      "
+"          @    $    Q         \"<         #                                @ "
+"   $    S         \"@         #                                @    $    U   "
+"      \"D         #                                @    $    W         \"H   "
+"      #                                @    $    Y         \"L         #     "
+"                           @    $    [         \"P          P   #T           "
+"   \"T         #                                @    $    ]         \"X      "
+"   #                                @    $   !          \"\\         #       "
+"                         @    $   !\"         #          #                   "
+"             @    $   !$         #$         #                                "
+"@    $   !&         #(         #                                @    $   !(  "
+"       #,         #                                @    $   !*         #0    "
+"     #                                @    $   !,         #4         #       "
+"                         @    $   !.         #8         #                    "
+"            @    $   !0         #<         #                                @"
+"    $   !2         #@         #                                @    $   !4   "
+"      #D         #                                @    $   !6         #H     "
+"    #                                @    $   !8         #L         #        "
+"                        @    $   !:         #P         #                     "
+"           @    $   !<         #T         #                                @ "
+"   $   !>         #X         #                                @    $   !@    "
+"     #\\         #                                @    $   !B         $      "
+"    #                                @    $   !D         $$         #        "
+"                        @    $   !F         $(         #                     "
+"           @    $   !H         $,         #                                @ "
+"   $   !J         $0         #                                @    $   !L    "
+"     $4         #                                @    $   !N         $8      "
+"   #                                @    $   !P         $<         #         "
+"                       @    $   !R         $@         #                      "
+"          @    $   !T         $D         #                                @  "
+"  $   !V         $H         #                                @    $   !X     "
+"    $L         #                                @    $   !Z         $P       "
+"  #                                @    $   !\\         $T         #         "
+"                       @    $   !^         $X         #                      "
+"          @    $   \"          $\\         #                                @"
+"    $   \"\"         %          #                                @    $   \"$"
+"         %$         #                                @    $   \"&         %( "
+"        #                                @    $   \"(         %,         #   "
+"                             @    $   \"*         %0         #               "
+"                 @    $   \",         %4         #                           "
+"     @    $   \".         %8         #                                @    $ "
+"  \"0         %<         #                                @    $   \"2       "
+"  %@         #                                @    $   \"4         %D        "
+" #                                @    $   \"6         %H         #          "
+"                      @    $   \"8         %L         #                      "
+"          @    $   \":         %P         #                                @ "
+"   $   \"<         %T         #                                @    $   \">  "
+"       %X         #                                @    $   \"@         %\\  "
+"       #                                          \"     P    $    O    /0   "
+" $    P          $    %     0   \"X    %    !P    $    ,    &@    $    -    '"
+"     $    L    .0    $    M    .@         \\    #@    H    !          L    ! "
+"    0    P         #0    X         #P   !     !     @   !$    !     P   !(   "
+" !    !    !,    !    !0   !0    !    !@   !4    !    !P   !8    !    \"    !"
+"<    !    \"0   !@    !    \"@   !D    !    \"P                    4    '    "
+" 0   \"@    :     0   \"D    <     0   \"H    Y     0   \"L    Z         #L  "
+"  (    \"@    $    .    \"P    $    /    '@    $    9    +P    $    ?    ,0  "
+"  $    A    -     $    F    -@    $    G    #          -          4    @     "
+"    \"$    B         \",    D     0   !     F     0   !<    N     0   !@     "
+"          8    H     0   !$    I     0   !(    J     0   !,    K     0   !0  "
+"  L     0   !4    M     0   !8         !0   \"          (0   \"(         ,   "
+" \"0    !    &@   \"8    !    '0   \"X    !    '@               @   \"@    ! "
+"   &P   \"T    !    '          !    ,P    $    @    !0   \"          (0   \"("
+"         -0   \"0    !    (@   \"8    !    )    \"X    !    )0               "
+"0   \"@    !    (P               0    4    !    ,0    $    %     0   #(    ! "
+"   !0    $    S     0    4    !    -     $    %     0   #4    !    !0    $   "
+" V     0    4    !    -P    $    %     0   #@    $    \"@         _    \"P   "
+" $    Y    0     $    _    2     $   !%          8    +     0   #H   !\"     "
+"    $,   !$     0   #L   !%     0   #P   !&     0   #T   !'     0   #X       "
+"  !@    L    !    0    $(         0P   $0    !    00   $4    !    0@   $8    "
+"!    0P   $<    !    1          %    \"@        !*    \"P    $   !&    2P    "
+"$   !'    3     $   !+    4@    $   !/    !     L    !    2    $X         3P "
+"  %     !    20   %$    !    2@         $    \"P    $   !,    3@        !/   "
+" 4     $   !-    40    $   !.                     @    H         5@    L    !"
+"    4                     $    %     0   %$    !    !0    $   !2     0    4  "
+"  !    4P    $    %     0   %0    !    !0    $   !5     0    4    !    5@    "
+"$    %     0   %<    !    !0    $   !8     0    4    !    7@    4    '     0 "
+"  %D    :     0   %H    <     0   %L    Y     0   %P    Z     0   %T    !    "
+"!0    $   !?     0    4    !    8     $    %     0   &$    !    !0    $   !B "
+"    0    4    !    8P    $    %     0   &0    !    !0    $   !E     0    4   "
+" !    9@    $    %     0   &<    !    !0    $   !H     0    4    !    :0    $"
+"    %     0   &H    !    !0    $   !K     0    4    !    ;     $    %     0  "
+" &T    !    !0    $   !N     0    4    !    ;P    $    %     0   '     !    !"
+"0    $   !Q     0    4    !    <@    $    %     0   ',    !    !0    $   !T  "
+"   0    4    !    =0    $    %     0   '8    !    !0    $   !W     0    4    "
+"!    >     $    %     0   'D    !    !0    $   !Z     0    4    !    >P    $ "
+"   %     0   'P    !    !0    $   !]     0    4    !    ?@    $    %     0   "
+"'\\    !    !0    $   \"      0    4    !    @0    $    %     0   ((    !    "
+"!0    $   \"#     0    4    !    A     $    %     0   (4    !    !0    $   \""
+"&     0    4    !    AP    $    %     0   (@    !    !0    $   \")     0    4"
+"    !    B@    $    %     0   (L    !    !0    $   \",     0    4    !    C0 "
+"   $    %     0   (X    !    !0    $   \"/     0    4    !    D              "
+" #@   '@    &    \"     $         !0    @    !     0    $         #@   $@    "
+"&    \"     T         !0    @    %     0    $         !@   !0       #= @    $"
+"    !     0         .    2     8    (    !          %    \"     $    4     0 "
+"        0    %    %-Y<W1E;2!#;VYF:6=U<F%T:6]N      X    P    !@    @    ) @  "
+"      4    (     0    $    !          (  0      #@   #@    &    \"     8     "
+"    !0    @    !     0    $         \"0    @               X    X    !@    @ "
+"   &          4    (     0    $    !          D    (               .    .    "
+" 8    (    !@         %    \"     $    !     0         )    \"               "
+"#@   #@    &    \"     8         !0    @    !     0    $         \"0    @    "
+"           X    X    !@    @    &          4    (     0    $    !          D "
+"   (               .    ,     8    (    \"0(        %    \"     $    !     0 "
+"        \"  $       X    P    !@    @    ) @        4    (     0    $    !   "
+"       (  0      #@   #@    &    \"     8         !0    @    !     0    $    "
+"     \"0    @         T!*#00X    X    !@    @    &          4    (     0    $"
+"    !          D    (         - 2<T$.    .     8    (    !@         %    \"  "
+"   $    !     0         )    \"         #0$G-!#@   $@    &    \"     T       "
+"  !0    @    %     0    $         !@   !0       #= @    $    !    !          "
+".    2     8    (    #0         %    \"     4    !     0         &    %      "
+"  -T\"     0    $    %          X   !(    !@    @    $          4    (     0 "
+"  !0    !         !     4    5$]50T%.($-O;F9I9W5R871I;VX     #@   #     &    "
+"\"     D\"        !0    @    !     0    $          @ !       .    2     8    "
+"(    #0         %    \"     4    !     0         &    %        -T\"     0    "
+"$    )          X    X    !@    @    &          4    (     0    $    !       "
+"   D    (               .    .     8    (    !@         %    \"     $    !   "
+"  0         )    \"         \" A Y!#@   #@    &    \"     8         !0    @  "
+"  !     0    $         \"0    @            P0 X    X    !@    @    &         "
+" 4    (     0    $    !          D    (            Z#\\.    .     8    (    !"
+"@         %    \"     $    !     0         )    \"            / _#@   $     &"
+"    \"     T         !0    @    !    !     $         !@   !     %    !0    8 "
+"   $    #@   $@    &    \"     T         !0    @    %     0    $         !@  "
+" !0       #= @    $    !    \"@         .    ,     8    (    \"0(        %   "
+" \"     $    !     0         \"  $       X   !(    !@    @    -          4   "
+" (    !0    $    !          8    4        W0(    !     0    @         #@   $@"
+"    &    \"     T         !0    @    %     0    $         !@   !0       #= @ "
+"   $    !    #          .    .     8    (    !@         %    \"     $    !   "
+"  0         )    \"               #@   $     &    \"     T         !0    @   "
+" !    !     $         !@   !     \"    !P    @    $    #@   $@    &    \"    "
+" T         !0    @    %     0    $         !@   !0       #= @    $    !    #0"
+"         .    ,     8    (    \"0(        %    \"     $    !     0         \""
+"  $       X   !(    !@    @    -          4    (    !0    $    !          8  "
+"  4        W0(    !     0    L         #@   '     &    \"     0         !0   "
+" @    !    .@    $         $    #H   !#04Y?0R!I<R!N;W0@879A:6QA8FQE('=I=&@@=&"
+"AI<R!-4$,U>'@@<')O8V5S<V]R('9A<FEA;G0N        #@   $@    &    \"     T       "
+"  !0    @    %     0    $         !@   !0       #= @    $    !    #@         "
+".    2     8    (    #0         %    \"     4    !     0         &    %      "
+"  -T\"     0    $    0          X    X    !@    @    &          4    (     0 "
+"   $    !          D    (               .    2     8    (    #0         %    "
+"\"     4    !     0         &    %        -T\"     0    $    1          X    "
+"P    !@    @    ) @        4    (     0    $    !          (  0      #@   $@ "
+"   &    \"     T         !0    @    %     0    $         !@   !0       #= @  "
+"  $    !    #P         .    2     8    (    #0         %    \"     4    !    "
+" 0         &    %        -T\"     0    $    .          X   !(    !@    @    -"
+"          4    (    !0    $    !          8    4        W0(    !     0    <  "
+"       #@   $@    &    \"     T         !0    @    %     0    $         !@   "
+"!0       #= @    $    !    $@         .    2     8    (    #0         %    \""
+"     4    !     0         &    %        -T\"     0    $    3          X   !( "
+"   !@    @    $          4    (     0   !4    !         !     5    35!#-34U9&"
+"M#;VYF:6<N5$]50T%.    #@   $@    &    \"     T         !0    @    %     0    "
+"$         !@   !0       #= @    $    !    !@         .    4     8    (    !  "
+"        %    \"     $    <     0         0    '    $U00S4U-61K0V]N9FEG+E-94U1"
+"%35]#3$]#2U,     #@   $@    &    \"     T         !0    @    %     0    $    "
+"     !@   !0       #= @    $    !     P         .    2     8    (    #0      "
+"   %    \"     4    !     0         &    %        -T\"     0    $    \"      "
+"    X   !@    !@    @    $          4    (     0   \"L    !         !     K  "
+"  35!#7V9R86UE=V]R:R]-4$,U-34*4F5S;W5R8V4*0V]N9FEG=7)A=&EO;@      #@   $@    "
+"&    \"     T         !0    @    %     0    $         !@   !0       #= @    $"
+"    !    %0         .    2     8    (    #0         %    \"     4    !     0 "
+"        &    %        -T\"     0    $    7          X   !(    !@    @    -   "
+"       4    (    !0    $    !          8    4        W0(    !     0   !D     "
+"    #@   $@    &    \"     T         !0    @    %     0    $         !@   !0 "
+"      #= @    $    !    &P         .    2     8    (    #0         %    \"   "
+"  4    !     0         &    %        -T\"     0    $    =          X   !(    "
+"!@    @    -          4    (    !0    $    !          8    4        W0(    ! "
+"    0   !\\         #@   $@    &    \"     T         !0    @    %     0    $ "
+"        !@   !0       #= @    $    !    (0         .    2     8    (    #0   "
+"      %    \"     4    !     0         &    %        -T\"     0    $    C    "
+"      X    P    !@    @    ) @        4    (     0    $    !          (  0   "
+"   #@   #     &    \"     D\"        !0    @    !     0    $          @ !    "
+"   .    4     8    (    !          %    \"     $    9     0         0    &0  "
+" %-T86YD87)D('1R86YS;6ET+W)E8V5I=F4         #@   #@    &    \"     8         "
+"!0    @    !     0    $         \"0    @    [L1,[L<?\"0 X    X    !@    @    "
+"&          4    (     0    $    !          D    (          ! 4$ .    .     8 "
+"   (    !@         %    \"     $    !     0         )    \"         #0$G-!#@ "
+"  $@    &    \"     T         !0    @    %     0    $         !@   !0       #"
+"= @    $    !    )0         .    ,     8    (    \"0(        %    \"     $   "
+" !     0         \"  $       X   !0    !@    @    $          4    (     0   !"
+"D    !         !     9    4W1A;F1A<F0@=')A;G-M:70O<F5C96EV90         .    .  "
+"   8    (    !@         %    \"     $    !     0         )    \"    #NQ$SNQQ"
+"\\) #@   #@    &    \"     8         !0    @    !     0    $         \"0    @"
+"          $!00 X    X    !@    @    &          4    (     0    $    !        "
+"  D    (         - 2<T$.    2     8    (    #0         %    \"     4    !    "
+" 0         &    %        -T\"     0    $    F          X    P    !@    @    )"
+" @        4    (     0    $    !          (  0      #@   #@    &    \"     8 "
+"        !0    @    !     0    $         \"0    @               X    P    !@  "
+"  @    ) @        4    (     0    $    !          (  0      #@   #@    &    "
 "\"     8         !0    @    !     0    $         \"0    @               X    "
 "X    !@    @    &          4    (     0    $    !          D    (            "
 "   .    2     8    (    #0         %    \"     4    !     0         &    %   "
-"     -T\"     0    $    K          X    P    !@    @    ) @        4    (    "
-" 0    $    !          (  0 !    #@   $@    &    \"     T         !0    @    %"
-"     0    $         !@   !0       #= @    $    !    ,          .    2     8  "
-"  (    #0         %    \"     4    !     0         &    %        -T\"     0  "
-"  $    R          X   !(    !@    @    -          4    (    !0    $    !     "
-"     8    4        W0(    !     0   #0         #@   $@    &    \"     T      "
-"   !0    @    %     0    $         !@   !0       #= @    $    !    -@        "
-" .    2     8    (    #0         %    \"     4    !     0         &    %     "
-"   -T\"     0    $    X          X   !(    !@    @    -          4    (    !0"
-"    $    !          8    4        W0(    !     0   #H         #@   $@    &   "
-" \"     T         !0    @    %     0    $         !@   !0       #= @    $    "
-"!    /          .    2     8    (    #0         %    \"     4    !     0     "
-"    &    %        -T\"     0    $    ^          X   !(    !@    @    -       "
-"   4    (    !0    $    !          8    4        W0(    !     0   \"D        "
-" #@   $@    &    \"     T         !0    @    %     0    $         !@   !0    "
-"   #= @    $    !    +          .    2     8    (    #0         %    \"     4"
-"    !     0         &    %        -T\"     0    $   !!          X   !(    !@ "
-"   @    $          4    (     0   !0    !         !     4    35!#-34U9&M#;VYF"
-":6<N34E/4S$     #@   &@    &    \"     0         !0    @    !    ,@    $     "
-"    $    #(   !M<&,U-35D<FEV97)S+TUO9'5L87(@26YP=70O+T]U='!U= I3>7-T96T@*$U)3"
-"U,Q*0        X   !(    !@    @    -          4    (    !0    $    !          "
-"8    4        W0(    !     0   $          #@   $@    &    \"     T         !0"
-"    @    %     0    $         !@   !0       #= @    $    !    0P         .   "
-" 2     8    (    #0         %    \"     4    !     0         &    %        -T"
-"\"     0    $   !%          X   !(    !@    @    -          4    (    !0    $"
-"    !          8    4        W0(    !     0   $<         #@   $@    &    \"  "
-"   T         !0    @    %     0    $         !@   !0       #= @    $    !    "
-"20         .    2     8    (    #0         %    \"     4    !     0         &"
-"    %        -T\"     0    $   !+          X   !(    !@    @    -          4 "
-"   (    !0    $    !          8    4        W0(    !     0   $T         #@   "
-"$@    &    \"     T         !0    @    %     0    $         !@   !0       #= "
-"@    $    !    3P         .    2     8    (    #0         %    \"     4    ! "
-"    0         &    %        -T\"     0    $   !1          X   !(    !@    @  "
-"  -          4    (    !0    $    !          8    4        W0(    !     0   %"
-",         #@   $@    &    \"     T         !0    @    %     0    $         !@"
-"   !0       #= @    $    !    50         .    2     8    (    #0         %   "
-" \"     4    !     0         &    %        -T\"     0    $   !7          X   "
-"!(    !@    @    -          4    (    !0    $    !          8    4        W0("
-"    !     0   %D         #@   $@    &    \"     T         !0    @    %     0 "
-"   $         !@   !0       #= @    $    !    6P         .    2     8    (    "
-"#0         %    \"     4    !     0         &    %        -T\"     0    $   !"
-"=          X   !(    !@    @    -          4    (    !0    $    !          8 "
-"   4        W0(    !     0   %\\         #@   $@    &    \"     T         !0 "
-"   @    %     0    $         !@   !0       #= @    $    !    80         .    "
-"2     8    (    #0         %    \"     4    !     0         &    %        -T"
-"\"     0    $   !C          X   !(    !@    @    -          4    (    !0    $"
-"    !          8    4        W0(    !     0   &4         #@   $@    &    \"  "
-"   T         !0    @    %     0    $         !@   !0       #= @    $    !    "
-"9P         .    2     8    (    #0         %    \"     4    !     0         &"
-"    %        -T\"     0    $   !I          X   !(    !@    @    -          4 "
-"   (    !0    $    !          8    4        W0(    !     0   &L         #@   "
-"$@    &    \"     T         !0    @    %     0    $         !@   !0       #= "
-"@    $    !    ;0         .    2     8    (    #0         %    \"     4    ! "
-"    0         &    %        -T\"     0    $   !O          X   !(    !@    @  "
-"  -          4    (    !0    $    !          8    4        W0(    !     0   '"
-"$         #@   $@    &    \"     T         !0    @    %     0    $         !@"
-"   !0       #= @    $    !    <P         .    2     8    (    #0         %   "
-" \"     4    !     0         &    %        -T\"     0    $   !U          X   "
-"!(    !@    @    -          4    (    !0    $    !          8    4        W0("
-"    !     0   '<         #@   $@    &    \"     T         !0    @    %     0 "
-"   $         !@   !0       #= @    $    !    >0         .    2     8    (    "
-"#0         %    \"     4    !     0         &    %        -T\"     0    $   !"
-"[          X   !(    !@    @    -          4    (    !0    $    !          8 "
-"   4        W0(    !     0   'T         #@   $@    &    \"     T         !0  "
-"  @    %     0    $         !@   !0       #= @    $    !    ?P         .    2"
-"     8    (    #0         %    \"     4    !     0         &    %        -T\""
-"     0    $   \"!          X   !(    !@    @    -          4    (    !0    $ "
-"   !          8    4        W0(    !     0   (,         #@   $@    &    \"   "
-"  T         !0    @    %     0    $         !@   !0       #= @    $    !    A"
-"0         .    2     8    (    #0         %    \"     4    !     0         & "
-"   %        -T\"     0    $   \"'          X   !(    !@    @    -          4 "
-"   (    !0    $    !          8    4        W0(    !     0   (D         #@   "
-"$@    &    \"     T         !0    @    %     0    $         !@   !0       #= "
-"@    $    !    BP         .    2     8    (    #0         %    \"     4    ! "
-"    0         &    %        -T\"     0    $   \"-          X   !(    !@    @ "
-"   -          4    (    !0    $    !          8    4        W0(    !     0   "
-"(\\         #@   $@    &    \"     T         !0    @    %     0    $         "
-"!@   !0       #= @    $    !    D0         .    2     8    (    #0         % "
-"   \"     4    !     0         &    %        -T\"     0    $   \"3          X"
-"   !(    !@    @    -          4    (    !0    $    !          8    4        "
-"W0(    !     0   )4         #@   $@    &    \"     T         !0    @    %    "
-" 0    $         !@   !0       #= @    $    !    EP         .    2     8    ( "
-"   #0         %    \"     4    !     0         &    %        -T\"     0    $ "
-"  \"9          X   !(    !@    @    -          4    (    !0    $    !        "
-"  8    4        W0(    !     0   )L         #@   $@    &    \"     T         "
-"!0    @    %     0    $         !@   !0       #= @    $    !    G0         . "
+"     -T\"     0    $    H          X    P    !@    @    ) @        4    (    "
+" 0    $    !          (  0      #@   #@    &    \"     8         !0    @    !"
+"     0    $         \"0    @               X    X    !@    @    &          4 "
+"   (     0    $    !          D    (               .    2     8    (    #0   "
+"      %    \"     4    !     0         &    %        -T\"     0    $    I    "
+"      X    P    !@    @    ) @        4    (     0    $    !          (  0 ! "
+"   #@   $@    &    \"     T         !0    @    %     0    $         !@   !0  "
+"     #= @    $    !    +@         .    2     8    (    #0         %    \"    "
+" 4    !     0         &    %        -T\"     0    $    P          X   !(    !"
+"@    @    -          4    (    !0    $    !          8    4        W0(    !  "
+"   0   #(         #@   $@    &    \"     T         !0    @    %     0    $   "
+"      !@   !0       #= @    $    !    -          .    2     8    (    #0     "
+"    %    \"     4    !     0         &    %        -T\"     0    $    V      "
+"    X   !(    !@    @    -          4    (    !0    $    !          8    4   "
+"     W0(    !     0   #@         #@   $@    &    \"     T         !0    @    "
+"%     0    $         !@   !0       #= @    $    !    .@         .    2     8 "
+"   (    #0         %    \"     4    !     0         &    %        -T\"     0 "
+"   $    \\          X   !(    !@    @    -          4    (    !0    $    !   "
+"       8    4        W0(    !     0   \"<         #@   $@    &    \"     T   "
+"      !0    @    %     0    $         !@   !0       #= @    $    !    *@     "
+"    .    2     8    (    #0         %    \"     4    !     0         &    %  "
+"      -T\"     0    $    _          X   !(    !@    @    $          4    (   "
+"  0   !0    !         !     4    35!#-34U9&M#;VYF:6<N34E/4S$     #@   &@    &"
+"    \"     0         !0    @    !    ,@    $         $    #(   !M<&,U-35D<FEV"
+"97)S+TUO9'5L87(@26YP=70O+T]U='!U= I3>7-T96T@*$U)3U,Q*0        X   !(    !@   "
+" @    -          4    (    !0    $    !          8    4        W0(    !     0"
+"   #X         #@   $@    &    \"     T         !0    @    %     0    $       "
+"  !@   !0       #= @    $    !    00         .    2     8    (    #0         "
+"%    \"     4    !     0         &    %        -T\"     0    $   !#          "
+"X   !(    !@    @    -          4    (    !0    $    !          8    4       "
+" W0(    !     0   $4         #@   $@    &    \"     T         !0    @    %   "
+"  0    $         !@   !0       #= @    $    !    1P         .    2     8    ("
+"    #0         %    \"     4    !     0         &    %        -T\"     0    $"
+"   !)          X   !(    !@    @    -          4    (    !0    $    !        "
+"  8    4        W0(    !     0   $L         #@   $@    &    \"     T         "
+"!0    @    %     0    $         !@   !0       #= @    $    !    30         . "
 "   2     8    (    #0         %    \"     4    !     0         &    %        "
-"-T\"     0    $   \"?          X   !(    !@    @    -          4    (    !0  "
-"  $    !          8    4        W0(    !     0   *$         #@   $@    &    "
-"\"     T         !0    @    %     0    $         !@   !0       #= @    $    !"
-"    HP         .    2     8    (    #0         %    \"     4    !     0      "
-"   &    %        -T\"     0    $   \"E          X   \"(    !@    @    )      "
-"    4    (     0   %@    !          (   !8      %)30     .    2     8    (   "
-"  @         %    \"     $    !     0         %  0 !P    $    '    :&%N9&QE   "
-".          "
+"-T\"     0    $   !/          X   !(    !@    @    -          4    (    !0   "
+" $    !          8    4        W0(    !     0   %$         #@   $@    &    \""
+"     T         !0    @    %     0    $         !@   !0       #= @    $    !  "
+"  4P         .    2     8    (    #0         %    \"     4    !     0        "
+" &    %        -T\"     0    $   !5          X   !(    !@    @    -          "
+"4    (    !0    $    !          8    4        W0(    !     0   %<         #@ "
+"  $@    &    \"     T         !0    @    %     0    $         !@   !0       #"
+"= @    $    !    60         .    2     8    (    #0         %    \"     4    "
+"!     0         &    %        -T\"     0    $   !;          X   !(    !@    @"
+"    -          4    (    !0    $    !          8    4        W0(    !     0  "
+" %T         #@   $@    &    \"     T         !0    @    %     0    $         "
+"!@   !0       #= @    $    !    7P         .    2     8    (    #0         % "
+"   \"     4    !     0         &    %        -T\"     0    $   !A          X "
+"  !(    !@    @    -          4    (    !0    $    !          8    4        W"
+"0(    !     0   &,         #@   $@    &    \"     T         !0    @    %     "
+"0    $         !@   !0       #= @    $    !    90         .    2     8    (  "
+"  #0         %    \"     4    !     0         &    %        -T\"     0    $  "
+" !G          X   !(    !@    @    -          4    (    !0    $    !          "
+"8    4        W0(    !     0   &D         #@   $@    &    \"     T         !0"
+"    @    %     0    $         !@   !0       #= @    $    !    :P         .   "
+" 2     8    (    #0         %    \"     4    !     0         &    %        -T"
+"\"     0    $   !M          X   !(    !@    @    -          4    (    !0    $"
+"    !          8    4        W0(    !     0   &\\         #@   $@    &    \" "
+"    T         !0    @    %     0    $         !@   !0       #= @    $    !   "
+" <0         .    2     8    (    #0         %    \"     4    !     0         "
+"&    %        -T\"     0    $   !S          X   !(    !@    @    -          4"
+"    (    !0    $    !          8    4        W0(    !     0   '4         #@  "
+" $@    &    \"     T         !0    @    %     0    $         !@   !0       #="
+" @    $    !    =P         .    2     8    (    #0         %    \"     4    !"
+"     0         &    %        -T\"     0    $   !Y          X   !(    !@    @ "
+"   -          4    (    !0    $    !          8    4        W0(    !     0   "
+"'L         #@   $@    &    \"     T         !0    @    %     0    $         !"
+"@   !0       #= @    $    !    ?0         .    2     8    (    #0         %  "
+"  \"     4    !     0         &    %        -T\"     0    $   !_          X  "
+" !(    !@    @    -          4    (    !0    $    !          8    4        W0"
+"(    !     0   ($         #@   $@    &    \"     T         !0    @    %     0"
+"    $         !@   !0       #= @    $    !    @P         .    2     8    (   "
+" #0         %    \"     4    !     0         &    %        -T\"     0    $   "
+"\"%          X   !(    !@    @    -          4    (    !0    $    !          "
+"8    4        W0(    !     0   (<         #@   $@    &    \"     T         !0"
+"    @    %     0    $         !@   !0       #= @    $    !    B0         .   "
+" 2     8    (    #0         %    \"     4    !     0         &    %        -T"
+"\"     0    $   \"+          X   !(    !@    @    -          4    (    !0    "
+"$    !          8    4        W0(    !     0   (T         #@   $@    &    \" "
+"    T         !0    @    %     0    $         !@   !0       #= @    $    !   "
+" CP         .    2     8    (    #0         %    \"     4    !     0         "
+"&    %        -T\"     0    $   \"1          X   !(    !@    @    -          "
+"4    (    !0    $    !          8    4        W0(    !     0   ),         #@ "
+"  $@    &    \"     T         !0    @    %     0    $         !@   !0       #"
+"= @    $    !    E0         .    2     8    (    #0         %    \"     4    "
+"!     0         &    %        -T\"     0    $   \"7          X   !(    !@    "
+"@    -          4    (    !0    $    !          8    4        W0(    !     0 "
+"  )D         #@   $@    &    \"     T         !0    @    %     0    $        "
+" !@   !0       #= @    $    !    FP         .    2     8    (    #0         %"
+"    \"     4    !     0         &    %        -T\"     0    $   \"=          "
+"X   !(    !@    @    -          4    (    !0    $    !          8    4       "
+" W0(    !     0   )\\         #@   $@    &    \"     T         !0    @    %  "
+"   0    $         !@   !0       #= @    $    !    H0         .    2     8    "
+"(    #0         %    \"     4    !     0         &    %        -T\"     0    "
+"$   \"C          X   \"(    !@    @    )          4    (     0   %@    !     "
+"     (   !8      %)30     .    2     8    (     @         %    \"     $    ! "
+"    0         %  0 !P    $    '    :&%N9&QE   .          "
   }
 }
 
@@ -4477,29 +4791,28 @@ Stateflow {
 		name                 		"MPC_framework"
 		created              		"17-Dec-2013 14:36:37"
 		isLibrary            		0
-		firstTarget          		47
+		firstTarget          		58
 		sfVersion            		64014000
 	}
 
 	chart {
 		id                                        		2
 		name                                      		"State Machine"
-		windowPosition                            		[18.75 25.5 954 684]
-		viewLimits                                		[0 1821 0 1296]
-		zoomFactor                                		2
+		windowPosition                            		[-3 25.5 960 690]
+		viewLimits                                		[226.151 1371.776 182.357 999.857]
+		zoomFactor                                		1.25
 		screen                                    		[1 1 1280 1024 1.333333333333333]
 		treeNode                                  		[0 5 0 0]
-		firstTransition                           		16
+		firstTransition                           		17
 		viewObj                                   		2
 		visible                                   		1
 		machine                                   		1
 		subviewS {
-			x1        		96.574
-			y1        		62.172
+			y1        		9.615
 			zoomFactor		1.25
 		}
 		decomposition                             		CLUSTER_CHART
-		firstData                                 		28
+		firstData                                 		38
 		updateMethod                              		DISCRETE
 		sampleTime                                		"0.01"
 		chartFileNumber                           		1
@@ -4516,6 +4829,7 @@ Stateflow {
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[2 0 5 4]
+		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -4544,12 +4858,13 @@ Stateflow {
 
 	state {
 		id                           		5
-		labelString                  		"OPERATION"
-		position                     		[289.6845 14.3689 1522.9251 1044.3203]
+		labelString                  		"OPERATION\n"
+						"entry: operation_mode=255;"
+		position                     		[267.7158 14.8377 1590.6751 1601.1953]
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[2 8 0 3]
-		firstTransition              		20
+		firstTransition              		21
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -4566,7 +4881,7 @@ Stateflow {
 						"da_out_trigger=1;\n"
 						"during: da_out_trigger=0;\n"
 						"exit: stop_trigger=0;"
-		position                     		[411.5433 170.9535 310.9251 113.9184]
+		position                     		[437.9183 198.3285 310.9251 113.9184]
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[7 0 0 9]
@@ -4583,11 +4898,11 @@ Stateflow {
 		labelString                  		"PRIMITIVE\n"
 						"entry: operation_mode=1;\n"
 						"during: controller_enable=0;"
-		position                     		[300.291 71.8661 892.2327 959.265]
+		position                     		[326.666 99.2411 892.2327 959.265]
 		fontSize                     		12
 		chart                        		2
-		treeNode                     		[5 6 8 0]
-		firstTransition              		18
+		treeNode                     		[5 6 8 16]
+		firstTransition              		19
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -4601,10 +4916,11 @@ Stateflow {
 		labelString                  		"CONTROLLER\n"
 						"entry: operation_mode=2;\n"
 						"during: controller_enable=1;"
-		position                     		[1201.1157 65.7487 557.0096 580.0219]
+		position                     		[1251.1157 94.9987 557.0096 580.0219]
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[5 0 0 7]
+		superState                   		GROUPED
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -4616,7 +4932,7 @@ Stateflow {
 	state {
 		id                           		9
 		labelString                  		"MOVING"
-		position                     		[323.8044 488.8737 854.2929 516.9374]
+		position                     		[350.1794 516.2487 854.2929 516.9374]
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[7 10 6 0]
@@ -4631,11 +4947,12 @@ Stateflow {
 	state {
 		id                           		10
 		labelString                  		"SEGMENT_1"
-		position                     		[335.2285 527.229 834.4683 217.6204]
+		position                     		[361.6035 554.604 834.4683 217.6204]
 		fontSize                     		12
 		arrowSize                    		12.339
 		chart                        		2
 		treeNode                     		[9 13 0 11]
+		firstTransition              		33
 		subviewer                    		2
 		type                         		AND_STATE
 		decomposition                		CLUSTER_STATE
@@ -4648,11 +4965,12 @@ Stateflow {
 	state {
 		id                           		11
 		labelString                  		"SEGMENT_2"
-		position                     		[348.4735 751.4778 810.2542 244.1783]
+		position                     		[374.8485 778.8528 810.2542 244.1783]
 		fontSize                     		12
 		arrowSize                    		12.339
 		chart                        		2
 		treeNode                     		[9 15 10 0]
+		firstTransition              		34
 		subviewer                    		2
 		type                         		AND_STATE
 		decomposition                		CLUSTER_STATE
@@ -4670,7 +4988,7 @@ Stateflow {
 						"da_out_trigger=1;\n"
 						"during:\n"
 						"da_out_trigger=0;"
-		position                     		[364.7725 581.7739 334.2521 140.2695]
+		position                     		[391.1475 609.1489 334.2521 140.2695]
 		fontSize                     		12
 		arrowSize                    		11.912
 		chart                        		2
@@ -4691,7 +5009,7 @@ Stateflow {
 						"da_out_trigger=1;\n"
 						"during:\n"
 						"da_out_trigger=0;"
-		position                     		[743.722 555.2055 350.7177 143.7188]
+		position                     		[770.097 582.5805 350.7177 143.7188]
 		fontSize                     		12
 		arrowSize                    		11.912
 		chart                        		2
@@ -4712,7 +5030,7 @@ Stateflow {
 						"da_out_trigger=1;\n"
 						"during:\n"
 						"da_out_trigger=0;"
-		position                     		[366.3565 790.1089 380.8224 183.1818]
+		position                     		[392.7315 817.4839 380.8224 183.1818]
 		fontSize                     		12
 		arrowSize                    		11.912
 		chart                        		2
@@ -4733,7 +5051,7 @@ Stateflow {
 						"da_out_trigger=1;\n"
 						"during:\n"
 						"da_out_trigger=0;"
-		position                     		[763.5021 781.2026 369.3502 195.1572]
+		position                     		[789.8771 808.5776 369.3502 195.1572]
 		fontSize                     		12
 		arrowSize                    		11.912
 		chart                        		2
@@ -4746,9 +5064,29 @@ Stateflow {
 		}
 	}
 
+	state {
+		id                           		16
+		labelString                  		"CONFIG\n"
+						"entry: operation_mode=3;\n"
+						"\n"
+						"during: controller_enable=0;\n"
+						"sync_command=0;"
+		position                     		[615.5625 1084.1892 985.0938 259.7813]
+		fontSize                     		12
+		chart                        		2
+		treeNode                     		[5 0 7 0]
+		visible                      		0
+		subviewer                    		2
+		type                         		OR_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
 	transition {
-		id             		16
-		labelPosition  		[39.864 30.141 8.996 17.965]
+		id             		17
+		labelPosition  		[39.864 30.141 8.433 16.842]
 		fontSize       		12
 		src {
 			intersection		[0 0 1 0 39.864 25.66 0 0]
@@ -4759,7 +5097,8 @@ Stateflow {
 		}
 		midPoint       		[39.864 37.0515]
 		chart          		2
-		linkNode       		[2 0 17]
+		linkNode       		[2 0 18]
+		visible        		0
 		dataLimits     		[37.464 42.264 25.66 55.66]
 		subviewer      		2
 		drawStyle      		SMART
@@ -4767,9 +5106,9 @@ Stateflow {
 	}
 
 	transition {
-		id             		17
+		id             		18
 		labelString    		"[init_ack_sync==1 && init_ack_async==1]"
-		labelPosition  		[48.713 133.279 209.898 17.965]
+		labelPosition  		[48.713 133.279 233.325 16.842]
 		fontSize       		12
 		src {
 			id          		3
@@ -4781,7 +5120,8 @@ Stateflow {
 		}
 		midPoint       		[42.1337 142.0349]
 		chart          		2
-		linkNode       		[2 16 19]
+		linkNode       		[2 17 20]
+		visible        		0
 		dataLimits     		[39.234 47.078 126.953 164.035]
 		stampAngle     		NaN
 		subviewer      		2
@@ -4790,27 +5130,27 @@ Stateflow {
 	}
 
 	transition {
-		id             		18
-		labelPosition  		[622.115 140.456 8.996 17.965]
+		id             		19
+		labelPosition  		[648.49 167.831 8.433 16.842]
 		fontSize       		12
 		src {
-			intersection		[0 0 0 0 638.1095 145.8228 0 0]
+			intersection		[0 0 0 0 664.4845 173.1978 0 0]
 		}
 		dst {
 			id          		6
-			intersection		[1 0 -1 0.675 621.4177 170.9535 0 0]
+			intersection		[1 0 -1 0.675 647.7927 198.3285 0 0]
 		}
-		midPoint       		[627.2276 154.0179]
+		midPoint       		[653.6026 181.3929]
 		chart          		2
-		linkNode       		[7 0 21]
-		dataLimits     		[619.018 638.11 145.823 170.953]
+		linkNode       		[7 0 22]
+		dataLimits     		[645.393 664.485 173.198 198.328]
 		subviewer      		2
 		executionOrder 		1
 	}
 
 	transition {
-		id             		19
-		labelPosition  		[269.938 178.287 8.996 17.965]
+		id             		20
+		labelPosition  		[258.302 178.287 8.433 16.842]
 		fontSize       		12
 		src {
 			id          		4
@@ -4818,55 +5158,57 @@ Stateflow {
 		}
 		dst {
 			id          		5
-			intersection		[4 -1 0 0.8269 289.6845 195.1622 0 -0.5625]
+			intersection		[4 -1 0 0.8874 267.7158 195.1622 0 -0.5625]
 		}
-		midPoint       		[269.5457 195.1622]
+		midPoint       		[258.0837 195.1622]
 		chart          		2
-		linkNode       		[2 17 0]
-		dataLimits     		[256.485 289.685 192.762 197.562]
+		linkNode       		[2 18 0]
+		dataLimits     		[256.485 267.716 192.762 197.562]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
-		executionOrder 		1
-	}
-
-	transition {
-		id             		20
-		labelPosition  		[653.732 48.089 8.996 17.965]
-		fontSize       		12
-		src {
-			intersection		[0 0 1 0 649.3324 41.8661 0 0]
+		slide {
 		}
-		dst {
-			id          		7
-			intersection		[1 0 -1 0.3912 649.3324 71.8661 0 0]
-		}
-		midPoint       		[649.3324 51.0889]
-		chart          		2
-		linkNode       		[5 0 27]
-		dataLimits     		[646.932 651.732 41.866 71.866]
-		subviewer      		2
-		drawStyle      		SMART
 		executionOrder 		1
 	}
 
 	transition {
 		id             		21
+		labelPosition  		[680.107 75.464 8.433 16.842]
+		fontSize       		12
+		src {
+			intersection		[0 0 1 0 675.7074 69.2411 0 0]
+		}
+		dst {
+			id          		7
+			intersection		[1 0 -1 0.3912 675.7074 99.2411 0 0]
+		}
+		midPoint       		[675.7074 80.6326]
+		chart          		2
+		linkNode       		[5 0 28]
+		dataLimits     		[673.307 678.107 69.241 99.241]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	transition {
+		id             		22
 		labelString    		"[primitive_button==5]"
-		labelPosition  		[300.429 383.913 107.948 17.965]
+		labelPosition  		[326.811 411.285 115.257 16.842]
 		fontSize       		12
 		src {
 			id          		9
-			intersection		[1 0 -1 0.0761 388.7906 488.8737 0 -178.2153]
+			intersection		[1 0 -1 0.0761 415.1911 516.2487 0 -178.1898]
 		}
 		dst {
 			id          		6
-			intersection		[4 -1 0 0.4391 411.5433 234.8533 0 205.4812]
+			intersection		[4 -1 0 0.4391 437.9183 262.2253 0 205.4842]
 		}
-		midPoint       		[408.4981 335.6344]
+		midPoint       		[434.8731 363.0094]
 		chart          		2
-		linkNode       		[7 18 25]
-		dataLimits     		[388.308 417.06 232.453 488.874]
+		linkNode       		[7 19 26]
+		dataLimits     		[414.682 443.44 259.825 516.249]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4879,23 +5221,23 @@ Stateflow {
 	}
 
 	transition {
-		id             		22
+		id             		23
 		labelString    		"[primitive_button==1]"
-		labelPosition  		[545.67 313.658 107.948 17.965]
+		labelPosition  		[572.045 341.033 115.257 16.842]
 		fontSize       		12
 		arrowSize      		11.912
 		src {
 			id          		6
-			intersection		[3 0 1 0.4063 596.1395 284.8719 0 -26.2075]
+			intersection		[3 0 1 0.4063 622.5168 312.2469 0 -26.2075]
 		}
 		dst {
 			id          		12
-			intersection		[1 0 -1 0.6922 596.1395 581.7739 0 26.2075]
+			intersection		[1 0 -1 0.6922 622.5168 609.1489 0 26.2075]
 		}
-		midPoint       		[596.1395 433.4331]
+		midPoint       		[622.5145 460.8081]
 		chart          		2
-		linkNode       		[7 23 24]
-		dataLimits     		[592.566 599.713 284.872 581.774]
+		linkNode       		[7 24 25]
+		dataLimits     		[618.943 626.09 312.247 609.149]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4903,23 +5245,23 @@ Stateflow {
 	}
 
 	transition {
-		id             		23
+		id             		24
 		labelString    		"[primitive_button==3]"
-		labelPosition  		[744.63 294.502 107.948 17.965]
+		labelPosition  		[771.005 321.877 115.257 16.842]
 		fontSize       		12
 		arrowSize      		11.912
 		src {
 			id          		6
-			intersection		[2 1 0 0.6829 722.4683 248.7484 0 -9.3955]
+			intersection		[2 1 0 0.6829 748.8434 276.1234 0 -9.3955]
 		}
 		dst {
 			id          		13
-			intersection		[1 0 -1 0.1543 797.8267 555.2055 0 9.3955]
+			intersection		[1 0 -1 0.1543 824.2127 582.5805 0 9.3955]
 		}
-		midPoint       		[800.2651 364.534]
+		midPoint       		[826.6401 391.909]
 		chart          		2
-		linkNode       		[7 25 22]
-		dataLimits     		[722.468 805.27 248.748 555.206]
+		linkNode       		[7 26 23]
+		dataLimits     		[748.843 831.648 276.123 582.581]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4927,23 +5269,23 @@ Stateflow {
 	}
 
 	transition {
-		id             		24
+		id             		25
 		labelString    		"[primitive_button==2]"
-		labelPosition  		[652.319 469.797 107.948 17.965]
+		labelPosition  		[678.695 497.172 115.257 16.842]
 		fontSize       		12
 		arrowSize      		11.912
 		src {
 			id          		6
-			intersection		[3 0 1 0.0665 701.7918 284.8719 0 -142.9577]
+			intersection		[3 0 1 0.0665 728.1669 312.2469 0 -142.9577]
 		}
 		dst {
 			id          		14
-			intersection		[1 0 -1 0.8808 701.7918 790.1089 0 142.9577]
+			intersection		[1 0 -1 0.8808 728.1599 817.4839 0 142.9577]
 		}
-		midPoint       		[701.7918 542.1296]
+		midPoint       		[728.1668 569.5046]
 		chart          		2
-		linkNode       		[7 22 0]
-		dataLimits     		[698.218 705.365 284.872 790.109]
+		linkNode       		[7 23 0]
+		dataLimits     		[724.586 731.734 312.247 817.484]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4951,23 +5293,23 @@ Stateflow {
 	}
 
 	transition {
-		id             		25
+		id             		26
 		labelString    		"[primitive_button==4]"
-		labelPosition  		[917.74 334.386 107.948 17.965]
+		labelPosition  		[944.116 361.76 115.257 16.842]
 		fontSize       		12
 		arrowSize      		11.912
 		src {
 			id          		6
-			intersection		[2 1 0 0.5582 722.4683 234.5442 0 -50.3277]
+			intersection		[2 1 0 0.5582 748.8434 261.9178 0 -50.3277]
 		}
 		dst {
 			id          		15
-			intersection		[1 0 -1 0.9098 1099.5406 781.2026 0 336.0385]
+			intersection		[1 0 -1 0.9098 1125.9119 808.5776 0 336.0385]
 		}
-		midPoint       		[1084.4937 506.8447]
+		midPoint       		[1110.8687 534.2197]
 		chart          		2
-		linkNode       		[7 21 23]
-		dataLimits     		[722.468 1103.114 234.544 781.203]
+		linkNode       		[7 22 24]
+		dataLimits     		[748.843 1129.486 261.918 808.578]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -4975,54 +5317,54 @@ Stateflow {
 			mode          		MIRROR_SLIDE
 			sticky        		BOTH_STICK
 			midPointSticky		1
-		}
-		executionOrder 		1
-	}
-
-	transition {
-		id             		26
-		labelString    		"[async_request==2]"
-		labelPosition  		[1275.11 684.385 103.45 17.965]
-		fontSize       		12
-		src {
-			id          		7
-			intersection		[2 1 0 0.7022 1192.5237 745.5 0 389.7404]
-		}
-		dst {
-			id          		8
-			intersection		[3 0 1 0.8406 1289.9231 645.7706 0 -378.8184]
-		}
-		midPoint       		[1261.0335 714.7944]
-		chart          		2
-		linkNode       		[5 27 0]
-		dataLimits     		[1192.524 1292.323 645.771 745.5]
-		stampAngle     		NaN
-		subviewer      		2
-		drawStyle      		SMART
-		slide {
-			mode          		MIRROR_SLIDE
-			sticky        		BOTH_STICK
 		}
 		executionOrder 		1
 	}
 
 	transition {
 		id             		27
+		labelString    		"[async_request==2]"
+		labelPosition  		[1320.218 716.014 110.571 16.842]
+		fontSize       		12
+		src {
+			id          		7
+			intersection		[2 1 0 0.7042 1218.8987 774.75 0 389.7404]
+		}
+		dst {
+			id          		8
+			intersection		[3 0 1 0.8406 1339.9231 675.0206 0 -378.8184]
+		}
+		midPoint       		[1302.0698 746.3123]
+		chart          		2
+		linkNode       		[5 28 32]
+		dataLimits     		[1218.899 1342.323 675.021 774.75]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			mode          		MIRROR_SLIDE
+			sticky        		BOTH_STICK
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		28
 		labelString    		"[async_request==1]"
-		labelPosition  		[1182.802 35.625 103.45 17.965]
+		labelPosition  		[1190.929 54.207 110.571 16.842]
 		fontSize       		12
 		src {
 			id          		8
-			intersection		[1 0 -1 0.088 1250.1471 65.7487 0 339.0423]
+			intersection		[1 0 -1 0.088 1300.1471 94.9987 0 339.0423]
 		}
 		dst {
 			id          		7
-			intersection		[1 0 -1 0.9128 1114.7326 71.8661 0 -361.6847]
+			intersection		[1 0 -1 0.8497 1084.7951 99.2411 0 -419.8721]
 		}
-		midPoint       		[1179.6471 52.5]
+		midPoint       		[1188.6942 71.1028]
 		chart          		2
-		linkNode       		[5 20 26]
-		dataLimits     		[1112.333 1250.147 50.935 71.866]
+		linkNode       		[5 21 27]
+		dataLimits     		[1082.395 1300.147 69.349 99.241]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -5034,10 +5376,237 @@ Stateflow {
 		executionOrder 		1
 	}
 
+	transition {
+		id             		29
+		labelString    		"[async_request==6]"
+		labelPosition  		[449.891 1107.586 110.571 16.842]
+		fontSize       		12
+		src {
+			id          		7
+			intersection		[3 0 1 0.8799 433.8281 1058.5061 0 674.2813]
+		}
+		dst {
+			id          		16
+			intersection		[4 -1 0 0.4285 615.5625 1232.6618 0 -641.0195]
+		}
+		midPoint       		[493.5874 1181.2981]
+		chart          		2
+		linkNode       		[5 31 35]
+		dataLimits     		[433.828 615.563 1058.506 1235.062]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			mode          		MIRROR_SLIDE
+			sticky        		BOTH_STICK
+		}
+		executionOrder 		2
+	}
+
+	transition {
+		id             		30
+		labelString    		"[async_request==6]"
+		labelPosition  		[1409.5 915.588 110.571 16.842]
+		fontSize       		12
+		src {
+			id          		8
+			intersection		[3 0 1 0.6248 1460.1247 675.0206 0 69.4958]
+		}
+		dst {
+			id          		16
+			intersection		[1 0 -1 0.7841 1387.9372 1084.1892 0 -141.6833]
+		}
+		midPoint       		[1421.6785 884.1706]
+		chart          		2
+		linkNode       		[5 32 31]
+		dataLimits     		[1385.537 1460.125 675.021 1084.189]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			mode          		MIRROR_SLIDE
+			sticky        		BOTH_STICK
+		}
+		executionOrder 		2
+	}
+
+	transition {
+		id             		31
+		labelString    		"[async_request==1]"
+		labelPosition  		[354.323 1208.491 110.571 16.842]
+		fontSize       		12
+		src {
+			id          		16
+			intersection		[4 -1 0 0.2522 615.5625 1278.4617 0 -686.8194]
+		}
+		dst {
+			id          		7
+			intersection		[3 0 1 0.9285 390.4571 1058.5061 0 717.6523]
+		}
+		midPoint       		[458.1148 1206.5504]
+		chart          		2
+		linkNode       		[5 30 29]
+		dataLimits     		[388.057 615.563 1058.506 1278.462]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			mode          		MIRROR_SLIDE
+			sticky        		BOTH_STICK
+		}
+		executionOrder 		5
+	}
+
+	transition {
+		id             		32
+		labelString    		"[async_request==2]"
+		labelPosition  		[1563.476 852.885 110.571 16.842]
+		fontSize       		12
+		src {
+			id          		16
+			intersection		[1 0 -1 0.9335 1535.1475 1084.1892 0 5.527]
+		}
+		dst {
+			id          		8
+			intersection		[3 0 1 0.4085 1580.57 675.0206 0 -50.9495]
+		}
+		midPoint       		[1559.339 874.9979]
+		chart          		2
+		linkNode       		[5 27 30]
+		dataLimits     		[1535.148 1582.97 675.021 1084.189]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			mode          		MIRROR_SLIDE
+			sticky        		BOTH_STICK
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		33
+		labelPosition  		[601.793 582.563 8.433 16.842]
+		fontSize       		12
+		arrowSize      		11.912
+		src {
+			intersection		[0 0 1 0 596.2198 579.1489 0 0]
+		}
+		dst {
+			id          		12
+			intersection		[1 0 -1 0.6135 596.2198 609.1489 0 0]
+		}
+		midPoint       		[596.2198 589.4752]
+		chart          		2
+		linkNode       		[10 0 0]
+		dataLimits     		[592.646 599.793 579.149 609.149]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	transition {
+		id             		34
+		labelPosition  		[631.061 792.044 8.433 16.842]
+		fontSize       		12
+		arrowSize      		11.912
+		src {
+			intersection		[0 0 1 0 625.4875 787.4839 0 0]
+		}
+		dst {
+			id          		14
+			intersection		[1 0 -1 0.6112 625.4875 817.4839 0 0]
+		}
+		midPoint       		[625.4875 798.9555]
+		chart          		2
+		linkNode       		[11 0 0]
+		dataLimits     		[621.914 629.061 787.484 817.484]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	transition {
+		id             		35
+		labelString    		"[async_request==3]{sync_command=1}"
+		labelPosition  		[541.438 1368.265 218.332 16.842]
+		fontSize       		12
+		src {
+			id          		16
+			intersection		[3 0 1 0.9312 683.33 1343.9705 0 0]
+		}
+		dst {
+			id          		16
+			intersection		[3 0 1 0.8836 730.205 1343.9705 0 0]
+		}
+		midPoint       		[686.1425 1361.5017]
+		chart          		2
+		linkNode       		[5 29 36]
+		dataLimits     		[683.323 732.605 1343.97 1369.746]
+		stampAngle     		-5.0712
+		subviewer      		2
+		slide {
+			sticky        		BOTH_STICK
+			arcL          		22.5
+			midPointSticky		1
+		}
+		executionOrder 		4
+	}
+
+	transition {
+		id             		36
+		labelString    		"[async_request==4]{sync_command=2}"
+		labelPosition  		[804.927 1369.927 218.332 16.842]
+		fontSize       		12
+		src {
+			id          		16
+			intersection		[3 0 1 0.7923 820.205 1343.9705 0 0]
+		}
+		dst {
+			id          		16
+			intersection		[3 0 1 0.7228 888.6425 1343.9705 0 0]
+		}
+		midPoint       		[856.654 1365.3082]
+		chart          		2
+		linkNode       		[5 35 37]
+		dataLimits     		[820.205 891.043 1343.97 1365.379]
+		stampAngle     		NaN
+		subviewer      		2
+		slide {
+			sticky        		SRC_STICK
+		}
+		executionOrder 		3
+	}
+
+	transition {
+		id             		37
+		labelString    		"[async_request==5]{sync_command=3}"
+		labelPosition  		[1060.518 1361.502 218.332 16.842]
+		fontSize       		12
+		src {
+			id          		16
+			intersection		[3 0 1 0.5629 1046.1425 1343.9705 0 0]
+		}
+		dst {
+			id          		16
+			intersection		[3 0 1 0.5029 1105.205 1343.9705 0 0]
+		}
+		midPoint       		[1080.83 1360.5642]
+		chart          		2
+		linkNode       		[5 36 0]
+		dataLimits     		[1046.143 1107.605 1343.97 1360.682]
+		stampAngle     		NaN
+		subviewer      		2
+		slide {
+			sticky        		SRC_STICK
+		}
+		executionOrder 		2
+	}
+
 	data {
-		id                            		28
+		id                            		38
 		name                          		"init_out_value"
-		linkNode                      		[2 0 29]
+		linkNode                      		[2 0 39]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -5052,9 +5621,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		29
+		id                            		39
 		name                          		"init_out_enable"
-		linkNode                      		[2 28 30]
+		linkNode                      		[2 38 40]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -5069,9 +5638,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		30
+		id                            		40
 		name                          		"init_ack_sync"
-		linkNode                      		[2 29 31]
+		linkNode                      		[2 39 41]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -5085,9 +5654,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		31
+		id                            		41
 		name                          		"init_ack_async"
-		linkNode                      		[2 30 32]
+		linkNode                      		[2 40 42]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -5101,9 +5670,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		32
+		id                            		42
 		name                          		"init_out_trigger"
-		linkNode                      		[2 31 33]
+		linkNode                      		[2 41 43]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -5118,9 +5687,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		33
+		id                            		43
 		name                          		"stop_trigger"
-		linkNode                      		[2 32 34]
+		linkNode                      		[2 42 44]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -5135,9 +5704,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		34
+		id                            		44
 		name                          		"primitive_button"
-		linkNode                      		[2 33 35]
+		linkNode                      		[2 43 45]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -5152,9 +5721,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		35
+		id                            		45
 		name                          		"motor1_reference"
-		linkNode                      		[2 34 36]
+		linkNode                      		[2 44 46]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -5169,9 +5738,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		36
+		id                            		46
 		name                          		"motor2_reference"
-		linkNode                      		[2 35 37]
+		linkNode                      		[2 45 47]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -5186,9 +5755,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		37
+		id                            		47
 		name                          		"motor_stopped_value"
-		linkNode                      		[2 36 38]
+		linkNode                      		[2 46 48]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		4
@@ -5205,9 +5774,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		38
+		id                            		48
 		name                          		"controller_enable"
-		linkNode                      		[2 37 39]
+		linkNode                      		[2 47 49]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -5222,9 +5791,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		39
+		id                            		49
 		name                          		"init_1_message"
-		linkNode                      		[2 38 40]
+		linkNode                      		[2 48 50]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		machine                       		1
@@ -5242,9 +5811,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		40
+		id                            		50
 		name                          		"init_2_message"
-		linkNode                      		[2 39 41]
+		linkNode                      		[2 49 51]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		1
@@ -5263,9 +5832,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		41
+		id                            		51
 		name                          		"motor_positive_value"
-		linkNode                      		[2 40 42]
+		linkNode                      		[2 50 52]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		3
@@ -5281,9 +5850,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		42
+		id                            		52
 		name                          		"motor_negative_value"
-		linkNode                      		[2 41 43]
+		linkNode                      		[2 51 53]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		2
@@ -5299,9 +5868,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		43
+		id                            		53
 		name                          		"da_out_trigger"
-		linkNode                      		[2 42 44]
+		linkNode                      		[2 52 54]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -5316,9 +5885,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		44
+		id                            		54
 		name                          		"async_request"
-		linkNode                      		[2 43 45]
+		linkNode                      		[2 53 55]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -5332,9 +5901,26 @@ Stateflow {
 	}
 
 	data {
-		id                            		45
+		id                            		55
 		name                          		"operation_mode"
-		linkNode                      		[2 44 0]
+		linkNode                      		[2 54 56]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			initialValue		"255"
+			type {
+				primitive 		SF_UINT8_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint8"
+	}
+
+	data {
+		id                            		56
+		name                          		"sync_command"
+		linkNode                      		[2 55 0]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -5349,27 +5935,27 @@ Stateflow {
 	}
 
 	instance {
-		id     		46
+		id     		57
 		name   		"State Machine"
 		machine		1
 		chart  		2
 	}
 
 	target {
-		id                        		47
+		id                        		58
 		name                      		"sfun"
 		description               		"Default Simulink S-Function Target."
 		machine                   		1
-		linkNode                  		[1 0 48]
+		linkNode                  		[1 0 59]
 	}
 
 	target {
-		id                        		48
+		id                        		59
 		name                      		"rtw"
 		codeFlags                 		" comments=1 statebitsets=1 databitsets=1 emitlogicalops=1 el"
 						"seifdetection=1 constantfolding=1 redundantloadelimination=0"
 						" preservenames=0 preservenameswithparent=0 exportcharts=0"
 		machine                   		1
-		linkNode                  		[1 47 0]
+		linkNode                  		[1 58 0]
 	}
 }

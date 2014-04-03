@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model serial_test.
  *
- * Model version                        : 1.22
+ * Model version                        : 1.35
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Wed Mar 26 18:24:19 2014
+ * Real-Time Workshop file generated on : Thu Apr 03 16:38:13 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Wed Mar 26 18:24:19 2014
+ * C source code generated on           : Thu Apr 03 16:38:14 2014
  */
 
 #ifndef _RTW_HEADER_serial_test_h_
@@ -54,35 +54,36 @@
 
 /* Block signals (auto storage) */
 typedef struct {
-  uint32_T SerialReceive_o2;            /* '<Root>/Serial Receive' */
-  uint32_T SerialReceive1_o2;           /* '<Root>/Serial Receive1' */
+  uint32_T SerialReceive2_o2;           /* '<Root>/Serial Receive2' */
 } BlockIO_serial_test;
+
+/* Block states (auto storage) for system '<Root>' */
+typedef struct {
+  uint8_T Output_DSTATE;                /* '<S2>/Output' */
+} D_Work_serial_test;
 
 /* Parameters (auto storage) */
 struct _Parameters_serial_test {
   uint32_T Constant_Value;              /* Computed Parameter: Value
                                          * '<S1>/Constant'
                                          */
-  uint32_T Constant_Value_a;            /* Computed Parameter: Value
-                                         * '<S2>/Constant'
-                                         */
-  uint16_T Constant_Value_l;            /* Computed Parameter: Value
-                                         * '<S12>/Constant'
+  uint16_T Constant_Value_i;            /* Computed Parameter: Value
+                                         * '<S13>/Constant'
                                          */
   uint16_T masks_Value;                 /* Expression: masks
-                                         * '<S12>/masks'
+                                         * '<S13>/masks'
                                          */
   uint16_T BitwiseOperator1_BitMask;    /* Expression: BitMask
-                                         * '<S12>/Bitwise Operator1'
+                                         * '<S13>/Bitwise Operator1'
                                          */
-  uint16_T Constant_Value_f;            /* Computed Parameter: Value
-                                         * '<S19>/Constant'
+  uint8_T Output_X0;                    /* Computed Parameter: X0
+                                         * '<S2>/Output'
                                          */
-  uint16_T masks_Value_i;               /* Expression: masks
-                                         * '<S19>/masks'
+  uint8_T FixPtConstant_Value;          /* Computed Parameter: Value
+                                         * '<S5>/FixPt Constant'
                                          */
-  uint16_T BitwiseOperator1_BitMas_d;   /* Expression: BitMask
-                                         * '<S19>/Bitwise Operator1'
+  uint8_T FixPtSwitch_Threshold;        /* Computed Parameter: Threshold
+                                         * '<S6>/FixPt Switch'
                                          */
 };
 
@@ -108,6 +109,9 @@ extern Parameters_serial_test serial_test_P;
 /* Block signals (auto storage) */
 extern BlockIO_serial_test serial_test_B;
 
+/* Block states (auto storage) */
+extern D_Work_serial_test serial_test_DWork;
+
 /* Model entry point functions */
 extern void serial_test_SetEventsForThisBaseStep(boolean_T *eventFlags);
 extern void serial_test_initialize(boolean_T firstTime);
@@ -132,25 +136,19 @@ extern RT_MODEL_serial_test *serial_test_M;
  * Here is the system hierarchy for this model
  *
  * '<Root>' : serial_test
- * '<S1>'   : serial_test/Compare To Constant
- * '<S2>'   : serial_test/Compare To Constant1
- * '<S3>'   : serial_test/MIOS Digital Out
- * '<S4>'   : serial_test/MIOS Digital Out1
- * '<S5>'   : serial_test/MPC555 Resource Configuration
- * '<S6>'   : serial_test/MIOS Digital Out/Configurable Outport Control
- * '<S7>'   : serial_test/MIOS Digital Out/Non-Configurable Inport Control
- * '<S8>'   : serial_test/MIOS Digital Out/Pass through output
- * '<S9>'   : serial_test/MIOS Digital Out/Subsystem
- * '<S10>'  : serial_test/MIOS Digital Out/Pass through output/Pass through input
- * '<S11>'  : serial_test/MIOS Digital Out/Subsystem/Disable MPC555 Interrupts
- * '<S12>'  : serial_test/MIOS Digital Out/Subsystem/fd
- * '<S13>'  : serial_test/MIOS Digital Out1/Configurable Outport Control
- * '<S14>'  : serial_test/MIOS Digital Out1/Non-Configurable Inport Control
- * '<S15>'  : serial_test/MIOS Digital Out1/Pass through output
- * '<S16>'  : serial_test/MIOS Digital Out1/Subsystem
- * '<S17>'  : serial_test/MIOS Digital Out1/Pass through output/Pass through input
- * '<S18>'  : serial_test/MIOS Digital Out1/Subsystem/Disable MPC555 Interrupts
- * '<S19>'  : serial_test/MIOS Digital Out1/Subsystem/fd
+ * '<S1>'   : serial_test/Compare To Constant2
+ * '<S2>'   : serial_test/Counter Free-Running
+ * '<S3>'   : serial_test/MIOS Digital Out2
+ * '<S4>'   : serial_test/MPC555 Resource Configuration
+ * '<S5>'   : serial_test/Counter Free-Running/Increment Real World
+ * '<S6>'   : serial_test/Counter Free-Running/Wrap To Zero
+ * '<S7>'   : serial_test/MIOS Digital Out2/Configurable Outport Control
+ * '<S8>'   : serial_test/MIOS Digital Out2/Non-Configurable Inport Control
+ * '<S9>'   : serial_test/MIOS Digital Out2/Pass through output
+ * '<S10>'  : serial_test/MIOS Digital Out2/Subsystem
+ * '<S11>'  : serial_test/MIOS Digital Out2/Pass through output/Pass through input
+ * '<S12>'  : serial_test/MIOS Digital Out2/Subsystem/Disable MPC555 Interrupts
+ * '<S13>'  : serial_test/MIOS Digital Out2/Subsystem/fd
  */
 
 #endif                                  /* _RTW_HEADER_serial_test_h_ */
