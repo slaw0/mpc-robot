@@ -30,7 +30,6 @@ uint8_T is_c1_MPC_framework;
    
    
    
-   
 %closefile externFcnsBuf
 %<SLibSetModelFileAttribute(hFile,"ExternFcns",externFcnsBuf)>
    %openfile externFcnsBuf

@@ -13,7 +13,7 @@ init_ack_async_message = uint8(21);
 %% Incremental counter configuration parameters
 incntr_max_val = uint32(2^24);
 incntr_display_max_val = uint32(hex2dec('FFFF'));
-
+incntr_out_value_gain = single(double(incntr
 %% Control parameters
 DA_max = uint16(hex2dec('FFFF'));
 motor_stopped_value = DA_max/2;

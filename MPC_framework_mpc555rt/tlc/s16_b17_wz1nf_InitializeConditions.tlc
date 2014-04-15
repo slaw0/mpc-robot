@@ -1,0 +1,15 @@
+%implements s16_b17_wz1nf_InitializeConditions "C"
+
+%function InitializeConditions(block, system) Output
+
+
+/* InitializeConditions for UnitDelay: '<S56>/Delay Input1' */
+%<SLibCGIRAssignDWork(1, "", "", 0, "%<SLibCGIRBlockParameter(0, "", "", 0)>")>\
+
+
+
+
+/* InitializeConditions for UnitDelay: '<S82>/Delay Input1' */
+%<SLibCGIRAssignDWork(3, "", "", 0, "%<SLibCGIRBlockParameter(1, "", "", 0)>")>\
+
+%endfunction

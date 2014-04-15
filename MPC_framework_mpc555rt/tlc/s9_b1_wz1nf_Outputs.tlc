@@ -1,0 +1,9 @@
+%implements s9_b1_wz1nf_Outputs "C"
+
+%function Outputs(block, system) Output
+
+/* RelationalOperator: '<S51>/Compare' incorporates:
+ *  Constant: '<S51>/Constant'
+ */
+%<LibBlockAssignOutputSignal(0, "", "", 0, "(%<LibBlockInputSignal(0, "", "", 0)> == %<LibBlockInputSignal(1, "", "", 0)>)")>\
+%endfunction

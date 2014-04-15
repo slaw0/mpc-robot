@@ -39,6 +39,10 @@ bin/CODE_WARRIOR/555/profile.o : \
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc5xx.h
 # END TARGET bin/CODE_WARRIOR/555/profile.o
 
+# START TARGET bin/CODE_WARRIOR/555/exceptions.o
+bin/CODE_WARRIOR/555/exceptions.o : 
+# END TARGET bin/CODE_WARRIOR/555/exceptions.o
+
 # START TARGET bin/CODE_WARRIOR/555/mpc555dk_main.o
 bin/CODE_WARRIOR/555/mpc555dk_main.o : \
 	../../../../../MATLAB/R2006a/extern/include/tmwtypes.h\
@@ -79,10 +83,6 @@ bin/CODE_WARRIOR/555/mpc555dk_main.o : \
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc5xx.h\
 	autobuild.h
 # END TARGET bin/CODE_WARRIOR/555/mpc555dk_main.o
-
-# START TARGET bin/CODE_WARRIOR/555/exceptions.o
-bin/CODE_WARRIOR/555/exceptions.o : 
-# END TARGET bin/CODE_WARRIOR/555/exceptions.o
 
 # START TARGET bin/CODE_WARRIOR/555/__ppc_eabi_init.o
 bin/CODE_WARRIOR/555/__ppc_eabi_init.o : 
@@ -139,10 +139,6 @@ bin/CODE_WARRIOR/555/can_frame_ground.o : \
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/common/can/datatypes/can_msg.h
 # END TARGET bin/CODE_WARRIOR/555/can_frame_ground.o
 
-# START TARGET bin/CODE_WARRIOR/555/internal_flash_init.o
-bin/CODE_WARRIOR/555/internal_flash_init.o : 
-# END TARGET bin/CODE_WARRIOR/555/internal_flash_init.o
-
 # START TARGET bin/CODE_WARRIOR/555/MPC_framework.o
 bin/CODE_WARRIOR/555/MPC_framework.o : \
 	../../../../../MATLAB/R2006a/extern/include/tmwtypes.h\
@@ -178,6 +174,10 @@ bin/CODE_WARRIOR/555/MPC_framework.o : \
 	../../../../../MATLAB/R2006a/rtw/c/libsrc/rtlibsrc.h\
 	MPC_framework_private.h
 # END TARGET bin/CODE_WARRIOR/555/MPC_framework.o
+
+# START TARGET bin/CODE_WARRIOR/555/internal_flash_init.o
+bin/CODE_WARRIOR/555/internal_flash_init.o : 
+# END TARGET bin/CODE_WARRIOR/555/internal_flash_init.o
 
 # START DUMMY TARGETS
 

@@ -1,0 +1,71 @@
+%implements s16_b17_wz1nf_Outputs "C"
+
+%function OutputsForTID(block, system,tid) Output
+%if tid == 0 
+
+/* RelationalOperator: '<S1>/Compare' */
+%<LibBlockAssignOutputSignal(0, "", "", 0, "(%<LibBlockInputSignal(0, "", "", 0)> > %<LibBlockInputSignal(1, "", "", 0)>)")>\
+
+if(%<SLibCGIRBlockOutputSignal(0, "", "", 0)> > 0U) {
+if(%<SLibCGIRBlockDWork(0, "", "", 0)> == SUBSYS_DISABLED) {
+%<SLibCGIRGenSystemFcnCall(7, 0, 0, "Enable", "Output", 0, -1)>\
+}
+%<SLibCGIRAssignDWork(0, "", "", 0, "SUBSYS_ENABLED")>\
+} else if(%<SLibCGIRBlockDWork(0, "", "", 0)> == SUBSYS_ENABLED) {
+%<SLibCGIRGenSystemFcnCall(7, 0, 0, "Disable", "Output", 0, -1)>\
+%<SLibCGIRAssignDWork(0, "", "", 0, "SUBSYS_DISABLED")>\
+}
+if(%<SLibCGIRBlockDWork(0, "", "", 0)> == SUBSYS_ENABLED) {
+%<SLibCGIRGenSystemFcnCall(7, 0, 0, "Output", "Output", 0, -1)>\
+%<SLibCGIRGenSystemFcnCall(7, 0, 0, "Update", "Output", 0, -1)>\
+}
+
+/* RelationalOperator: '<S56>/FixPt Relational Operator' incorporates:
+ *  UnitDelay: '<S56>/Delay Input1'
+ */
+%<LibBlockAssignOutputSignal(1, "", "", 0, "(%<LibBlockInputSignal(0, "", "", 0)> != %<SLibCGIRBlockDWork(1, "", "", 0)>)")>\
+
+if((%<SLibCGIRBlockOutputSignal(1, "", "", 0)> > 0) && (%<SLibCGIRBlockZCE(0, "", "", 0)> == 0)) {
+%<SLibCGIRGenSystemFcnCall(10, 0, 1, "Output", "Output", 0, -1)>\
+%<SLibCGIRGenSystemFcnCall(10, 0, 1, "Update", "Output", 0, -1)>\
+}
+%<SLibCGIRBlockZCE(0, "", "", 0)> = %<SLibCGIRBlockOutputSignal(1, "", "", 0)> > 0 ? POS_ZCSIG : ZERO_ZCSIG;
+
+if(%<LibBlockInputSignal(2, "", "", 0)> > 0U) {
+if(%<SLibCGIRBlockDWork(2, "", "", 0)> == SUBSYS_DISABLED) {
+%<SLibCGIRGenSystemFcnCall(12, 0, 2, "Enable", "Output", 0, -1)>\
+}
+%<SLibCGIRAssignDWork(2, "", "", 0, "SUBSYS_ENABLED")>\
+} else if(%<SLibCGIRBlockDWork(2, "", "", 0)> == SUBSYS_ENABLED) {
+%<SLibCGIRGenSystemFcnCall(12, 0, 2, "Disable", "Output", 0, -1)>\
+%<SLibCGIRAssignDWork(2, "", "", 0, "SUBSYS_DISABLED")>\
+}
+if(%<SLibCGIRBlockDWork(2, "", "", 0)> == SUBSYS_ENABLED) {
+%<SLibCGIRGenSystemFcnCall(12, 0, 2, "Output", "Output", 0, -1)>\
+}
+
+if((%<LibBlockInputSignal(3, "", "", 0)> > 0) && (%<SLibCGIRBlockZCE(1, "", "", 0)> == 0)) {
+%<SLibCGIRGenSystemFcnCall(13, 0, 3, "Output", "Output", 0, -1)>\
+%<SLibCGIRGenSystemFcnCall(13, 0, 3, "Update", "Output", 0, -1)>\
+}
+%<SLibCGIRBlockZCE(1, "", "", 0)> = %<LibBlockInputSignal(3, "", "", 0)> > 0 ? POS_ZCSIG : ZERO_ZCSIG;
+
+/* Logic: '<S17>/Logical Operator' incorporates:
+ *  RelationalOperator: '<S81>/Compare'
+ *  RelationalOperator: '<S82>/FixPt Relational Operator'
+ *  UnitDelay: '<S82>/Delay Input1'
+ */
+%<LibBlockAssignOutputSignal(2, "", "", 0, "((%<LibBlockInputSignal(4, "", "", 0)> != %<SLibCGIRBlockDWork(3, "", "", 0)>) && (%<LibBlockInputSignal(4, "", "", 0)> > %<LibBlockInputSignal(5, "", "", 0)>))")>\
+
+if(%<SLibCGIRBlockOutputSignal(2, "", "", 0)> && (!(boolean_T)%<SLibCGIRBlockZCE(2, "", "", 0)>)) {
+%<SLibCGIRGenSystemFcnCall(15, 0, 4, "Output", "Output", 0, -1)>\
+%<SLibCGIRGenSystemFcnCall(15, 0, 4, "Update", "Output", 0, -1)>\
+}
+%<SLibCGIRBlockZCE(2, "", "", 0)> = (int32_T)%<SLibCGIRBlockOutputSignal(2, "", "", 0)> ? POS_ZCSIG : ZERO_ZCSIG;
+%endif 
+%if tid == 1 
+if(%<SLibCGIRBlockDWork(2, "", "", 0)> == SUBSYS_ENABLED) {
+%<SLibCGIRGenSystemFcnCall(12, 0, 2, "Output", "Output", 1, -1)>\
+}
+%endif 
+%endfunction

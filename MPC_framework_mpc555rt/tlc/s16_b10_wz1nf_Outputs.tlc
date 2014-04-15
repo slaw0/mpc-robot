@@ -1,0 +1,56 @@
+%implements s16_b10_wz1nf_Outputs "C"
+
+%function Outputs(block, system) Output
+
+/* Outputs for enable SubSystem: '<Root>/Controller' */
+if(%<LibBlockInputSignal(2, "", "", 0)> > 0.0) {
+%<SLibCGIRAssignDWork(0, "", "", 0, "SUBSYS_ENABLED")>\
+} else if(%<SLibCGIRBlockDWork(0, "", "", 0)> == SUBSYS_ENABLED) {
+%<SLibCGIRGenSystemFcnCall(0, 0, -1, "Disable", "Output", 0, -1)>\
+%<SLibCGIRAssignDWork(0, "", "", 0, "SUBSYS_DISABLED")>\
+}
+if(%<SLibCGIRBlockDWork(0, "", "", 0)> == SUBSYS_ENABLED) {
+
+/* Inport: '<S2>/motor1_reference' */
+%<LibBlockAssignOutputSignal(0, "", "", 0, "%<LibBlockInputSignal(0, "", "", 0)>")>\
+
+/* Inport: '<S2>/motor2_reference' */
+%<LibBlockAssignOutputSignal(1, "", "", 0, "%<LibBlockInputSignal(1, "", "", 0)>")>\
+}
+
+/* end of Outputs for SubSystem: '<Root>/Controller' */
+
+/* Switch: '<Root>/Switch' */
+if(%<LibBlockInputSignal(3, "", "", 0)> > %<SLibCGIRBlockParameter(0, "", "", 0)>) {
+%<LibBlockAssignOutputSignal(2, "", "", 0, "%<SLibCGIRBlockOutputSignal(0, "", "", 0)>")>\
+%<LibBlockAssignOutputSignal(2, "", "", 1, "%<SLibCGIRBlockOutputSignal(1, "", "", 0)>")>\
+} else {
+%<LibBlockAssignOutputSignal(2, "", "", 0, "%<LibBlockInputSignal(4, "", "", 0)>")>\
+%<LibBlockAssignOutputSignal(2, "", "", 1, "%<LibBlockInputSignal(4, "", "", 1)>")>\
+}
+
+if(%<SLibCGIRZCFcn("RISING_ZERO_CROSSING", "%<SLibCGIRBlockZCE(0, "", "", 0)>", "%<LibBlockInputSignal(5, "", "", 0)>", 0)> != NO_ZCEVENT) {
+%<SLibCGIRGenSystemFcnCall(1, 0, 0, "Output", "Output", 0, -1)>\
+%<SLibCGIRGenSystemFcnCall(1, 0, 0, "Update", "Output", 0, -1)>\
+}
+
+if(%<LibBlockInputSignal(6, "", "", 0)> > 0U) {
+if(%<SLibCGIRBlockDWork(1, "", "", 0)> == SUBSYS_DISABLED) {
+%<SLibCGIRGenSystemFcnCall(2, 0, 1, "Enable", "Output", 0, -1)>\
+}
+%<SLibCGIRAssignDWork(1, "", "", 0, "SUBSYS_ENABLED")>\
+} else if(%<SLibCGIRBlockDWork(1, "", "", 0)> == SUBSYS_ENABLED) {
+%<SLibCGIRGenSystemFcnCall(2, 0, 1, "Disable", "Output", 0, -1)>\
+%<SLibCGIRAssignDWork(1, "", "", 0, "SUBSYS_DISABLED")>\
+}
+if(%<SLibCGIRBlockDWork(1, "", "", 0)> == SUBSYS_ENABLED) {
+%<SLibCGIRGenSystemFcnCall(2, 0, 1, "Output", "Output", 0, -1)>\
+%<SLibCGIRGenSystemFcnCall(2, 0, 1, "Update", "Output", 0, -1)>\
+}
+
+if((%<LibBlockInputSignal(7, "", "", 0)> > 0) && (%<SLibCGIRBlockZCE(1, "", "", 0)> == 0)) {
+%<SLibCGIRGenSystemFcnCall(3, 0, 2, "Output", "Output", 0, -1)>\
+%<SLibCGIRGenSystemFcnCall(3, 0, 2, "Update", "Output", 0, -1)>\
+}
+%<SLibCGIRBlockZCE(1, "", "", 0)> = %<LibBlockInputSignal(7, "", "", 0)> > 0 ? POS_ZCSIG : ZERO_ZCSIG;
+%endfunction
