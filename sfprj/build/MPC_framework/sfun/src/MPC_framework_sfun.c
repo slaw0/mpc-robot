@@ -1,6 +1,7 @@
 /* Include files */
 #include "MPC_framework_sfun.h"
 #include "c1_MPC_framework.h"
+#include "c2_MPC_framework.h"
 
 /* Type Definitions */
 
@@ -33,6 +34,11 @@ unsigned int sf_MPC_framework_method_dispatcher(SimStruct *simstructPtr, const
     c1_MPC_framework_method_dispatcher(simstructPtr, method, data);
     return 1;
   }
+  if(!strcmp_ignore_ws(chartName,"MPC_framework/Inverse geometry/invgeo/ SFunction "))
+  {
+    c2_MPC_framework_method_dispatcher(simstructPtr, method, data);
+    return 1;
+  }
   return 0;
 }
 unsigned int sf_MPC_framework_process_check_sum_call( int nlhs, mxArray *
@@ -60,10 +66,10 @@ unsigned int sf_MPC_framework_process_check_sum_call( int nlhs, mxArray *
       ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(0U);
       ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(0U);
     }else if(!strcmp(commandName,"makefile")) {
-      ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(3959657240U);
-      ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(621641568U);
-      ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(2240682901U);
-      ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(3962289294U);
+      ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2628240816U);
+      ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(302925913U);
+      ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(4027010263U);
+      ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(271125471U);
     }else if(nrhs==3 && !strcmp(commandName,"chart")) {
       unsigned int chartFileNumber;
       chartFileNumber = (unsigned int)mxGetScalar(prhs[2]);
@@ -72,6 +78,13 @@ unsigned int sf_MPC_framework_process_check_sum_call( int nlhs, mxArray *
         {
           extern void sf_c1_MPC_framework_get_check_sum(mxArray *plhs[]);
           sf_c1_MPC_framework_get_check_sum(plhs);
+          break;
+        }
+
+       case 2:
+        {
+          extern void sf_c2_MPC_framework_get_check_sum(mxArray *plhs[]);
+          sf_c2_MPC_framework_get_check_sum(plhs);
           break;
         }
 
@@ -90,10 +103,10 @@ unsigned int sf_MPC_framework_process_check_sum_call( int nlhs, mxArray *
       return 0;
     }
   } else{
-    ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(191320255U);
-    ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2201055311U);
-    ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(1460536325U);
-    ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(3257730284U);
+    ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(1184744016U);
+    ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2803283876U);
+    ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(1619331203U);
+    ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(3326584200U);
   }
   return 1;
 #else
@@ -122,6 +135,13 @@ unsigned int sf_MPC_framework_autoinheritance_info( int nlhs, mxArray * plhs[],
         break;
       }
 
+     case 2:
+      {
+        extern mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void);
+        plhs[0] = sf_c2_MPC_framework_get_autoinheritance_info();
+        break;
+      }
+
      default:
       plhs[0] = mxCreateDoubleMatrix(0,0,mxREAL);
     }
@@ -134,7 +154,7 @@ unsigned int sf_MPC_framework_autoinheritance_info( int nlhs, mxArray * plhs[],
 void MPC_framework_debug_initialize(void)
 {
   _MPC_frameworkMachineNumber_ =
-  sf_debug_initialize_machine("MPC_framework","sfun",0,1,0,0,0);
+  sf_debug_initialize_machine("MPC_framework","sfun",0,2,0,0,0);
   sf_debug_set_machine_event_thresholds(_MPC_frameworkMachineNumber_,0,0);
   sf_debug_set_machine_data_thresholds(_MPC_frameworkMachineNumber_,0);
 }
