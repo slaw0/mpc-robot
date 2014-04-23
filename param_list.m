@@ -14,9 +14,13 @@ init_ack_async_message = uint8(21);
 incntr_max_val = uint32(2^24);
 incntr_display_max_val = uint32(hex2dec('FFFF'));
 incntr_out_value_gain = single(double(incntr_max_val) / double(incntr_display_max_val));
+
 %% Control parameters
 DA_max = uint16(hex2dec('FFFF'));
 motor_stopped_value = DA_max/2;
 motor_positive_value = DA_max * 0.6;
 motor_negative_value = DA_max * 0.4;
 
+%% Robot parameters
+a1 = 1; % Segment 1 length
+a2 = 0.75; % segment 2 length
