@@ -86,56 +86,58 @@ static void sf_c2_MPC_framework(void)
   uint8_T c2_b_error;
   real_T c2_b_al2;
   real_T c2_b_al1;
+  real_T c2_c_x;
+  real_T c2_c_y;
   boolean_T c2_em_b0;
   boolean_T c2_em_b1;
   real_T c2_A;
   real_T c2_B;
-  real_T c2_c_x;
-  real_T c2_c_y;
-  real_T c2_z;
-  real_T c2_d_y;
   real_T c2_d_x;
+  real_T c2_d_y;
+  real_T c2_z;
   real_T c2_e_y;
-  real_T c2_b_A;
-  real_T c2_b_B;
   real_T c2_e_x;
   real_T c2_f_y;
-  real_T c2_b_z;
-  real_T c2_g_y;
+  real_T c2_b_A;
+  real_T c2_b_B;
   real_T c2_f_x;
+  real_T c2_g_y;
+  real_T c2_b_z;
   real_T c2_h_y;
-  real_T c2_c_A;
-  real_T c2_c_B;
   real_T c2_g_x;
   real_T c2_i_y;
-  real_T c2_c_z;
-  real_T c2_j_y;
+  real_T c2_c_A;
+  real_T c2_c_B;
   real_T c2_h_x;
+  real_T c2_j_y;
+  real_T c2_c_z;
   real_T c2_k_y;
-  real_T c2_d_A;
-  real_T c2_d_B;
   real_T c2_i_x;
   real_T c2_l_y;
-  real_T c2_d_z;
-  real_T c2_m_y;
+  real_T c2_d_A;
+  real_T c2_d_B;
   real_T c2_j_x;
+  real_T c2_m_y;
+  real_T c2_d_z;
   real_T c2_n_y;
-  real_T c2_e_A;
-  real_T c2_e_B;
   real_T c2_k_x;
   real_T c2_o_y;
-  real_T c2_e_z;
-  real_T c2_p_y;
+  real_T c2_e_A;
+  real_T c2_e_B;
   real_T c2_l_x;
-  real_T c2_k;
-  real_T c2_b_k;
+  real_T c2_p_y;
+  real_T c2_e_z;
   real_T c2_q_y;
   real_T c2_m_x;
+  real_T c2_k;
+  real_T c2_b_k;
   real_T c2_r_y;
   real_T c2_n_x;
   real_T c2_s_y;
   real_T c2_o_x;
   real_T c2_t_y;
+  real_T c2_p_x;
+  real_T c2_u_y;
   _sfTime_ = (real_T)ssGetT(chartInstance.S);
   _SFD_DATA_RANGE_CHECK(*c2_x(), 1U);
   _SFD_DATA_RANGE_CHECK(*c2_y(), 8U);
@@ -202,9 +204,11 @@ static void sf_c2_MPC_framework(void)
    0U, 0, &c2_b_x, 0);
   CV_EML_FCN(0, 0);
   _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,3);
-  c2_d = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
+  c2_c_x = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
+  c2_c_y = sqrt(c2_c_x);
+  c2_d = c2_c_y;
   _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,4);
-  c2_em_b0 = (c2_d > c2_mpower(c2_b_a1) + c2_mpower(c2_b_a2));
+  c2_em_b0 = (c2_mpower(c2_d) > c2_mpower(c2_b_a1) + c2_mpower(c2_b_a2));
   c2_em_b1 = (c2_d < c2_b_a1 - c2_b_a2);
   if(CV_EML_IF(0, 0, c2_em_b0 || c2_em_b1)) {
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,5);
@@ -218,68 +222,68 @@ static void sf_c2_MPC_framework(void)
     c2_A = ((c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_b_a1)) -
       c2_mpower(c2_b_a2);
     c2_B = 2.0 * c2_b_a1 * c2_b_a2;
-    c2_c_x = c2_A;
-    c2_c_y = c2_B;
-    c2_z = c2_c_x / c2_c_y;
-    c2_d_y = c2_z;
-    c2_cos_al2 = c2_d_y;
+    c2_d_x = c2_A;
+    c2_d_y = c2_B;
+    c2_z = c2_d_x / c2_d_y;
+    c2_e_y = c2_z;
+    c2_cos_al2 = c2_e_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,12);
     c2_D = c2_b_a1 + c2_b_a2 * c2_cos_al2;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,14);
-    c2_d_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
-    c2_e_y = sqrt(c2_d_x);
-    c2_b_A = c2_D * c2_b_y + c2_b_x * c2_e_y;
+    c2_e_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
+    c2_f_y = sqrt(c2_e_x);
+    c2_b_A = c2_D * c2_b_y + c2_b_x * c2_f_y;
     c2_b_B = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
-    c2_e_x = c2_b_A;
-    c2_f_y = c2_b_B;
-    c2_b_z = c2_e_x / c2_f_y;
-    c2_g_y = c2_b_z;
-    c2_sin_al1_p = c2_g_y;
+    c2_f_x = c2_b_A;
+    c2_g_y = c2_b_B;
+    c2_b_z = c2_f_x / c2_g_y;
+    c2_h_y = c2_b_z;
+    c2_sin_al1_p = c2_h_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,15);
-    c2_f_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
-    c2_h_y = sqrt(c2_f_x);
-    c2_c_A = c2_D * c2_b_y - c2_b_x * c2_h_y;
+    c2_g_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
+    c2_i_y = sqrt(c2_g_x);
+    c2_c_A = c2_D * c2_b_y - c2_b_x * c2_i_y;
     c2_c_B = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
-    c2_g_x = c2_c_A;
-    c2_i_y = c2_c_B;
-    c2_c_z = c2_g_x / c2_i_y;
-    c2_j_y = c2_c_z;
-    c2_sin_al1_n = c2_j_y;
+    c2_h_x = c2_c_A;
+    c2_j_y = c2_c_B;
+    c2_c_z = c2_h_x / c2_j_y;
+    c2_k_y = c2_c_z;
+    c2_sin_al1_n = c2_k_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,17);
-    c2_h_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
-    c2_k_y = sqrt(c2_h_x);
-    c2_d_A = c2_D * c2_b_x + c2_b_y * c2_k_y;
+    c2_i_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
+    c2_l_y = sqrt(c2_i_x);
+    c2_d_A = c2_D * c2_b_x + c2_b_y * c2_l_y;
     c2_d_B = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
-    c2_i_x = c2_d_A;
-    c2_l_y = c2_d_B;
-    c2_d_z = c2_i_x / c2_l_y;
-    c2_m_y = c2_d_z;
-    c2_cos_al1_p = c2_m_y;
+    c2_j_x = c2_d_A;
+    c2_m_y = c2_d_B;
+    c2_d_z = c2_j_x / c2_m_y;
+    c2_n_y = c2_d_z;
+    c2_cos_al1_p = c2_n_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,18);
-    c2_j_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
-    c2_n_y = sqrt(c2_j_x);
-    c2_e_A = c2_D * c2_b_x - c2_b_y * c2_n_y;
+    c2_k_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
+    c2_o_y = sqrt(c2_k_x);
+    c2_e_A = c2_D * c2_b_x - c2_b_y * c2_o_y;
     c2_e_B = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
-    c2_k_x = c2_e_A;
-    c2_o_y = c2_e_B;
-    c2_e_z = c2_k_x / c2_o_y;
-    c2_p_y = c2_e_z;
-    c2_cos_al1_n = c2_p_y;
+    c2_l_x = c2_e_A;
+    c2_p_y = c2_e_B;
+    c2_e_z = c2_l_x / c2_p_y;
+    c2_q_y = c2_e_z;
+    c2_cos_al1_n = c2_q_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,20);
     c2_al1_1 = c2_atan2(c2_sin_al1_p, c2_cos_al1_n);
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,22);
     c2_al1_2 = c2_atan2(c2_sin_al1_n, c2_cos_al1_p);
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,24);
-    c2_l_x = c2_cos_al2;
+    c2_m_x = c2_cos_al2;
     c2_k = 1.0;
     c2_b_k = c2_k;
     _SFD_EML_ARRAY_BOUNDS_CHECK("x", (int32_T)_SFD_INTEGER_CHECK("k", c2_b_k),
      1, 1, 1);
-    if(c2_l_x < -1.0) {
+    if(c2_m_x < -1.0) {
     } else {
       _SFD_EML_ARRAY_BOUNDS_CHECK("x", (int32_T)_SFD_INTEGER_CHECK("k", c2_b_k),
        1, 1, 1);
-      if(c2_l_x > 1.0) {
+      if(c2_m_x > 1.0) {
       } else {
         goto label_1;
       }
@@ -287,14 +291,14 @@ static void sf_c2_MPC_framework(void)
     sf_mex_call("error", 0U, 1U, 15,
      "Domain error. To compute complex results from real x, use \'acos(complex(x))\'.");
     label_1:;
-    c2_q_y = acos(c2_l_x);
-    c2_al2_p = c2_q_y;
+    c2_r_y = acos(c2_m_x);
+    c2_al2_p = c2_r_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,25);
     c2_al2_n = -c2_al2_p;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,27);
-    c2_m_x = c2_al1_1 + c2_al2_p;
-    c2_r_y = cos(c2_m_x);
-    if(CV_EML_IF(0, 1, c2_b_x == c2_b_a1 * c2_cos_al1_n + c2_b_a2 * c2_r_y)) {
+    c2_n_x = c2_al1_1 + c2_al2_p;
+    c2_s_y = cos(c2_n_x);
+    if(CV_EML_IF(0, 1, c2_b_x == c2_b_a1 * c2_cos_al1_n + c2_b_a2 * c2_s_y)) {
       _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,28);
       c2_al2_1 = c2_al2_p;
       _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,29);
@@ -306,11 +310,11 @@ static void sf_c2_MPC_framework(void)
       c2_al2_2 = c2_al2_p;
     }
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,35);
-    c2_n_x = c2_b_al1_c - c2_al1_1;
-    c2_s_y = fabs(c2_n_x);
-    c2_o_x = c2_b_al1_c - c2_al1_2;
+    c2_o_x = c2_b_al1_c - c2_al1_1;
     c2_t_y = fabs(c2_o_x);
-    if(CV_EML_IF(0, 2, c2_s_y < c2_t_y)) {
+    c2_p_x = c2_b_al1_c - c2_al1_2;
+    c2_u_y = fabs(c2_p_x);
+    if(CV_EML_IF(0, 2, c2_t_y < c2_u_y)) {
       _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,36);
       c2_b_al1 = c2_al1_1;
       _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,37);
@@ -567,10 +571,10 @@ static void sf_load_state_c2_MPC_framework(FILE *c2_file)
 /* SFunction Glue Code */
 void sf_c2_MPC_framework_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2373498997U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(3702482750U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(611184577U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(471165591U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2267698949U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(3302522005U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(477742053U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(401702944U);
 }
 
 mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
@@ -582,10 +586,10 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
   {
     mxArray *mxChecksum = mxCreateDoubleMatrix(4,1,mxREAL);
     double *pr = mxGetPr(mxChecksum);
-    pr[0] = (double)(3126831302U);
-    pr[1] = (double)(584437454U);
-    pr[2] = (double)(15617740U);
-    pr[3] = (double)(3073549992U);
+    pr[0] = (double)(4177632627U);
+    pr[1] = (double)(3369926759U);
+    pr[2] = (double)(2211162526U);
+    pr[3] = (double)(4053111967U);
     mxSetField(mxAutoinheritanceInfo,0,"checksum",mxChecksum);
   }
   {
@@ -800,10 +804,10 @@ static void chart_debug_initialization(SimStruct *S)
 
         /* Initialization of EML Model Coverage */
         _SFD_CV_INIT_EML(0,1,3,0,0,0,0,0);
-        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,1097);
-        _SFD_CV_INIT_EML_IF(0,0,92,132,748,909);
-        _SFD_CV_INIT_EML_IF(0,1,748,800,852,909);
-        _SFD_CV_INIT_EML_IF(0,2,919,963,1010,1064);
+        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,1105);
+        _SFD_CV_INIT_EML_IF(0,0,98,140,756,917);
+        _SFD_CV_INIT_EML_IF(0,1,756,808,860,917);
+        _SFD_CV_INIT_EML_IF(0,2,927,971,1018,1072);
         _SFD_TRANS_COV_WTS(0,0,0,1,0);
         if(chartAlreadyPresent==0)
         {
@@ -904,10 +908,10 @@ static void mdlSetWorkWidths_c2_MPC_framework(SimStruct *S)
     ssSetOptions(S,ssGetOptions(S)|SS_OPTION_WORKS_WITH_CODE_REUSE);
   }
 
-  ssSetChecksum0(S,(2432879665U));
-  ssSetChecksum1(S,(1543637493U));
-  ssSetChecksum2(S,(3786254510U));
-  ssSetChecksum3(S,(2888576702U));
+  ssSetChecksum0(S,(1702540849U));
+  ssSetChecksum1(S,(1166673137U));
+  ssSetChecksum2(S,(2209122499U));
+  ssSetChecksum3(S,(1272556604U));
 
   ssSetExplicitFCSSCtrl(S,1);
 }

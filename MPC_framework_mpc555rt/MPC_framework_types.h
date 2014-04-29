@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.698
+ * Model version                        : 1.907
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Tue Apr 29 11:48:54 2014
+ * Real-Time Workshop file generated on : Tue Apr 29 19:27:31 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Tue Apr 29 11:48:55 2014
+ * C source code generated on           : Tue Apr 29 19:27:32 2014
  */
 
 #ifndef _RTW_HEADER_MPC_framework_types_h_
@@ -31,6 +31,9 @@ typedef struct {
 } CSc1_MPC_framework_ChartStruct;
 
 #endif                                  /* _CSC1_MPC_FRAMEWORK_CHARTSTRUCT_ */
+
+/* Parameters for system: '<Root>/Inverse geometry' */
+typedef struct _rtP_MPC_f_Inversegeometry rtP_MPC_f_Inversegeometry;
 
 /* Parameters (auto storage) */
 typedef struct _Parameters_MPC_framework Parameters_MPC_framework;

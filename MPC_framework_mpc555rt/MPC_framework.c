@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.698
+ * Model version                        : 1.907
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Tue Apr 29 11:48:54 2014
+ * Real-Time Workshop file generated on : Tue Apr 29 19:27:31 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Tue Apr 29 11:48:55 2014
+ * C source code generated on           : Tue Apr 29 19:27:32 2014
  */
 
 #include "MPC_framework.h"
@@ -26,8 +26,8 @@
 #define MPC_framework_IN_NEGATIVE_MOV   (1)
 #define MPC_framework_IN_CONFIG         (2)
 #define MPC_framework_IN_BLUETOOTH      (1)
-#define MPC_framework_IN_HOLD           (1)
 #define MPC_framework_IN_TRAJECTORY     (2)
+#define MPC_framework_IN_HOLD           (1)
 #define MPC_framework_IN_HOLD_main      (1)
 
 /* Block signals (auto storage) */
@@ -90,92 +90,157 @@ real_T lfcbphdbbaaiimgd_sign(real_T eml_X)
   return eml_S;
 }
 
-/* Output and update for function-call system: '<Root>/Inverse geometry' */
+/* Initial conditions for atomic system: '<Root>/Inverse geometry' */
 
-void MPC_f_Inversegeometry(real_T rtu_X, real_T rtu_Y, real_T rtu_2, real_T
- rtu_3, real_T rtu_a1, real_T rtu_a2, rtB_MPC_f_Inversegeometry *localB)
+void MPC_fr_Inversegeometry_Init(rtDW_MPC_f_Inversegeometry *localDW,
+ rtP_MPC_f_Inversegeometry *localP)
 {
 
-  /* Embedded MATLAB: '<S6>/invgeo' */
-  {
-    real_T eml_d;
-    real_T eml_al1;
-    uint8_T eml_error;
-    real_T eml_z;
-    real_T eml_b_z;
-    real_T eml_c_z;
-    real_T eml_d_z;
-    real_T eml_r;
-    eml_d = pow(rtu_X, 2.0) + pow(rtu_Y, 2.0);
-    if((eml_d > pow(rtu_a1, 2.0) + pow(rtu_a2, 2.0)) || (eml_d < rtu_a1 -
-      rtu_a2)) {
-      eml_al1 = rtu_2;
-      eml_d = rtu_3;
-      eml_error = 1U;
-    } else {
-      eml_z = (((pow(rtu_X, 2.0) + pow(rtu_Y, 2.0)) - pow(rtu_a1, 2.0)) -
-       pow(rtu_a2, 2.0)) / (2.0 * rtu_a1 * rtu_a2);
-      eml_d = rtu_a1 + rtu_a2 * eml_z;
-      eml_al1 = (eml_d * rtu_Y + rtu_X * sqrt((pow(rtu_X, 2.0) + pow(rtu_Y,
-          2.0)) - pow(eml_d, 2.0))) / (pow(rtu_X, 2.0) + pow(rtu_Y, 2.0));
-      eml_b_z = (eml_d * rtu_Y - rtu_X * sqrt((pow(rtu_X, 2.0) + pow(rtu_Y,
-          2.0)) - pow(eml_d, 2.0))) / (pow(rtu_X, 2.0) + pow(rtu_Y, 2.0));
-      eml_c_z = (eml_d * rtu_X + rtu_Y * sqrt((pow(rtu_X, 2.0) + pow(rtu_Y,
-          2.0)) - pow(eml_d, 2.0))) / (pow(rtu_X, 2.0) + pow(rtu_Y, 2.0));
-      eml_d_z = (eml_d * rtu_X - rtu_Y * sqrt((pow(rtu_X, 2.0) + pow(rtu_Y,
-          2.0)) - pow(eml_d, 2.0))) / (pow(rtu_X, 2.0) + pow(rtu_Y, 2.0));
-      if(((boolean_T)rtIsNaN(eml_d_z)) || ((boolean_T)rtIsNaN(eml_al1))) {
-        eml_r = rtNaN;
-      } else if(((boolean_T)rtIsInf(eml_al1)) && ((boolean_T)rtIsInf(eml_d_z))) {
-        eml_r = rt_atan2(lfcbphdbbaaiimgd_sign(eml_al1),
-         lfcbphdbbaaiimgd_sign(eml_d_z));
-      } else if(eml_d_z == 0.0) {
-        if(eml_al1 > 0.0) {
-          eml_r = 1.5707963267948966E+000;
-        } else if(eml_al1 < 0.0) {
-          eml_r = -1.5707963267948966E+000;
+  /* InitializeConditions for UnitDelay: '<S36>/Delay Input1' */
+  localDW->DelayInput1_DSTATE = localP->DelayInput1_X0;
+
+  /* InitializeConditions for UnitDelay: '<S37>/Delay Input1' */
+  localDW->DelayInput1_DSTATE_i = localP->DelayInput1_X0_b;
+}
+
+/* Start for atomic system: '<Root>/Inverse geometry' */
+
+void MPC_f_Inversegeometry_Start(rtDW_MPC_f_Inversegeometry *localDW,
+ rtP_MPC_f_Inversegeometry *localP)
+{
+
+  /* Start for trigger SubSystem: '<S6>/Subsystem' */
+
+  /* end of Start for SubSystem: '<S6>/Subsystem' */
+}
+
+/* Output and update for atomic system: '<Root>/Inverse geometry' */
+
+void MPC_f_Inversegeometry(real_T rtu_X, real_T rtu_Y, real_T rtu_2, real_T
+ rtu_3, rtB_MPC_f_Inversegeometry *localB, rtDW_MPC_f_Inversegeometry *localDW,
+ rtP_MPC_f_Inversegeometry *localP, rtZCE_MPC_f_Inversegeometry *localZCE,
+ real_T *rtd_invgeo_alpha_1, real_T *rtd_invgeo_alpha_2, uint8_T
+ *rtd_invgeo_error)
+{
+
+  /* Logic: '<S6>/Logical Operator' incorporates:
+   *  RelationalOperator: '<S36>/FixPt Relational Operator'
+   *  RelationalOperator: '<S37>/FixPt Relational Operator'
+   *  UnitDelay: '<S36>/Delay Input1'
+   *  UnitDelay: '<S37>/Delay Input1'
+   */
+  localB->LogicalOperator = ((rtu_X != localDW->DelayInput1_DSTATE) || (rtu_Y !=
+    localDW->DelayInput1_DSTATE_i));
+
+  /* Outputs for trigger SubSystem: '<S6>/Subsystem' */
+  if((localB->LogicalOperator > 0) && (localZCE->Subsystem_ZCE == 0)) {
+
+    /* Embedded MATLAB: '<S38>/invgeo' incorporates:
+     *  Constant: '<S6>/a1'
+     *  Constant: '<S6>/a2'
+     */
+    {
+      real_T eml_y;
+      real_T eml_al1;
+      uint8_T eml_error;
+      real_T eml_z;
+      real_T eml_b_z;
+      real_T eml_c_z;
+      real_T eml_d_z;
+      real_T eml_r;
+      eml_y = sqrt(pow(rtu_X, 2.0) + pow(rtu_Y, 2.0));
+      if((pow(eml_y, 2.0) > pow(localP->a1_Value, 2.0) + pow(localP->a2_Value,
+         2.0)) || (eml_y < localP->a1_Value - localP->a2_Value)) {
+        eml_al1 = rtu_2;
+        eml_y = rtu_3;
+        eml_error = 1U;
+      } else {
+        eml_z = (((pow(rtu_X, 2.0) + pow(rtu_Y, 2.0)) - pow(localP->a1_Value,
+           2.0)) - pow(localP->a2_Value, 2.0)) / (2.0 * localP->a1_Value *
+         localP->a2_Value);
+        eml_y = localP->a1_Value + localP->a2_Value * eml_z;
+        eml_al1 = (eml_y * rtu_Y + rtu_X * sqrt((pow(rtu_X, 2.0) + pow(rtu_Y,
+            2.0)) - pow(eml_y, 2.0))) / (pow(rtu_X, 2.0) + pow(rtu_Y, 2.0));
+        eml_b_z = (eml_y * rtu_Y - rtu_X * sqrt((pow(rtu_X, 2.0) + pow(rtu_Y,
+            2.0)) - pow(eml_y, 2.0))) / (pow(rtu_X, 2.0) + pow(rtu_Y, 2.0));
+        eml_c_z = (eml_y * rtu_X + rtu_Y * sqrt((pow(rtu_X, 2.0) + pow(rtu_Y,
+            2.0)) - pow(eml_y, 2.0))) / (pow(rtu_X, 2.0) + pow(rtu_Y, 2.0));
+        eml_d_z = (eml_y * rtu_X - rtu_Y * sqrt((pow(rtu_X, 2.0) + pow(rtu_Y,
+            2.0)) - pow(eml_y, 2.0))) / (pow(rtu_X, 2.0) + pow(rtu_Y, 2.0));
+        if(((boolean_T)rtIsNaN(eml_d_z)) || ((boolean_T)rtIsNaN(eml_al1))) {
+          eml_r = rtNaN;
+        } else if(((boolean_T)rtIsInf(eml_al1)) &&
+         ((boolean_T)rtIsInf(eml_d_z))) {
+          eml_r = rt_atan2(lfcbphdbbaaiimgd_sign(eml_al1),
+           lfcbphdbbaaiimgd_sign(eml_d_z));
+        } else if(eml_d_z == 0.0) {
+          if(eml_al1 > 0.0) {
+            eml_r = 1.5707963267948966E+000;
+          } else if(eml_al1 < 0.0) {
+            eml_r = -1.5707963267948966E+000;
+          } else {
+            eml_r = 0.0;
+          }
         } else {
-          eml_r = 0.0;
+          eml_r = rt_atan2(eml_al1, eml_d_z);
         }
-      } else {
-        eml_r = rt_atan2(eml_al1, eml_d_z);
-      }
-      if(((boolean_T)rtIsNaN(eml_c_z)) || ((boolean_T)rtIsNaN(eml_b_z))) {
-        eml_b_z = rtNaN;
-      } else if(((boolean_T)rtIsInf(eml_b_z)) && ((boolean_T)rtIsInf(eml_c_z))) {
-        eml_b_z = rt_atan2(lfcbphdbbaaiimgd_sign(eml_b_z),
-         lfcbphdbbaaiimgd_sign(eml_c_z));
-      } else if(eml_c_z == 0.0) {
-        if(eml_b_z > 0.0) {
-          eml_b_z = 1.5707963267948966E+000;
-        } else if(eml_b_z < 0.0) {
-          eml_b_z = -1.5707963267948966E+000;
+        if(((boolean_T)rtIsNaN(eml_c_z)) || ((boolean_T)rtIsNaN(eml_b_z))) {
+          eml_b_z = rtNaN;
+        } else if(((boolean_T)rtIsInf(eml_b_z)) &&
+         ((boolean_T)rtIsInf(eml_c_z))) {
+          eml_b_z = rt_atan2(lfcbphdbbaaiimgd_sign(eml_b_z),
+           lfcbphdbbaaiimgd_sign(eml_c_z));
+        } else if(eml_c_z == 0.0) {
+          if(eml_b_z > 0.0) {
+            eml_b_z = 1.5707963267948966E+000;
+          } else if(eml_b_z < 0.0) {
+            eml_b_z = -1.5707963267948966E+000;
+          } else {
+            eml_b_z = 0.0;
+          }
         } else {
-          eml_b_z = 0.0;
+          eml_b_z = rt_atan2(eml_b_z, eml_c_z);
         }
-      } else {
-        eml_b_z = rt_atan2(eml_b_z, eml_c_z);
+        eml_al1 = acos(eml_z);
+        eml_y = -eml_al1;
+        if(rtu_X == localP->a1_Value * eml_d_z + localP->a2_Value * cos(eml_r +
+          eml_al1)) {
+          eml_c_z = eml_al1;
+        } else {
+          eml_c_z = eml_y;
+          eml_y = eml_al1;
+        }
+        if(fabs(rtu_2 - eml_r) < fabs(rtu_2 - eml_b_z)) {
+          eml_al1 = eml_r;
+          eml_y = eml_c_z;
+        } else {
+          eml_al1 = eml_b_z;
+        }
+        eml_error = 0U;
       }
-      eml_al1 = acos(eml_z);
-      eml_d = -eml_al1;
-      if(rtu_X == rtu_a1 * eml_d_z + rtu_a2 * cos(eml_r + eml_al1)) {
-        eml_c_z = eml_al1;
-      } else {
-        eml_c_z = eml_d;
-        eml_d = eml_al1;
-      }
-      if(fabs(rtu_2 - eml_r) < fabs(rtu_2 - eml_b_z)) {
-        eml_al1 = eml_r;
-        eml_d = eml_c_z;
-      } else {
-        eml_al1 = eml_b_z;
-      }
-      eml_error = 0U;
+      localB->al1 = eml_al1;
+      localB->al2 = eml_y;
+      localB->error = eml_error;
     }
-    localB->al1 = eml_al1;
-    localB->al2 = eml_d;
-    localB->error = eml_error;
   }
+  localZCE->Subsystem_ZCE = localB->LogicalOperator > 0 ? POS_ZCSIG : ZERO_ZCSIG;
+
+  /* end of Outputs for SubSystem: '<S6>/Subsystem' */
+
+  /* DataStoreWrite: '<S6>/Data Store Write' */
+  (*rtd_invgeo_alpha_1) = localB->al1;
+
+  /* DataStoreWrite: '<S6>/Data Store Write1' */
+  (*rtd_invgeo_alpha_2) = localB->al2;
+
+  /* DataStoreWrite: '<S6>/Data Store Write2' */
+  (*rtd_invgeo_error) = localB->error;
+
+  /* Update for UnitDelay: '<S36>/Delay Input1' */
+  localDW->DelayInput1_DSTATE = rtu_X;
+
+  /* Update for UnitDelay: '<S37>/Delay Input1' */
+  localDW->DelayInput1_DSTATE_i = rtu_Y;
 }
 
 /* Start for function-call system: '<Root>/controller_message sender' */
@@ -306,8 +371,6 @@ static void MPC_framework_PRIMITIVE(void )
       MPC_framework_B.TmpHiddenBufferAtSFunctionInp[0];
     MPC_framework_DWork.StateMachine.alpha2_ref =
       MPC_framework_B.TmpHiddenBufferAtSFunctionInp[1];
-    MPC_framework_DWork.invgeo_error = MAX_uint8_T;
-
     MPC_framework_DWork.StateMachine.is_CONTROLLER =
       (uint8_T)MPC_framework_IN_HOLD;
     MPC_framework_B.controller_message = 4U;
@@ -538,7 +601,7 @@ void MPC_fram_StateMachine(void)
       MPC_framework_B.init_out_value = MPC_framework_P.SFunction_p2;
       MPC_framework_B.init_out_trigger = 1U;
     }
-    goto sf_label_7_1_1;
+    goto sf_label_8_1_1;
     break;
    case MPC_framework_IN_INIT_ACK:
     MPC_framework_DWork.StateMachine.is_c1_MPC_framework =
@@ -551,7 +614,7 @@ void MPC_fram_StateMachine(void)
     MPC_framework_B.motor1_reference = (real_T)MPC_framework_P.SFunction_p5;
     MPC_framework_B.motor2_reference = (real_T)MPC_framework_P.SFunction_p5;
     MPC_framework_B.da_out_trigger = 1.0;
-    goto sf_label_7_1_1;
+    goto sf_label_8_1_1;
     break;
    case MPC_framework_IN_OPERATION:
     switch(MPC_framework_DWork.StateMachine.is_OPERATION) {
@@ -573,8 +636,6 @@ void MPC_fram_StateMachine(void)
           MPC_framework_B.TmpHiddenBufferAtSFunctionInp[0];
         MPC_framework_DWork.StateMachine.alpha2_ref =
           MPC_framework_B.TmpHiddenBufferAtSFunctionInp[1];
-        MPC_framework_DWork.invgeo_error = MAX_uint8_T;
-
         MPC_framework_DWork.StateMachine.is_CONTROLLER =
           (uint8_T)MPC_framework_IN_HOLD;
         MPC_framework_B.controller_message = 4U;
@@ -590,7 +651,7 @@ void MPC_fram_StateMachine(void)
       } else {
         MPC_framework_B.controller_enable = 0U;
       }
-      goto sf_label_7_1_1;
+      goto sf_label_8_1_1;
       break;
      case MPC_framework_IN_CONFIG:
       if(MPC_framework_B.CANMessageUnpackingCANdb_d == 1.0) {
@@ -610,8 +671,6 @@ void MPC_fram_StateMachine(void)
           MPC_framework_B.TmpHiddenBufferAtSFunctionInp[0];
         MPC_framework_DWork.StateMachine.alpha2_ref =
           MPC_framework_B.TmpHiddenBufferAtSFunctionInp[1];
-        MPC_framework_DWork.invgeo_error = MAX_uint8_T;
-
         MPC_framework_DWork.StateMachine.is_CONTROLLER =
           (uint8_T)MPC_framework_IN_HOLD;
         MPC_framework_B.controller_message = 4U;
@@ -648,7 +707,7 @@ void MPC_fram_StateMachine(void)
         MPC_framework_B.controller_enable = 0U;
         MPC_framework_B.sync_command = 0U;
       }
-      goto sf_label_7_1_1;
+      goto sf_label_8_1_1;
       break;
      case MPC_framework_IN_CONTROLLER:
       if(MPC_framework_B.CANMessageUnpackingCANdb_d == 1.0) {
@@ -664,7 +723,7 @@ void MPC_fram_StateMachine(void)
         MPC_framework_B.motor1_reference = (real_T)MPC_framework_P.SFunction_p5;
         MPC_framework_B.motor2_reference = (real_T)MPC_framework_P.SFunction_p5;
         MPC_framework_B.da_out_trigger = 1.0;
-        goto sf_label_7_1_1;
+        goto sf_label_8_1_1;
       } else if(MPC_framework_B.CANMessageUnpackingCANdb_d == 8.0) {
         MPC_framework_DWork.StateMachine.is_HOLD =
           (uint8_T)MPC_framewor_IN_NO_ACTIVE_CHILD;
@@ -673,7 +732,7 @@ void MPC_fram_StateMachine(void)
         MPC_framework_DWork.StateMachine.is_OPERATION =
           (uint8_T)MPC_framework_IN_BLUETOOTH;
         MPC_framework_B.operation_mode = 4U;
-        goto sf_label_7_1_1;
+        goto sf_label_8_1_1;
       } else if(MPC_framework_B.CANMessageUnpackingCANdb_d == 6.0) {
         MPC_framework_DWork.StateMachine.is_HOLD =
           (uint8_T)MPC_framewor_IN_NO_ACTIVE_CHILD;
@@ -682,45 +741,29 @@ void MPC_fram_StateMachine(void)
         MPC_framework_DWork.StateMachine.is_OPERATION =
           (uint8_T)MPC_framework_IN_CONFIG;
         MPC_framework_B.operation_mode = 3U;
-        goto sf_label_7_1_1;
+        goto sf_label_8_1_1;
       } else {
         switch(MPC_framework_DWork.StateMachine.is_CONTROLLER) {
          case MPC_framework_IN_HOLD:
-          if((MPC_framework_B.CANMessageUnpackingCANdb_d == 9.0) &&
-           (MPC_framework_B.controller_message == 1)) {
-            MPC_framework_DWork.StateMachine.is_HOLD =
-              (uint8_T)MPC_framewor_IN_NO_ACTIVE_CHILD;
-            MPC_framework_DWork.StateMachine.is_CONTROLLER =
-              (uint8_T)MPC_framework_IN_TRAJECTORY;
-            goto sf_label_7_1_1;
-          } else {
-            MPC_framework_B.controller_enable = 1U;
-            MPC_framework_B.motor1_reference =
-              MPC_framework_DWork.StateMachine.alpha1_ref;
-            MPC_framework_B.motor2_reference =
-              MPC_framework_DWork.StateMachine.alpha2_ref;
-            if(MPC_framework_DWork.invgeo_error == 1) {
-              MPC_framework_B.controller_message = 2U;
-            } else if(MPC_framework_DWork.invgeo_error == 0) {
+          MPC_framework_B.controller_enable = 1U;
+          MPC_framework_B.motor1_reference =
+            MPC_framework_DWork.StateMachine.alpha1_ref;
+          MPC_framework_B.motor2_reference =
+            MPC_framework_DWork.StateMachine.alpha2_ref;
+          if(MPC_framework_B.Inversegeometry.LogicalOperator == 1) {
+            if(MPC_framework_DWork.invgeo_error == 0) {
               MPC_framework_B.controller_message = 1U;
+            } else if(MPC_framework_DWork.invgeo_error == 1) {
+              MPC_framework_B.controller_message = 2U;
             } else {
-              if(MPC_framework_B.LogicalOperator != 0 == 1) {
-
-                MPC_f_Inversegeometry(MPC_framework_B.CANMessageUnpackingCANdb_o,
-                 MPC_framework_B.CANMessageUnpackingCANdb_g,
-                 MPC_framework_B.MathFunction, MPC_framework_B.MathFunction1,
-                 MPC_framework_P.a1_Value, MPC_framework_P.a2_Value,
-                 &MPC_framework_B.Inversegeometry);
-
-                MPC_framework_DWork.StateMachine.is_HOLD =
-                  (uint8_T)MPC_framework_IN_HOLD_main;
-              }
-              goto sf_label_7_1_1;
+              goto sf_label_8_1_1;
             }
+          } else {
+            goto sf_label_8_1_1;
           }
           break;
          case MPC_framework_IN_TRAJECTORY:
-          goto sf_label_7_1_1;
+          goto sf_label_8_1_1;
           break;
          default:
           MPC_framework_DWork.StateMachine.is_CONTROLLER =
@@ -731,14 +774,14 @@ void MPC_fram_StateMachine(void)
 
           MPC_framework_DWork.StateMachine.is_HOLD =
             (uint8_T)MPC_framework_IN_HOLD_main;
-          goto sf_label_7_1_1;
+          goto sf_label_8_1_1;
           break;
         }
       }
       break;
      case MPC_framework_IN_PRIMITIVE:
       MPC_framework_PRIMITIVE();
-      goto sf_label_7_1_1;
+      goto sf_label_8_1_1;
       break;
      default:
       MPC_framework_DWork.StateMachine.is_OPERATION =
@@ -749,7 +792,7 @@ void MPC_fram_StateMachine(void)
       MPC_framework_B.motor1_reference = (real_T)MPC_framework_P.SFunction_p5;
       MPC_framework_B.motor2_reference = (real_T)MPC_framework_P.SFunction_p5;
       MPC_framework_B.da_out_trigger = 1.0;
-      goto sf_label_7_1_1;
+      goto sf_label_8_1_1;
       break;
     }
     break;
@@ -758,7 +801,7 @@ void MPC_fram_StateMachine(void)
       (uint8_T)MPC_framework_IN_INIT;
     MPC_framework_B.init_out_value = MPC_framework_P.SFunction_p1;
     MPC_framework_B.init_out_enable = 1U;
-    goto sf_label_7_1_1;
+    goto sf_label_8_1_1;
     break;
   }
   MPC_framework_DWork.StateMachine.is_HOLD =
@@ -766,10 +809,8 @@ void MPC_fram_StateMachine(void)
 
   controller_messagesen();
 
-  MPC_framework_DWork.invgeo_error = MAX_uint8_T;
-
   MPC_framework_DWork.StateMachine.is_HOLD = (uint8_T)MPC_framework_IN_HOLD_main;
-  sf_label_7_1_1:;
+  sf_label_8_1_1:;
 }
 
 /* Model step function for TID0 */
@@ -786,15 +827,15 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
     rate_monotonic_scheduler();
   }
 
-  /* Block: <S67>/CAN Receive (S-Function)
+  /* Block: <S60>/CAN Receive (S-Function)
    * Receive CAN message 
    */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime),&GlobalModuleCAN_A,7) ==
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime),&GlobalModuleCAN_A,5) ==
    MSG_RECEIVED ){
 
-    /* Output and update for function-call system: '<S14>/input_coords message unpacking' */
+    /* Output and update for function-call system: '<S13>/CAN Message Unpacking (CANdb)' */
 
-    /*--- S-Function Block: <S68>/CAN Message Unpacking (CANdb) ---*/
+    /*--- S-Function Block: <S58>/CAN Message Unpacking (CANdb) ---*/
     {
       /* final input words that contain all signals as read from the message */
       uint32_T input_word0 = 0;
@@ -818,51 +859,11 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
         | (MPC_framework_B.Datarealtime.DATA[6] << 16)
         | (MPC_framework_B.Datarealtime.DATA[7] << 24);
 
-      /* --------------- START Unpacking CANdb signal y ------------------ 
-       *  startBit                = 16
-       *  length                  = 16
-       *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = SIGNED
-       *  signalType              = STANDARD
-       *  offset                  = 0.0 
-       *  factor                  = 1.0 
-       * -----------------------------------------------------------------------*/
-
-      {
-        /* create temporary storage for unpacking */
-        uint32_T working_word0;
-
-        /* -- unpack the signal --- */
-        working_word0 = input_word0;
-
-        /* The signal is to be unpacked in little endian format
-           No need to reverse the bytes in each word */
-
-        unscaledSignal = working_word0 >> 16;
-        unscaledSignal &= 0xFFFF;
-      }
-
-      /* -- sign extend the unpacked signal --- */
-      unscaledSignal = ( (unscaledSignal >> 15 ) & 0x1 ) ? ((uint32_T)
-        0xFFFF0000) | unscaledSignal : unscaledSignal;
-
-      {
-        /* map scaledValue back to a real taking care of sign */
-        {
-          int32_T temp = (int32_T) unscaledSignal;
-          MPC_framework_B.CANMessageUnpackingCANdb_o = (real64_T) temp;
-        }
-
-        /* no scaling required */
-      }
-
-      /* ------ END Unpacking CANdb signal y  ----- */
-
-      /* --------------- START Unpacking CANdb signal x ------------------ 
+      /* --------------- START Unpacking CANdb signal init_ack_sync ------------------ 
        *  startBit                = 0
-       *  length                  = 16
+       *  length                  = 8
        *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = SIGNED
+       *  dataType                = UNSIGNED
        *  signalType              = STANDARD
        *  offset                  = 0.0 
        *  factor                  = 1.0 
@@ -879,36 +880,35 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
            No need to reverse the bytes in each word */
 
         unscaledSignal = working_word0;
-        unscaledSignal &= 0xFFFF;
+        unscaledSignal &= 0xFF;
       }
-
-      /* -- sign extend the unpacked signal --- */
-      unscaledSignal = ( (unscaledSignal >> 15 ) & 0x1 ) ? ((uint32_T)
-        0xFFFF0000) | unscaledSignal : unscaledSignal;
 
       {
         /* map scaledValue back to a real taking care of sign */
-        {
-          int32_T temp = (int32_T) unscaledSignal;
-          MPC_framework_B.CANMessageUnpackingCANdb_g = (real64_T) temp;
-        }
+        MPC_framework_B.CANMessageUnpackingCANdb_m = (real64_T) unscaledSignal;
 
         /* no scaling required */
       }
 
-      /* ------ END Unpacking CANdb signal x  ----- */
+      /* ------ END Unpacking CANdb signal init_ack_sync  ----- */
     }
+
+    /* RelationalOperator: '<S62>/Compare' incorporates:
+     *  Constant: '<S62>/Constant'
+     */
+    MPC_framework_B.Compare_i = (MPC_framework_B.CANMessageUnpackingCANdb_m ==
+      MPC_framework_P.Constant_Value);
   }
 
-  /* Block: <S46>/CAN Receive (S-Function)
+  /* Block: <S61>/CAN Receive (S-Function)
    * Receive CAN message 
    */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_p),&GlobalModuleCAN_A,4)
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_p),&GlobalModuleCAN_A,6)
    == MSG_RECEIVED ){
 
-    /* Output and update for function-call system: '<S11>/incremental_in_value unpacking' */
+    /* Output and update for function-call system: '<S13>/CAN Message Unpacking (CANdb)1' */
 
-    /*--- S-Function Block: <S47>/CAN Message Unpacking (CANdb) ---*/
+    /*--- S-Function Block: <S59>/CAN Message Unpacking (CANdb) ---*/
     {
       /* final input words that contain all signals as read from the message */
       uint32_T input_word0 = 0;
@@ -931,6 +931,219 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
         | (MPC_framework_B.Datarealtime_p.DATA[5] << 8)
         | (MPC_framework_B.Datarealtime_p.DATA[6] << 16)
         | (MPC_framework_B.Datarealtime_p.DATA[7] << 24);
+
+      /* --------------- START Unpacking CANdb signal init_ack_async ------------------ 
+       *  startBit                = 0
+       *  length                  = 8
+       *  desiredSignalByteLayout = LittleEndian 
+       *  dataType                = UNSIGNED
+       *  signalType              = STANDARD
+       *  offset                  = 0.0 
+       *  factor                  = 1.0 
+       * -----------------------------------------------------------------------*/
+
+      {
+        /* create temporary storage for unpacking */
+        uint32_T working_word0;
+
+        /* -- unpack the signal --- */
+        working_word0 = input_word0;
+
+        /* The signal is to be unpacked in little endian format
+           No need to reverse the bytes in each word */
+
+        unscaledSignal = working_word0;
+        unscaledSignal &= 0xFF;
+      }
+
+      {
+        /* map scaledValue back to a real taking care of sign */
+        MPC_framework_B.CANMessageUnpackingCANdb_e = (real64_T) unscaledSignal;
+
+        /* no scaling required */
+      }
+
+      /* ------ END Unpacking CANdb signal init_ack_async  ----- */
+    }
+
+    /* RelationalOperator: '<S63>/Compare' incorporates:
+     *  Constant: '<S63>/Constant'
+     */
+    MPC_framework_B.Compare = (MPC_framework_B.CANMessageUnpackingCANdb_e ==
+      MPC_framework_P.Constant_Value_h);
+  }
+
+  /* Block: <S79>/CAN Receive (S-Function)
+   * Receive CAN message 
+   */
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_b),&GlobalModuleCAN_A,8)
+   == MSG_RECEIVED ){
+
+    /* Output and update for function-call system: '<S16>/primitive_button message unpacking' */
+
+    /*--- S-Function Block: <S80>/CAN Message Unpacking (CANdb) ---*/
+    {
+      /* final input words that contain all signals as read from the message */
+      uint32_T input_word0 = 0;
+      uint32_T input_word1 = 0;
+
+      /* variable to hold each unscaled unpacked signal */
+      uint32_T unscaledSignal = 0;
+
+      /* CAN message byte array is not guaranteed to be word aligned,
+       * copy bytes individually to the input_words */
+
+      input_word0 |=
+        MPC_framework_B.Datarealtime_b.DATA[0]
+        | (MPC_framework_B.Datarealtime_b.DATA[1] << 8)
+        | (MPC_framework_B.Datarealtime_b.DATA[2] << 16)
+        | (MPC_framework_B.Datarealtime_b.DATA[3] << 24);
+
+      input_word1 |=
+        MPC_framework_B.Datarealtime_b.DATA[4]
+        | (MPC_framework_B.Datarealtime_b.DATA[5] << 8)
+        | (MPC_framework_B.Datarealtime_b.DATA[6] << 16)
+        | (MPC_framework_B.Datarealtime_b.DATA[7] << 24);
+
+      /* --------------- START Unpacking CANdb signal primitive_message ------------------ 
+       *  startBit                = 0
+       *  length                  = 8
+       *  desiredSignalByteLayout = LittleEndian 
+       *  dataType                = UNSIGNED
+       *  signalType              = STANDARD
+       *  offset                  = 0.0 
+       *  factor                  = 1.0 
+       * -----------------------------------------------------------------------*/
+
+      {
+        /* create temporary storage for unpacking */
+        uint32_T working_word0;
+
+        /* -- unpack the signal --- */
+        working_word0 = input_word0;
+
+        /* The signal is to be unpacked in little endian format
+           No need to reverse the bytes in each word */
+
+        unscaledSignal = working_word0;
+        unscaledSignal &= 0xFF;
+      }
+
+      {
+
+        /* processor word size, 32 bits, is wide enough 
+           to perform the scaling calculation */
+        uint32_T workingoutput = (uint32_T) unscaledSignal;
+
+        /* no scaling required */
+
+        /* narrow the working datatype, uint32_T 
+           to the output datatype, uint8_T */
+        MPC_framework_B.CANMessageUnpackingCANdb_l = (uint8_T) workingoutput;
+      }
+
+      /* ------ END Unpacking CANdb signal primitive_message  ----- */
+    }
+  }
+
+  /* Block: <S40>/CAN Receive (S-Function)
+   * Receive CAN message 
+   */
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_pd),&GlobalModuleCAN_A,3)
+   == MSG_RECEIVED ){
+
+    /* Output and update for function-call system: '<S9>/async_request message unpacking' */
+
+    /*--- S-Function Block: <S41>/CAN Message Unpacking (CANdb) ---*/
+    {
+      /* final input words that contain all signals as read from the message */
+      uint32_T input_word0 = 0;
+      uint32_T input_word1 = 0;
+
+      /* variable to hold each unscaled unpacked signal */
+      uint32_T unscaledSignal = 0;
+
+      /* CAN message byte array is not guaranteed to be word aligned,
+       * copy bytes individually to the input_words */
+
+      input_word0 |=
+        MPC_framework_B.Datarealtime_pd.DATA[0]
+        | (MPC_framework_B.Datarealtime_pd.DATA[1] << 8)
+        | (MPC_framework_B.Datarealtime_pd.DATA[2] << 16)
+        | (MPC_framework_B.Datarealtime_pd.DATA[3] << 24);
+
+      input_word1 |=
+        MPC_framework_B.Datarealtime_pd.DATA[4]
+        | (MPC_framework_B.Datarealtime_pd.DATA[5] << 8)
+        | (MPC_framework_B.Datarealtime_pd.DATA[6] << 16)
+        | (MPC_framework_B.Datarealtime_pd.DATA[7] << 24);
+
+      /* --------------- START Unpacking CANdb signal async_request ------------------ 
+       *  startBit                = 0
+       *  length                  = 8
+       *  desiredSignalByteLayout = LittleEndian 
+       *  dataType                = UNSIGNED
+       *  signalType              = STANDARD
+       *  offset                  = 0.0 
+       *  factor                  = 1.0 
+       * -----------------------------------------------------------------------*/
+
+      {
+        /* create temporary storage for unpacking */
+        uint32_T working_word0;
+
+        /* -- unpack the signal --- */
+        working_word0 = input_word0;
+
+        /* The signal is to be unpacked in little endian format
+           No need to reverse the bytes in each word */
+
+        unscaledSignal = working_word0;
+        unscaledSignal &= 0xFF;
+      }
+
+      {
+        /* map scaledValue back to a real taking care of sign */
+        MPC_framework_B.CANMessageUnpackingCANdb_d = (real64_T) unscaledSignal;
+
+        /* no scaling required */
+      }
+
+      /* ------ END Unpacking CANdb signal async_request  ----- */
+    }
+  }
+
+  /* Block: <S49>/CAN Receive (S-Function)
+   * Receive CAN message 
+   */
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_pr),&GlobalModuleCAN_A,4)
+   == MSG_RECEIVED ){
+
+    /* Output and update for function-call system: '<S11>/incremental_in_value unpacking' */
+
+    /*--- S-Function Block: <S50>/CAN Message Unpacking (CANdb) ---*/
+    {
+      /* final input words that contain all signals as read from the message */
+      uint32_T input_word0 = 0;
+      uint32_T input_word1 = 0;
+
+      /* variable to hold each unscaled unpacked signal */
+      uint32_T unscaledSignal = 0;
+
+      /* CAN message byte array is not guaranteed to be word aligned,
+       * copy bytes individually to the input_words */
+
+      input_word0 |=
+        MPC_framework_B.Datarealtime_pr.DATA[0]
+        | (MPC_framework_B.Datarealtime_pr.DATA[1] << 8)
+        | (MPC_framework_B.Datarealtime_pr.DATA[2] << 16)
+        | (MPC_framework_B.Datarealtime_pr.DATA[3] << 24);
+
+      input_word1 |=
+        MPC_framework_B.Datarealtime_pr.DATA[4]
+        | (MPC_framework_B.Datarealtime_pr.DATA[5] << 8)
+        | (MPC_framework_B.Datarealtime_pr.DATA[6] << 16)
+        | (MPC_framework_B.Datarealtime_pr.DATA[7] << 24);
 
       /* --------------- START Unpacking CANdb signal cntr1 ------------------ 
        *  startBit                = 0
@@ -1068,15 +1281,15 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
     }
   }
 
-  /* Block: <S57>/CAN Receive (S-Function)
+  /* Block: <S68>/CAN Receive (S-Function)
    * Receive CAN message 
    */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_h),&GlobalModuleCAN_A,5)
+  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_l),&GlobalModuleCAN_A,7)
    == MSG_RECEIVED ){
 
-    /* Output and update for function-call system: '<S13>/CAN Message Unpacking (CANdb)' */
+    /* Output and update for function-call system: '<S14>/input_coords message unpacking' */
 
-    /*--- S-Function Block: <S55>/CAN Message Unpacking (CANdb) ---*/
+    /*--- S-Function Block: <S69>/CAN Message Unpacking (CANdb) ---*/
     {
       /* final input words that contain all signals as read from the message */
       uint32_T input_word0 = 0;
@@ -1089,22 +1302,22 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
        * copy bytes individually to the input_words */
 
       input_word0 |=
-        MPC_framework_B.Datarealtime_h.DATA[0]
-        | (MPC_framework_B.Datarealtime_h.DATA[1] << 8)
-        | (MPC_framework_B.Datarealtime_h.DATA[2] << 16)
-        | (MPC_framework_B.Datarealtime_h.DATA[3] << 24);
+        MPC_framework_B.Datarealtime_l.DATA[0]
+        | (MPC_framework_B.Datarealtime_l.DATA[1] << 8)
+        | (MPC_framework_B.Datarealtime_l.DATA[2] << 16)
+        | (MPC_framework_B.Datarealtime_l.DATA[3] << 24);
 
       input_word1 |=
-        MPC_framework_B.Datarealtime_h.DATA[4]
-        | (MPC_framework_B.Datarealtime_h.DATA[5] << 8)
-        | (MPC_framework_B.Datarealtime_h.DATA[6] << 16)
-        | (MPC_framework_B.Datarealtime_h.DATA[7] << 24);
+        MPC_framework_B.Datarealtime_l.DATA[4]
+        | (MPC_framework_B.Datarealtime_l.DATA[5] << 8)
+        | (MPC_framework_B.Datarealtime_l.DATA[6] << 16)
+        | (MPC_framework_B.Datarealtime_l.DATA[7] << 24);
 
-      /* --------------- START Unpacking CANdb signal init_ack_sync ------------------ 
-       *  startBit                = 0
-       *  length                  = 8
+      /* --------------- START Unpacking CANdb signal y ------------------ 
+       *  startBit                = 16
+       *  length                  = 16
        *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = UNSIGNED
+       *  dataType                = SIGNED
        *  signalType              = STANDARD
        *  offset                  = 0.0 
        *  factor                  = 1.0 
@@ -1120,64 +1333,31 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
         /* The signal is to be unpacked in little endian format
            No need to reverse the bytes in each word */
 
-        unscaledSignal = working_word0;
-        unscaledSignal &= 0xFF;
+        unscaledSignal = working_word0 >> 16;
+        unscaledSignal &= 0xFFFF;
       }
+
+      /* -- sign extend the unpacked signal --- */
+      unscaledSignal = ( (unscaledSignal >> 15 ) & 0x1 ) ? ((uint32_T)
+        0xFFFF0000) | unscaledSignal : unscaledSignal;
 
       {
         /* map scaledValue back to a real taking care of sign */
-        MPC_framework_B.CANMessageUnpackingCANdb_m = (real64_T) unscaledSignal;
+        {
+          int32_T temp = (int32_T) unscaledSignal;
+          MPC_framework_B.CANMessageUnpackingCANdb_o = (real64_T) temp;
+        }
 
         /* no scaling required */
       }
 
-      /* ------ END Unpacking CANdb signal init_ack_sync  ----- */
-    }
+      /* ------ END Unpacking CANdb signal y  ----- */
 
-    /* RelationalOperator: '<S59>/Compare' incorporates:
-     *  Constant: '<S59>/Constant'
-     */
-    MPC_framework_B.Compare_i = (MPC_framework_B.CANMessageUnpackingCANdb_m ==
-      MPC_framework_P.Constant_Value);
-  }
-
-  /* Block: <S58>/CAN Receive (S-Function)
-   * Receive CAN message 
-   */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_pu),&GlobalModuleCAN_A,6)
-   == MSG_RECEIVED ){
-
-    /* Output and update for function-call system: '<S13>/CAN Message Unpacking (CANdb)1' */
-
-    /*--- S-Function Block: <S56>/CAN Message Unpacking (CANdb) ---*/
-    {
-      /* final input words that contain all signals as read from the message */
-      uint32_T input_word0 = 0;
-      uint32_T input_word1 = 0;
-
-      /* variable to hold each unscaled unpacked signal */
-      uint32_T unscaledSignal = 0;
-
-      /* CAN message byte array is not guaranteed to be word aligned,
-       * copy bytes individually to the input_words */
-
-      input_word0 |=
-        MPC_framework_B.Datarealtime_pu.DATA[0]
-        | (MPC_framework_B.Datarealtime_pu.DATA[1] << 8)
-        | (MPC_framework_B.Datarealtime_pu.DATA[2] << 16)
-        | (MPC_framework_B.Datarealtime_pu.DATA[3] << 24);
-
-      input_word1 |=
-        MPC_framework_B.Datarealtime_pu.DATA[4]
-        | (MPC_framework_B.Datarealtime_pu.DATA[5] << 8)
-        | (MPC_framework_B.Datarealtime_pu.DATA[6] << 16)
-        | (MPC_framework_B.Datarealtime_pu.DATA[7] << 24);
-
-      /* --------------- START Unpacking CANdb signal init_ack_async ------------------ 
+      /* --------------- START Unpacking CANdb signal x ------------------ 
        *  startBit                = 0
-       *  length                  = 8
+       *  length                  = 16
        *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = UNSIGNED
+       *  dataType                = SIGNED
        *  signalType              = STANDARD
        *  offset                  = 0.0 
        *  factor                  = 1.0 
@@ -1194,188 +1374,39 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
            No need to reverse the bytes in each word */
 
         unscaledSignal = working_word0;
-        unscaledSignal &= 0xFF;
+        unscaledSignal &= 0xFFFF;
       }
+
+      /* -- sign extend the unpacked signal --- */
+      unscaledSignal = ( (unscaledSignal >> 15 ) & 0x1 ) ? ((uint32_T)
+        0xFFFF0000) | unscaledSignal : unscaledSignal;
 
       {
         /* map scaledValue back to a real taking care of sign */
-        MPC_framework_B.CANMessageUnpackingCANdb_e = (real64_T) unscaledSignal;
+        {
+          int32_T temp = (int32_T) unscaledSignal;
+          MPC_framework_B.CANMessageUnpackingCANdb_g = (real64_T) temp;
+        }
 
         /* no scaling required */
       }
 
-      /* ------ END Unpacking CANdb signal init_ack_async  ----- */
-    }
-
-    /* RelationalOperator: '<S60>/Compare' incorporates:
-     *  Constant: '<S60>/Constant'
-     */
-    MPC_framework_B.Compare = (MPC_framework_B.CANMessageUnpackingCANdb_e ==
-      MPC_framework_P.Constant_Value_h);
-  }
-
-  /* Block: <S78>/CAN Receive (S-Function)
-   * Receive CAN message 
-   */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_b),&GlobalModuleCAN_A,8)
-   == MSG_RECEIVED ){
-
-    /* Output and update for function-call system: '<S16>/primitive_button message unpacking' */
-
-    /*--- S-Function Block: <S79>/CAN Message Unpacking (CANdb) ---*/
-    {
-      /* final input words that contain all signals as read from the message */
-      uint32_T input_word0 = 0;
-      uint32_T input_word1 = 0;
-
-      /* variable to hold each unscaled unpacked signal */
-      uint32_T unscaledSignal = 0;
-
-      /* CAN message byte array is not guaranteed to be word aligned,
-       * copy bytes individually to the input_words */
-
-      input_word0 |=
-        MPC_framework_B.Datarealtime_b.DATA[0]
-        | (MPC_framework_B.Datarealtime_b.DATA[1] << 8)
-        | (MPC_framework_B.Datarealtime_b.DATA[2] << 16)
-        | (MPC_framework_B.Datarealtime_b.DATA[3] << 24);
-
-      input_word1 |=
-        MPC_framework_B.Datarealtime_b.DATA[4]
-        | (MPC_framework_B.Datarealtime_b.DATA[5] << 8)
-        | (MPC_framework_B.Datarealtime_b.DATA[6] << 16)
-        | (MPC_framework_B.Datarealtime_b.DATA[7] << 24);
-
-      /* --------------- START Unpacking CANdb signal primitive_message ------------------ 
-       *  startBit                = 0
-       *  length                  = 8
-       *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = UNSIGNED
-       *  signalType              = STANDARD
-       *  offset                  = 0.0 
-       *  factor                  = 1.0 
-       * -----------------------------------------------------------------------*/
-
-      {
-        /* create temporary storage for unpacking */
-        uint32_T working_word0;
-
-        /* -- unpack the signal --- */
-        working_word0 = input_word0;
-
-        /* The signal is to be unpacked in little endian format
-           No need to reverse the bytes in each word */
-
-        unscaledSignal = working_word0;
-        unscaledSignal &= 0xFF;
-      }
-
-      {
-
-        /* processor word size, 32 bits, is wide enough 
-           to perform the scaling calculation */
-        uint32_T workingoutput = (uint32_T) unscaledSignal;
-
-        /* no scaling required */
-
-        /* narrow the working datatype, uint32_T 
-           to the output datatype, uint8_T */
-        MPC_framework_B.CANMessageUnpackingCANdb_l = (uint8_T) workingoutput;
-      }
-
-      /* ------ END Unpacking CANdb signal primitive_message  ----- */
+      /* ------ END Unpacking CANdb signal x  ----- */
     }
   }
 
-  /* Block: <S37>/CAN Receive (S-Function)
-   * Receive CAN message 
-   */
-  if( receiveCanMessage(&(MPC_framework_B.Datarealtime_pd),&GlobalModuleCAN_A,3)
-   == MSG_RECEIVED ){
-
-    /* Output and update for function-call system: '<S9>/async_request message unpacking' */
-
-    /*--- S-Function Block: <S38>/CAN Message Unpacking (CANdb) ---*/
-    {
-      /* final input words that contain all signals as read from the message */
-      uint32_T input_word0 = 0;
-      uint32_T input_word1 = 0;
-
-      /* variable to hold each unscaled unpacked signal */
-      uint32_T unscaledSignal = 0;
-
-      /* CAN message byte array is not guaranteed to be word aligned,
-       * copy bytes individually to the input_words */
-
-      input_word0 |=
-        MPC_framework_B.Datarealtime_pd.DATA[0]
-        | (MPC_framework_B.Datarealtime_pd.DATA[1] << 8)
-        | (MPC_framework_B.Datarealtime_pd.DATA[2] << 16)
-        | (MPC_framework_B.Datarealtime_pd.DATA[3] << 24);
-
-      input_word1 |=
-        MPC_framework_B.Datarealtime_pd.DATA[4]
-        | (MPC_framework_B.Datarealtime_pd.DATA[5] << 8)
-        | (MPC_framework_B.Datarealtime_pd.DATA[6] << 16)
-        | (MPC_framework_B.Datarealtime_pd.DATA[7] << 24);
-
-      /* --------------- START Unpacking CANdb signal async_request ------------------ 
-       *  startBit                = 0
-       *  length                  = 8
-       *  desiredSignalByteLayout = LittleEndian 
-       *  dataType                = UNSIGNED
-       *  signalType              = STANDARD
-       *  offset                  = 0.0 
-       *  factor                  = 1.0 
-       * -----------------------------------------------------------------------*/
-
-      {
-        /* create temporary storage for unpacking */
-        uint32_T working_word0;
-
-        /* -- unpack the signal --- */
-        working_word0 = input_word0;
-
-        /* The signal is to be unpacked in little endian format
-           No need to reverse the bytes in each word */
-
-        unscaledSignal = working_word0;
-        unscaledSignal &= 0xFF;
-      }
-
-      {
-        /* map scaledValue back to a real taking care of sign */
-        MPC_framework_B.CANMessageUnpackingCANdb_d = (real64_T) unscaledSignal;
-
-        /* no scaling required */
-      }
-
-      /* ------ END Unpacking CANdb signal async_request  ----- */
-    }
-  }
-
-  /* Logic: '<S14>/Logical Operator' incorporates:
-   *  RelationalOperator: '<S65>/FixPt Relational Operator'
-   *  RelationalOperator: '<S66>/FixPt Relational Operator'
-   *  UnitDelay: '<S65>/Delay Input1'
-   *  UnitDelay: '<S66>/Delay Input1'
-   */
-  MPC_framework_B.LogicalOperator = ((MPC_framework_B.CANMessageUnpackingCANdb_o
-    != MPC_framework_DWork.DelayInput1_DSTATE) ||
-    (MPC_framework_B.CANMessageUnpackingCANdb_g !=
-    MPC_framework_DWork.DelayInput1_DSTATE_c));
+  /* SubSystem: '<Root>/Inverse geometry' */
+  MPC_f_Inversegeometry(MPC_framework_B.CANMessageUnpackingCANdb_o,
+   MPC_framework_B.CANMessageUnpackingCANdb_g, MPC_framework_B.MathFunction,
+   MPC_framework_B.MathFunction1, &MPC_framework_B.Inversegeometry,
+   &MPC_framework_DWork.Inversegeometry, (rtP_MPC_f_Inversegeometry *)
+   &MPC_framework_P.Inversegeometry,
+   &MPC_framework_PrevZCSigState.Inversegeometry,
+   &MPC_framework_DWork.invgeo_alpha_1, &MPC_framework_DWork.invgeo_alpha_2,
+   &MPC_framework_DWork.invgeo_error);
 
   /* Stateflow: '<Root>/State Machine' */
   MPC_fram_StateMachine();
-
-  /* DataStoreWrite: '<Root>/Data Store Write' */
-  MPC_framework_DWork.invgeo_alpha_1 = MPC_framework_B.Inversegeometry.al1;
-
-  /* DataStoreWrite: '<Root>/Data Store Write1' */
-  MPC_framework_DWork.invgeo_alpha_2 = MPC_framework_B.Inversegeometry.al2;
-
-  /* DataStoreWrite: '<Root>/Data Store Write2' */
-  MPC_framework_DWork.invgeo_error = MPC_framework_B.Inversegeometry.error;
 
   /* Outputs for enable SubSystem: '<Root>/Controller' */
   if(MPC_framework_B.controller_enable > 0U) {
@@ -1922,8 +1953,8 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
     sendCanMessage(&GlobalModuleCAN_A,&MPC_framework_B.incremental_out_valuemessagep);
   }
 
-  /* RelationalOperator: '<S71>/FixPt Relational Operator' incorporates:
-   *  UnitDelay: '<S71>/Delay Input1'
+  /* RelationalOperator: '<S72>/FixPt Relational Operator' incorporates:
+   *  UnitDelay: '<S72>/Delay Input1'
    */
   rtb_Edge_d = (MPC_framework_B.operation_mode !=
     MPC_framework_DWork.DelayInput1_DSTATE_m);
@@ -1933,7 +1964,7 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
 
     /* Output and update for trigger system: '<S15>/operation_mode_changed sender' */
 
-    /*--- S-Function Block: <S72>/operation_mode_changed message packing ---*/
+    /*--- S-Function Block: <S73>/operation_mode_changed message packing ---*/
     {
       /* final output words that individual signals are |'d into */
       uint32_T output_word0 = 0;
@@ -2117,9 +2148,9 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
     MPC_framework_B.stop_trigger > 0 ? POS_ZCSIG : ZERO_ZCSIG;
 
   /* Logic: '<S20>/Logical Operator' incorporates:
-   *  RelationalOperator: '<S96>/Compare'
-   *  RelationalOperator: '<S97>/FixPt Relational Operator'
-   *  UnitDelay: '<S97>/Delay Input1'
+   *  RelationalOperator: '<S97>/Compare'
+   *  RelationalOperator: '<S98>/FixPt Relational Operator'
+   *  UnitDelay: '<S98>/Delay Input1'
    */
   rtb_LogicalOperator = ((MPC_framework_B.sync_command !=
     MPC_framework_DWork.DelayInput1_DSTATE_h) && (MPC_framework_B.sync_command >
@@ -2130,7 +2161,7 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
 
     /* Output and update for trigger system: '<S20>/sync_command sender' */
 
-    /*--- S-Function Block: <S98>/sync_command message packing ---*/
+    /*--- S-Function Block: <S99>/sync_command message packing ---*/
     {
       /* final output words that individual signals are |'d into */
       uint32_T output_word0 = 0;
@@ -2213,7 +2244,7 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
   MPC_framework_PrevZCSigState.sync_commandsender_ZCE =
     (int32_T)rtb_LogicalOperator ? POS_ZCSIG : ZERO_ZCSIG;
 
-  /* Block: <S92>/CAN Receive (S-Function)
+  /* Block: <S93>/CAN Receive (S-Function)
    * Receive CAN message 
    */
   if( receiveCanMessage(&(MPC_framework_B.Datarealtime_k),&GlobalModuleCAN_A,9)
@@ -2221,7 +2252,7 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
 
     /* Output and update for function-call system: '<S19>/stop_button message packing' */
 
-    /*--- S-Function Block: <S93>/CAN Message Unpacking (CANdb) ---*/
+    /*--- S-Function Block: <S94>/CAN Message Unpacking (CANdb) ---*/
     {
       /* final input words that contain all signals as read from the message */
       uint32_T input_word0 = 0;
@@ -2280,18 +2311,10 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
     }
   }
 
-  /* Update for UnitDelay: '<S65>/Delay Input1' */
-  MPC_framework_DWork.DelayInput1_DSTATE =
-    MPC_framework_B.CANMessageUnpackingCANdb_o;
-
-  /* Update for UnitDelay: '<S66>/Delay Input1' */
-  MPC_framework_DWork.DelayInput1_DSTATE_c =
-    MPC_framework_B.CANMessageUnpackingCANdb_g;
-
-  /* Update for UnitDelay: '<S71>/Delay Input1' */
+  /* Update for UnitDelay: '<S72>/Delay Input1' */
   MPC_framework_DWork.DelayInput1_DSTATE_m = MPC_framework_B.operation_mode;
 
-  /* Update for UnitDelay: '<S97>/Delay Input1' */
+  /* Update for UnitDelay: '<S98>/Delay Input1' */
   MPC_framework_DWork.DelayInput1_DSTATE_h = MPC_framework_B.sync_command;
 }
 
@@ -2452,11 +2475,15 @@ void MPC_framework_initialize(boolean_T firstTime)
     (void) memset((char_T *) &MPC_framework_DWork,0,
      sizeof(D_Work_MPC_framework));
     {
-      real_T *dwork_ptr = (real_T *) &MPC_framework_DWork.DelayInput1_DSTATE;
+      real_T *dwork_ptr = (real_T *) &MPC_framework_DWork.invgeo_alpha_2;
       dwork_ptr[0] = 0.0;
       dwork_ptr[1] = 0.0;
-      dwork_ptr[2] = 0.0;
-      dwork_ptr[3] = 0.0;
+    }
+    {
+      real_T *dwork_ptr = (real_T *)
+        &MPC_framework_DWork.Inversegeometry.DelayInput1_DSTATE;
+      dwork_ptr[0] = 0.0;
+      dwork_ptr[1] = 0.0;
     }
 
     /* initialize non-finites */
@@ -2559,16 +2586,6 @@ void MPC_framework_initialize(boolean_T firstTime)
 
     /* -- Resource Configuration : MPC555dkConfig::TOUCAN : [END] --- */
 
-    /* Initialize TouCAN module CAN_A, buffer 7 for operation with polling.
-     * Received message identifier 0x10
-     */
-    initCanRx(&GlobalModuleCAN_A,7,CAN_MESSAGE_STANDARD,16);
-
-    /* Initialize TouCAN module CAN_A, buffer 4 for operation with polling.
-     * Received message identifier 0x7
-     */
-    initCanRx(&GlobalModuleCAN_A,4,CAN_MESSAGE_STANDARD,7);
-
     /* Initialize TouCAN module CAN_A, buffer 5 for operation with polling.
      * Received message identifier 0x2
      */
@@ -2588,6 +2605,20 @@ void MPC_framework_initialize(boolean_T firstTime)
      * Received message identifier 0xc
      */
     initCanRx(&GlobalModuleCAN_A,3,CAN_MESSAGE_STANDARD,12);
+
+    /* Initialize TouCAN module CAN_A, buffer 4 for operation with polling.
+     * Received message identifier 0x7
+     */
+    initCanRx(&GlobalModuleCAN_A,4,CAN_MESSAGE_STANDARD,7);
+
+    /* Initialize TouCAN module CAN_A, buffer 7 for operation with polling.
+     * Received message identifier 0xf
+     */
+    initCanRx(&GlobalModuleCAN_A,7,CAN_MESSAGE_STANDARD,15);
+
+    /*atomic Subsystem Block: '<Root>/Inverse geometry' */
+    MPC_f_Inversegeometry_Start(&MPC_framework_DWork.Inversegeometry,
+     (rtP_MPC_f_Inversegeometry *) &MPC_framework_P.Inversegeometry);
 
     /*atomic Subsystem Block: '<Root>/State Machine' */
     MPC_fram_StateMachine_Start();
@@ -2622,7 +2653,7 @@ void MPC_framework_initialize(boolean_T firstTime)
 
     /* Start for trigger system: '<S15>/operation_mode_changed sender' */
 
-    /*--- S-Function Block: <S72>/operation_mode_changed message packing ---*/
+    /*--- S-Function Block: <S73>/operation_mode_changed message packing ---*/
     MPC_framework_B.operation_mode_changedmessage.ID = 13U;
     MPC_framework_B.operation_mode_changedmessage.type = 0U;
     MPC_framework_B.operation_mode_changedmessage.LENGTH = 1U;
@@ -2643,7 +2674,7 @@ void MPC_framework_initialize(boolean_T firstTime)
 
     /* Start for trigger system: '<S20>/sync_command sender' */
 
-    /*--- S-Function Block: <S98>/sync_command message packing ---*/
+    /*--- S-Function Block: <S99>/sync_command message packing ---*/
     MPC_framework_B.sync_commandmessagepacking.ID = 14U;
     MPC_framework_B.sync_commandmessagepacking.type = 0U;
     MPC_framework_B.sync_commandmessagepacking.LENGTH = 1U;
@@ -2671,21 +2702,21 @@ void MPC_framework_initialize(boolean_T firstTime)
 
   MPC_framework_PrevZCSigState.operation_mode_changedsender_ZCE = POS_ZCSIG;
 
+  MPC_framework_PrevZCSigState.Inversegeometry.Subsystem_ZCE = POS_ZCSIG;
+
   MPC_framework_PrevZCSigState.Init2messagesender_ZCE = POS_ZCSIG;
 
-  /* InitializeConditions for UnitDelay: '<S65>/Delay Input1' */
-  MPC_framework_DWork.DelayInput1_DSTATE = MPC_framework_P.DelayInput1_X0;
-
-  /* InitializeConditions for UnitDelay: '<S66>/Delay Input1' */
-  MPC_framework_DWork.DelayInput1_DSTATE_c = MPC_framework_P.DelayInput1_X0_m;
+  /*atomic Subsystem Block: '<Root>/Inverse geometry' */
+  MPC_fr_Inversegeometry_Init(&MPC_framework_DWork.Inversegeometry,
+   (rtP_MPC_f_Inversegeometry *) &MPC_framework_P.Inversegeometry);
 
   /*atomic Subsystem Block: '<Root>/State Machine' */
   MPC_frame_StateMachine_Init();
 
-  /* InitializeConditions for UnitDelay: '<S71>/Delay Input1' */
-  MPC_framework_DWork.DelayInput1_DSTATE_m = MPC_framework_P.DelayInput1_X0_f;
+  /* InitializeConditions for UnitDelay: '<S72>/Delay Input1' */
+  MPC_framework_DWork.DelayInput1_DSTATE_m = MPC_framework_P.DelayInput1_X0;
 
-  /* InitializeConditions for UnitDelay: '<S97>/Delay Input1' */
+  /* InitializeConditions for UnitDelay: '<S98>/Delay Input1' */
   MPC_framework_DWork.DelayInput1_DSTATE_h = MPC_framework_P.DelayInput1_X0_k;
 }
 

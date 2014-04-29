@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.698
+ * Model version                        : 1.907
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Tue Apr 29 11:48:54 2014
+ * Real-Time Workshop file generated on : Tue Apr 29 19:27:31 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Tue Apr 29 11:48:55 2014
+ * C source code generated on           : Tue Apr 29 19:27:32 2014
  */
 
 #ifndef _RTW_HEADER_MPC_framework_h_
@@ -58,24 +58,36 @@
 
 /* Block signals for system '<Root>/Inverse geometry' */
 typedef struct {
-  real_T al1;                           /* '<S6>/invgeo' */
-  real_T al2;                           /* '<S6>/invgeo' */
-  uint8_T error;                        /* '<S6>/invgeo' */
+  real_T al1;                           /* '<S38>/invgeo' */
+  real_T al2;                           /* '<S38>/invgeo' */
+  uint8_T LogicalOperator;              /* '<S6>/Logical Operator' */
+  uint8_T error;                        /* '<S38>/invgeo' */
 } rtB_MPC_f_Inversegeometry;
+
+/* Block states (auto storage) for system '<Root>/Inverse geometry' */
+typedef struct {
+  real_T DelayInput1_DSTATE;            /* '<S36>/Delay Input1' */
+  real_T DelayInput1_DSTATE_i;          /* '<S37>/Delay Input1' */
+} rtDW_MPC_f_Inversegeometry;
+
+/* Zero-crossing (trigger) state for system '<Root>/Inverse geometry' */
+typedef struct {
+  ZCSigState Subsystem_ZCE;             /* '<S6>/Subsystem' */
+} rtZCE_MPC_f_Inversegeometry;
 
 /* Block signals (auto storage) */
 typedef struct {
-  CAN_FRAME Datarealtime;               /* '<S67>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_p;             /* '<S46>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_h;             /* '<S57>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_pu;            /* '<S58>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_b;             /* '<S78>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_pd;            /* '<S37>/CAN Receive (S-Function)' */
-  CAN_FRAME Datarealtime_k;             /* '<S92>/CAN Receive (S-Function)' */
-  CAN_FRAME sync_commandmessagepacking; /* '<S98>/sync_command message packing' */
+  CAN_FRAME Datarealtime;               /* '<S60>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime_p;             /* '<S61>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime_b;             /* '<S79>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime_pd;            /* '<S40>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime_pr;            /* '<S49>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime_l;             /* '<S68>/CAN Receive (S-Function)' */
+  CAN_FRAME Datarealtime_k;             /* '<S93>/CAN Receive (S-Function)' */
+  CAN_FRAME sync_commandmessagepacking; /* '<S99>/sync_command message packing' */
   CAN_FRAME stopmessagepacking;         /* '<S18>/stop message packing' */
   CAN_FRAME request_incremental_valuemessa; /* '<S17>/request_incremental_value message packing' */
-  CAN_FRAME operation_mode_changedmessage; /* '<S72>/operation_mode_changed message packing' */
+  CAN_FRAME operation_mode_changedmessage; /* '<S73>/operation_mode_changed message packing' */
   CAN_FRAME incremental_out_valuemessagep; /* '<S12>/incremental_out_value message packing' */
   CAN_FRAME controller_messagepacking; /* '<S10>/controller_message packing' */
   CAN_FRAME initmessagepacking;         /* '<S5>/init message packing' */
@@ -84,23 +96,23 @@ typedef struct {
   real_T MathFunction;                  /* '<S11>/Math Function' */
   real_T MathFunction1;                 /* '<S11>/Math Function1' */
   real_T Switch[2];                     /* '<Root>/Switch' */
-  real_T CANMessageUnpackingCANdb;      /* '<S93>/CAN Message Unpacking (CANdb)' */
-  real_T CANMessageUnpackingCANdb_o;    /* '<S68>/CAN Message Unpacking (CANdb)' */
-  real_T CANMessageUnpackingCANdb_g;    /* '<S68>/CAN Message Unpacking (CANdb)' */
-  real_T CANMessageUnpackingCANdb_e;    /* '<S56>/CAN Message Unpacking (CANdb)' */
-  real_T CANMessageUnpackingCANdb_m;    /* '<S55>/CAN Message Unpacking (CANdb)' */
-  real_T CANMessageUnpackingCANdb_h;    /* '<S47>/CAN Message Unpacking (CANdb)' */
-  real_T CANMessageUnpackingCANdb_c;    /* '<S47>/CAN Message Unpacking (CANdb)' */
-  real_T CANMessageUnpackingCANdb_d;    /* '<S38>/CAN Message Unpacking (CANdb)' */
+  real_T CANMessageUnpackingCANdb;      /* '<S94>/CAN Message Unpacking (CANdb)' */
+  real_T CANMessageUnpackingCANdb_o;    /* '<S69>/CAN Message Unpacking (CANdb)' */
+  real_T CANMessageUnpackingCANdb_g;    /* '<S69>/CAN Message Unpacking (CANdb)' */
+  real_T CANMessageUnpackingCANdb_e;    /* '<S59>/CAN Message Unpacking (CANdb)' */
+  real_T CANMessageUnpackingCANdb_m;    /* '<S58>/CAN Message Unpacking (CANdb)' */
+  real_T CANMessageUnpackingCANdb_h;    /* '<S50>/CAN Message Unpacking (CANdb)' */
+  real_T CANMessageUnpackingCANdb_c;    /* '<S50>/CAN Message Unpacking (CANdb)' */
+  real_T CANMessageUnpackingCANdb_d;    /* '<S41>/CAN Message Unpacking (CANdb)' */
   real_T TmpHiddenBufferAtSFunctionInp[2]; /* '<Root>/State Machine' */
   real_T motor1_reference;              /* '<Root>/State Machine' */
   real_T motor2_reference;              /* '<Root>/State Machine' */
   real_T da_out_trigger;                /* '<Root>/State Machine' */
   real_T alpha1_ref;                    /* '<S2>/alpha1_ref' */
   real_T alpha2_ref;                    /* '<S2>/alpha2_ref' */
-  uint8_T CANMessageUnpackingCANdb_l;   /* '<S79>/CAN Message Unpacking (CANdb)' */
-  uint8_T Compare;                      /* '<S60>/Compare' */
-  uint8_T Compare_i;                    /* '<S59>/Compare' */
+  uint8_T CANMessageUnpackingCANdb_l;   /* '<S80>/CAN Message Unpacking (CANdb)' */
+  uint8_T Compare;                      /* '<S63>/Compare' */
+  uint8_T Compare_i;                    /* '<S62>/Compare' */
   uint8_T init_out_value;               /* '<Root>/State Machine' */
   uint8_T init_out_enable;              /* '<Root>/State Machine' */
   uint8_T init_out_trigger;             /* '<Root>/State Machine' */
@@ -109,14 +121,11 @@ typedef struct {
   uint8_T operation_mode;               /* '<Root>/State Machine' */
   uint8_T sync_command;                 /* '<Root>/State Machine' */
   uint8_T controller_message;           /* '<Root>/State Machine' */
-  boolean_T LogicalOperator;            /* '<S14>/Logical Operator' */
   rtB_MPC_f_Inversegeometry Inversegeometry; /* '<Root>/Inverse geometry' */
 } BlockIO_MPC_framework;
 
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
-  real_T DelayInput1_DSTATE;            /* '<S65>/Delay Input1' */
-  real_T DelayInput1_DSTATE_c;          /* '<S66>/Delay Input1' */
   real_T invgeo_alpha_2;                /* '<Root>/ingeo_alpha_2' */
   real_T invgeo_alpha_1;                /* '<Root>/invgeo_alpha_1' */
   CSc1_MPC_framework_ChartStruct StateMachine; /* '<Root>/State Machine' */
@@ -125,9 +134,10 @@ typedef struct {
   int_T Init1messagesender_MODE;        /* '<Root>/Init 1 message sender' */
   int_T incremental_out_valuesender_MO; /* '<Root>/incremental_out_value sender' */
   int_T request_incremental_valuesende; /* '<Root>/request_incremental_value sender' */
-  uint8_T DelayInput1_DSTATE_m;         /* '<S71>/Delay Input1' */
-  uint8_T DelayInput1_DSTATE_h;         /* '<S97>/Delay Input1' */
+  uint8_T DelayInput1_DSTATE_m;         /* '<S72>/Delay Input1' */
+  uint8_T DelayInput1_DSTATE_h;         /* '<S98>/Delay Input1' */
   uint8_T invgeo_error;                 /* '<Root>/invgeo_error' */
+  rtDW_MPC_f_Inversegeometry Inversegeometry; /* '<Root>/Inverse geometry' */
 } D_Work_MPC_framework;
 
 /* Zero-crossing (trigger) state */
@@ -135,25 +145,30 @@ typedef struct {
   ZCSigState sync_commandsender_ZCE;    /* '<S20>/sync_command sender' */
   ZCSigState stopmessagesender_ZCE;     /* '<Root>/stop message sender' */
   ZCSigState operation_mode_changedsender_ZCE; /* '<S15>/operation_mode_changed sender' */
+  rtZCE_MPC_f_Inversegeometry Inversegeometry; /* '<Root>/Inverse geometry' */
   ZCSigState Init2messagesender_ZCE;    /* '<Root>/Init 2 message sender' */
 } PrevZCSigStates_MPC_framework;
+
+/* Parameters for system: '<Root>/Inverse geometry' */
+struct _rtP_MPC_f_Inversegeometry {
+  real_T a1_Value;                      /* Expression: a1
+                                         * '<S6>/a1'
+                                         */
+  real_T a2_Value;                      /* Expression: a2
+                                         * '<S6>/a2'
+                                         */
+  real_T DelayInput1_X0;                /* Expression: vinit
+                                         * '<S36>/Delay Input1'
+                                         */
+  real_T DelayInput1_X0_b;              /* Expression: vinit
+                                         * '<S37>/Delay Input1'
+                                         */
+};
 
 /* Parameters (auto storage) */
 struct _Parameters_MPC_framework {
   real_T increments_per_half_turn_V;    /* Computed Parameter: Value
                                          * '<S11>/increments_per_half_turn'
-                                         */
-  real_T a1_Value;                      /* Expression: a1
-                                         * '<Root>/a1'
-                                         */
-  real_T a2_Value;                      /* Expression: a2
-                                         * '<Root>/a2'
-                                         */
-  real_T DelayInput1_X0;                /* Expression: vinit
-                                         * '<S65>/Delay Input1'
-                                         */
-  real_T DelayInput1_X0_m;              /* Expression: vinit
-                                         * '<S66>/Delay Input1'
                                          */
   real_T ingeo_alpha_2_InitialValue;    /* Expression: 0
                                          * '<Root>/ingeo_alpha_2'
@@ -162,10 +177,10 @@ struct _Parameters_MPC_framework {
                                          * '<Root>/invgeo_alpha_1'
                                          */
   real_T Constant_Value;                /* Computed Parameter: Value
-                                         * '<S59>/Constant'
+                                         * '<S62>/Constant'
                                          */
   real_T Constant_Value_h;              /* Computed Parameter: Value
-                                         * '<S60>/Constant'
+                                         * '<S63>/Constant'
                                          */
   uint16_T Constant_Value_i;            /* Expression: motor_stopped_value
                                          * '<S3>/Constant'
@@ -182,11 +197,11 @@ struct _Parameters_MPC_framework {
   uint8_T Switch_Threshold;             /* Computed Parameter: Threshold
                                          * '<Root>/Switch'
                                          */
-  uint8_T DelayInput1_X0_f;             /* Computed Parameter: X0
-                                         * '<S71>/Delay Input1'
+  uint8_T DelayInput1_X0;               /* Computed Parameter: X0
+                                         * '<S72>/Delay Input1'
                                          */
   uint8_T DelayInput1_X0_k;             /* Computed Parameter: X0
-                                         * '<S97>/Delay Input1'
+                                         * '<S98>/Delay Input1'
                                          */
   uint8_T invgeo_error_InitialValue;    /* Computed Parameter: InitialValue
                                          * '<Root>/invgeo_error'
@@ -203,6 +218,7 @@ struct _Parameters_MPC_framework {
   uint8_T Constant_Value_n;             /* Computed Parameter: Value
                                          * '<S18>/Constant'
                                          */
+  rtP_MPC_f_Inversegeometry Inversegeometry; /* '<Root>/Inverse geometry' */
 };
 
 /* Real-time Model Data Structure */
@@ -294,74 +310,75 @@ extern RT_MODEL_MPC_framework *MPC_framework_M;
  * '<S33>'  : MPC_framework/Init 2 message sender/TouCAN Transmit/Non-Configurable Inport Control
  * '<S34>'  : MPC_framework/Init 2 message sender/TouCAN Transmit/Pass through output
  * '<S35>'  : MPC_framework/Init 2 message sender/TouCAN Transmit/Pass through output/Pass through input
- * '<S36>'  : MPC_framework/Inverse geometry/invgeo
- * '<S37>'  : MPC_framework/async_request receiver1/async_request message receive
- * '<S38>'  : MPC_framework/async_request receiver1/async_request message unpacking
- * '<S39>'  : MPC_framework/async_request receiver1/async_request message receive/Configurable Outport Control
- * '<S40>'  : MPC_framework/async_request receiver1/async_request message receive/Non-Configurable Outport Control1
- * '<S41>'  : MPC_framework/controller_message sender/TouCAN Transmit
- * '<S42>'  : MPC_framework/controller_message sender/TouCAN Transmit/Configurable Outport Control
- * '<S43>'  : MPC_framework/controller_message sender/TouCAN Transmit/Non-Configurable Inport Control
- * '<S44>'  : MPC_framework/controller_message sender/TouCAN Transmit/Pass through output
- * '<S45>'  : MPC_framework/controller_message sender/TouCAN Transmit/Pass through output/Pass through input
- * '<S46>'  : MPC_framework/incremental_in_value receiver/TouCAN Receive
- * '<S47>'  : MPC_framework/incremental_in_value receiver/incremental_in_value unpacking
- * '<S48>'  : MPC_framework/incremental_in_value receiver/TouCAN Receive/Configurable Outport Control
- * '<S49>'  : MPC_framework/incremental_in_value receiver/TouCAN Receive/Non-Configurable Outport Control1
- * '<S50>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit
- * '<S51>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit/Configurable Outport Control
- * '<S52>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit/Non-Configurable Inport Control
- * '<S53>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit/Pass through output
- * '<S54>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit/Pass through output/Pass through input
- * '<S55>'  : MPC_framework/init_ack_messages receiver/CAN Message Unpacking (CANdb)
- * '<S56>'  : MPC_framework/init_ack_messages receiver/CAN Message Unpacking (CANdb)1
- * '<S57>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive
- * '<S58>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive1
- * '<S59>'  : MPC_framework/init_ack_messages receiver/CAN Message Unpacking (CANdb)/Compare To Constant
- * '<S60>'  : MPC_framework/init_ack_messages receiver/CAN Message Unpacking (CANdb)1/Compare To Constant
- * '<S61>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive/Configurable Outport Control
- * '<S62>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive/Non-Configurable Outport Control1
- * '<S63>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive1/Configurable Outport Control
- * '<S64>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive1/Non-Configurable Outport Control1
- * '<S65>'  : MPC_framework/input_coords receiver/Detect Change
- * '<S66>'  : MPC_framework/input_coords receiver/Detect Change1
- * '<S67>'  : MPC_framework/input_coords receiver/async_request message receive
- * '<S68>'  : MPC_framework/input_coords receiver/input_coords message unpacking
- * '<S69>'  : MPC_framework/input_coords receiver/async_request message receive/Configurable Outport Control
- * '<S70>'  : MPC_framework/input_coords receiver/async_request message receive/Non-Configurable Outport Control1
- * '<S71>'  : MPC_framework/operation_mode handler/Detect Change
- * '<S72>'  : MPC_framework/operation_mode handler/operation_mode_changed sender
- * '<S73>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit
- * '<S74>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit/Configurable Outport Control
- * '<S75>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit/Non-Configurable Inport Control
- * '<S76>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit/Pass through output
- * '<S77>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit/Pass through output/Pass through input
- * '<S78>'  : MPC_framework/primitive_button receiver/primitive_button message receive
- * '<S79>'  : MPC_framework/primitive_button receiver/primitive_button message unpacking
- * '<S80>'  : MPC_framework/primitive_button receiver/primitive_button message receive/Configurable Outport Control
- * '<S81>'  : MPC_framework/primitive_button receiver/primitive_button message receive/Non-Configurable Outport Control1
- * '<S82>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit
- * '<S83>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Configurable Outport Control
- * '<S84>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Non-Configurable Inport Control
- * '<S85>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Pass through output
- * '<S86>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Pass through output/Pass through input
- * '<S87>'  : MPC_framework/stop message sender/TouCAN Transmit
- * '<S88>'  : MPC_framework/stop message sender/TouCAN Transmit/Configurable Outport Control
- * '<S89>'  : MPC_framework/stop message sender/TouCAN Transmit/Non-Configurable Inport Control
- * '<S90>'  : MPC_framework/stop message sender/TouCAN Transmit/Pass through output
- * '<S91>'  : MPC_framework/stop message sender/TouCAN Transmit/Pass through output/Pass through input
- * '<S92>'  : MPC_framework/stop_button receiver/TouCAN Receive
- * '<S93>'  : MPC_framework/stop_button receiver/stop_button message packing
- * '<S94>'  : MPC_framework/stop_button receiver/TouCAN Receive/Configurable Outport Control
- * '<S95>'  : MPC_framework/stop_button receiver/TouCAN Receive/Non-Configurable Outport Control1
- * '<S96>'  : MPC_framework/sync_command handler/Compare To Zero1
- * '<S97>'  : MPC_framework/sync_command handler/Detect Change2
- * '<S98>'  : MPC_framework/sync_command handler/sync_command sender
- * '<S99>'  : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit
- * '<S100>' : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit/Configurable Outport Control
- * '<S101>' : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit/Non-Configurable Inport Control
- * '<S102>' : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit/Pass through output
- * '<S103>' : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit/Pass through output/Pass through input
+ * '<S36>'  : MPC_framework/Inverse geometry/Detect Change
+ * '<S37>'  : MPC_framework/Inverse geometry/Detect Change1
+ * '<S38>'  : MPC_framework/Inverse geometry/Subsystem
+ * '<S39>'  : MPC_framework/Inverse geometry/Subsystem/invgeo
+ * '<S40>'  : MPC_framework/async_request receiver1/async_request message receive
+ * '<S41>'  : MPC_framework/async_request receiver1/async_request message unpacking
+ * '<S42>'  : MPC_framework/async_request receiver1/async_request message receive/Configurable Outport Control
+ * '<S43>'  : MPC_framework/async_request receiver1/async_request message receive/Non-Configurable Outport Control1
+ * '<S44>'  : MPC_framework/controller_message sender/TouCAN Transmit
+ * '<S45>'  : MPC_framework/controller_message sender/TouCAN Transmit/Configurable Outport Control
+ * '<S46>'  : MPC_framework/controller_message sender/TouCAN Transmit/Non-Configurable Inport Control
+ * '<S47>'  : MPC_framework/controller_message sender/TouCAN Transmit/Pass through output
+ * '<S48>'  : MPC_framework/controller_message sender/TouCAN Transmit/Pass through output/Pass through input
+ * '<S49>'  : MPC_framework/incremental_in_value receiver/TouCAN Receive
+ * '<S50>'  : MPC_framework/incremental_in_value receiver/incremental_in_value unpacking
+ * '<S51>'  : MPC_framework/incremental_in_value receiver/TouCAN Receive/Configurable Outport Control
+ * '<S52>'  : MPC_framework/incremental_in_value receiver/TouCAN Receive/Non-Configurable Outport Control1
+ * '<S53>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit
+ * '<S54>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit/Configurable Outport Control
+ * '<S55>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit/Non-Configurable Inport Control
+ * '<S56>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit/Pass through output
+ * '<S57>'  : MPC_framework/incremental_out_value sender/TouCAN Transmit/Pass through output/Pass through input
+ * '<S58>'  : MPC_framework/init_ack_messages receiver/CAN Message Unpacking (CANdb)
+ * '<S59>'  : MPC_framework/init_ack_messages receiver/CAN Message Unpacking (CANdb)1
+ * '<S60>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive
+ * '<S61>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive1
+ * '<S62>'  : MPC_framework/init_ack_messages receiver/CAN Message Unpacking (CANdb)/Compare To Constant
+ * '<S63>'  : MPC_framework/init_ack_messages receiver/CAN Message Unpacking (CANdb)1/Compare To Constant
+ * '<S64>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive/Configurable Outport Control
+ * '<S65>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive/Non-Configurable Outport Control1
+ * '<S66>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive1/Configurable Outport Control
+ * '<S67>'  : MPC_framework/init_ack_messages receiver/TouCAN Receive1/Non-Configurable Outport Control1
+ * '<S68>'  : MPC_framework/input_coords receiver/input_coords message receive
+ * '<S69>'  : MPC_framework/input_coords receiver/input_coords message unpacking
+ * '<S70>'  : MPC_framework/input_coords receiver/input_coords message receive/Configurable Outport Control
+ * '<S71>'  : MPC_framework/input_coords receiver/input_coords message receive/Non-Configurable Outport Control1
+ * '<S72>'  : MPC_framework/operation_mode handler/Detect Change
+ * '<S73>'  : MPC_framework/operation_mode handler/operation_mode_changed sender
+ * '<S74>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit
+ * '<S75>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit/Configurable Outport Control
+ * '<S76>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit/Non-Configurable Inport Control
+ * '<S77>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit/Pass through output
+ * '<S78>'  : MPC_framework/operation_mode handler/operation_mode_changed sender/TouCAN Transmit/Pass through output/Pass through input
+ * '<S79>'  : MPC_framework/primitive_button receiver/primitive_button message receive
+ * '<S80>'  : MPC_framework/primitive_button receiver/primitive_button message unpacking
+ * '<S81>'  : MPC_framework/primitive_button receiver/primitive_button message receive/Configurable Outport Control
+ * '<S82>'  : MPC_framework/primitive_button receiver/primitive_button message receive/Non-Configurable Outport Control1
+ * '<S83>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit
+ * '<S84>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Configurable Outport Control
+ * '<S85>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Non-Configurable Inport Control
+ * '<S86>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Pass through output
+ * '<S87>'  : MPC_framework/request_incremental_value sender/TouCAN Transmit/Pass through output/Pass through input
+ * '<S88>'  : MPC_framework/stop message sender/TouCAN Transmit
+ * '<S89>'  : MPC_framework/stop message sender/TouCAN Transmit/Configurable Outport Control
+ * '<S90>'  : MPC_framework/stop message sender/TouCAN Transmit/Non-Configurable Inport Control
+ * '<S91>'  : MPC_framework/stop message sender/TouCAN Transmit/Pass through output
+ * '<S92>'  : MPC_framework/stop message sender/TouCAN Transmit/Pass through output/Pass through input
+ * '<S93>'  : MPC_framework/stop_button receiver/TouCAN Receive
+ * '<S94>'  : MPC_framework/stop_button receiver/stop_button message packing
+ * '<S95>'  : MPC_framework/stop_button receiver/TouCAN Receive/Configurable Outport Control
+ * '<S96>'  : MPC_framework/stop_button receiver/TouCAN Receive/Non-Configurable Outport Control1
+ * '<S97>'  : MPC_framework/sync_command handler/Compare To Zero1
+ * '<S98>'  : MPC_framework/sync_command handler/Detect Change2
+ * '<S99>'  : MPC_framework/sync_command handler/sync_command sender
+ * '<S100>' : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit
+ * '<S101>' : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit/Configurable Outport Control
+ * '<S102>' : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit/Non-Configurable Inport Control
+ * '<S103>' : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit/Pass through output
+ * '<S104>' : MPC_framework/sync_command handler/sync_command sender/TouCAN Transmit/Pass through output/Pass through input
  */
 
 #endif                                  /* _RTW_HEADER_MPC_framework_h_ */

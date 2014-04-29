@@ -2,6 +2,7 @@
 clear
 clc
 
+fundamental_sample_time = 0.01;
 %% CAN communication parameters
 init_1_message_frequency = 0.01;
 
@@ -21,7 +22,8 @@ DA_max = uint16(hex2dec('FFFF'));
 motor_stopped_value = DA_max / 2;
 motor_positive_value = DA_max * 0.6;
 motor_negative_value = DA_max * 0.4;
+trajectory_time = 2; % desired trajectory running time in seconds
 
 %% Robot parameters
-a1 = 1; % Segment 1 length
-a2 = 0.75; % segment 2 length
+a1 = 1000; % Segment 1 length
+a2 = 750; % segment 2 length

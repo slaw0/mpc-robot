@@ -1,0 +1,107 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDefines(block,system) void
+   %openfile chartConstBuf
+   %closefile chartConstBuf
+   %return chartConstBuf
+%endfunction %% ChartDefines
+%function ChartFunctions(block,system) void
+   %openfile chartFcnsBuf
+     
+         
+         
+         
+         
+            
+            
+            
+   %closefile chartFcnsBuf
+   %return chartFcnsBuf
+%endfunction %% ChartFunctions
+%function ChartSharedFunctions(block,system) void
+   %openfile chartFcnsBuf
+   %closefile chartFcnsBuf
+   %return chartFcnsBuf
+%endfunction %% ChartSharedFunctions
+%function Outputs(block,system) void
+   %openfile codeBuf
+      
+{
+int32_T eml_em_i0;
+int8_T eml_em_i1;
+/* %<" This block supports an embeddable subset of the MATLAB language."> */
+/* %<" See the help menu for details. "> */
+if(!%<LibSFChartInstance(block)>bit01_not_empty) {
+%<LibSFChartInstance(block)>bit01 = 1;
+%<LibSFChartInstance(block)>bit01_not_empty = true;
+}
+eml_em_i0 = -1 * %<LibSFChartInstance(block)>bit01;
+if(eml_em_i0 > 127) {
+eml_em_i1 = MAX_int8_T;
+} else if(eml_em_i0 <= -128) {
+eml_em_i1 = MIN_int8_T;
+} else {
+eml_em_i1 = (int8_T)eml_em_i0;
+}
+%<LibSFChartInstance(block)>bit01 = eml_em_i1;
+%<LibSFChartInstance(block)>bit01_not_empty = true;
+%<LibSFOutputs(block, 1, 0)> = %<LibSFChartInstance(block)>bit01;
+}
+   %closefile codeBuf
+   %return codeBuf
+%endfunction  %% Outputs
+%function InlinedInitializerCode(block,system) Output
+   %<SLibResetSFChartInstanceAccessed(block)>\
+   %openfile initBodyBuf
+      %<LibSFChartInstance(block)>bit01_not_empty = false;
+
+   %closefile initBodyBuf
+   %if !WHITE_SPACE(initBodyBuf)
+      /* Initialize code for chart: '%<LibGetBlockName(block)>' */
+      %<initBodyBuf>\
+   %endif
+%endfunction
+
+
+%function EnableUnboundOutputEventsCode(block,system) Output
+   %openfile initBodyBuf
+      
+   %closefile initBodyBuf
+   %if !WHITE_SPACE(initBodyBuf)
+      /* Enable code for chart: '%<LibGetBlockName(block)>' */
+      %<initBodyBuf>\
+   %endif
+%endfunction
+
+%function DisableUnboundOutputEventsCode(block,system) Output
+   %openfile initBodyBuf
+      
+   %closefile initBodyBuf
+   %if !WHITE_SPACE(initBodyBuf)
+      /* Disable code for chart: '%<LibGetBlockName(block)>' */
+      %<initBodyBuf>\
+   %endif
+%endfunction
+
+%function DumpSharedUtils(block,system) void
+%endfunction
+
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   0 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      DataTypeIdx  0\
+      IsComplex    0\
+      IsFixPoint   0\
+      With         1\
+      Dimensions   [1,1]\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

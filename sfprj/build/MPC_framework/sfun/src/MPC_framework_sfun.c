@@ -34,7 +34,7 @@ unsigned int sf_MPC_framework_method_dispatcher(SimStruct *simstructPtr, const
     c1_MPC_framework_method_dispatcher(simstructPtr, method, data);
     return 1;
   }
-  if(!strcmp_ignore_ws(chartName,"MPC_framework/Inverse geometry/invgeo/ SFunction "))
+  if(!strcmp_ignore_ws(chartName,"MPC_framework/Inverse geometry/Subsystem/invgeo/ SFunction "))
   {
     c2_MPC_framework_method_dispatcher(simstructPtr, method, data);
     return 1;
@@ -103,10 +103,10 @@ unsigned int sf_MPC_framework_process_check_sum_call( int nlhs, mxArray *
       return 0;
     }
   } else{
-    ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(3465829210U);
-    ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2739112956U);
-    ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(366823907U);
-    ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(2289404309U);
+    ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(3179861639U);
+    ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2176088772U);
+    ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(2597276486U);
+    ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(3373976505U);
   }
   return 1;
 #else

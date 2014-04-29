@@ -55,7 +55,7 @@ return eml_S;
    %openfile codeBuf
       
 {
-real_T eml_d;
+real_T eml_y;
 real_T eml_al1;
 uint8_T eml_error;
 real_T eml_z;
@@ -63,18 +63,18 @@ real_T eml_b_z;
 real_T eml_c_z;
 real_T eml_d_z;
 real_T eml_r;
-eml_d = pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0);
-if((eml_d > pow(%<LibSFInputs(block, 4, 0)>, 2.0) + pow(%<LibSFInputs(block, 5, 0)>, 2.0)) || (eml_d < %<LibSFInputs(block, 4, 0)> - %<LibSFInputs(block, 5, 0)>)) {
+eml_y = sqrt(pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+if((pow(eml_y, 2.0) > pow(%<LibSFInputs(block, 4, 0)>, 2.0) + pow(%<LibSFInputs(block, 5, 0)>, 2.0)) || (eml_y < %<LibSFInputs(block, 4, 0)> - %<LibSFInputs(block, 5, 0)>)) {
 eml_al1 = %<LibSFInputs(block, 2, 0)>;
-eml_d = %<LibSFInputs(block, 3, 0)>;
+eml_y = %<LibSFInputs(block, 3, 0)>;
 eml_error = 1U;
 } else {
 eml_z = (((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(%<LibSFInputs(block, 4, 0)>, 2.0)) - pow(%<LibSFInputs(block, 5, 0)>, 2.0)) / (2.0 * %<LibSFInputs(block, 4, 0)> * %<LibSFInputs(block, 5, 0)>);
-eml_d = %<LibSFInputs(block, 4, 0)> + %<LibSFInputs(block, 5, 0)> * eml_z;
-eml_al1 = (eml_d * %<LibSFInputs(block, 1, 0)> + %<LibSFInputs(block, 0, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_d, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
-eml_b_z = (eml_d * %<LibSFInputs(block, 1, 0)> - %<LibSFInputs(block, 0, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_d, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
-eml_c_z = (eml_d * %<LibSFInputs(block, 0, 0)> + %<LibSFInputs(block, 1, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_d, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
-eml_d_z = (eml_d * %<LibSFInputs(block, 0, 0)> - %<LibSFInputs(block, 1, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_d, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+eml_y = %<LibSFInputs(block, 4, 0)> + %<LibSFInputs(block, 5, 0)> * eml_z;
+eml_al1 = (eml_y * %<LibSFInputs(block, 1, 0)> + %<LibSFInputs(block, 0, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_y, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+eml_b_z = (eml_y * %<LibSFInputs(block, 1, 0)> - %<LibSFInputs(block, 0, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_y, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+eml_c_z = (eml_y * %<LibSFInputs(block, 0, 0)> + %<LibSFInputs(block, 1, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_y, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+eml_d_z = (eml_y * %<LibSFInputs(block, 0, 0)> - %<LibSFInputs(block, 1, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_y, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
 if(((boolean_T)rtIsNaN(eml_d_z)) || ((boolean_T)rtIsNaN(eml_al1))) {
 eml_r = %<LibGetMathConstant(LibRealNonFinite("nan"), FcnGetDataTypeIdFromName("double"))>;
 } else if(((boolean_T)rtIsInf(eml_al1)) && ((boolean_T)rtIsInf(eml_d_z))) {
@@ -106,23 +106,23 @@ eml_b_z = 0.0;
 eml_b_z = rt_atan2(eml_b_z, eml_c_z);
 }
 eml_al1 = acos(eml_z);
-eml_d = -eml_al1;
+eml_y = -eml_al1;
 if(%<LibSFInputs(block, 0, 0)> == %<LibSFInputs(block, 4, 0)> * eml_d_z + %<LibSFInputs(block, 5, 0)> * cos(eml_r + eml_al1)) {
 eml_c_z = eml_al1;
 } else {
-eml_c_z = eml_d;
-eml_d = eml_al1;
+eml_c_z = eml_y;
+eml_y = eml_al1;
 }
 if(fabs(%<LibSFInputs(block, 2, 0)> - eml_r) < fabs(%<LibSFInputs(block, 2, 0)> - eml_b_z)) {
 eml_al1 = eml_r;
-eml_d = eml_c_z;
+eml_y = eml_c_z;
 } else {
 eml_al1 = eml_b_z;
 }
 eml_error = 0U;
 }
 %<LibSFOutputs(block, 1, 0)> = eml_al1;
-%<LibSFOutputs(block, 2, 0)> = eml_d;
+%<LibSFOutputs(block, 2, 0)> = eml_y;
 %<LibSFOutputs(block, 3, 0)> = eml_error;
 }
    %closefile codeBuf
