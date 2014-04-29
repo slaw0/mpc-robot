@@ -16,7 +16,7 @@ MAKEFILE_FILESEP= /
 
 
 MODEL                   = MPC_framework
-MODULES                 = MPC_framework_data.c can_frame_ground.c 
+MODULES                 = MPC_framework_data.c can_frame_ground.c rt_nonfinite.c 
 MAKEFILE                = MPC_framework.mk
 MATLAB_ROOT             = $(subst \,/,C:/MATLAB/R2006a)
 ALT_MATLAB_ROOT         = $(subst \,/,C:/MATLAB/R2006a)

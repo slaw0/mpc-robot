@@ -13,7 +13,7 @@ typedef struct {
   real_T c1_alpha2_ref;
   SimStruct *S;
   uint8_T *c1_invgeo_error_address;
-  void *c1_testPointAddrMap[19];
+  void *c1_testPointAddrMap[20];
   int32_T c1_invgeo_error_index;
   uint32_T chartNumber;
   uint32_T instanceNumber;
@@ -25,6 +25,7 @@ typedef struct {
   uint8_T c1_init_1_message;
   uint8_T c1_init_2_message;
   uint8_T c1_is_CONTROLLER;
+  uint8_T c1_is_HOLD;
   uint8_T c1_is_OPERATION;
   uint8_T c1_is_PRIMITIVE;
   uint8_T c1_is_SEGMENT_1;
@@ -37,6 +38,7 @@ typedef struct {
   uint8_T c1_tp_CONFIG;
   uint8_T c1_tp_CONTROLLER;
   uint8_T c1_tp_HOLD;
+  uint8_T c1_tp_HOLD_main;
   uint8_T c1_tp_INIT;
   uint8_T c1_tp_INIT_ACK;
   uint8_T c1_tp_MOVING;
