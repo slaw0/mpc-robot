@@ -3,28 +3,33 @@
 %function CacheOutputs(block,system,typeDefHFile,hFile,cFile) void
 %openfile typedefsBuf
    
-   typedef struct {
-real_T alpha1_ref;
-real_T alpha2_ref;
-uint8_T is_CONTROLLER;
-uint8_T is_HOLD;
-uint8_T is_OPERATION;
-uint8_T is_PRIMITIVE;
-uint8_T is_SEGMENT_1;
-uint8_T is_SEGMENT_2;
-uint8_T is_active_SEGMENT_1;
-uint8_T is_active_SEGMENT_2;
-uint8_T is_c1_MPC_framework;
-} %<SFInfo.ChartInstanceTypedef>;
-
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
 %closefile typedefsBuf
    %if !WHITE_SPACE(typedefsBuf)
       %openfile tempBuf
-#ifndef _CSC1_MPC_FRAMEWORK_CHARTSTRUCT_
-#define _CSC1_MPC_FRAMEWORK_CHARTSTRUCT_
+#ifndef _CSC2_MPC_FRAMEWORK_CHARTSTRUCT_
+#define _CSC2_MPC_FRAMEWORK_CHARTSTRUCT_
       %<typedefsBuf>\
- #endif /* _CSC1_MPC_FRAMEWORK_CHARTSTRUCT_ */
+ #endif /* _CSC2_MPC_FRAMEWORK_CHARTSTRUCT_ */
       %closefile tempBuf
 %<SLibSetModelFileAttribute(typeDefHFile,"Typedefs",tempBuf)>
    %endif
@@ -34,10 +39,13 @@ uint8_T is_c1_MPC_framework;
    
    
    
-   
 %closefile externFcnsBuf
 %<SLibSetModelFileAttribute(hFile,"ExternFcns",externFcnsBuf)>
    %openfile externFcnsBuf
+         %if %<!SFLibLookupUtilityFunctionDecl("lfcbphdbbaaiimgd_sign")>
+            real_T lfcbphdbbaaiimgd_sign(real_T eml_X);
+            %<SFLibInsertUtilityFunctionDecl("lfcbphdbbaaiimgd_sign")>
+         %endif
    %closefile externFcnsBuf
    %<SLibSetModelFileAttribute(hFile,"ExternFcns",externFcnsBuf)>
 

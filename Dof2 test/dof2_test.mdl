@@ -44,7 +44,7 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Developer"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 23 11:48:54 2014"
+  LastModifiedDate	  "Wed Apr 23 12:20:41 2014"
   ModelVersionFormat	  "1.%<AutoIncrement:135>"
   ConfigurationManager	  "None"
   LinearizationMsg	  "none"
@@ -586,7 +586,7 @@ Model {
   }
   System {
     Name		    "dof2_test"
-    Location		    [2, 82, 1270, 1000]
+    Location		    [2, 78, 1278, 974]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -3388,7 +3388,7 @@ Stateflow {
 						"qapp = Q(3);\n"
 						"\n"
 						"    "
-			editorLayout             		"100 M4x1[416 399 1288 1002]"
+			editorLayout             		"100 M4x1[416 399 774 466]"
 			fimathString             		"fimath(...\n"
 								"'RoundMode', 'floor',...\n"
 								"'OverflowMode', 'wrap',...\n"
@@ -3700,7 +3700,7 @@ Stateflow {
 						"a3=Ao(4);\n"
 						"a4=Ao(5);\n"
 						"a5=Ao(6);"
-			editorLayout             		"100 M4x1[416 399 1288 1002]"
+			editorLayout             		"100 M4x1[416 399 774 466]"
 			fimathString             		"fimath(...\n"
 								"'RoundMode', 'floor',...\n"
 								"'OverflowMode', 'wrap',...\n"

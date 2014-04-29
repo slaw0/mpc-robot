@@ -9,6 +9,7 @@ OBJECTS = \
 	"MPC_framework_sfun.obj"\
 	"MPC_framework_sfun_registry.obj"\
 	"c1_MPC_framework.obj"\
+	"c2_MPC_framework.obj"\
 	"lccstub.obj"\
 	"c:\matlab\r2006a\sys\lcc\mex\lccdef.def"\
 	"c:\matlab\r2006a\stateflow\c\debugger\lib\win32\sfc_debuglcc.lib"\
@@ -30,5 +31,7 @@ MPC_framework_sfun_registry.obj :	"MPC_framework_sfun_registry.c"
 	$(CC) $(CFLAGS) $(INCLUDE_PATH) "MPC_framework_sfun_registry.c"
 c1_MPC_framework.obj :	"c1_MPC_framework.c"
 	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c1_MPC_framework.c"
+c2_MPC_framework.obj :	"c2_MPC_framework.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c2_MPC_framework.c"
 lccstub.obj :	"c:\matlab\r2006a\sys\lcc\mex\lccstub.c"
 	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c:\matlab\r2006a\sys\lcc\mex\lccstub.c"

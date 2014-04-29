@@ -14,6 +14,12 @@
 bin/CODE_WARRIOR/555/start.o : 
 # END TARGET bin/CODE_WARRIOR/555/start.o
 
+# START TARGET bin/CODE_WARRIOR/555/rt_nonfinite.o
+bin/CODE_WARRIOR/555/rt_nonfinite.o : \
+	rtwtypes.h\
+	rt_nonfinite.h
+# END TARGET bin/CODE_WARRIOR/555/rt_nonfinite.o
+
 # START TARGET bin/CODE_WARRIOR/555/profile.o
 bin/CODE_WARRIOR/555/profile.o : \
 	profile_vars.h\
@@ -65,6 +71,7 @@ bin/CODE_WARRIOR/555/mpc555dk_main.o : \
 	../../../../../MATLAB/R2006a/rtw/c/src/ext_mode/common/ext_types.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_qsmcm.h\
 	realtime_vars.h\
+	rt_nonfinite.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_qadc64.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/bitops.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_common.h\
@@ -104,6 +111,7 @@ bin/CODE_WARRIOR/555/MPC_framework_data.o : \
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc555.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/can_tx_queue.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_qsmcm.h\
+	rt_nonfinite.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_qadc64.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/bitops.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_common.h\
@@ -155,6 +163,7 @@ bin/CODE_WARRIOR/555/MPC_framework.o : \
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc555.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/can_tx_queue.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_qsmcm.h\
+	rt_nonfinite.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_qadc64.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/bitops.h\
 	../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_common.h\
@@ -237,9 +246,11 @@ rtwtypes.h :
 
 ../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/src/libsrc/standard/include/can_callback.h :
 
+realtime_vars.h :
+
 ../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/mpc563.h :
 
-realtime_vars.h :
+rt_nonfinite.h :
 
 ../../../../../MATLAB/R2006a/toolbox/rtw/targets/mpc555dk/drivers/make_plugins/mpc5xx_registers/m_sram.h :
 

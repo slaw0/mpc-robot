@@ -1,6 +1,7 @@
 "MPC_framework_sfun.obj"
 "MPC_framework_sfun_registry.obj"
 "c1_MPC_framework.obj"
+"c2_MPC_framework.obj"
 "lccstub.obj"
 "c:\matlab\r2006a\sys\lcc\mex\lccdef.def"
 "c:\matlab\r2006a\stateflow\c\debugger\lib\win32\sfc_debuglcc.lib"
