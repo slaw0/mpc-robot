@@ -20,7 +20,7 @@
 %closefile definesBuf
 %<SLibSetModelFileAttribute(prvHFile,"Defines",definesBuf)>
 %openfile externDataBuf
-            
+   extern uint8_T %<SLibGetSFEventName()>;         
             
 %closefile externDataBuf
 %<SLibSetModelFileAttribute(prvHFile,"ExternData",externDataBuf)>

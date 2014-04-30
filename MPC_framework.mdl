@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.950"
+    ComputedModelVersion    "1.1071"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -46,8 +46,8 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Developer"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 29 20:09:59 2014"
-  ModelVersionFormat	  "1.%<AutoIncrement:950>"
+  LastModifiedDate	  "Wed Apr 30 19:43:05 2014"
+  ModelVersionFormat	  "1.%<AutoIncrement:1071>"
   ConfigurationManager	  "None"
   TargetProperties	  "DataTag0"
   LinearizationMsg	  "none"
@@ -616,6 +616,30 @@ Model {
       BusSelectionMode	      off
     }
     Block {
+      BlockType		      DiscreteIntegrator
+      IntegratorMethod	      "Integration: Forward Euler"
+      gainval		      "1.0"
+      ExternalReset	      "none"
+      InitialConditionSource  "internal"
+      InitialCondition	      "0"
+      InitialConditionMode    "State and output"
+      SampleTime	      "1"
+      OutDataTypeMode	      "Inherit via internal rule"
+      OutDataType	      "sfix(16)"
+      OutScaling	      "2^0"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
+      LimitOutput	      off
+      UpperSaturationLimit    "inf"
+      LowerSaturationLimit    "-inf"
+      ShowSaturationPort      off
+      ShowStatePort	      off
+      IgnoreLimit	      off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+    Block {
       BlockType		      EnablePort
       StatesWhenEnabling      "held"
       ShowOutputPort	      off
@@ -624,6 +648,22 @@ Model {
     Block {
       BlockType		      From
       IconDisplay	      "Tag"
+    }
+    Block {
+      BlockType		      Gain
+      Gain		      "1"
+      Multiplication	      "Element-wise(K.*u)"
+      ParameterDataTypeMode   "Same as input"
+      ParameterDataType	      "sfix(16)"
+      ParameterScalingMode    "Best Precision: Matrix-wise"
+      ParameterScaling	      "2^0"
+      OutDataTypeMode	      "Same as input"
+      OutDataType	      "sfix(16)"
+      OutScaling	      "2^0"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
     }
     Block {
       BlockType		      Goto
@@ -697,6 +737,19 @@ Model {
       InitialOutput	      "[]"
     }
     Block {
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      InputSameDT	      on
+      OutDataTypeMode	      "Same as first input"
+      OutDataType	      "sfix(16)"
+      OutScaling	      "2^0"
+      LockScale		      off
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      RateTransition
       Integrity		      on
       Deterministic	      on
@@ -711,6 +764,23 @@ Model {
 "tion)"
       LogicDataType	      "uint(8)"
       ZeroCross		      on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Scope
+      ModelBased	      off
+      TickLabels	      "OneTimeTick"
+      ZoomMode		      "on"
+      Grid		      "on"
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      LimitDataPoints	      on
+      MaxDataPoints	      "5000"
+      Decimation	      "1"
+      SampleInput	      off
       SampleTime	      "-1"
     }
     Block {
@@ -849,8 +919,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Controller"
-	Location		[4, 130, 1272, 900]
-	Open			off
+	Location		[111, 234, 1147, 844]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -865,7 +935,7 @@ Model {
 	Block {
 	  BlockType		  Inport
 	  Name			  "alpha1_ref"
-	  Position		  [140, 233, 170, 247]
+	  Position		  [155, 233, 185, 247]
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -885,7 +955,7 @@ Model {
 	Block {
 	  BlockType		  Inport
 	  Name			  "stop_button"
-	  Position		  [145, 158, 175, 172]
+	  Position		  [100, 483, 130, 497]
 	  Port			  "4"
 	  IconDisplay		  "Port number"
 	}
@@ -903,19 +973,19 @@ Model {
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator2"
-	  Position		  [225, 155, 245, 175]
+	  Position		  [180, 480, 200, 500]
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "motor1_out"
-	  Position		  [450, 233, 480, 247]
+	  Position		  [910, 233, 940, 247]
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "motor2_out"
-	  Position		  [450, 333, 480, 347]
+	  Position		  [915, 333, 945, 347]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
@@ -941,6 +1011,7 @@ Model {
 	Line {
 	  SrcBlock		  "stop_button"
 	  SrcPort		  1
+	  Points		  [0, 0]
 	  DstBlock		  "Terminator2"
 	  DstPort		  1
 	}
@@ -959,7 +1030,7 @@ Model {
       System {
 	Name			"DA_out_value sender"
 	Location		[397, 282, 903, 686]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1090,7 +1161,7 @@ Model {
     Block {
       BlockType		      From
       Name		      "From"
-      Position		      [190, 355, 270, 385]
+      Position		      [155, 369, 260, 391]
       CloseFcn		      "tagdialog Close"
       GotoTag		      "invgeo_done"
     }
@@ -1284,7 +1355,7 @@ Model {
       System {
 	Name			"Inverse geometry"
 	Location		[206, 307, 1102, 871]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1396,14 +1467,12 @@ Model {
 	  BlockType		  RateTransition
 	  Name			  "Rate Transition"
 	  Position		  [205, 264, 230, 276]
-	  FontSize		  10
 	  OutPortSampleTime	  "fundamental_sample_time"
 	}
 	Block {
 	  BlockType		  RateTransition
 	  Name			  "Rate Transition1"
 	  Position		  [200, 309, 225, 321]
-	  FontSize		  10
 	  OutPortSampleTime	  "fundamental_sample_time"
 	}
 	Block {
@@ -1434,41 +1503,41 @@ Model {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "x"
-	      Position		      [25, 85, 55, 99]
+	      Position		      [25, 83, 55, 97]
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "y"
-	      Position		      [25, 110, 55, 124]
+	      Position		      [25, 108, 55, 122]
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "al1_c"
-	      Position		      [35, 135, 65, 149]
+	      Position		      [35, 133, 65, 147]
 	      Port		      "3"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "al2_c"
-	      Position		      [35, 160, 65, 174]
+	      Position		      [35, 158, 65, 172]
 	      Port		      "4"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "a1"
-	      Position		      [35, 185, 65, 199]
+	      Position		      [35, 183, 65, 197]
 	      Port		      "5"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "a2"
-	      Position		      [35, 210, 65, 224]
+	      Position		      [35, 208, 65, 222]
 	      Port		      "6"
 	      IconDisplay	      "Port number"
 	    }
@@ -1713,22 +1782,25 @@ Model {
 	    Block {
 	      BlockType		      Outport
 	      Name		      "al1_ref"
-	      Position		      [220, 95, 250, 109]
+	      Position		      [220, 93, 250, 107]
 	      IconDisplay	      "Port number"
+	      BusOutputAsStruct	      off
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "al2_ref"
-	      Position		      [220, 150, 250, 164]
+	      Position		      [220, 148, 250, 162]
 	      Port		      "2"
 	      IconDisplay	      "Port number"
+	      BusOutputAsStruct	      off
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "error"
-	      Position		      [220, 205, 250, 219]
+	      Position		      [220, 203, 250, 217]
 	      Port		      "3"
 	      IconDisplay	      "Port number"
+	      BusOutputAsStruct	      off
 	    }
 	    Line {
 	      SrcBlock		      "x"
@@ -1902,7 +1974,6 @@ Model {
 	Line {
 	  SrcBlock		  "Rate Transition"
 	  SrcPort		  1
-	  Points		  [25, 0]
 	  DstBlock		  "Detect\nChange"
 	  DstPort		  1
 	}
@@ -2002,8 +2073,8 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "State Machine"
-      Ports		      [6, 14]
-      Position		      [345, 147, 545, 398]
+      Ports		      [6, 13]
+      Position		      [345, 149, 545, 401]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
@@ -2083,7 +2154,7 @@ Model {
 	  BlockType		  Demux
 	  Name			  " Demux "
 	  Ports			  [1, 1]
-	  Position		  [270, 605, 320, 645]
+	  Position		  [270, 570, 320, 610]
 	  Outputs		  "1"
 	  Port {
 	    PortNumber		    1
@@ -2096,12 +2167,13 @@ Model {
 	  BlockType		  "S-Function"
 	  Name			  " SFunction "
 	  Tag			  "Stateflow S-Function MPC_framework 1"
-	  Ports			  [6, 14]
+	  Ports			  [6, 13]
 	  Position		  [180, 125, 230, 425]
 	  FunctionName		  "sf_sfun"
-	  Parameters		  "data,init_1_message,init_2_message,motor_ne"
-"gative_value,motor_positive_value,motor_stopped_value"
-	  PortCounts		  "[6 14]"
+	  Parameters		  "init_1_message,init_2_message,motor_negativ"
+"e_value,motor_positive_value,motor_stopped_value,ticks_per_trajectory_time,tr"
+"ajectory_time"
+	  PortCounts		  "[6 13]"
 	  Port {
 	    PortNumber		    2
 	    Name		    "init_out_value"
@@ -2171,12 +2243,6 @@ Model {
 	  Port {
 	    PortNumber		    13
 	    Name		    "trajectory_enable"
-	    RTWStorageClass	    "Auto"
-	    DataLoggingNameMode	    "SignalName"
-	  }
-	  Port {
-	    PortNumber		    14
-	    Name		    "current_time"
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
@@ -2274,26 +2340,20 @@ Model {
 	  Position		  [460, 496, 480, 514]
 	  Port			  "12"
 	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "current_time"
-	  Position		  [460, 531, 480, 549]
-	  Port			  "13"
-	  IconDisplay		  "Port number"
+	  BusOutputAsStruct	  off
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "send_controller_message"
-	  Position		  [460, 566, 480, 584]
-	  Port			  "14"
+	  Position		  [460, 531, 480, 549]
+	  Port			  "13"
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
 	Line {
 	  SrcBlock		  " SFunction "
 	  SrcPort		  1
-	  Points		  [0, 480]
+	  Points		  [0, 465]
 	  DstBlock		  " Demux "
 	  DstPort		  1
 	}
@@ -2405,24 +2465,12 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "alpha_in"
-	  SrcPort		  1
-	  DstBlock		  " SFunction "
-	  DstPort		  5
-	}
-	Line {
 	  Name			  "controller_message"
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
 	  SrcPort		  12
 	  DstBlock		  "controller_message"
 	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "invgeo_done"
-	  SrcPort		  1
-	  DstBlock		  " SFunction "
-	  DstPort		  6
 	}
 	Line {
 	  Name			  "send_controller_message"
@@ -2441,12 +2489,16 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  Name			  "current_time"
-	  Labels		  [0, 0]
-	  SrcBlock		  " SFunction "
-	  SrcPort		  14
-	  DstBlock		  "current_time"
-	  DstPort		  1
+	  SrcBlock		  "alpha_in"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "invgeo_done"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  6
 	}
       }
     }
@@ -2468,19 +2520,18 @@ Model {
     }
     Block {
       BlockType		      SubSystem
-      Name		      "Trajectory planning"
-      Ports		      [3, 2, 1]
-      Position		      [645, 520, 805, 630]
+      Name		      "Trajectory design"
+      Ports		      [4, 2]
+      Position		      [660, 522, 820, 633]
       BackgroundColor	      "red"
-      FontSize		      10
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
       MaskHideContents	      off
       System {
-	Name			"Trajectory planning"
-	Location		[319, 320, 1099, 877]
-	Open			on
+	Name			"Trajectory design"
+	Location		[301, 362, 1081, 919]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2494,68 +2545,59 @@ Model {
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
-	  Name			  "alpha1_start"
-	  Position		  [160, 108, 190, 122]
+	  Name			  "trajectory enable"
+	  Position		  [160, 148, 190, 162]
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "alpha2_start"
-	  Position		  [155, 318, 185, 332]
+	  Name			  "init_trigger"
+	  Position		  [160, 193, 190, 207]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "time"
-	  Position		  [40, 233, 70, 247]
+	  Name			  "al1_start"
+	  Position		  [160, 238, 190, 252]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  EnablePort
-	  Name			  "Enable"
-	  Ports			  []
-	  Position		  [210, 25, 230, 45]
+	  BlockType		  Inport
+	  Name			  "al2_start"
+	  Position		  [165, 328, 195, 342]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Data Store\nRead"
-	  Position		  [85, 142, 170, 168]
+	  Position		  [35, 277, 120, 303]
 	  DataStoreName		  "invgeo_alpha_1"
 	  SampleTime		  "-1"
 	}
 	Block {
 	  BlockType		  DataStoreRead
 	  Name			  "Data Store\nRead1"
-	  Position		  [80, 352, 165, 378]
+	  Position		  [40, 367, 125, 393]
 	  DataStoreName		  "invgeo_alpha_2"
 	  SampleTime		  "-1"
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "Joint reference singal 1"
-	  Ports			  [8, 3]
-	  Position		  [480, 101, 575, 249]
-	  ErrorFcn		  "Stateflow.Translate.translate"
-	  PermitHierarchicalResolution "ExplicitOnly"
-	  TreatAsAtomicUnit	  on
+	  Name			  "Trajectory design1"
+	  Ports			  [6, 6]
+	  Position		  [320, 133, 495, 402]
+	  BackgroundColor	  "red"
 	  MinAlgLoopOccurrences	  off
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  MaskHideContents	  off
-	  MaskType		  "Stateflow"
-	  MaskDescription	  "Embedded MATLAB block"
-	  MaskDisplay		  "disp('fcn');"
-	  MaskSelfModifiable	  on
-	  MaskIconFrame		  on
-	  MaskIconOpaque	  off
-	  MaskIconRotate	  "none"
-	  MaskIconUnits		  "normalized"
 	  System {
-	    Name		    "Joint reference singal 1"
-	    Location		    [257, 457, 812, 717]
-	    Open		    off
+	    Name		    "Trajectory design1"
+	    Location		    [301, 362, 1164, 877]
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2569,1076 +2611,1836 @@ Model {
 	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
-	      Name		      "a0"
-	      Position		      [20, 101, 40, 119]
+	      Name		      "trajectory enable"
+	      Position		      [35, 32, 70, 48]
+	      NamePlacement	      "alternate"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "a1"
-	      Position		      [20, 136, 40, 154]
+	      Name		      "init trigger"
+	      Position		      [35, 67, 70, 83]
+	      NamePlacement	      "alternate"
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "a2"
-	      Position		      [20, 171, 40, 189]
+	      Name		      "al1_start"
+	      Position		      [30, 163, 60, 177]
 	      Port		      "3"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "a3"
-	      Position		      [20, 206, 40, 224]
+	      Name		      "al1_end"
+	      Position		      [30, 198, 60, 212]
 	      Port		      "4"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "a4"
-	      Position		      [20, 246, 40, 264]
+	      Name		      "al2_start"
+	      Position		      [30, 233, 60, 247]
 	      Port		      "5"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "a5"
-	      Position		      [20, 281, 40, 299]
+	      Name		      "al2_end"
+	      Position		      [30, 268, 60, 282]
 	      Port		      "6"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
-	      BlockType		      Inport
-	      Name		      "t_sim"
-	      Position		      [20, 316, 40, 334]
-	      Port		      "7"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "t"
-	      Position		      [20, 351, 40, 369]
-	      Port		      "8"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Demux
-	      Name		      " Demux "
-	      Ports		      [1, 1]
-	      Position		      [270, 280, 320, 320]
-	      Outputs		      "1"
-	    }
-	    Block {
-	      BlockType		      "S-Function"
-	      Name		      " SFunction "
-	      Tag		      "Stateflow S-Function MPC_framework 3"
-	      Ports		      [8, 4]
-	      Position		      [180, 100, 230, 280]
-	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[8 4]"
-	      EnableBusSupport	      on
-	      Port {
-		PortNumber		2
-		Name			"qa"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
+	      BlockType		      SubSystem
+	      Name		      "Curve calculation"
+	      Ports		      [3, 6, 1]
+	      Position		      [395, 123, 550, 377]
+	      MinAlgLoopOccurrences   off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      MaskHideContents	      off
+	      System {
+		Name			"Curve calculation"
+		Location		[228, 211, 1060, 711]
+		Open			on
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	"[0.500000, 0.500000, 0.500000, 0.5000"
+"00]"
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "seg_1_traj_params"
+		  Position		  [135, 118, 165, 132]
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "seg_2_traj_params"
+		  Position		  [130, 328, 160, 342]
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "traj_time"
+		  Position		  [105, 258, 135, 272]
+		  Port			  "3"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  EnablePort
+		  Name			  "Enable"
+		  Ports			  []
+		  Position		  [200, 15, 220, 35]
+		  StatesWhenEnabling	  "reset"
+		}
+		Block {
+		  BlockType		  Demux
+		  Name			  "Demux"
+		  Ports			  [1, 6]
+		  Position		  [265, 62, 270, 188]
+		  BackgroundColor	  "black"
+		  ShowName		  off
+		  Outputs		  "6"
+		  DisplayOption		  "bar"
+		}
+		Block {
+		  BlockType		  Demux
+		  Name			  "Demux1"
+		  Ports			  [1, 6]
+		  Position		  [270, 272, 275, 398]
+		  BackgroundColor	  "black"
+		  ShowName		  off
+		  Outputs		  "6"
+		  DisplayOption		  "bar"
+		}
+		Block {
+		  BlockType		  DiscreteIntegrator
+		  Name			  "Discrete-Time\nIntegrator"
+		  Ports			  [1, 1]
+		  Position		  [125, 179, 160, 211]
+		  IntegratorMethod	  "Integration: Forward Euler"
+		  ExternalReset		  "none"
+		  InitialConditionSource  "internal"
+		  SampleTime		  "-1"
+		  IgnoreLimit		  off
+		  ICPrevOutput		  "DiscIntNeverNeededParam"
+		  ICPrevScaledInput	  "DiscIntNeverNeededParam"
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "Joint reference singal 1"
+		  Ports			  [8, 3]
+		  Position		  [425, 71, 520, 219]
+		  ErrorFcn		  "Stateflow.Translate.translate"
+		  PermitHierarchicalResolution "ExplicitOnly"
+		  TreatAsAtomicUnit	  on
+		  MinAlgLoopOccurrences	  off
+		  RTWSystemCode		  "Auto"
+		  FunctionWithSeparateData off
+		  Array {
+		    Type		    "Handle"
+		    Dimension		    0
+		    PropName		    "AvailSigsLoadSave"
+		  }
+		  MaskHideContents	  off
+		  MaskType		  "Stateflow"
+		  MaskDescription	  "Embedded MATLAB block"
+		  MaskDisplay		  "disp('fcn');"
+		  MaskSelfModifiable	  on
+		  MaskIconFrame		  on
+		  MaskIconOpaque	  off
+		  MaskIconRotate	  "none"
+		  MaskIconUnits		  "normalized"
+		  System {
+		    Name		    "Joint reference singal 1"
+		    Location		    [257, 457, 812, 717]
+		    Open		    off
+		    ModelBrowserVisibility  off
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    "[0.500000, 0.500000, 0.500000, 0."
+"500000]"
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "100"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a0"
+		    Position		    [20, 101, 40, 119]
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a1"
+		    Position		    [20, 136, 40, 154]
+		    Port		    "2"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a2"
+		    Position		    [20, 171, 40, 189]
+		    Port		    "3"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a3"
+		    Position		    [20, 206, 40, 224]
+		    Port		    "4"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a4"
+		    Position		    [20, 246, 40, 264]
+		    Port		    "5"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a5"
+		    Position		    [20, 281, 40, 299]
+		    Port		    "6"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "t_sim"
+		    Position		    [20, 316, 40, 334]
+		    Port		    "7"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "t_end"
+		    Position		    [20, 351, 40, 369]
+		    Port		    "8"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Demux
+		    Name		    " Demux "
+		    Ports		    [1, 1]
+		    Position		    [270, 280, 320, 320]
+		    Outputs		    "1"
+		    }
+		    Block {
+		    BlockType		    "S-Function"
+		    Name		    " SFunction "
+		    Tag			    "Stateflow S-Function MPC_framewor"
+"k 3"
+		    Ports		    [8, 4]
+		    Position		    [180, 100, 230, 280]
+		    FunctionName	    "sf_sfun"
+		    PortCounts		    "[8 4]"
+		    EnableBusSupport	    on
+		    Port {
+		    PortNumber		    2
+		    Name		    "qa"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    3
+		    Name		    "qap"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    4
+		    Name		    "qapp"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    " Terminator "
+		    Position		    [460, 291, 480, 309]
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "qa"
+		    Position		    [460, 101, 480, 119]
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "qap"
+		    Position		    [460, 136, 480, 154]
+		    Port		    "2"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "qapp"
+		    Position		    [460, 171, 480, 189]
+		    Port		    "3"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Line {
+		    SrcBlock		    "a0"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "a1"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    2
+		    }
+		    Line {
+		    SrcBlock		    "a2"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    3
+		    }
+		    Line {
+		    SrcBlock		    "a3"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    4
+		    }
+		    Line {
+		    SrcBlock		    "a4"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    5
+		    }
+		    Line {
+		    SrcBlock		    "a5"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    6
+		    }
+		    Line {
+		    SrcBlock		    "t_sim"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    7
+		    }
+		    Line {
+		    SrcBlock		    "t_end"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    8
+		    }
+		    Line {
+		    Name		    "qa"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    2
+		    DstBlock		    "qa"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "qap"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    3
+		    DstBlock		    "qap"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "qapp"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    4
+		    DstBlock		    "qapp"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    " Demux "
+		    SrcPort		    1
+		    DstBlock		    " Terminator "
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    " SFunction "
+		    SrcPort		    1
+		    DstBlock		    " Demux "
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "Joint reference singal 2"
+		  Ports			  [8, 3]
+		  Position		  [430, 281, 525, 429]
+		  ErrorFcn		  "Stateflow.Translate.translate"
+		  PermitHierarchicalResolution "ExplicitOnly"
+		  TreatAsAtomicUnit	  on
+		  MinAlgLoopOccurrences	  off
+		  RTWSystemCode		  "Auto"
+		  FunctionWithSeparateData off
+		  Array {
+		    Type		    "Handle"
+		    Dimension		    0
+		    PropName		    "AvailSigsLoadSave"
+		  }
+		  MaskHideContents	  off
+		  MaskType		  "Stateflow"
+		  MaskDescription	  "Embedded MATLAB block"
+		  MaskDisplay		  "disp('fcn');"
+		  MaskSelfModifiable	  on
+		  MaskIconFrame		  on
+		  MaskIconOpaque	  off
+		  MaskIconRotate	  "none"
+		  MaskIconUnits		  "normalized"
+		  System {
+		    Name		    "Joint reference singal 2"
+		    Location		    [257, 457, 812, 717]
+		    Open		    off
+		    ModelBrowserVisibility  off
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    "[0.500000, 0.500000, 0.500000, 0."
+"500000]"
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "100"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a0"
+		    Position		    [20, 101, 40, 119]
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a1"
+		    Position		    [20, 136, 40, 154]
+		    Port		    "2"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a2"
+		    Position		    [20, 171, 40, 189]
+		    Port		    "3"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a3"
+		    Position		    [20, 206, 40, 224]
+		    Port		    "4"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a4"
+		    Position		    [20, 246, 40, 264]
+		    Port		    "5"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "a5"
+		    Position		    [20, 281, 40, 299]
+		    Port		    "6"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "t_sim"
+		    Position		    [20, 316, 40, 334]
+		    Port		    "7"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "t_end"
+		    Position		    [20, 351, 40, 369]
+		    Port		    "8"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Demux
+		    Name		    " Demux "
+		    Ports		    [1, 1]
+		    Position		    [270, 280, 320, 320]
+		    Outputs		    "1"
+		    }
+		    Block {
+		    BlockType		    "S-Function"
+		    Name		    " SFunction "
+		    Tag			    "Stateflow S-Function MPC_framewor"
+"k 4"
+		    Ports		    [8, 4]
+		    Position		    [180, 100, 230, 280]
+		    FunctionName	    "sf_sfun"
+		    PortCounts		    "[8 4]"
+		    EnableBusSupport	    on
+		    Port {
+		    PortNumber		    2
+		    Name		    "qa"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    3
+		    Name		    "qap"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    4
+		    Name		    "qapp"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    " Terminator "
+		    Position		    [460, 291, 480, 309]
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "qa"
+		    Position		    [460, 101, 480, 119]
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "qap"
+		    Position		    [460, 136, 480, 154]
+		    Port		    "2"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "qapp"
+		    Position		    [460, 171, 480, 189]
+		    Port		    "3"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Line {
+		    SrcBlock		    "a0"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "a1"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    2
+		    }
+		    Line {
+		    SrcBlock		    "a2"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    3
+		    }
+		    Line {
+		    SrcBlock		    "a3"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    4
+		    }
+		    Line {
+		    SrcBlock		    "a4"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    5
+		    }
+		    Line {
+		    SrcBlock		    "a5"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    6
+		    }
+		    Line {
+		    SrcBlock		    "t_sim"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    7
+		    }
+		    Line {
+		    SrcBlock		    "t_end"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    8
+		    }
+		    Line {
+		    Name		    "qa"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    2
+		    DstBlock		    "qa"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "qap"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    3
+		    DstBlock		    "qap"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "qapp"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    4
+		    DstBlock		    "qapp"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    " Demux "
+		    SrcPort		    1
+		    DstBlock		    " Terminator "
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    " SFunction "
+		    SrcPort		    1
+		    DstBlock		    " Demux "
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "time base"
+		  Position		  [15, 183, 105, 207]
+		  Value			  "1"
+		  VectorParams1D	  on
+		  SamplingMode		  "Sample based"
+		  OutDataTypeMode	  "Inherit from 'Constant value'"
+		  OutDataType		  "sfix(16)"
+		  ConRadixGroup		  "Use specified scaling"
+		  OutScaling		  "2^0"
+		  SampleTime		  "inf"
+		  FramePeriod		  "inf"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "al1"
+		  Position		  [550, 88, 580, 102]
+		  IconDisplay		  "Port number"
+		  BusOutputAsStruct	  off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "al1_p"
+		  Position		  [545, 138, 575, 152]
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		  BusOutputAsStruct	  off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "al1_pp"
+		  Position		  [545, 188, 575, 202]
+		  Port			  "3"
+		  IconDisplay		  "Port number"
+		  BusOutputAsStruct	  off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "al2"
+		  Position		  [550, 298, 580, 312]
+		  Port			  "4"
+		  IconDisplay		  "Port number"
+		  BusOutputAsStruct	  off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "al2_p"
+		  Position		  [555, 348, 585, 362]
+		  Port			  "5"
+		  IconDisplay		  "Port number"
+		  BusOutputAsStruct	  off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "al2_pp"
+		  Position		  [560, 398, 590, 412]
+		  Port			  "6"
+		  IconDisplay		  "Port number"
+		  BusOutputAsStruct	  off
+		}
+		Line {
+		  SrcBlock		  "Joint reference singal 1"
+		  SrcPort		  1
+		  DstBlock		  "al1"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Joint reference singal 1"
+		  SrcPort		  2
+		  DstBlock		  "al1_p"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Joint reference singal 1"
+		  SrcPort		  3
+		  DstBlock		  "al1_pp"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Joint reference singal 2"
+		  SrcPort		  1
+		  DstBlock		  "al2"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Discrete-Time\nIntegrator"
+		  SrcPort		  1
+		  Points		  [0, 0; 220, 0]
+		  Branch {
+		    DstBlock		    "Joint reference singal 1"
+		    DstPort		    7
+		  }
+		  Branch {
+		    Points		    [0, 210]
+		    DstBlock		    "Joint reference singal 2"
+		    DstPort		    7
+		  }
+		}
+		Line {
+		  SrcBlock		  "time base"
+		  SrcPort		  1
+		  DstBlock		  "Discrete-Time\nIntegrator"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Demux"
+		  SrcPort		  1
+		  Points		  [0, 0]
+		  DstBlock		  "Joint reference singal 1"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Demux"
+		  SrcPort		  2
+		  Points		  [0, 0]
+		  DstBlock		  "Joint reference singal 1"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "Demux"
+		  SrcPort		  3
+		  Points		  [0, 0]
+		  DstBlock		  "Joint reference singal 1"
+		  DstPort		  3
+		}
+		Line {
+		  SrcBlock		  "Demux"
+		  SrcPort		  4
+		  Points		  [0, 0]
+		  DstBlock		  "Joint reference singal 1"
+		  DstPort		  4
+		}
+		Line {
+		  SrcBlock		  "Demux"
+		  SrcPort		  5
+		  Points		  [0, 0]
+		  DstBlock		  "Joint reference singal 1"
+		  DstPort		  5
+		}
+		Line {
+		  SrcBlock		  "Demux"
+		  SrcPort		  6
+		  Points		  [0, 0]
+		  DstBlock		  "Joint reference singal 1"
+		  DstPort		  6
+		}
+		Line {
+		  SrcBlock		  "Demux1"
+		  SrcPort		  1
+		  DstBlock		  "Joint reference singal 2"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Demux1"
+		  SrcPort		  2
+		  DstBlock		  "Joint reference singal 2"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "Demux1"
+		  SrcPort		  3
+		  DstBlock		  "Joint reference singal 2"
+		  DstPort		  3
+		}
+		Line {
+		  SrcBlock		  "Demux1"
+		  SrcPort		  4
+		  DstBlock		  "Joint reference singal 2"
+		  DstPort		  4
+		}
+		Line {
+		  SrcBlock		  "Demux1"
+		  SrcPort		  5
+		  DstBlock		  "Joint reference singal 2"
+		  DstPort		  5
+		}
+		Line {
+		  SrcBlock		  "Demux1"
+		  SrcPort		  6
+		  DstBlock		  "Joint reference singal 2"
+		  DstPort		  6
+		}
+		Line {
+		  SrcBlock		  "seg_1_traj_params"
+		  SrcPort		  1
+		  Points		  [0, 0]
+		  DstBlock		  "Demux"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "seg_2_traj_params"
+		  SrcPort		  1
+		  Points		  [0, 0]
+		  DstBlock		  "Demux1"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "traj_time"
+		  SrcPort		  1
+		  Points		  [0, 0; 215, 0]
+		  Branch {
+		    Points		    [0, -50]
+		    DstBlock		    "Joint reference singal 1"
+		    DstPort		    8
+		  }
+		  Branch {
+		    Points		    [0, 160]
+		    DstBlock		    "Joint reference singal 2"
+		    DstPort		    8
+		  }
+		}
+		Line {
+		  SrcBlock		  "Joint reference singal 2"
+		  SrcPort		  2
+		  DstBlock		  "al2_p"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Joint reference singal 2"
+		  SrcPort		  3
+		  DstBlock		  "al2_pp"
+		  DstPort		  1
+		}
 	      }
-	      Port {
-		PortNumber		3
-		Name			"qap"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		4
-		Name			"qapp"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Init"
+	      Ports		      [5, 2, 0, 1]
+	      Position		      [175, 118, 305, 292]
+	      MinAlgLoopOccurrences   off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      MaskHideContents	      off
+	      System {
+		Name			"Init"
+		Location		[572, 275, 1236, 724]
+		Open			off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	"[0.500000, 0.500000, 0.500000, 0.5000"
+"00]"
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "traj_time"
+		  Position		  [80, 163, 110, 177]
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "al1_start"
+		  Position		  [65, 83, 95, 97]
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		  LatchByDelayingOutsideSignal on
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "al1_end"
+		  Position		  [70, 123, 100, 137]
+		  Port			  "3"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "al2_start"
+		  Position		  [65, 293, 95, 307]
+		  Port			  "4"
+		  IconDisplay		  "Port number"
+		  LatchByDelayingOutsideSignal on
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "al2_end"
+		  Position		  [65, 333, 95, 347]
+		  Port			  "5"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  TriggerPort
+		  Name			  "Trigger"
+		  Ports			  []
+		  Position		  [285, 20, 305, 40]
+		  StatesWhenEnabling	  "held"
+		}
+		Block {
+		  BlockType		  Mux
+		  Name			  "Mux"
+		  Ports			  [6, 1]
+		  Position		  [445, 64, 450, 196]
+		  ShowName		  off
+		  Inputs		  "6"
+		  DisplayOption		  "bar"
+		}
+		Block {
+		  BlockType		  Mux
+		  Name			  "Mux1"
+		  Ports			  [6, 1]
+		  Position		  [445, 274, 450, 406]
+		  ShowName		  off
+		  Inputs		  "6"
+		  DisplayOption		  "bar"
+		}
+		Block {
+		  BlockType		  Scope
+		  Name			  "Scope3"
+		  Ports			  [1]
+		  Position		  [560, 204, 590, 236]
+		  Floating		  off
+		  Location		  [597, 394, 1112, 837]
+		  Open			  off
+		  NumInputPorts		  "1"
+		  ZoomMode		  "xonly"
+		  List {
+		    ListType		    AxesTitles
+		    axes1		    "%<SignalLabel>"
+		  }
+		  YMin			  "38"
+		  YMax			  "42"
+		  SaveName		  "ScopeData5"
+		  DataFormat		  "StructureWithTime"
+		  SampleTime		  "0"
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "Trajectory design 1"
+		  Ports			  [3, 6]
+		  Position		  [270, 72, 365, 188]
+		  ErrorFcn		  "Stateflow.Translate.translate"
+		  PermitHierarchicalResolution "ExplicitOnly"
+		  TreatAsAtomicUnit	  on
+		  MinAlgLoopOccurrences	  off
+		  RTWSystemCode		  "Auto"
+		  FunctionWithSeparateData off
+		  Array {
+		    Type		    "Handle"
+		    Dimension		    0
+		    PropName		    "AvailSigsLoadSave"
+		  }
+		  MaskHideContents	  off
+		  MaskType		  "Stateflow"
+		  MaskDescription	  "Embedded MATLAB block"
+		  MaskDisplay		  "disp('fcn');"
+		  MaskSelfModifiable	  on
+		  MaskIconFrame		  on
+		  MaskIconOpaque	  off
+		  MaskIconRotate	  "none"
+		  MaskIconUnits		  "normalized"
+		  System {
+		    Name		    "Trajectory design 1"
+		    Location		    [257, 457, 812, 717]
+		    Open		    off
+		    ModelBrowserVisibility  off
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    "[0.500000, 0.500000, 0.500000, 0."
+"500000]"
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "100"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "A"
+		    Position		    [20, 101, 40, 119]
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "B"
+		    Position		    [20, 136, 40, 154]
+		    Port		    "2"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "t"
+		    Position		    [20, 171, 40, 189]
+		    Port		    "3"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Demux
+		    Name		    " Demux "
+		    Ports		    [1, 1]
+		    Position		    [270, 315, 320, 355]
+		    Outputs		    "1"
+		    }
+		    Block {
+		    BlockType		    "S-Function"
+		    Name		    " SFunction "
+		    Tag			    "Stateflow S-Function MPC_framewor"
+"k 7"
+		    Ports		    [3, 7]
+		    Position		    [180, 100, 230, 260]
+		    FunctionName	    "sf_sfun"
+		    PortCounts		    "[3 7]"
+		    EnableBusSupport	    on
+		    Port {
+		    PortNumber		    2
+		    Name		    "a0"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    3
+		    Name		    "a1"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    4
+		    Name		    "a2"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    5
+		    Name		    "a3"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    6
+		    Name		    "a4"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    7
+		    Name		    "a5"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    " Terminator "
+		    Position		    [460, 326, 480, 344]
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a0"
+		    Position		    [460, 101, 480, 119]
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a1"
+		    Position		    [460, 136, 480, 154]
+		    Port		    "2"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a2"
+		    Position		    [460, 171, 480, 189]
+		    Port		    "3"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a3"
+		    Position		    [460, 206, 480, 224]
+		    Port		    "4"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a4"
+		    Position		    [460, 246, 480, 264]
+		    Port		    "5"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a5"
+		    Position		    [460, 281, 480, 299]
+		    Port		    "6"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Line {
+		    SrcBlock		    "A"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "B"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    2
+		    }
+		    Line {
+		    SrcBlock		    "t"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    3
+		    }
+		    Line {
+		    Name		    "a0"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    2
+		    DstBlock		    "a0"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a1"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    3
+		    DstBlock		    "a1"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a2"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    4
+		    DstBlock		    "a2"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a3"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    5
+		    DstBlock		    "a3"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a4"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    6
+		    DstBlock		    "a4"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a5"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    7
+		    DstBlock		    "a5"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    " Demux "
+		    SrcPort		    1
+		    DstBlock		    " Terminator "
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    " SFunction "
+		    SrcPort		    1
+		    DstBlock		    " Demux "
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "Trajectory design 2"
+		  Ports			  [3, 6]
+		  Position		  [275, 282, 370, 398]
+		  ErrorFcn		  "Stateflow.Translate.translate"
+		  PermitHierarchicalResolution "ExplicitOnly"
+		  TreatAsAtomicUnit	  on
+		  MinAlgLoopOccurrences	  off
+		  RTWSystemCode		  "Auto"
+		  FunctionWithSeparateData off
+		  Array {
+		    Type		    "Handle"
+		    Dimension		    0
+		    PropName		    "AvailSigsLoadSave"
+		  }
+		  MaskHideContents	  off
+		  MaskType		  "Stateflow"
+		  MaskDescription	  "Embedded MATLAB block"
+		  MaskDisplay		  "disp('fcn');"
+		  MaskSelfModifiable	  on
+		  MaskIconFrame		  on
+		  MaskIconOpaque	  off
+		  MaskIconRotate	  "none"
+		  MaskIconUnits		  "normalized"
+		  System {
+		    Name		    "Trajectory design 2"
+		    Location		    [257, 457, 812, 717]
+		    Open		    off
+		    ModelBrowserVisibility  off
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    "[0.500000, 0.500000, 0.500000, 0."
+"500000]"
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "100"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "A"
+		    Position		    [20, 101, 40, 119]
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "B"
+		    Position		    [20, 136, 40, 154]
+		    Port		    "2"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Inport
+		    Name		    "t"
+		    Position		    [20, 171, 40, 189]
+		    Port		    "3"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Demux
+		    Name		    " Demux "
+		    Ports		    [1, 1]
+		    Position		    [270, 315, 320, 355]
+		    Outputs		    "1"
+		    }
+		    Block {
+		    BlockType		    "S-Function"
+		    Name		    " SFunction "
+		    Tag			    "Stateflow S-Function MPC_framewor"
+"k 8"
+		    Ports		    [3, 7]
+		    Position		    [180, 100, 230, 260]
+		    FunctionName	    "sf_sfun"
+		    PortCounts		    "[3 7]"
+		    EnableBusSupport	    on
+		    Port {
+		    PortNumber		    2
+		    Name		    "a0"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    3
+		    Name		    "a1"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    4
+		    Name		    "a2"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    5
+		    Name		    "a3"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    6
+		    Name		    "a4"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    Port {
+		    PortNumber		    7
+		    Name		    "a5"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    }
+		    Block {
+		    BlockType		    Terminator
+		    Name		    " Terminator "
+		    Position		    [460, 326, 480, 344]
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a0"
+		    Position		    [460, 101, 480, 119]
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a1"
+		    Position		    [460, 136, 480, 154]
+		    Port		    "2"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a2"
+		    Position		    [460, 171, 480, 189]
+		    Port		    "3"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a3"
+		    Position		    [460, 206, 480, 224]
+		    Port		    "4"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a4"
+		    Position		    [460, 246, 480, 264]
+		    Port		    "5"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "a5"
+		    Position		    [460, 281, 480, 299]
+		    Port		    "6"
+		    IconDisplay		    "Port number"
+		    BusOutputAsStruct	    off
+		    }
+		    Line {
+		    SrcBlock		    "A"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "B"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    2
+		    }
+		    Line {
+		    SrcBlock		    "t"
+		    SrcPort		    1
+		    DstBlock		    " SFunction "
+		    DstPort		    3
+		    }
+		    Line {
+		    Name		    "a0"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    2
+		    DstBlock		    "a0"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a1"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    3
+		    DstBlock		    "a1"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a2"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    4
+		    DstBlock		    "a2"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a3"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    5
+		    DstBlock		    "a3"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a4"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    6
+		    DstBlock		    "a4"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "a5"
+		    Labels		    [0, 0]
+		    SrcBlock		    " SFunction "
+		    SrcPort		    7
+		    DstBlock		    "a5"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    " Demux "
+		    SrcPort		    1
+		    DstBlock		    " Terminator "
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    " SFunction "
+		    SrcPort		    1
+		    DstBlock		    " Demux "
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "seg1_traj_params"
+		  Position		  [540, 123, 570, 137]
+		  IconDisplay		  "Port number"
+		  BusOutputAsStruct	  off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "seg1_traj_params1"
+		  Position		  [530, 333, 560, 347]
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		  BusOutputAsStruct	  off
+		}
+		Line {
+		  SrcBlock		  "al1_start"
+		  SrcPort		  1
+		  DstBlock		  "Trajectory design 1"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "al1_end"
+		  SrcPort		  1
+		  DstBlock		  "Trajectory design 1"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "al2_start"
+		  SrcPort		  1
+		  DstBlock		  "Trajectory design 2"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "al2_end"
+		  SrcPort		  1
+		  DstBlock		  "Trajectory design 2"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "traj_time"
+		  SrcPort		  1
+		  Points		  [0, 0; 130, 0]
+		  Branch {
+		    Labels		    [0, 0]
+		    DstBlock		    "Trajectory design 1"
+		    DstPort		    3
+		  }
+		  Branch {
+		    Points		    [0, 210]
+		    DstBlock		    "Trajectory design 2"
+		    DstPort		    3
+		  }
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 1"
+		  SrcPort		  1
+		  Points		  [0, 0]
+		  DstBlock		  "Mux"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 1"
+		  SrcPort		  2
+		  Points		  [0, 0]
+		  DstBlock		  "Mux"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 1"
+		  SrcPort		  3
+		  Points		  [0, 0]
+		  DstBlock		  "Mux"
+		  DstPort		  3
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 1"
+		  SrcPort		  4
+		  Points		  [0, 0]
+		  DstBlock		  "Mux"
+		  DstPort		  4
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 1"
+		  SrcPort		  5
+		  Points		  [0, 0]
+		  DstBlock		  "Mux"
+		  DstPort		  5
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 1"
+		  SrcPort		  6
+		  Points		  [0, 0]
+		  DstBlock		  "Mux"
+		  DstPort		  6
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 2"
+		  SrcPort		  1
+		  Points		  [0, 0]
+		  DstBlock		  "Mux1"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 2"
+		  SrcPort		  2
+		  Points		  [0, 0]
+		  DstBlock		  "Mux1"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 2"
+		  SrcPort		  3
+		  Points		  [0, 0]
+		  DstBlock		  "Mux1"
+		  DstPort		  3
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 2"
+		  SrcPort		  4
+		  Points		  [0, 0]
+		  DstBlock		  "Mux1"
+		  DstPort		  4
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 2"
+		  SrcPort		  5
+		  Points		  [0, 0]
+		  DstBlock		  "Mux1"
+		  DstPort		  5
+		}
+		Line {
+		  SrcBlock		  "Trajectory design 2"
+		  SrcPort		  6
+		  Points		  [0, 0]
+		  DstBlock		  "Mux1"
+		  DstPort		  6
+		}
+		Line {
+		  SrcBlock		  "Mux"
+		  SrcPort		  1
+		  Points		  [0, 0; 40, 0]
+		  Branch {
+		    DstBlock		    "seg1_traj_params"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 90]
+		    DstBlock		    "Scope3"
+		    DstPort		    1
+		  }
+		}
+		Line {
+		  SrcBlock		  "Mux1"
+		  SrcPort		  1
+		  Points		  [0, 0]
+		  DstBlock		  "seg1_traj_params1"
+		  DstPort		  1
+		}
 	      }
 	    }
 	    Block {
-	      BlockType		      Terminator
-	      Name		      " Terminator "
-	      Position		      [460, 291, 480, 309]
+	      BlockType		      Constant
+	      Name		      "trajectory_time"
+	      Position		      [30, 126, 90, 144]
+	      Value		      "trajectory_time"
+	      VectorParams1D	      on
+	      SamplingMode	      "Sample based"
+	      OutDataTypeMode	      "Inherit from 'Constant value'"
+	      OutDataType	      "sfix(16)"
+	      ConRadixGroup	      "Use specified scaling"
+	      OutScaling	      "2^0"
+	      SampleTime	      "inf"
+	      FramePeriod	      "inf"
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "qa"
-	      Position		      [460, 101, 480, 119]
+	      Name		      "al1"
+	      Position		      [600, 143, 630, 157]
 	      IconDisplay	      "Port number"
 	      BusOutputAsStruct	      off
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "qap"
-	      Position		      [460, 136, 480, 154]
+	      Name		      "al1_p"
+	      Position		      [595, 183, 625, 197]
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	      BusOutputAsStruct	      off
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "qapp"
-	      Position		      [460, 171, 480, 189]
+	      Name		      "al1_pp"
+	      Position		      [600, 223, 630, 237]
 	      Port		      "3"
 	      IconDisplay	      "Port number"
 	      BusOutputAsStruct	      off
 	    }
-	    Line {
-	      SrcBlock		      "a0"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      1
+	    Block {
+	      BlockType		      Outport
+	      Name		      "al2"
+	      Position		      [595, 263, 625, 277]
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	      BusOutputAsStruct	      off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "al2_p"
+	      Position		      [595, 303, 625, 317]
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	      BusOutputAsStruct	      off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "al2_pp"
+	      Position		      [600, 343, 630, 357]
+	      Port		      "6"
+	      IconDisplay	      "Port number"
+	      BusOutputAsStruct	      off
 	    }
 	    Line {
-	      SrcBlock		      "a1"
+	      SrcBlock		      "trajectory_time"
 	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      2
+	      Points		      [45, 0]
+	      Branch {
+		Points			[0, 200]
+		DstBlock		"Curve calculation"
+		DstPort			3
+	      }
+	      Branch {
+		DstBlock		"Init"
+		DstPort			1
+	      }
 	    }
 	    Line {
-	      SrcBlock		      "a2"
+	      SrcBlock		      "al1_end"
 	      SrcPort		      1
-	      DstBlock		      " SFunction "
+	      DstBlock		      "Init"
 	      DstPort		      3
 	    }
 	    Line {
-	      SrcBlock		      "a3"
+	      SrcBlock		      "Init"
+	      SrcPort		      2
+	      DstBlock		      "Curve calculation"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Init"
 	      SrcPort		      1
-	      DstBlock		      " SFunction "
+	      DstBlock		      "Curve calculation"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "trajectory enable"
+	      SrcPort		      1
+	      Points		      [395, 0]
+	      DstBlock		      "Curve calculation"
+	      DstPort		      enable
+	    }
+	    Line {
+	      SrcBlock		      "Curve calculation"
+	      SrcPort		      1
+	      DstBlock		      "al1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Curve calculation"
+	      SrcPort		      2
+	      DstBlock		      "al1_p"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "al1_start"
+	      SrcPort		      1
+	      DstBlock		      "Init"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Curve calculation"
+	      SrcPort		      3
+	      DstBlock		      "al1_pp"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Curve calculation"
+	      SrcPort		      4
+	      DstBlock		      "al2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Curve calculation"
+	      SrcPort		      5
+	      DstBlock		      "al2_p"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Curve calculation"
+	      SrcPort		      6
+	      DstBlock		      "al2_pp"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "al2_start"
+	      SrcPort		      1
+	      DstBlock		      "Init"
 	      DstPort		      4
 	    }
 	    Line {
-	      SrcBlock		      "a4"
+	      SrcBlock		      "al2_end"
 	      SrcPort		      1
-	      DstBlock		      " SFunction "
+	      DstBlock		      "Init"
 	      DstPort		      5
 	    }
 	    Line {
-	      SrcBlock		      "a5"
+	      SrcBlock		      "init trigger"
 	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      6
-	    }
-	    Line {
-	      SrcBlock		      "t_sim"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      7
-	    }
-	    Line {
-	      SrcBlock		      "t"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      8
-	    }
-	    Line {
-	      Name		      "qa"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      2
-	      DstBlock		      "qa"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "qap"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      3
-	      DstBlock		      "qap"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "qapp"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      4
-	      DstBlock		      "qapp"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " Demux "
-	      SrcPort		      1
-	      DstBlock		      " Terminator "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " SFunction "
-	      SrcPort		      1
-	      DstBlock		      " Demux "
-	      DstPort		      1
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "Joint reference singal 2"
-	  Ports			  [8, 3]
-	  Position		  [480, 311, 575, 459]
-	  ErrorFcn		  "Stateflow.Translate.translate"
-	  PermitHierarchicalResolution "ExplicitOnly"
-	  TreatAsAtomicUnit	  on
-	  MinAlgLoopOccurrences	  off
-	  RTWSystemCode		  "Auto"
-	  FunctionWithSeparateData off
-	  MaskHideContents	  off
-	  MaskType		  "Stateflow"
-	  MaskDescription	  "Embedded MATLAB block"
-	  MaskDisplay		  "disp('fcn');"
-	  MaskSelfModifiable	  on
-	  MaskIconFrame		  on
-	  MaskIconOpaque	  off
-	  MaskIconRotate	  "none"
-	  MaskIconUnits		  "normalized"
-	  System {
-	    Name		    "Joint reference singal 2"
-	    Location		    [257, 457, 812, 717]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "a0"
-	      Position		      [20, 101, 40, 119]
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "a1"
-	      Position		      [20, 136, 40, 154]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "a2"
-	      Position		      [20, 171, 40, 189]
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "a3"
-	      Position		      [20, 206, 40, 224]
-	      Port		      "4"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "a4"
-	      Position		      [20, 246, 40, 264]
-	      Port		      "5"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "a5"
-	      Position		      [20, 281, 40, 299]
-	      Port		      "6"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "t_sim"
-	      Position		      [20, 316, 40, 334]
-	      Port		      "7"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "t"
-	      Position		      [20, 351, 40, 369]
-	      Port		      "8"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Demux
-	      Name		      " Demux "
-	      Ports		      [1, 1]
-	      Position		      [270, 280, 320, 320]
-	      Outputs		      "1"
-	    }
-	    Block {
-	      BlockType		      "S-Function"
-	      Name		      " SFunction "
-	      Tag		      "Stateflow S-Function MPC_framework 5"
-	      Ports		      [8, 4]
-	      Position		      [180, 100, 230, 280]
-	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[8 4]"
-	      EnableBusSupport	      on
-	      Port {
-		PortNumber		2
-		Name			"qa"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		3
-		Name			"qap"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		4
-		Name			"qapp"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      " Terminator "
-	      Position		      [460, 291, 480, 309]
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "qa"
-	      Position		      [460, 101, 480, 119]
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "qap"
-	      Position		      [460, 136, 480, 154]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "qapp"
-	      Position		      [460, 171, 480, 189]
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Line {
-	      SrcBlock		      "a0"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "a1"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      2
-	    }
-	    Line {
-	      SrcBlock		      "a2"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      3
-	    }
-	    Line {
-	      SrcBlock		      "a3"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      4
-	    }
-	    Line {
-	      SrcBlock		      "a4"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      5
-	    }
-	    Line {
-	      SrcBlock		      "a5"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      6
-	    }
-	    Line {
-	      SrcBlock		      "t_sim"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      7
-	    }
-	    Line {
-	      SrcBlock		      "t"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      8
-	    }
-	    Line {
-	      Name		      "qa"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      2
-	      DstBlock		      "qa"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "qap"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      3
-	      DstBlock		      "qap"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "qapp"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      4
-	      DstBlock		      "qapp"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " Demux "
-	      SrcPort		      1
-	      DstBlock		      " Terminator "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " SFunction "
-	      SrcPort		      1
-	      DstBlock		      " Demux "
-	      DstPort		      1
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "Trajectory design 1"
-	  Ports			  [3, 6]
-	  Position		  [315, 97, 410, 213]
-	  ErrorFcn		  "Stateflow.Translate.translate"
-	  PermitHierarchicalResolution "ExplicitOnly"
-	  TreatAsAtomicUnit	  on
-	  MinAlgLoopOccurrences	  off
-	  RTWSystemCode		  "Auto"
-	  FunctionWithSeparateData off
-	  MaskHideContents	  off
-	  MaskType		  "Stateflow"
-	  MaskDescription	  "Embedded MATLAB block"
-	  MaskDisplay		  "disp('fcn');"
-	  MaskSelfModifiable	  on
-	  MaskIconFrame		  on
-	  MaskIconOpaque	  off
-	  MaskIconRotate	  "none"
-	  MaskIconUnits		  "normalized"
-	  System {
-	    Name		    "Trajectory design 1"
-	    Location		    [257, 457, 812, 717]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "A"
-	      Position		      [20, 101, 40, 119]
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "B"
-	      Position		      [20, 136, 40, 154]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "t"
-	      Position		      [20, 171, 40, 189]
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Demux
-	      Name		      " Demux "
-	      Ports		      [1, 1]
-	      Position		      [270, 315, 320, 355]
-	      Outputs		      "1"
-	    }
-	    Block {
-	      BlockType		      "S-Function"
-	      Name		      " SFunction "
-	      Tag		      "Stateflow S-Function MPC_framework 4"
-	      Ports		      [3, 7]
-	      Position		      [180, 100, 230, 260]
-	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[3 7]"
-	      EnableBusSupport	      on
-	      Port {
-		PortNumber		2
-		Name			"a0"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		3
-		Name			"a1"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		4
-		Name			"a2"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		5
-		Name			"a3"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		6
-		Name			"a4"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		7
-		Name			"a5"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      " Terminator "
-	      Position		      [460, 326, 480, 344]
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a0"
-	      Position		      [460, 101, 480, 119]
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a1"
-	      Position		      [460, 136, 480, 154]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a2"
-	      Position		      [460, 171, 480, 189]
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a3"
-	      Position		      [460, 206, 480, 224]
-	      Port		      "4"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a4"
-	      Position		      [460, 246, 480, 264]
-	      Port		      "5"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a5"
-	      Position		      [460, 281, 480, 299]
-	      Port		      "6"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Line {
-	      SrcBlock		      "A"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "B"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      2
-	    }
-	    Line {
-	      SrcBlock		      "t"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      3
-	    }
-	    Line {
-	      Name		      "a0"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      2
-	      DstBlock		      "a0"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a1"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      3
-	      DstBlock		      "a1"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a2"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      4
-	      DstBlock		      "a2"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a3"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      5
-	      DstBlock		      "a3"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a4"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      6
-	      DstBlock		      "a4"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a5"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      7
-	      DstBlock		      "a5"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " Demux "
-	      SrcPort		      1
-	      DstBlock		      " Terminator "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " SFunction "
-	      SrcPort		      1
-	      DstBlock		      " Demux "
-	      DstPort		      1
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "Trajectory design 2"
-	  Ports			  [3, 6]
-	  Position		  [315, 307, 410, 423]
-	  ErrorFcn		  "Stateflow.Translate.translate"
-	  PermitHierarchicalResolution "ExplicitOnly"
-	  TreatAsAtomicUnit	  on
-	  MinAlgLoopOccurrences	  off
-	  RTWSystemCode		  "Auto"
-	  FunctionWithSeparateData off
-	  MaskHideContents	  off
-	  MaskType		  "Stateflow"
-	  MaskDescription	  "Embedded MATLAB block"
-	  MaskDisplay		  "disp('fcn');"
-	  MaskSelfModifiable	  on
-	  MaskIconFrame		  on
-	  MaskIconOpaque	  off
-	  MaskIconRotate	  "none"
-	  MaskIconUnits		  "normalized"
-	  System {
-	    Name		    "Trajectory design 2"
-	    Location		    [257, 457, 812, 717]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "A"
-	      Position		      [20, 101, 40, 119]
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "B"
-	      Position		      [20, 136, 40, 154]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "t"
-	      Position		      [20, 171, 40, 189]
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Demux
-	      Name		      " Demux "
-	      Ports		      [1, 1]
-	      Position		      [270, 315, 320, 355]
-	      Outputs		      "1"
-	    }
-	    Block {
-	      BlockType		      "S-Function"
-	      Name		      " SFunction "
-	      Tag		      "Stateflow S-Function MPC_framework 6"
-	      Ports		      [3, 7]
-	      Position		      [180, 100, 230, 260]
-	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[3 7]"
-	      EnableBusSupport	      on
-	      Port {
-		PortNumber		2
-		Name			"a0"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		3
-		Name			"a1"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		4
-		Name			"a2"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		5
-		Name			"a3"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		6
-		Name			"a4"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		7
-		Name			"a5"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      " Terminator "
-	      Position		      [460, 326, 480, 344]
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a0"
-	      Position		      [460, 101, 480, 119]
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a1"
-	      Position		      [460, 136, 480, 154]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a2"
-	      Position		      [460, 171, 480, 189]
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a3"
-	      Position		      [460, 206, 480, 224]
-	      Port		      "4"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a4"
-	      Position		      [460, 246, 480, 264]
-	      Port		      "5"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "a5"
-	      Position		      [460, 281, 480, 299]
-	      Port		      "6"
-	      IconDisplay	      "Port number"
-	      BusOutputAsStruct	      off
-	    }
-	    Line {
-	      SrcBlock		      "A"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "B"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      2
-	    }
-	    Line {
-	      SrcBlock		      "t"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      3
-	    }
-	    Line {
-	      Name		      "a0"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      2
-	      DstBlock		      "a0"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a1"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      3
-	      DstBlock		      "a1"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a2"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      4
-	      DstBlock		      "a2"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a3"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      5
-	      DstBlock		      "a3"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a4"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      6
-	      DstBlock		      "a4"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "a5"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      7
-	      DstBlock		      "a5"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " Demux "
-	      SrcPort		      1
-	      DstBlock		      " Terminator "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " SFunction "
-	      SrcPort		      1
-	      DstBlock		      " Demux "
-	      DstPort		      1
+	      Points		      [165, 0]
+	      DstBlock		      "Init"
+	      DstPort		      trigger
 	    }
 	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "alpha1_ref"
-	  Position		  [675, 118, 705, 132]
+	  Position		  [620, 148, 650, 162]
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "alpha2_ref"
-	  Position		  [665, 328, 695, 342]
+	  Position		  [620, 283, 650, 297]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
 	Line {
-	  SrcBlock		  "Trajectory design 1"
+	  SrcBlock		  "trajectory enable"
 	  SrcPort		  1
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 1"
+	  DstBlock		  "Trajectory design1"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Trajectory design 1"
-	  SrcPort		  2
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 1"
+	  SrcBlock		  "init_trigger"
+	  SrcPort		  1
+	  DstBlock		  "Trajectory design1"
 	  DstPort		  2
 	}
 	Line {
-	  SrcBlock		  "Trajectory design 1"
-	  SrcPort		  3
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 1"
-	  DstPort		  3
-	}
-	Line {
-	  SrcBlock		  "Trajectory design 1"
-	  SrcPort		  4
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 1"
-	  DstPort		  4
-	}
-	Line {
-	  SrcBlock		  "Trajectory design 1"
-	  SrcPort		  5
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 1"
-	  DstPort		  5
-	}
-	Line {
-	  SrcBlock		  "Trajectory design 1"
-	  SrcPort		  6
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 1"
-	  DstPort		  6
-	}
-	Line {
-	  SrcBlock		  "Trajectory design 2"
+	  SrcBlock		  "al1_start"
 	  SrcPort		  1
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 2"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Trajectory design 2"
-	  SrcPort		  2
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 2"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Trajectory design 2"
-	  SrcPort		  3
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 2"
+	  DstBlock		  "Trajectory design1"
 	  DstPort		  3
-	}
-	Line {
-	  SrcBlock		  "Trajectory design 2"
-	  SrcPort		  4
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 2"
-	  DstPort		  4
-	}
-	Line {
-	  SrcBlock		  "Trajectory design 2"
-	  SrcPort		  5
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 2"
-	  DstPort		  5
-	}
-	Line {
-	  SrcBlock		  "Trajectory design 2"
-	  SrcPort		  6
-	  Points		  [50, 0]
-	  DstBlock		  "Joint reference singal 2"
-	  DstPort		  6
-	}
-	Line {
-	  SrcBlock		  "alpha1_start"
-	  SrcPort		  1
-	  DstBlock		  "Trajectory design 1"
-	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Data Store\nRead"
 	  SrcPort		  1
-	  DstBlock		  "Trajectory design 1"
-	  DstPort		  2
+	  DstBlock		  "Trajectory design1"
+	  DstPort		  4
 	}
 	Line {
-	  SrcBlock		  "alpha2_start"
+	  SrcBlock		  "al2_start"
 	  SrcPort		  1
-	  DstBlock		  "Trajectory design 2"
-	  DstPort		  1
+	  DstBlock		  "Trajectory design1"
+	  DstPort		  5
 	}
 	Line {
 	  SrcBlock		  "Data Store\nRead1"
 	  SrcPort		  1
-	  DstBlock		  "Trajectory design 2"
-	  DstPort		  2
+	  DstBlock		  "Trajectory design1"
+	  DstPort		  6
 	}
 	Line {
-	  SrcBlock		  "Joint reference singal 1"
+	  SrcBlock		  "Trajectory design1"
 	  SrcPort		  1
 	  DstBlock		  "alpha1_ref"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Joint reference singal 2"
-	  SrcPort		  1
+	  SrcBlock		  "Trajectory design1"
+	  SrcPort		  4
 	  DstBlock		  "alpha2_ref"
 	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "time"
-	  SrcPort		  1
-	  Points		  [155, 0]
-	  Branch {
-	    Points		    [0, -45]
-	    DstBlock		    "Trajectory design 1"
-	    DstPort		    3
-	  }
-	  Branch {
-	    Points		    [0, 165]
-	    DstBlock		    "Trajectory design 2"
-	    DstPort		    3
-	  }
 	}
       }
     }
@@ -3646,14 +4448,14 @@ Model {
       BlockType		      SubSystem
       Name		      "async_request receiver1"
       Ports		      [0, 1]
-      Position		      [30, 284, 130, 326]
+      Position		      [90, 278, 190, 312]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
       MaskHideContents	      off
       System {
 	Name			"async_request receiver1"
-	Location		[224, 425, 755, 753]
+	Location		[476, 429, 1180, 757]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -3783,7 +4585,7 @@ Model {
 	Block {
 	  BlockType		  Outport
 	  Name			  "async_request"
-	  Position		  [410, 113, 440, 127]
+	  Position		  [495, 113, 525, 127]
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
@@ -3897,8 +4699,8 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "incremental_in_value receiver"
-      Ports		      [0, 2]
-      Position		      [75, 617, 175, 673]
+      Ports		      [0, 4]
+      Position		      [55, 624, 155, 681]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
@@ -3906,7 +4708,7 @@ Model {
       System {
 	Name			"incremental_in_value receiver"
 	Location		[180, 279, 1048, 660]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -3918,6 +4720,76 @@ Model {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  Position		  [160, 66, 305, 94]
+	  Value			  "incntr_half_val"
+	  VectorParams1D	  on
+	  SamplingMode		  "Sample based"
+	  OutDataTypeMode	  "double"
+	  OutDataType		  "sfix(16)"
+	  ConRadixGroup		  "Use specified scaling"
+	  OutScaling		  "2^0"
+	  SampleTime		  "inf"
+	  FramePeriod		  "inf"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant1"
+	  Position		  [380, 26, 525, 54]
+	  Value			  "increments_per_half_turn"
+	  VectorParams1D	  on
+	  SamplingMode		  "Sample based"
+	  OutDataTypeMode	  "double"
+	  OutDataType		  "sfix(16)"
+	  ConRadixGroup		  "Use specified scaling"
+	  OutScaling		  "2^0"
+	  SampleTime		  "inf"
+	  FramePeriod		  "inf"
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide"
+	  Ports			  [2, 1]
+	  Position		  [655, 278, 685, 302]
+	  Inputs		  "*/"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutScaling		  "2^-10"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide1"
+	  Ports			  [2, 1]
+	  Position		  [655, 323, 685, 347]
+	  Inputs		  "*/"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutScaling		  "2^-10"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain"
+	  Position		  [715, 279, 750, 301]
+	  Gain			  "pi"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain1"
+	  Position		  [715, 324, 750, 346]
+	  Gain			  "pi"
+	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
 	Block {
 	  BlockType		  Math
 	  Name			  "Math\nFunction"
@@ -4087,31 +4959,33 @@ Model {
 	  }
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "increments_per_half_turn"
-	  Position		  [275, 65, 305, 95]
-	  Value			  "increments_per_half_turn"
-	  VectorParams1D	  on
-	  SamplingMode		  "Sample based"
-	  OutDataTypeMode	  "double"
-	  OutDataType		  "sfix(16)"
-	  ConRadixGroup		  "Use specified scaling"
-	  OutScaling		  "2^0"
-	  SampleTime		  "inf"
-	  FramePeriod		  "inf"
-	}
-	Block {
 	  BlockType		  Outport
-	  Name			  "alpha1"
+	  Name			  "alpha1_display"
 	  Position		  [700, 163, 730, 177]
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "alpha2"
+	  Name			  "alpha2_display"
 	  Position		  [700, 233, 730, 247]
 	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  BusOutputAsStruct	  off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "alpha1"
+	  Position		  [780, 283, 810, 297]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  BusOutputAsStruct	  off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "alpha2"
+	  Position		  [780, 328, 810, 342]
+	  Port			  "4"
 	  IconDisplay		  "Port number"
 	  BusOutputAsStruct	  off
 	}
@@ -4143,31 +5017,17 @@ Model {
 	  DstPort		  2
 	}
 	Line {
-	  SrcBlock		  "increments_per_half_turn"
+	  SrcBlock		  "Constant"
 	  SrcPort		  1
-	  Points		  [0, 0; 80, 0]
+	  Points		  [80, 0]
 	  Branch {
 	    DstBlock		    "Sum"
 	    DstPort		    1
 	  }
 	  Branch {
 	    Points		    [100, 0]
-	    Branch {
-	      DstBlock		      "Sum1"
-	      DstPort		      1
-	    }
-	    Branch {
-	      Points		      [30, 0; 0, 95]
-	      Branch {
-		DstBlock		"Math\nFunction"
-		DstPort			2
-	      }
-	      Branch {
-		Points			[0, 70]
-		DstBlock		"Math\nFunction1"
-		DstPort			2
-	      }
-	    }
+	    DstBlock		    "Sum1"
+	    DstPort		    1
 	  }
 	}
 	Line {
@@ -4185,14 +5045,82 @@ Model {
 	Line {
 	  SrcBlock		  "Math\nFunction"
 	  SrcPort		  1
-	  DstBlock		  "alpha1"
-	  DstPort		  1
+	  Points		  [30, 0]
+	  Branch {
+	    DstBlock		    "alpha1_display"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Divide"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Math\nFunction1"
 	  SrcPort		  1
+	  Points		  [10, 0]
+	  Branch {
+	    DstBlock		    "alpha2_display"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 90]
+	    DstBlock		    "Divide1"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Divide"
+	  SrcPort		  1
+	  DstBlock		  "Gain"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain"
+	  SrcPort		  1
+	  DstBlock		  "alpha1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Divide1"
+	  SrcPort		  1
+	  Points		  [0, 0]
+	  DstBlock		  "Gain1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Gain1"
+	  SrcPort		  1
 	  DstBlock		  "alpha2"
 	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Constant1"
+	  SrcPort		  1
+	  Points		  [25, 0; 0, 135]
+	  Branch {
+	    DstBlock		    "Math\nFunction"
+	    DstPort		    2
+	  }
+	  Branch {
+	    Points		    [0, 70]
+	    Branch {
+	      DstBlock		      "Math\nFunction1"
+	      DstPort		      2
+	    }
+	    Branch {
+	      Points		      [0, 50]
+	      Branch {
+		DstBlock		"Divide"
+		DstPort			2
+	      }
+	      Branch {
+		Points			[0, 45]
+		DstBlock		"Divide1"
+		DstPort			2
+	      }
+	    }
+	  }
 	}
       }
     }
@@ -4200,7 +5128,7 @@ Model {
       BlockType		      SubSystem
       Name		      "incremental_out_value sender"
       Ports		      [2, 0, 1]
-      Position		      [320, 618, 445, 662]
+      Position		      [320, 620, 435, 655]
       TreatAsAtomicUnit	      on
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
@@ -4299,7 +5227,7 @@ Model {
       BlockType		      SubSystem
       Name		      "init_ack_messages receiver"
       Ports		      [0, 2]
-      Position		      [100, 163, 220, 207]
+      Position		      [80, 159, 200, 201]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
@@ -4657,7 +5585,7 @@ Model {
       System {
 	Name			"input_coords receiver"
 	Location		[182, 568, 1025, 948]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	212
 	ScreenColor		"white"
@@ -4852,6 +5780,7 @@ Model {
       VectorParams1D	      on
       ShowAdditionalParam     off
       DataType		      "double"
+      SignalType	      "real"
     }
     Block {
       BlockType		      DataStoreMemory
@@ -4866,6 +5795,7 @@ Model {
       VectorParams1D	      on
       ShowAdditionalParam     off
       DataType		      "double"
+      SignalType	      "real"
     }
     Block {
       BlockType		      DataStoreMemory
@@ -5046,7 +5976,7 @@ Model {
       BlockType		      SubSystem
       Name		      "primitive_button receiver"
       Ports		      [0, 1]
-      Position		      [155, 234, 255, 276]
+      Position		      [105, 225, 205, 255]
       MinAlgLoopOccurrences   off
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
@@ -5771,14 +6701,13 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      1
-      Points		      [50, 0; 0, 30; 40, 0]
+      Points		      [90, 0]
       Branch {
-	Points			[0, 105]
+	Points			[0, 155]
 	DstBlock		"Init 2 message sender"
 	DstPort			1
       }
       Branch {
-	Points			[0, -50]
 	DstBlock		"Init 1 message sender"
 	DstPort			1
       }
@@ -5786,27 +6715,28 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      2
-      Points		      [60, 0; 0, -71]
+      Points		      [60, 0; 0, -56]
       DstBlock		      "Init 1 message sender"
       DstPort		      enable
     }
     Line {
       SrcBlock		      "init_ack_messages receiver"
       SrcPort		      1
+      Points		      [125, 0]
       DstBlock		      "State Machine"
       DstPort		      1
     }
     Line {
       SrcBlock		      "init_ack_messages receiver"
       SrcPort		      2
-      Points		      [105, 0]
+      Points		      [125, 0]
       DstBlock		      "State Machine"
       DstPort		      2
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      3
-      Points		      [100, 0; 0, 69]
+      Points		      [100, 0; 0, 79]
       DstBlock		      "Init 2 message sender"
       DstPort		      trigger
     }
@@ -5814,20 +6744,21 @@ Model {
       Labels		      [1, 0]
       SrcBlock		      "State Machine"
       SrcPort		      4
-      Points		      [120, 0; 0, 44; 185, 0]
+      Points		      [120, 0; 0, 49; 185, 0]
       DstBlock		      "stop message sender"
       DstPort		      trigger
     }
     Line {
       SrcBlock		      "primitive_button receiver"
       SrcPort		      1
+      Points		      [120, 0]
       DstBlock		      "State Machine"
       DstPort		      3
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      7
-      Points		      [60, 0; 0, 120; 275, 0]
+      Points		      [60, 0; 0, 110; 275, 0]
       Branch {
 	Points			[325, 0; 0, 125]
 	DstBlock		"Switch"
@@ -5853,24 +6784,16 @@ Model {
 	DstPort			1
       }
       Branch {
-	DstBlock		"Trajectory planning"
-	DstPort			1
+	Points			[0, 145]
+	DstBlock		"Trajectory design"
+	DstPort			3
       }
     }
     Line {
       SrcBlock		      "incremental_in_value receiver"
       SrcPort		      2
-      Points		      [45, 0]
-      Branch {
-	Points			[70, 0; 0, -10]
-	DstBlock		"incremental_out_value sender"
-	DstPort			2
-      }
-      Branch {
-	Points			[0, -95]
-	DstBlock		"Mux2"
-	DstPort			2
-      }
+      DstBlock		      "incremental_out_value sender"
+      DstPort		      2
     }
     Line {
       SrcBlock		      "Controller"
@@ -5928,14 +6851,14 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      8
-      Points		      [100, 0; 0, 95; 880, 0]
+      Points		      [100, 0; 0, 80; 880, 0]
       DstBlock		      "DA_out_value sender"
       DstPort		      enable
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      9
-      Points		      [15, 0; 0, 115]
+      Points		      [15, 0; 0, 95]
       Branch {
 	Points			[-185, 0]
 	DstBlock		"Compare\nTo Zero"
@@ -5951,7 +6874,6 @@ Model {
     Line {
       SrcBlock		      "async_request receiver1"
       SrcPort		      1
-      Points		      [170, 0; 0, -10]
       DstBlock		      "State Machine"
       DstPort		      4
     }
@@ -5965,23 +6887,15 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "State Machine"
       SrcPort		      10
-      Points		      [5, 0; 0, 135]
+      Points		      [5, 0; 0, 110]
       DstBlock		      "sync_command handler"
       DstPort		      1
     }
     Line {
       SrcBlock		      "incremental_in_value receiver"
       SrcPort		      1
-      Points		      [35, 0]
-      Branch {
-	DstBlock		"incremental_out_value sender"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -85]
-	DstBlock		"Mux2"
-	DstPort			1
-      }
+      DstBlock		      "incremental_out_value sender"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "Mux2"
@@ -6008,14 +6922,14 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      11
-      Points		      [110, 0; 0, -105; 175, 0; 0, -20]
+      Points		      [110, 0; 0, -135; 175, 0; 0, -20]
       DstBlock		      "controller_message sender"
       DstPort		      1
     }
     Line {
       SrcBlock		      "State Machine"
-      SrcPort		      14
-      Points		      [0, 25; 250, 0; 0, -237]
+      SrcPort		      13
+      Points		      [250, 0; 0, -237]
       DstBlock		      "controller_message sender"
       DstPort		      trigger
     }
@@ -6034,41 +6948,48 @@ Model {
     Line {
       SrcBlock		      "Inverse geometry"
       SrcPort		      1
-      DstBlock		      "Goto"
-      DstPort		      1
+      Points		      [10, 0]
+      Branch {
+	DstBlock		"Goto"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -170]
+	DstBlock		"Trajectory design"
+	DstPort			2
+      }
     }
     Line {
       SrcBlock		      "From"
       SrcPort		      1
-      Points		      [55, 0]
+      Points		      [65, 0]
       DstBlock		      "State Machine"
       DstPort		      6
     }
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      6
-      Points		      [70, 0; 0, 215]
+      Points		      [70, 0; 0, 210]
       Branch {
 	DstBlock		"Mux"
 	DstPort			2
       }
       Branch {
-	Points			[0, 110]
-	DstBlock		"Trajectory planning"
-	DstPort			2
+	Points			[0, 150]
+	DstBlock		"Trajectory design"
+	DstPort			4
       }
     }
     Line {
-      SrcBlock		      "Trajectory planning"
+      SrcBlock		      "Trajectory design"
       SrcPort		      1
-      Points		      [10, 0; 0, 5]
+      Points		      [0, 0]
       DstBlock		      "Mux3"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Trajectory planning"
+      SrcBlock		      "Trajectory design"
       SrcPort		      2
-      Points		      [15, 0]
       DstBlock		      "Mux3"
       DstPort		      2
     }
@@ -6081,15 +7002,16 @@ Model {
     Line {
       SrcBlock		      "State Machine"
       SrcPort		      12
-      Points		      [35, 0; 0, 85; 140, 0]
+      Points		      [35, 0; 0, 50]
       Branch {
-	Points			[150, 0; 0, 150]
+	Points			[290, 0; 0, 150]
 	DstBlock		"Switch1"
 	DstPort			2
       }
       Branch {
-	DstBlock		"Trajectory planning"
-	DstPort			enable
+	Points			[0, 115]
+	DstBlock		"Trajectory design"
+	DstPort			1
       }
     }
     Line {
@@ -6113,14 +7035,25 @@ Model {
       DstPort		      2
     }
     Line {
-      SrcBlock		      "State Machine"
-      SrcPort		      13
-      Points		      [50, 0; 0, 255]
-      DstBlock		      "Trajectory planning"
-      DstPort		      3
+      SrcBlock		      "incremental_in_value receiver"
+      SrcPort		      3
+      Points		      [35, 0; 0, -115]
+      DstBlock		      "Mux2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "incremental_in_value receiver"
+      SrcPort		      4
+      Points		      [55, 0; 0, -110]
+      DstBlock		      "Mux2"
+      DstPort		      2
     }
     Annotation {
       Position		      [173, 608]
+      UseDisplayTextAsClickCallback off
+    }
+    Annotation {
+      Position		      [406, 255]
       UseDisplayTextAsClickCallback off
     }
   }
@@ -7376,7 +8309,7 @@ Stateflow {
 		name                 		"MPC_framework"
 		created              		"17-Dec-2013 14:36:37"
 		isLibrary            		0
-		firstTarget          		164
+		firstTarget          		167
 		sfVersion            		64014000
 	}
 
@@ -7384,7 +8317,8 @@ Stateflow {
 		id                                        		2
 		name                                      		"State Machine"
 		windowPosition                            		[3 25.5 954 684]
-		viewLimits                                		[1502.235 2412.735 55.593 703.593]
+		viewLimits                                		[1274.61 2412.735 1.937 811.937]
+		zoomFactor                                		1.25
 		screen                                    		[1 1 1280 1024 1.333333333333333]
 		treeNode                                  		[0 5 0 0]
 		firstTransition                           		24
@@ -7392,12 +8326,12 @@ Stateflow {
 		visible                                   		1
 		machine                                   		1
 		subviewS {
-			x1        		1307.685
+			x1        		1502.235
 			y1        		55.593
 		}
 		decomposition                             		CLUSTER_CHART
-		firstEvent                                		60
-		firstData                                 		61
+		firstEvent                                		61
+		firstData                                 		62
 		updateMethod                              		DISCRETE
 		sampleTime                                		"0.01"
 		chartFileNumber                           		1
@@ -7490,7 +8424,6 @@ Stateflow {
 		chart                        		2
 		treeNode                     		[5 6 8 16]
 		firstTransition              		26
-		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -7505,11 +8438,15 @@ Stateflow {
 						"entry: operation_mode=2;\n"
 						"alpha1_ref=alpha_in[0];\n"
 						"alpha2_ref=alpha_in[1];\n"
-						"controller_message=255;"
-		position                     		[1356.1782 88.4362 1046.0773 591.0424]
+						"motor1_reference=alpha1_ref;\n"
+						"motor2_reference=alpha2_ref;\n"
+						"trajectory_enable=0;\n"
+						"controller_enable=1;\n"
+						"da_out_trigger=1;"
+		position                     		[1336.0532 88.8112 1046.0773 591.0424]
 		fontSize                     		11.806
 		chart                        		2
-		treeNode                     		[5 19 0 7]
+		treeNode                     		[5 18 0 7]
 		firstTransition              		58
 		firstJunction                		23
 		subviewer                    		2
@@ -7527,7 +8464,6 @@ Stateflow {
 		fontSize                     		11.806
 		chart                        		2
 		treeNode                     		[7 10 6 0]
-		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		SET_STATE
@@ -7545,7 +8481,6 @@ Stateflow {
 		chart                        		2
 		treeNode                     		[9 13 0 11]
 		firstTransition              		40
-		visible                      		0
 		subviewer                    		2
 		type                         		AND_STATE
 		decomposition                		CLUSTER_STATE
@@ -7564,7 +8499,6 @@ Stateflow {
 		chart                        		2
 		treeNode                     		[9 15 10 0]
 		firstTransition              		41
-		visible                      		0
 		subviewer                    		2
 		type                         		AND_STATE
 		decomposition                		CLUSTER_STATE
@@ -7707,11 +8641,15 @@ Stateflow {
 						"entry: controller_message=3;\n"
 						"send_controller_message;\n"
 						"trajectory_enable=1;\n"
-						"current_time=0;"
-		position                     		[1934.7861 200.0947 428.75 343.125]
+						"\n"
+						"exit:\n"
+						"motor1_reference = invgeo_alpha_1;\n"
+						"motor2_reference = invgeo_alpha_2;\n"
+						"trajectory_enable=0;"
+		position                     		[1916.6592 200.1732 461.2519 342.6715]
 		fontSize                     		12
 		chart                        		2
-		treeNode                     		[8 0 19 0]
+		treeNode                     		[8 0 0 19]
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -7723,17 +8661,13 @@ Stateflow {
 	state {
 		id                           		19
 		labelString                  		"HOLD\n"
-						"entry: trajectory_enable=0;\n"
+						"entry:\n"
 						"controller_message=4;\n"
-						"send_controller_message;\n"
-						"\n"
-						"during: controller_enable=1;\n"
-						"motor1_reference=alpha1_ref;\n"
-						"motor2_reference=alpha2_ref;"
-		position                     		[1377.2306 197.5084 501.5127 361.92]
+						"send_controller_message;"
+		position                     		[1382.7618 263.6021 501.5127 361.92]
 		fontSize                     		12
 		chart                        		2
-		treeNode                     		[8 20 0 18]
+		treeNode                     		[8 20 18 0]
 		firstTransition              		53
 		firstJunction                		21
 		subviewer                    		2
@@ -7747,7 +8681,7 @@ Stateflow {
 	state {
 		id                           		20
 		labelString                  		"HOLD_main"
-		position                     		[1390.81 340.218 138.25 101.25]
+		position                     		[1388.81 380.718 138.25 101.25]
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[19 0 0 0]
@@ -7761,7 +8695,7 @@ Stateflow {
 
 	junction {
 		id         		21
-		position   		[1632.185 358.593 7]
+		position   		[1630.185 399.093 7]
 		chart      		2
 		linkNode   		[19 0 22]
 		subviewer  		2
@@ -7770,7 +8704,7 @@ Stateflow {
 
 	junction {
 		id         		22
-		position   		[1748.435 360.093 7]
+		position   		[1746.435 400.593 7]
 		chart      		2
 		linkNode   		[19 21 0]
 		subviewer  		2
@@ -7779,7 +8713,7 @@ Stateflow {
 
 	junction {
 		id         		23
-		position   		[1902.4846 143.343 7]
+		position   		[1875.2346 148.1871 7]
 		chart      		2
 		linkNode   		[8 0 0]
 		subviewer  		2
@@ -7788,7 +8722,7 @@ Stateflow {
 
 	transition {
 		id             		24
-		labelPosition  		[39.864 30.141 8.246 14.971]
+		labelPosition  		[39.864 30.141 8.433 16.842]
 		fontSize       		12
 		src {
 			intersection		[0 0 1 0 39.864 25.66 0 0]
@@ -7810,7 +8744,7 @@ Stateflow {
 	transition {
 		id             		25
 		labelString    		"[init_ack_sync==1 && init_ack_async==1]"
-		labelPosition  		[48.713 133.279 218.144 14.971]
+		labelPosition  		[48.713 133.279 233.325 16.842]
 		fontSize       		12
 		src {
 			id          		3
@@ -7833,7 +8767,7 @@ Stateflow {
 
 	transition {
 		id             		26
-		labelPosition  		[750.053 172.518 8.246 14.971]
+		labelPosition  		[750.053 172.518 8.433 15.906]
 		fontSize       		11.806
 		src {
 			intersection		[0 0 0 0 766.047 177.8853 0 0]
@@ -7852,7 +8786,7 @@ Stateflow {
 
 	transition {
 		id             		27
-		labelPosition  		[290.602 178.287 8.246 14.971]
+		labelPosition  		[290.602 178.287 8.433 16.842]
 		fontSize       		12
 		src {
 			id          		4
@@ -7870,12 +8804,14 @@ Stateflow {
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
+		slide {
+		}
 		executionOrder 		1
 	}
 
 	transition {
 		id             		28
-		labelPosition  		[781.67 80.152 8.246 14.971]
+		labelPosition  		[781.67 80.152 8.433 15.906]
 		fontSize       		11.806
 		src {
 			intersection		[0 0 1 0 777.2699 73.9286 0 0]
@@ -7886,7 +8822,7 @@ Stateflow {
 		}
 		midPoint       		[777.2699 85.3201]
 		chart          		2
-		linkNode       		[5 35 39]
+		linkNode       		[5 35 37]
 		dataLimits     		[774.87 779.67 73.929 103.929]
 		subviewer      		2
 		drawStyle      		SMART
@@ -7899,7 +8835,7 @@ Stateflow {
 	transition {
 		id             		29
 		labelString    		"[primitive_button==5]"
-		labelPosition  		[428.374 415.973 110.197 14.971]
+		labelPosition  		[428.374 415.973 108.697 15.906]
 		fontSize       		11.806
 		src {
 			id          		9
@@ -7927,7 +8863,7 @@ Stateflow {
 	transition {
 		id             		30
 		labelString    		"[primitive_button==1]"
-		labelPosition  		[673.606 345.721 110.197 14.971]
+		labelPosition  		[673.606 345.721 108.697 15.906]
 		fontSize       		11.806
 		arrowSize      		11.912
 		src {
@@ -7954,7 +8890,7 @@ Stateflow {
 	transition {
 		id             		31
 		labelString    		"[primitive_button==3]"
-		labelPosition  		[872.567 326.564 110.197 14.971]
+		labelPosition  		[872.567 326.564 108.697 15.906]
 		fontSize       		11.806
 		arrowSize      		11.912
 		src {
@@ -7981,7 +8917,7 @@ Stateflow {
 	transition {
 		id             		32
 		labelString    		"[primitive_button==2]"
-		labelPosition  		[780.257 501.86 110.197 14.971]
+		labelPosition  		[780.257 501.86 108.697 15.906]
 		fontSize       		11.806
 		arrowSize      		11.912
 		src {
@@ -8008,7 +8944,7 @@ Stateflow {
 	transition {
 		id             		33
 		labelString    		"[primitive_button==4]"
-		labelPosition  		[1045.678 366.447 110.197 14.971]
+		labelPosition  		[1045.678 366.447 108.697 15.906]
 		fontSize       		11.806
 		arrowSize      		11.912
 		src {
@@ -8037,20 +8973,20 @@ Stateflow {
 	transition {
 		id             		34
 		labelString    		"[async_request==2]"
-		labelPosition  		[1424.765 714.931 103.45 14.971]
+		labelPosition  		[1410.546 711.503 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		7
-			intersection		[2 1 0 0.6982 1320.4612 773.7032 0 389.7458]
+			intersection		[2 1 0 0.6986 1320.4612 774.0782 0 389.7458]
 		}
 		dst {
 			id          		8
-			intersection		[3 0 1 0.9204 1439.4553 679.4786 0 -378.7983]
+			intersection		[3 0 1 0.9204 1419.3303 679.8536 0 -378.7983]
 		}
-		midPoint       		[1401.9496 747.5413]
+		midPoint       		[1389.4167 745.9368]
 		chart          		2
-		linkNode       		[5 37 50]
-		dataLimits     		[1320.461 1441.855 679.479 773.703]
+		linkNode       		[5 39 50]
+		dataLimits     		[1320.461 1421.73 679.854 774.078]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -8064,20 +9000,20 @@ Stateflow {
 	transition {
 		id             		35
 		labelString    		"[async_request==1]"
-		labelPosition  		[1299.771 49.884 103.45 14.971]
+		labelPosition  		[1281.265 52.302 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		8
-			intersection		[1 0 -1 0.0665 1425.7423 88.4362 0 365.0853]
+			intersection		[1 0 -1 0.0665 1405.6173 88.8112 0 365.0853]
 		}
 		dst {
 			id          		7
-			intersection		[1 0 -1 0.8433 1180.6188 103.9286 0 -419.8712]
+			intersection		[1 0 -1 0.8437 1180.9938 103.9286 0 -419.8712]
 		}
-		midPoint       		[1297.5974 66.7277]
+		midPoint       		[1288.0778 69.3925]
 		chart          		2
 		linkNode       		[5 0 28]
-		dataLimits     		[1178.219 1425.742 63.625 103.929]
+		dataLimits     		[1178.594 1405.617 66.318 103.929]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -8092,7 +9028,7 @@ Stateflow {
 	transition {
 		id             		36
 		labelString    		"[async_request==6]"
-		labelPosition  		[582.191 1086.765 103.45 14.971]
+		labelPosition  		[582.191 1086.765 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		7
@@ -8119,20 +9055,20 @@ Stateflow {
 	transition {
 		id             		37
 		labelString    		"[async_request==6]"
-		labelPosition  		[1428.618 871.357 103.45 14.971]
+		labelPosition  		[1412.034 868.505 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		8
-			intersection		[3 0 1 0.7771 1589.3488 679.4786 0 -179.2752]
+			intersection		[3 0 1 0.7771 1569.2238 679.8536 0 -179.2752]
 		}
 		dst {
 			id          		16
 			intersection		[2 1 0 0.2864 1103.9376 1230.2024 0 -6.7248]
 		}
-		midPoint       		[1430.3781 1060.6553]
+		midPoint       		[1420.9061 1057.1904]
 		chart          		2
-		linkNode       		[5 39 34]
-		dataLimits     		[1103.938 1589.349 679.479 1232.602]
+		linkNode       		[5 28 39]
+		dataLimits     		[1103.938 1569.224 679.854 1232.602]
 		stampAngle     		NaN
 		subviewer      		2
 		slide {
@@ -8145,7 +9081,7 @@ Stateflow {
 	transition {
 		id             		38
 		labelString    		"[async_request==1]"
-		labelPosition  		[398.004 1098.03 103.45 14.971]
+		labelPosition  		[398.004 1098.03 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		16
@@ -8172,7 +9108,7 @@ Stateflow {
 	transition {
 		id             		39
 		labelString    		"[async_request==2]"
-		labelPosition  		[1561.959 967.519 103.45 14.971]
+		labelPosition  		[1538.58 976.801 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		16
@@ -8180,12 +9116,12 @@ Stateflow {
 		}
 		dst {
 			id          		8
-			intersection		[3 0 1 0.7353 1633.0901 679.4786 0 -276.9119]
+			intersection		[3 0 1 0.7353 1612.9651 679.8536 0 -276.9119]
 		}
-		midPoint       		[1487.1171 1104.8414]
+		midPoint       		[1474.8846 1103.3893]
 		chart          		2
-		linkNode       		[5 28 37]
-		dataLimits     		[1103.938 1635.49 679.479 1343.836]
+		linkNode       		[5 37 34]
+		dataLimits     		[1103.938 1615.365 679.854 1343.836]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -8198,7 +9134,7 @@ Stateflow {
 
 	transition {
 		id             		40
-		labelPosition  		[703.347 587.251 8.246 14.971]
+		labelPosition  		[703.347 587.251 8.433 15.906]
 		fontSize       		11.806
 		arrowSize      		11.912
 		src {
@@ -8222,7 +9158,7 @@ Stateflow {
 
 	transition {
 		id             		41
-		labelPosition  		[732.626 796.732 8.246 14.971]
+		labelPosition  		[732.626 796.732 8.433 15.906]
 		fontSize       		11.806
 		arrowSize      		11.912
 		src {
@@ -8247,7 +9183,7 @@ Stateflow {
 	transition {
 		id             		42
 		labelString    		"[async_request==3]{sync_command=1}"
-		labelPosition  		[353.201 1459.484 206.15 14.971]
+		labelPosition  		[353.201 1459.484 206.15 15.906]
 		fontSize       		11.806
 		src {
 			id          		16
@@ -8274,7 +9210,7 @@ Stateflow {
 	transition {
 		id             		43
 		labelString    		"[async_request==4]{sync_command=2}"
-		labelPosition  		[582.907 1457.122 206.15 14.971]
+		labelPosition  		[582.907 1457.122 206.15 15.906]
 		fontSize       		11.806
 		src {
 			id          		16
@@ -8299,7 +9235,7 @@ Stateflow {
 	transition {
 		id             		44
 		labelString    		"[async_request==5]{sync_command=3}"
-		labelPosition  		[753.793 1446.803 206.15 14.971]
+		labelPosition  		[753.793 1446.803 206.15 15.906]
 		fontSize       		11.806
 		src {
 			id          		16
@@ -8324,7 +9260,7 @@ Stateflow {
 	transition {
 		id             		45
 		labelString    		"[async_request==7]{sync_command=4}"
-		labelPosition  		[908.135 1454.419 206.15 14.971]
+		labelPosition  		[908.135 1454.419 206.15 15.906]
 		fontSize       		11.806
 		src {
 			id          		16
@@ -8349,20 +9285,20 @@ Stateflow {
 	transition {
 		id             		46
 		labelString    		"[async_request==8]"
-		labelPosition  		[1877.593 1052.871 103.45 14.971]
+		labelPosition  		[1877.593 1052.231 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		8
-			intersection		[3 0 1 0.5077 1871.1925 679.4786 0 -134.625]
+			intersection		[3 0 1 0.4884 1871.1925 679.8536 0 -134.625]
 		}
 		dst {
 			id          		17
 			intersection		[1 0 -1 0.7803 1871.1925 1216.3359 0 134.625]
 		}
-		midPoint       		[1871.1925 955.3173]
+		midPoint       		[1871.1925 955.4967]
 		chart          		2
 		linkNode       		[5 50 51]
-		dataLimits     		[1868.792 1873.592 679.479 1216.336]
+		dataLimits     		[1868.792 1873.592 679.854 1216.336]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -8374,7 +9310,7 @@ Stateflow {
 	transition {
 		id             		47
 		labelString    		"[async_request==8]"
-		labelPosition  		[1364.163 1264.693 103.45 14.971]
+		labelPosition  		[1364.163 1264.693 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		7
@@ -8401,7 +9337,7 @@ Stateflow {
 	transition {
 		id             		48
 		labelString    		"[async_request==8]"
-		labelPosition  		[1348.065 1337.731 103.45 14.971]
+		labelPosition  		[1348.065 1337.731 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		16
@@ -8424,7 +9360,7 @@ Stateflow {
 	transition {
 		id             		49
 		labelString    		"[async_request==6]"
-		labelPosition  		[1300.796 1392.627 103.45 14.971]
+		labelPosition  		[1300.796 1392.627 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		17
@@ -8447,7 +9383,7 @@ Stateflow {
 	transition {
 		id             		50
 		labelString    		"[async_request==2]"
-		labelPosition  		[1717.007 1075.287 103.45 14.971]
+		labelPosition  		[1717.007 1074.647 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		17
@@ -8455,12 +9391,12 @@ Stateflow {
 		}
 		dst {
 			id          		8
-			intersection		[3 0 1 0.5469 1830.1311 679.4786 0 -93.5312]
+			intersection		[3 0 1 0.5277 1830.1311 679.8536 0 -93.5312]
 		}
-		midPoint       		[1830.1311 940.4971]
+		midPoint       		[1830.1311 940.6928]
 		chart          		2
 		linkNode       		[5 34 46]
-		dataLimits     		[1827.731 1832.531 679.479 1216.336]
+		dataLimits     		[1827.731 1832.531 679.854 1216.336]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -8472,7 +9408,7 @@ Stateflow {
 	transition {
 		id             		51
 		labelString    		"[async_request==1]"
-		labelPosition  		[1541.504 1154.137 103.45 14.971]
+		labelPosition  		[1541.504 1154.137 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		17
@@ -8498,19 +9434,19 @@ Stateflow {
 
 	transition {
 		id             		52
-		labelPosition  		[1623.563 150.284 8.246 14.971]
+		labelPosition  		[1629.094 216.378 8.433 16.842]
 		fontSize       		12
 		src {
-			intersection		[0 0 1 0 1621.8684 150.284 0 0]
+			intersection		[0 0 1 0 1627.3996 216.3777 0 0]
 		}
 		dst {
 			id          		19
-			intersection		[1 0 -1 0.4878 1621.8684 197.5084 0 0]
+			intersection		[1 0 -1 0.4878 1627.3996 263.6021 0 0]
 		}
-		midPoint       		[1621.8684 170.6621]
+		midPoint       		[1627.3996 236.7559]
 		chart          		2
-		linkNode       		[8 59 0]
-		dataLimits     		[1619.468 1624.268 150.284 197.508]
+		linkNode       		[8 59 60]
+		dataLimits     		[1625 1629.8 216.378 263.602]
 		subviewer      		2
 		drawStyle      		SMART
 		executionOrder 		1
@@ -8518,19 +9454,19 @@ Stateflow {
 
 	transition {
 		id             		53
-		labelPosition  		[1504.093 318.609 8.246 14.971]
+		labelPosition  		[1505.123 359.109 8.433 16.842]
 		fontSize       		12
 		src {
-			intersection		[0 0 1 0 1499.6929 310.218 0 0]
+			intersection		[0 0 0 0 1558.4729 357.843 0 0]
 		}
 		dst {
 			id          		20
-			intersection		[1 0 -1 0.7876 1499.6929 340.218 0 0]
+			intersection		[1 0 -1 0.8095 1500.7229 380.718 0 0]
 		}
-		midPoint       		[1499.6929 321.6095]
+		midPoint       		[1520.8241 360.4084]
 		chart          		2
 		linkNode       		[19 0 56]
-		dataLimits     		[1497.293 1502.093 310.218 340.218]
+		dataLimits     		[1498.323 1558.473 357.843 380.718]
 		subviewer      		2
 		drawStyle      		SMART
 		executionOrder 		1
@@ -8539,20 +9475,20 @@ Stateflow {
 	transition {
 		id             		54
 		labelString    		"[invgeo_done==1]"
-		labelPosition  		[1529.007 338.493 95.204 14.971]
+		labelPosition  		[1527.007 378.993 97.453 16.842]
 		fontSize       		12
 		src {
 			id          		20
-			intersection		[2 1 0 0.1667 1529.06 357.093 0 0]
+			intersection		[2 1 0 0.1667 1527.06 397.5964 0 0]
 		}
 		dst {
 			id          		21
-			intersection		[0 -0.9986 -0.0526 -1 1625.1947 358.2251 0 0]
+			intersection		[0 -0.9986 -0.0526 -1 1623.1948 398.7248 0 0]
 		}
-		midPoint       		[1576.7371 357.5693]
+		midPoint       		[1574.7371 398.0693]
 		chart          		2
 		linkNode       		[19 56 57]
-		dataLimits     		[1529.06 1625.195 355.408 360.201]
+		dataLimits     		[1527.06 1623.195 395.907 400.701]
 		stampAngle     		-0.0526
 		subviewer      		2
 		slide {
@@ -8567,23 +9503,22 @@ Stateflow {
 	transition {
 		id             		55
 		labelString    		"/send_controller_message"
-		labelPosition  		[1668.238 416.756 139.433 14.971]
+		labelPosition  		[1612.537 466.259 144.305 16.842]
 		fontSize       		12
 		src {
 			id          		22
-			intersection		[0 0.9578 0.2873 -1 1755.1398 362.1044 0 0]
+			intersection		[0 0.9578 0.2873 -1 1753.1396 402.6041 0 0]
 		}
 		dst {
 			id          		20
-			intersection		[2 1 0 0.7667 1529.06 417.843 0 0]
+			intersection		[2 1 0 0.8052 1527.06 462.2496 0 0]
 		}
-		midPoint       		[1836.185 375.843]
+		midPoint       		[1837.7346 418.1871]
 		chart          		2
 		linkNode       		[19 57 0]
-		dataLimits     		[1529.06 1874.011 362.104 420.243]
-		stampAngle     		2.8501
+		dataLimits     		[1527.06 1874.69 402.604 464.65]
+		stampAngle     		2.8502
 		subviewer      		2
-		drawStyle      		SMART
 		slide {
 			sticky        		BOTH_STICK
 			arcL          		57.75
@@ -8595,20 +9530,20 @@ Stateflow {
 	transition {
 		id             		56
 		labelString    		"[invgeo_error==0]{controller_message=1}"
-		labelPosition  		[1627.81 323.718 217.395 14.971]
+		labelPosition  		[1625.81 364.218 223.017 16.842]
 		fontSize       		12
 		src {
 			id          		21
-			intersection		[0 0.9057 -0.424 -1 1638.5247 355.6251 0 0]
+			intersection		[0 0.9057 -0.424 -1 1636.5249 396.125 0 0]
 		}
 		dst {
 			id          		22
-			intersection		[0 -0.8944 -0.4472 -1 1742.174 356.9625 0 0]
+			intersection		[0 -0.8944 -0.4472 -1 1740.1742 397.4626 0 0]
 		}
-		midPoint       		[1690.5096 339.5024]
+		midPoint       		[1688.5096 380.0024]
 		chart          		2
 		linkNode       		[19 53 54]
-		dataLimits     		[1638.525 1742.174 339.489 356.963]
+		dataLimits     		[1636.525 1740.174 379.989 397.463]
 		stampAngle     		-0.4507
 		subviewer      		2
 		drawStyle      		SMART
@@ -8621,20 +9556,20 @@ Stateflow {
 	transition {
 		id             		57
 		labelString    		"[invgeo_error==1]{controller_message=2}"
-		labelPosition  		[1621.06 377.718 217.395 14.971]
+		labelPosition  		[1619.06 418.218 223.017 16.842]
 		fontSize       		12
 		src {
 			id          		21
-			intersection		[0 0.9129 0.4081 -1 1638.5756 361.4495 0 0]
+			intersection		[0 0.9129 0.4081 -1 1636.5753 401.9497 0 0]
 		}
 		dst {
 			id          		22
-			intersection		[0 -0.9232 0.3844 -1 1741.9728 362.7837 0 0]
+			intersection		[0 -0.9232 0.3844 -1 1739.9726 403.2838 0 0]
 		}
-		midPoint       		[1690.0777 377.3448]
+		midPoint       		[1688.0777 417.8448]
 		chart          		2
 		linkNode       		[19 54 55]
-		dataLimits     		[1638.576 1741.973 361.45 377.314]
+		dataLimits     		[1636.575 1739.973 401.95 417.814]
 		stampAngle     		0.4074
 		subviewer      		2
 		drawStyle      		SMART
@@ -8647,26 +9582,26 @@ Stateflow {
 	transition {
 		id             		58
 		labelString    		"[async_request==9]"
-		labelPosition  		[1782.61 118.968 103.45 14.971]
+		labelPosition  		[1733.732 131.893 110.571 16.842]
 		fontSize       		12
 		src {
 			id          		19
-			intersection		[1 0 -1 0.826 1791.4846 197.5084 0 0]
+			intersection		[1 0 -1 0.6418 1704.6096 263.6021 0 0]
 		}
 		dst {
 			id          		23
-			intersection		[0 -0.9648 -0.2631 -1 1895.7313 141.5012 0 0]
+			intersection		[0 -1 0 -1 1868.2346 148.1871 0 0]
 		}
-		midPoint       		[1828.031 148.3824]
+		midPoint       		[1761.4255 178.2376]
 		chart          		2
 		linkNode       		[8 0 59]
-		dataLimits     		[1791.485 1895.731 137.081 197.508]
-		stampAngle     		-1.424
+		dataLimits     		[1704.61 1868.235 145.787 263.602]
+		stampAngle     		-1.5708
 		subviewer      		2
 		drawStyle      		SMART
 		slide {
 			sticky        		BOTH_STICK
-			arcL          		-87.2587
+			arcL          		-170.625
 			arcClockDir   		COUNTER_CLOCKWISE
 		}
 		executionOrder 		1
@@ -8675,21 +9610,21 @@ Stateflow {
 	transition {
 		id             		59
 		labelString    		"[invgeo_error==0]"
-		labelPosition  		[1931.86 125.718 93.705 14.971]
+		labelPosition  		[1910.121 127.286 95.579 16.842]
 		fontSize       		12
 		src {
 			id          		23
-			intersection		[0 0.9839 0.1789 -1 1909.3717 144.5952 0 0]
+			intersection		[0 1 0 -1 1882.2346 148.1871 0 0]
 		}
 		dst {
 			id          		18
-			intersection		[1 0 -1 0.2098 2024.7346 200.0947 0 0]
+			intersection		[1 0 -1 0.195 2006.6077 200.1732 0 0]
 		}
-		midPoint       		[1985.8438 155.9593]
+		midPoint       		[1964.5612 154.0641]
 		chart          		2
 		linkNode       		[8 58 52]
-		dataLimits     		[1909.372 2027.135 144.595 200.095]
-		stampAngle     		0.8735
+		dataLimits     		[1882.235 2009.008 148.186 200.173]
+		stampAngle     		0.898
 		subviewer      		2
 		drawStyle      		SMART
 		slide {
@@ -8699,8 +9634,36 @@ Stateflow {
 		executionOrder 		1
 	}
 
+	transition {
+		id             		60
+		labelString    		"at(ticks_per_trajectory_time, tick)"
+		labelPosition  		[1845.891 648.093 183.661 16.842]
+		fontSize       		12
+		src {
+			id          		18
+			intersection		[3 0 1 0.9186 1954.2095 542.8447 0 -208.886]
+		}
+		dst {
+			id          		19
+			intersection		[3 0 1 0.0665 1850.924 625.5222 0 287.3638]
+		}
+		midPoint       		[1948.7338 603.2487]
+		chart          		2
+		linkNode       		[8 52 0]
+		dataLimits     		[1848.524 1956.048 542.845 645.989]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			mode          		MIRROR_SLIDE
+			sticky        		BOTH_STICK
+			midPointSticky		1
+		}
+		executionOrder 		1
+	}
+
 	event {
-		id         		60
+		id         		61
 		name       		"send_controller_message"
 		linkNode   		[2 0 0]
 		scope      		OUTPUT_EVENT
@@ -8709,26 +9672,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		61
-		name                          		"init_out_value"
-		linkNode                      		[2 0 62]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			initialValue		"0"
-			type {
-				primitive 		SF_UINT8_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint8"
-	}
-
-	data {
 		id                            		62
-		name                          		"init_out_enable"
-		linkNode                      		[2 61 63]
+		name                          		"init_out_value"
+		linkNode                      		[2 0 63]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -8744,11 +9690,12 @@ Stateflow {
 
 	data {
 		id                            		63
-		name                          		"init_ack_sync"
+		name                          		"init_out_enable"
 		linkNode                      		[2 62 64]
-		scope                         		INPUT_DATA
+		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
+			initialValue		"0"
 			type {
 				primitive 		SF_UINT8_TYPE
 				isSigned  		1
@@ -8760,7 +9707,7 @@ Stateflow {
 
 	data {
 		id                            		64
-		name                          		"init_ack_async"
+		name                          		"init_ack_sync"
 		linkNode                      		[2 63 65]
 		scope                         		INPUT_DATA
 		machine                       		1
@@ -8776,12 +9723,11 @@ Stateflow {
 
 	data {
 		id                            		65
-		name                          		"init_out_trigger"
+		name                          		"init_ack_async"
 		linkNode                      		[2 64 66]
-		scope                         		OUTPUT_DATA
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
-			initialValue		"0"
 			type {
 				primitive 		SF_UINT8_TYPE
 				isSigned  		1
@@ -8793,7 +9739,7 @@ Stateflow {
 
 	data {
 		id                            		66
-		name                          		"stop_trigger"
+		name                          		"init_out_trigger"
 		linkNode                      		[2 65 67]
 		scope                         		OUTPUT_DATA
 		machine                       		1
@@ -8810,9 +9756,9 @@ Stateflow {
 
 	data {
 		id                            		67
-		name                          		"primitive_button"
+		name                          		"stop_trigger"
 		linkNode                      		[2 66 68]
-		scope                         		INPUT_DATA
+		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
 			initialValue		"0"
@@ -8827,24 +9773,24 @@ Stateflow {
 
 	data {
 		id                            		68
-		name                          		"motor1_reference"
+		name                          		"primitive_button"
 		linkNode                      		[2 67 69]
-		scope                         		OUTPUT_DATA
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
-			initialValue		"hex2dec('8000')"
+			initialValue		"0"
 			type {
-				primitive 		SF_DOUBLE_TYPE
+				primitive 		SF_UINT8_TYPE
 				isSigned  		1
 				wordLength		"16"
 			}
 		}
-		dataType                      		"double"
+		dataType                      		"uint8"
 	}
 
 	data {
 		id                            		69
-		name                          		"motor2_reference"
+		name                          		"motor1_reference"
 		linkNode                      		[2 68 70]
 		scope                         		OUTPUT_DATA
 		machine                       		1
@@ -8861,11 +9807,28 @@ Stateflow {
 
 	data {
 		id                            		70
-		name                          		"motor_stopped_value"
+		name                          		"motor2_reference"
 		linkNode                      		[2 69 71]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			initialValue		"hex2dec('8000')"
+			type {
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"double"
+	}
+
+	data {
+		id                            		71
+		name                          		"motor_stopped_value"
+		linkNode                      		[2 70 72]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
-		paramIndexForInitFromWorkspace		5
+		paramIndexForInitFromWorkspace		4
 		machine                       		1
 		props {
 			initialValue		"hex2dec('8000')"
@@ -8879,9 +9842,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		71
+		id                            		72
 		name                          		"controller_enable"
-		linkNode                      		[2 70 72]
+		linkNode                      		[2 71 73]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -8896,12 +9859,11 @@ Stateflow {
 	}
 
 	data {
-		id                            		72
+		id                            		73
 		name                          		"init_1_message"
-		linkNode                      		[2 71 73]
+		linkNode                      		[2 72 74]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
-		paramIndexForInitFromWorkspace		1
 		machine                       		1
 		props {
 			initialValue		"init_1_message"
@@ -8917,12 +9879,12 @@ Stateflow {
 	}
 
 	data {
-		id                            		73
+		id                            		74
 		name                          		"init_2_message"
-		linkNode                      		[2 72 74]
+		linkNode                      		[2 73 75]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
-		paramIndexForInitFromWorkspace		2
+		paramIndexForInitFromWorkspace		1
 		machine                       		1
 		props {
 			initialValue		"init_2_message"
@@ -8938,26 +9900,8 @@ Stateflow {
 	}
 
 	data {
-		id                            		74
-		name                          		"motor_positive_value"
-		linkNode                      		[2 73 75]
-		scope                         		PARAMETER_DATA
-		initFromWorkspace             		1
-		paramIndexForInitFromWorkspace		4
-		machine                       		1
-		props {
-			type {
-				primitive 		SF_UINT16_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"uint16"
-	}
-
-	data {
 		id                            		75
-		name                          		"motor_negative_value"
+		name                          		"motor_positive_value"
 		linkNode                      		[2 74 76]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
@@ -8975,8 +9919,26 @@ Stateflow {
 
 	data {
 		id                            		76
-		name                          		"da_out_trigger"
+		name                          		"motor_negative_value"
 		linkNode                      		[2 75 77]
+		scope                         		PARAMETER_DATA
+		initFromWorkspace             		1
+		paramIndexForInitFromWorkspace		2
+		machine                       		1
+		props {
+			type {
+				primitive 		SF_UINT16_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"uint16"
+	}
+
+	data {
+		id                            		77
+		name                          		"da_out_trigger"
+		linkNode                      		[2 76 78]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -8991,9 +9953,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		77
+		id                            		78
 		name                          		"async_request"
-		linkNode                      		[2 76 78]
+		linkNode                      		[2 77 79]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9007,9 +9969,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		78
+		id                            		79
 		name                          		"operation_mode"
-		linkNode                      		[2 77 79]
+		linkNode                      		[2 78 80]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -9024,9 +9986,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		79
+		id                            		80
 		name                          		"sync_command"
-		linkNode                      		[2 78 80]
+		linkNode                      		[2 79 81]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -9041,24 +10003,8 @@ Stateflow {
 	}
 
 	data {
-		id                            		80
-		name                          		"alpha1_ref"
-		linkNode                      		[2 79 81]
-		scope                         		LOCAL_DATA
-		machine                       		1
-		props {
-			type {
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"double"
-	}
-
-	data {
 		id                            		81
-		name                          		"alpha2_ref"
+		name                          		"alpha1_ref"
 		linkNode                      		[2 80 82]
 		scope                         		LOCAL_DATA
 		machine                       		1
@@ -9074,8 +10020,24 @@ Stateflow {
 
 	data {
 		id                            		82
-		name                          		"alpha_in"
+		name                          		"alpha2_ref"
 		linkNode                      		[2 81 83]
+		scope                         		LOCAL_DATA
+		machine                       		1
+		props {
+			type {
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"double"
+	}
+
+	data {
+		id                            		83
+		name                          		"alpha_in"
+		linkNode                      		[2 82 84]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9092,9 +10054,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		83
+		id                            		84
 		name                          		"controller_message"
-		linkNode                      		[2 82 84]
+		linkNode                      		[2 83 85]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -9108,9 +10070,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		84
+		id                            		85
 		name                          		"invgeo_error"
-		linkNode                      		[2 83 85]
+		linkNode                      		[2 84 86]
 		scope                         		DATA_STORE_MEMORY_DATA
 		machine                       		1
 		props {
@@ -9124,9 +10086,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		85
+		id                            		86
 		name                          		"invgeo_done"
-		linkNode                      		[2 84 86]
+		linkNode                      		[2 85 87]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9140,9 +10102,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		86
+		id                            		87
 		name                          		"trajectory_enable"
-		linkNode                      		[2 85 87]
+		linkNode                      		[2 86 88]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -9157,11 +10119,12 @@ Stateflow {
 	}
 
 	data {
-		id                            		87
+		id                            		88
 		name                          		"trajectory_time"
-		linkNode                      		[2 86 88]
+		linkNode                      		[2 87 89]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
+		paramIndexForInitFromWorkspace		6
 		machine                       		1
 		props {
 			type {
@@ -9174,13 +10137,46 @@ Stateflow {
 	}
 
 	data {
-		id                            		88
-		name                          		"current_time"
-		linkNode                      		[2 87 0]
-		scope                         		OUTPUT_DATA
+		id                            		89
+		name                          		"invgeo_alpha_1"
+		linkNode                      		[2 88 90]
+		scope                         		DATA_STORE_MEMORY_DATA
 		machine                       		1
 		props {
-			initialValue		"0"
+			type {
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"double"
+	}
+
+	data {
+		id                            		90
+		name                          		"invgeo_alpha_2"
+		linkNode                      		[2 89 91]
+		scope                         		DATA_STORE_MEMORY_DATA
+		machine                       		1
+		props {
+			type {
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"double"
+	}
+
+	data {
+		id                            		91
+		name                          		"ticks_per_trajectory_time"
+		linkNode                      		[2 90 0]
+		scope                         		PARAMETER_DATA
+		initFromWorkspace             		1
+		paramIndexForInitFromWorkspace		5
+		machine                       		1
+		props {
 			type {
 				primitive 		SF_DOUBLE_TYPE
 				isSigned  		1
@@ -9191,26 +10187,26 @@ Stateflow {
 	}
 
 	instance {
-		id     		89
+		id     		92
 		name   		"State Machine"
 		machine		1
 		chart  		2
 	}
 
 	chart {
-		id                                        		90
+		id                                        		93
 		name                                      		"Inverse geometry/Subsystem/invgeo"
 		windowPosition                            		[281.813 329.45 200.25 189.75]
 		viewLimits                                		[0 156.75 0 153.75]
 		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 91 0 0]
-		firstTransition                           		93
-		firstJunction                             		92
-		viewObj                                   		90
+		treeNode                                  		[0 94 0 0]
+		firstTransition                           		96
+		firstJunction                             		95
+		viewObj                                   		93
 		machine                                   		1
 		decomposition                             		CLUSTER_CHART
 		type                                      		EML_CHART
-		firstData                                 		94
+		firstData                                 		97
 		chartFileNumber                           		2
 		disableImplicitCasting                    		1
 		eml {
@@ -9219,14 +10215,14 @@ Stateflow {
 	}
 
 	state {
-		id                           		91
+		id                           		94
 		labelString                  		"eML_blk_kernel()"
 		position                     		[18 64.5 118 66]
 		fontSize                     		12
-		chart                        		90
-		treeNode                     		[90 0 0 0]
+		chart                        		93
+		treeNode                     		[93 0 0 0]
 		superState                   		SUBCHART
-		subviewer                    		90
+		subviewer                    		93
 		type                         		FUNC_STATE
 		decomposition                		CLUSTER_STATE
 		eml {
@@ -9262,13 +10258,15 @@ Stateflow {
 						"    al2_p = acos(cos_al2);\n"
 						"    al2_n = -al2_p; \n"
 						"    \n"
-						"    if ( x == (a1 * cos_al1_n + a2 * cos(al1_1 + al2_p)))\n"
-						"        al2_1 = al2_p;\n"
-						"        al2_2 = al2_n;\n"
-						"    else \n"
-						"       al2_1 = al2_n;\n"
-						"       al2_2 = al2_p;\n"
-						"    end\n"
+						"    cos_al1_al2_1 = (x - a1 * cos(al1_1)) / a2;\n"
+						"    sin_al1_al2_1 = (y - a1 * sin(al1_1)) / a2;\n"
+						"    al1_al2_1 = atan2(sin_al1_al2_1, cos_al1_al2_1);\n"
+						"    al2_1 = al1_al2_1 - al1_1;\n"
+						"    \n"
+						"    cos_al1_al2_2 = (x - a1 * cos(al1_2)) / a2;\n"
+						"    sin_al1_al2_2 = (y - a1 * sin(al1_2)) / a2;\n"
+						"    al1_al2_2 = atan2(sin_al1_al2_2, cos_al1_al2_2);\n"
+						"    al2_2 = al1_al2_2 - al1_2;\n"
 						"    \n"
 						"    if (abs(al1_c - al1_1) < abs(al1_c - al1_2))\n"
 						"        al1 = al1_1;\n"
@@ -9286,16 +10284,16 @@ Stateflow {
 	}
 
 	junction {
-		id         		92
+		id         		95
 		position   		[23.5747 49.5747 7]
-		chart      		90
-		linkNode   		[90 0 0]
-		subviewer  		90
+		chart      		93
+		linkNode   		[93 0 0]
+		subviewer  		93
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	transition {
-		id             		93
+		id             		96
 		labelString    		"{eML_blk_kernel();}"
 		labelPosition  		[32.125 19.875 102.544 14.964]
 		fontSize       		12
@@ -9303,90 +10301,22 @@ Stateflow {
 			intersection		[0 0 1 0 23.5747 14.625 0 0]
 		}
 		dst {
-			id          		92
+			id          		95
 			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
 		}
 		midPoint       		[23.5747 24.9468]
-		chart          		90
-		linkNode       		[90 0 0]
+		chart          		93
+		linkNode       		[93 0 0]
 		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		90
+		subviewer      		93
 		drawStyle      		SMART
 		executionOrder 		1
 	}
 
 	data {
-		id                            		94
-		name                          		"x"
-		linkNode                      		[90 0 95]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-			}
-			complexity  		SF_COMPLEX_INHERITED
-		}
-		dataType                      		"inherited"
-		fixptType {
-			slope   		1
-			baseType		SF_INT16_TYPE
-		}
-		complexity                    		SF_COMPLEX_INHERITED
-	}
-
-	data {
-		id                            		95
-		name                          		"y"
-		linkNode                      		[90 94 96]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-			}
-			complexity  		SF_COMPLEX_INHERITED
-		}
-		dataType                      		"inherited"
-		fixptType {
-			slope   		1
-			baseType		SF_INT16_TYPE
-		}
-		complexity                    		SF_COMPLEX_INHERITED
-	}
-
-	data {
-		id                            		96
-		name                          		"al1_c"
-		linkNode                      		[90 95 97]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-			complexity  		SF_COMPLEX_INHERITED
-		}
-		dataType                      		"inherited"
-		complexity                    		SF_COMPLEX_INHERITED
-	}
-
-	data {
 		id                            		97
-		name                          		"al2_c"
-		linkNode                      		[90 96 98]
+		name                          		"x"
+		linkNode                      		[93 0 98]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9395,20 +10325,21 @@ Stateflow {
 			}
 			type {
 				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
 			}
 			complexity  		SF_COMPLEX_INHERITED
 		}
 		dataType                      		"inherited"
+		fixptType {
+			slope   		1
+			baseType		SF_INT16_TYPE
+		}
 		complexity                    		SF_COMPLEX_INHERITED
 	}
 
 	data {
 		id                            		98
-		name                          		"a1"
-		linkNode                      		[90 97 99]
+		name                          		"y"
+		linkNode                      		[93 97 99]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9417,20 +10348,21 @@ Stateflow {
 			}
 			type {
 				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
 			}
 			complexity  		SF_COMPLEX_INHERITED
 		}
 		dataType                      		"inherited"
+		fixptType {
+			slope   		1
+			baseType		SF_INT16_TYPE
+		}
 		complexity                    		SF_COMPLEX_INHERITED
 	}
 
 	data {
 		id                            		99
-		name                          		"a2"
-		linkNode                      		[90 98 100]
+		name                          		"al1_c"
+		linkNode                      		[93 98 100]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9451,9 +10383,9 @@ Stateflow {
 
 	data {
 		id                            		100
-		name                          		"al1"
-		linkNode                      		[90 99 101]
-		scope                         		OUTPUT_DATA
+		name                          		"al2_c"
+		linkNode                      		[93 99 101]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -9473,9 +10405,9 @@ Stateflow {
 
 	data {
 		id                            		101
-		name                          		"al2"
-		linkNode                      		[90 100 102]
-		scope                         		OUTPUT_DATA
+		name                          		"a1"
+		linkNode                      		[93 100 102]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -9495,8 +10427,74 @@ Stateflow {
 
 	data {
 		id                            		102
+		name                          		"a2"
+		linkNode                      		[93 101 103]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+			complexity  		SF_COMPLEX_INHERITED
+		}
+		dataType                      		"inherited"
+		complexity                    		SF_COMPLEX_INHERITED
+	}
+
+	data {
+		id                            		103
+		name                          		"al1"
+		linkNode                      		[93 102 104]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+			complexity  		SF_COMPLEX_INHERITED
+		}
+		dataType                      		"inherited"
+		complexity                    		SF_COMPLEX_INHERITED
+	}
+
+	data {
+		id                            		104
+		name                          		"al2"
+		linkNode                      		[93 103 105]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+			complexity  		SF_COMPLEX_INHERITED
+		}
+		dataType                      		"inherited"
+		complexity                    		SF_COMPLEX_INHERITED
+	}
+
+	data {
+		id                            		105
 		name                          		"error"
-		linkNode                      		[90 101 0]
+		linkNode                      		[93 104 0]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -9516,28 +10514,29 @@ Stateflow {
 	}
 
 	instance {
-		id     		103
+		id     		106
 		name   		"Inverse geometry/Subsystem/invgeo"
 		machine		1
-		chart  		90
+		chart  		93
 	}
 
 	chart {
-		id                                        		104
-		name                                      		"Trajectory planning/Joint reference singal 1"
-		windowPosition                            		[335.146 219.299 200.25 189.75]
+		id                                        		107
+		name                                      		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
+					"rence singal 1"
+		windowPosition                            		[395.146 159.299 200.25 189.75]
 		viewLimits                                		[0 156.75 0 153.75]
 		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 105 0 0]
-		firstTransition                           		107
-		firstJunction                             		106
-		viewObj                                   		104
+		treeNode                                  		[0 108 0 0]
+		firstTransition                           		110
+		firstJunction                             		109
+		viewObj                                   		107
 		machine                                   		1
 		subviewS {
 		}
 		decomposition                             		CLUSTER_CHART
 		type                                      		EML_CHART
-		firstData                                 		108
+		firstData                                 		111
 		chartFileNumber                           		3
 		disableImplicitCasting                    		1
 		eml {
@@ -9546,23 +10545,25 @@ Stateflow {
 	}
 
 	state {
-		id                           		105
+		id                           		108
 		labelString                  		"eML_blk_kernel()"
 		position                     		[18 64.5 118 66]
 		fontSize                     		12
-		chart                        		104
-		treeNode                     		[104 0 0 0]
+		chart                        		107
+		treeNode                     		[107 0 0 0]
 		superState                   		SUBCHART
-		subviewer                    		104
+		subviewer                    		107
 		type                         		FUNC_STATE
 		decomposition                		CLUSTER_STATE
 		eml {
 			isEML                    		1
-			script                   		"function [qa,qap,qapp] = fcn(a0,a1,a2,a3,a4,a5,t_sim,t)\n"
+			script                   		"function [qa,qap,qapp] = fcn(a0,a1,a2,a3,a4,a5,t_sim,t_end)"
+						"\n"
 						"% This block supports an embeddable subset of the MATLAB la"
 						"nguage.\n"
 						"% See the help menu for details. \n"
-						"if (t_sim>t) t_sim = t;\n"
+						"if (t_sim>=t_end) \n"
+						"    t_sim = t_end;\n"
 						"end   \n"
 						"T = [t_sim^5/20 t_sim^4/12 t_sim^3/6 t_sim^2/2 t_sim 1;...\n"
 						"    t_sim^4/4 t_sim^3/3 t_sim^2/2 t_sim 1 0;...\n"
@@ -9574,7 +10575,7 @@ Stateflow {
 						"qapp = Q(3);\n"
 						"\n"
 						"    "
-			editorLayout             		"100 M4x1[416 399 774 466]"
+			editorLayout             		"100 M4x1[192 170 925 773]"
 			fimathString             		"fimath(...\n"
 								"'RoundMode', 'floor',...\n"
 								"'OverflowMode', 'wrap',...\n"
@@ -9587,16 +10588,16 @@ Stateflow {
 	}
 
 	junction {
-		id         		106
+		id         		109
 		position   		[23.5747 49.5747 7]
-		chart      		104
-		linkNode   		[104 0 0]
-		subviewer  		104
+		chart      		107
+		linkNode   		[107 0 0]
+		subviewer  		107
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	transition {
-		id             		107
+		id             		110
 		labelString    		"{eML_blk_kernel();}"
 		labelPosition  		[32.125 19.875 102.544 14.964]
 		fontSize       		12
@@ -9604,80 +10605,22 @@ Stateflow {
 			intersection		[0 0 1 0 23.5747 14.625 0 0]
 		}
 		dst {
-			id          		106
+			id          		109
 			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
 		}
 		midPoint       		[23.5747 24.9468]
-		chart          		104
-		linkNode       		[104 0 0]
+		chart          		107
+		linkNode       		[107 0 0]
 		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		104
+		subviewer      		107
 		drawStyle      		SMART
 		executionOrder 		1
 	}
 
 	data {
-		id                            		108
-		name                          		"a0"
-		linkNode                      		[104 0 109]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		109
-		name                          		"a1"
-		linkNode                      		[104 108 110]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		110
-		name                          		"a2"
-		linkNode                      		[104 109 111]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
 		id                            		111
-		name                          		"a3"
-		linkNode                      		[104 110 112]
+		name                          		"a0"
+		linkNode                      		[107 0 112]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9687,8 +10630,6 @@ Stateflow {
 			type {
 				method    		SF_INHERITED_TYPE
 				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
 			}
 		}
 		dataType                      		"Inherit: Same as Simulink"
@@ -9696,8 +10637,8 @@ Stateflow {
 
 	data {
 		id                            		112
-		name                          		"a4"
-		linkNode                      		[104 111 113]
+		name                          		"a1"
+		linkNode                      		[107 111 113]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9716,8 +10657,8 @@ Stateflow {
 
 	data {
 		id                            		113
-		name                          		"a5"
-		linkNode                      		[104 112 114]
+		name                          		"a2"
+		linkNode                      		[107 112 114]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9736,8 +10677,8 @@ Stateflow {
 
 	data {
 		id                            		114
-		name                          		"t_sim"
-		linkNode                      		[104 113 115]
+		name                          		"a3"
+		linkNode                      		[107 113 115]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9747,6 +10688,8 @@ Stateflow {
 			type {
 				method    		SF_INHERITED_TYPE
 				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
 			}
 		}
 		dataType                      		"Inherit: Same as Simulink"
@@ -9754,9 +10697,9 @@ Stateflow {
 
 	data {
 		id                            		115
-		name                          		"qa"
-		linkNode                      		[104 114 116]
-		scope                         		OUTPUT_DATA
+		name                          		"a4"
+		linkNode                      		[107 114 116]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -9774,9 +10717,9 @@ Stateflow {
 
 	data {
 		id                            		116
-		name                          		"qap"
-		linkNode                      		[104 115 117]
-		scope                         		OUTPUT_DATA
+		name                          		"a5"
+		linkNode                      		[107 115 117]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -9794,8 +10737,26 @@ Stateflow {
 
 	data {
 		id                            		117
-		name                          		"qapp"
-		linkNode                      		[104 116 118]
+		name                          		"t_sim"
+		linkNode                      		[107 116 118]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		118
+		name                          		"qa"
+		linkNode                      		[107 117 119]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -9813,9 +10774,49 @@ Stateflow {
 	}
 
 	data {
-		id                            		118
-		name                          		"t"
-		linkNode                      		[104 117 0]
+		id                            		119
+		name                          		"qap"
+		linkNode                      		[107 118 120]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		120
+		name                          		"qapp"
+		linkNode                      		[107 119 121]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		121
+		name                          		"t_end"
+		linkNode                      		[107 120 0]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -9833,28 +10834,30 @@ Stateflow {
 	}
 
 	instance {
-		id     		119
-		name   		"Trajectory planning/Joint reference singal 1"
+		id     		122
+		name   		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
+					"rence singal 1"
 		machine		1
-		chart  		104
+		chart  		107
 	}
 
 	chart {
-		id                                        		120
-		name                                      		"Trajectory planning/Trajectory design 1"
-		windowPosition                            		[321.812 236.366 200.25 189.75]
+		id                                        		123
+		name                                      		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
+					"rence singal 2"
+		windowPosition                            		[410.146 144.299 200.25 189.75]
 		viewLimits                                		[0 156.75 0 153.75]
 		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 121 0 0]
-		firstTransition                           		123
-		firstJunction                             		122
-		viewObj                                   		120
+		treeNode                                  		[0 124 0 0]
+		firstTransition                           		126
+		firstJunction                             		125
+		viewObj                                   		123
 		machine                                   		1
 		subviewS {
 		}
 		decomposition                             		CLUSTER_CHART
 		type                                      		EML_CHART
-		firstData                                 		124
+		firstData                                 		127
 		chartFileNumber                           		4
 		disableImplicitCasting                    		1
 		eml {
@@ -9863,32 +10866,37 @@ Stateflow {
 	}
 
 	state {
-		id                           		121
+		id                           		124
 		labelString                  		"eML_blk_kernel()"
 		position                     		[18 64.5 118 66]
 		fontSize                     		12
-		chart                        		120
-		treeNode                     		[120 0 0 0]
+		chart                        		123
+		treeNode                     		[123 0 0 0]
 		superState                   		SUBCHART
-		subviewer                    		120
+		subviewer                    		123
 		type                         		FUNC_STATE
 		decomposition                		CLUSTER_STATE
 		eml {
 			isEML                    		1
-			script                   		"function [a0,a1,a2,a3,a4,a5] = fcn(A,B,t)\n"
+			script                   		"function [qa,qap,qapp] = fcn(a0,a1,a2,a3,a4,a5,t_sim,t_end)"
+						"\n"
 						"% This block supports an embeddable subset of the MATLAB la"
 						"nguage.\n"
 						"% See the help menu for details. \n"
-						"T = [t^5/20 t^4/12 t^3/6 t^2/2 t 1;t^4/4 t^3/3 t^2/2 t 1 0;"
-						"t^3 t^2 t 1 0 0;0 0 0 0 0 1;0 0 0 0 1 0;0 0 0 1 0 0];\n"
-						"Ao = inv(T)*[B;0;0;A;0;0];\n"
-						"a0=Ao(1);\n"
-						"a1=Ao(2);\n"
-						"a2=Ao(3);\n"
-						"a3=Ao(4);\n"
-						"a4=Ao(5);\n"
-						"a5=Ao(6);"
-			editorLayout             		"100 M4x1[416 399 774 466]"
+						"if (t_sim>=t_end) \n"
+						"    t_sim = t_end;\n"
+						"end   \n"
+						"T = [t_sim^5/20 t_sim^4/12 t_sim^3/6 t_sim^2/2 t_sim 1;...\n"
+						"    t_sim^4/4 t_sim^3/3 t_sim^2/2 t_sim 1 0;...\n"
+						"    t_sim^3 t_sim^2 t_sim 1 0 0];\n"
+						"Q = T*[a0;a1;a2;a3;a4;a5];\n"
+						"\n"
+						"qa = Q(1);\n"
+						"qap = Q(2);\n"
+						"qapp = Q(3);\n"
+						"\n"
+						"    "
+			editorLayout             		"100 M4x1[192 170 925 773]"
 			fimathString             		"fimath(...\n"
 								"'RoundMode', 'floor',...\n"
 								"'OverflowMode', 'wrap',...\n"
@@ -9901,16 +10909,16 @@ Stateflow {
 	}
 
 	junction {
-		id         		122
+		id         		125
 		position   		[23.5747 49.5747 7]
-		chart      		120
-		linkNode   		[120 0 0]
-		subviewer  		120
+		chart      		123
+		linkNode   		[123 0 0]
+		subviewer  		123
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	transition {
-		id             		123
+		id             		126
 		labelString    		"{eML_blk_kernel();}"
 		labelPosition  		[32.125 19.875 102.544 14.964]
 		fontSize       		12
@@ -9918,81 +10926,23 @@ Stateflow {
 			intersection		[0 0 1 0 23.5747 14.625 0 0]
 		}
 		dst {
-			id          		122
+			id          		125
 			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
 		}
 		midPoint       		[23.5747 24.9468]
-		chart          		120
-		linkNode       		[120 0 0]
+		chart          		123
+		linkNode       		[123 0 0]
 		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		120
+		subviewer      		123
 		drawStyle      		SMART
 		executionOrder 		1
 	}
 
 	data {
-		id                            		124
-		name                          		"A"
-		linkNode                      		[120 0 125]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		125
-		name                          		"B"
-		linkNode                      		[120 124 126]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		126
-		name                          		"t"
-		linkNode                      		[120 125 127]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
 		id                            		127
 		name                          		"a0"
-		linkNode                      		[120 126 128]
-		scope                         		OUTPUT_DATA
+		linkNode                      		[123 0 128]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10001,8 +10951,6 @@ Stateflow {
 			type {
 				method    		SF_INHERITED_TYPE
 				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
 			}
 		}
 		dataType                      		"Inherit: Same as Simulink"
@@ -10011,8 +10959,8 @@ Stateflow {
 	data {
 		id                            		128
 		name                          		"a1"
-		linkNode                      		[120 127 129]
-		scope                         		OUTPUT_DATA
+		linkNode                      		[123 127 129]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10031,8 +10979,8 @@ Stateflow {
 	data {
 		id                            		129
 		name                          		"a2"
-		linkNode                      		[120 128 130]
-		scope                         		OUTPUT_DATA
+		linkNode                      		[123 128 130]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10051,8 +10999,8 @@ Stateflow {
 	data {
 		id                            		130
 		name                          		"a3"
-		linkNode                      		[120 129 131]
-		scope                         		OUTPUT_DATA
+		linkNode                      		[123 129 131]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10071,8 +11019,8 @@ Stateflow {
 	data {
 		id                            		131
 		name                          		"a4"
-		linkNode                      		[120 130 132]
-		scope                         		OUTPUT_DATA
+		linkNode                      		[123 130 132]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10091,8 +11039,106 @@ Stateflow {
 	data {
 		id                            		132
 		name                          		"a5"
-		linkNode                      		[120 131 0]
+		linkNode                      		[123 131 133]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		133
+		name                          		"t_sim"
+		linkNode                      		[123 132 134]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		134
+		name                          		"qa"
+		linkNode                      		[123 133 135]
 		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		135
+		name                          		"qap"
+		linkNode                      		[123 134 136]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		136
+		name                          		"qapp"
+		linkNode                      		[123 135 137]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		137
+		name                          		"t_end"
+		linkNode                      		[123 136 0]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10109,29 +11155,30 @@ Stateflow {
 	}
 
 	instance {
-		id     		133
-		name   		"Trajectory planning/Trajectory design 1"
+		id     		138
+		name   		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
+					"rence singal 2"
 		machine		1
-		chart  		120
+		chart  		123
 	}
 
 	chart {
-		id                                        		134
-		name                                      		"Trajectory planning/Joint reference singal 2"
-		windowPosition                            		[350.146 204.299 200.25 189.75]
+		id                                        		139
+		name                                      		"Trajectory design/Trajectory design1/Init/Trajectory design 1"
+		windowPosition                            		[411.812 146.366 200.25 189.75]
 		viewLimits                                		[0 156.75 0 153.75]
 		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 135 0 0]
-		firstTransition                           		137
-		firstJunction                             		136
-		viewObj                                   		134
+		treeNode                                  		[0 140 0 0]
+		firstTransition                           		142
+		firstJunction                             		141
+		viewObj                                   		139
 		machine                                   		1
 		subviewS {
 		}
 		decomposition                             		CLUSTER_CHART
 		type                                      		EML_CHART
-		firstData                                 		138
-		chartFileNumber                           		5
+		firstData                                 		143
+		chartFileNumber                           		7
 		disableImplicitCasting                    		1
 		eml {
 			name       		"fcn"
@@ -10139,35 +11186,32 @@ Stateflow {
 	}
 
 	state {
-		id                           		135
+		id                           		140
 		labelString                  		"eML_blk_kernel()"
 		position                     		[18 64.5 118 66]
 		fontSize                     		12
-		chart                        		134
-		treeNode                     		[134 0 0 0]
+		chart                        		139
+		treeNode                     		[139 0 0 0]
 		superState                   		SUBCHART
-		subviewer                    		134
+		subviewer                    		139
 		type                         		FUNC_STATE
 		decomposition                		CLUSTER_STATE
 		eml {
 			isEML                    		1
-			script                   		"function [qa,qap,qapp] = fcn(a0,a1,a2,a3,a4,a5,t_sim,t)\n"
+			script                   		"function [a0,a1,a2,a3,a4,a5] = fcn(A,B,t)\n"
 						"% This block supports an embeddable subset of the MATLAB la"
 						"nguage.\n"
 						"% See the help menu for details. \n"
-						"if (t_sim>t) t_sim = t;\n"
-						"end   \n"
-						"T = [t_sim^5/20 t_sim^4/12 t_sim^3/6 t_sim^2/2 t_sim 1;...\n"
-						"    t_sim^4/4 t_sim^3/3 t_sim^2/2 t_sim 1 0;...\n"
-						"    t_sim^3 t_sim^2 t_sim 1 0 0];\n"
-						"Q = T*[a0;a1;a2;a3;a4;a5];\n"
-						"\n"
-						"qa = Q(1);\n"
-						"qap = Q(2);\n"
-						"qapp = Q(3);\n"
-						"\n"
-						"    "
-			editorLayout             		"100 M4x1[416 399 774 466]"
+						"T = [t^5/20 t^4/12 t^3/6 t^2/2 t 1;t^4/4 t^3/3 t^2/2 t 1 0;"
+						"t^3 t^2 t 1 0 0;0 0 0 0 0 1;0 0 0 0 1 0;0 0 0 1 0 0];\n"
+						"Ao = inv(T)*[B;0;0;A;0;0];\n"
+						"a0=Ao(1);\n"
+						"a1=Ao(2);\n"
+						"a2=Ao(3);\n"
+						"a3=Ao(4);\n"
+						"a4=Ao(5);\n"
+						"a5=Ao(6);"
+			editorLayout             		"100 M4x1[174 399 1016 538]"
 			fimathString             		"fimath(...\n"
 								"'RoundMode', 'floor',...\n"
 								"'OverflowMode', 'wrap',...\n"
@@ -10180,16 +11224,16 @@ Stateflow {
 	}
 
 	junction {
-		id         		136
+		id         		141
 		position   		[23.5747 49.5747 7]
-		chart      		134
-		linkNode   		[134 0 0]
-		subviewer  		134
+		chart      		139
+		linkNode   		[139 0 0]
+		subviewer  		139
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	transition {
-		id             		137
+		id             		142
 		labelString    		"{eML_blk_kernel();}"
 		labelPosition  		[32.125 19.875 102.544 14.964]
 		fontSize       		12
@@ -10197,120 +11241,22 @@ Stateflow {
 			intersection		[0 0 1 0 23.5747 14.625 0 0]
 		}
 		dst {
-			id          		136
+			id          		141
 			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
 		}
 		midPoint       		[23.5747 24.9468]
-		chart          		134
-		linkNode       		[134 0 0]
+		chart          		139
+		linkNode       		[139 0 0]
 		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		134
+		subviewer      		139
 		drawStyle      		SMART
 		executionOrder 		1
 	}
 
 	data {
-		id                            		138
-		name                          		"a0"
-		linkNode                      		[134 0 139]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		139
-		name                          		"a1"
-		linkNode                      		[134 138 140]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		140
-		name                          		"a2"
-		linkNode                      		[134 139 141]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		141
-		name                          		"a3"
-		linkNode                      		[134 140 142]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		142
-		name                          		"a4"
-		linkNode                      		[134 141 143]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
 		id                            		143
-		name                          		"a5"
-		linkNode                      		[134 142 144]
+		name                          		"A"
+		linkNode                      		[139 0 144]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -10320,8 +11266,6 @@ Stateflow {
 			type {
 				method    		SF_INHERITED_TYPE
 				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
 			}
 		}
 		dataType                      		"Inherit: Same as Simulink"
@@ -10329,8 +11273,8 @@ Stateflow {
 
 	data {
 		id                            		144
-		name                          		"t_sim"
-		linkNode                      		[134 143 145]
+		name                          		"B"
+		linkNode                      		[139 143 145]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -10340,6 +11284,8 @@ Stateflow {
 			type {
 				method    		SF_INHERITED_TYPE
 				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
 			}
 		}
 		dataType                      		"Inherit: Same as Simulink"
@@ -10347,9 +11293,9 @@ Stateflow {
 
 	data {
 		id                            		145
-		name                          		"qa"
-		linkNode                      		[134 144 146]
-		scope                         		OUTPUT_DATA
+		name                          		"t"
+		linkNode                      		[139 144 146]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10367,8 +11313,8 @@ Stateflow {
 
 	data {
 		id                            		146
-		name                          		"qap"
-		linkNode                      		[134 145 147]
+		name                          		"a0"
+		linkNode                      		[139 145 147]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -10387,8 +11333,8 @@ Stateflow {
 
 	data {
 		id                            		147
-		name                          		"qapp"
-		linkNode                      		[134 146 148]
+		name                          		"a1"
+		linkNode                      		[139 146 148]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -10407,9 +11353,69 @@ Stateflow {
 
 	data {
 		id                            		148
-		name                          		"t"
-		linkNode                      		[134 147 0]
-		scope                         		INPUT_DATA
+		name                          		"a2"
+		linkNode                      		[139 147 149]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		149
+		name                          		"a3"
+		linkNode                      		[139 148 150]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		150
+		name                          		"a4"
+		linkNode                      		[139 149 151]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		151
+		name                          		"a5"
+		linkNode                      		[139 150 0]
+		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10426,29 +11432,29 @@ Stateflow {
 	}
 
 	instance {
-		id     		149
-		name   		"Trajectory planning/Joint reference singal 2"
+		id     		152
+		name   		"Trajectory design/Trajectory design1/Init/Trajectory design 1"
 		machine		1
-		chart  		134
+		chart  		139
 	}
 
 	chart {
-		id                                        		150
-		name                                      		"Trajectory planning/Trajectory design 2"
-		windowPosition                            		[336.812 221.366 200.25 189.75]
+		id                                        		153
+		name                                      		"Trajectory design/Trajectory design1/Init/Trajectory design 2"
+		windowPosition                            		[411.812 146.366 200.25 189.75]
 		viewLimits                                		[0 156.75 0 153.75]
 		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 151 0 0]
-		firstTransition                           		153
-		firstJunction                             		152
-		viewObj                                   		150
+		treeNode                                  		[0 154 0 0]
+		firstTransition                           		156
+		firstJunction                             		155
+		viewObj                                   		153
 		machine                                   		1
 		subviewS {
 		}
 		decomposition                             		CLUSTER_CHART
 		type                                      		EML_CHART
-		firstData                                 		154
-		chartFileNumber                           		6
+		firstData                                 		157
+		chartFileNumber                           		8
 		disableImplicitCasting                    		1
 		eml {
 			name       		"fcn"
@@ -10456,14 +11462,14 @@ Stateflow {
 	}
 
 	state {
-		id                           		151
+		id                           		154
 		labelString                  		"eML_blk_kernel()"
 		position                     		[18 64.5 118 66]
 		fontSize                     		12
-		chart                        		150
-		treeNode                     		[150 0 0 0]
+		chart                        		153
+		treeNode                     		[153 0 0 0]
 		superState                   		SUBCHART
-		subviewer                    		150
+		subviewer                    		153
 		type                         		FUNC_STATE
 		decomposition                		CLUSTER_STATE
 		eml {
@@ -10481,7 +11487,7 @@ Stateflow {
 						"a3=Ao(4);\n"
 						"a4=Ao(5);\n"
 						"a5=Ao(6);"
-			editorLayout             		"100 M4x1[416 399 774 466]"
+			editorLayout             		"100 M4x1[174 399 1016 538]"
 			fimathString             		"fimath(...\n"
 								"'RoundMode', 'floor',...\n"
 								"'OverflowMode', 'wrap',...\n"
@@ -10494,16 +11500,16 @@ Stateflow {
 	}
 
 	junction {
-		id         		152
+		id         		155
 		position   		[23.5747 49.5747 7]
-		chart      		150
-		linkNode   		[150 0 0]
-		subviewer  		150
+		chart      		153
+		linkNode   		[153 0 0]
+		subviewer  		153
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	transition {
-		id             		153
+		id             		156
 		labelString    		"{eML_blk_kernel();}"
 		labelPosition  		[32.125 19.875 102.544 14.964]
 		fontSize       		12
@@ -10511,81 +11517,23 @@ Stateflow {
 			intersection		[0 0 1 0 23.5747 14.625 0 0]
 		}
 		dst {
-			id          		152
+			id          		155
 			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
 		}
 		midPoint       		[23.5747 24.9468]
-		chart          		150
-		linkNode       		[150 0 0]
+		chart          		153
+		linkNode       		[153 0 0]
 		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		150
+		subviewer      		153
 		drawStyle      		SMART
 		executionOrder 		1
 	}
 
 	data {
-		id                            		154
-		name                          		"A"
-		linkNode                      		[150 0 155]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		155
-		name                          		"B"
-		linkNode                      		[150 154 156]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		156
-		name                          		"t"
-		linkNode                      		[150 155 157]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
 		id                            		157
-		name                          		"a0"
-		linkNode                      		[150 156 158]
-		scope                         		OUTPUT_DATA
+		name                          		"A"
+		linkNode                      		[153 0 158]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10594,8 +11542,6 @@ Stateflow {
 			type {
 				method    		SF_INHERITED_TYPE
 				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
 			}
 		}
 		dataType                      		"Inherit: Same as Simulink"
@@ -10603,9 +11549,9 @@ Stateflow {
 
 	data {
 		id                            		158
-		name                          		"a1"
-		linkNode                      		[150 157 159]
-		scope                         		OUTPUT_DATA
+		name                          		"B"
+		linkNode                      		[153 157 159]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10623,9 +11569,9 @@ Stateflow {
 
 	data {
 		id                            		159
-		name                          		"a2"
-		linkNode                      		[150 158 160]
-		scope                         		OUTPUT_DATA
+		name                          		"t"
+		linkNode                      		[153 158 160]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -10643,8 +11589,8 @@ Stateflow {
 
 	data {
 		id                            		160
-		name                          		"a3"
-		linkNode                      		[150 159 161]
+		name                          		"a0"
+		linkNode                      		[153 159 161]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -10663,8 +11609,8 @@ Stateflow {
 
 	data {
 		id                            		161
-		name                          		"a4"
-		linkNode                      		[150 160 162]
+		name                          		"a1"
+		linkNode                      		[153 160 162]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -10683,8 +11629,68 @@ Stateflow {
 
 	data {
 		id                            		162
+		name                          		"a2"
+		linkNode                      		[153 161 163]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		163
+		name                          		"a3"
+		linkNode                      		[153 162 164]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		164
+		name                          		"a4"
+		linkNode                      		[153 163 165]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		165
 		name                          		"a5"
-		linkNode                      		[150 161 0]
+		linkNode                      		[153 164 0]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -10702,27 +11708,27 @@ Stateflow {
 	}
 
 	instance {
-		id     		163
-		name   		"Trajectory planning/Trajectory design 2"
+		id     		166
+		name   		"Trajectory design/Trajectory design1/Init/Trajectory design 2"
 		machine		1
-		chart  		150
+		chart  		153
 	}
 
 	target {
-		id                        		164
+		id                        		167
 		name                      		"sfun"
 		description               		"Default Simulink S-Function Target."
 		machine                   		1
-		linkNode                  		[1 0 165]
+		linkNode                  		[1 0 168]
 	}
 
 	target {
-		id                        		165
+		id                        		168
 		name                      		"rtw"
 		codeFlags                 		" comments=1 statebitsets=1 databitsets=1 emitlogicalops=1 el"
 						"seifdetection=1 constantfolding=1 redundantloadelimination=0"
 						" preservenames=0 preservenameswithparent=0 exportcharts=0"
 		machine                   		1
-		linkNode                  		[1 164 0]
+		linkNode                  		[1 167 0]
 	}
 }

@@ -11,10 +11,17 @@
 typedef struct {
   real_T c1_alpha1_ref;
   real_T c1_alpha2_ref;
+  real_T c1_ticks_per_trajectory_time;
+  real_T c1_trajectory_time;
   SimStruct *S;
+  real_T *c1_invgeo_alpha_1_address;
+  real_T *c1_invgeo_alpha_2_address;
   uint8_T *c1_invgeo_error_address;
-  void *c1_testPointAddrMap[20];
+  void *c1_testPointAddrMap[21];
+  int32_T c1_invgeo_alpha_1_index;
+  int32_T c1_invgeo_alpha_2_index;
   int32_T c1_invgeo_error_index;
+  uint32_T c1_temporalCounter_i1;
   uint32_T chartNumber;
   uint32_T instanceNumber;
   uint16_T c1_motor_negative_value;
@@ -50,6 +57,7 @@ typedef struct {
   uint8_T c1_tp_SEGMENT_2;
   uint8_T c1_tp_STOPPED;
   uint8_T c1_tp_TRAJECTORY;
+  uint8_T c1_trajectory_ready;
   rtwCAPI_ModelMappingInfo c1_testPointMappingInfo;
   ChartInfoStruct chartInfo;
 } SFc1_MPC_frameworkInstanceStruct;

@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.907
+ * Model version                        : 1.1070
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Tue Apr 29 19:27:31 2014
+ * Real-Time Workshop file generated on : Wed Apr 30 19:37:50 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Tue Apr 29 19:27:32 2014
+ * C source code generated on           : Wed Apr 30 19:37:50 2014
  */
 
 #include "MPC_framework.h"
@@ -15,15 +15,45 @@
 
 /* Block parameters (auto storage) */
 Parameters_MPC_framework MPC_framework_P = {
-  4.194304E+006 ,                       /* increments_per_half_turn_V : '<S11>/increments_per_half_turn'
+  2.0 ,                                 /* trajectory_time_Value : '<S41>/trajectory_time'
                                          */
-  0.0 ,                                 /* ingeo_alpha_2_InitialValue : '<Root>/ingeo_alpha_2'
+  0.0 ,                                 /* Hidden_Mem_for_Latch_at_in : 'synthesized block'
+                                         */
+  0.0 ,                                 /* Hidden_Mem_for_Latch_at_ij : 'synthesized block'
+                                         */
+  8.388608E+006 ,                       /* Constant_Value : '<S12>/Constant'
+                                         */
+  57674.0 ,                             /* Constant1_Value : '<S12>/Constant1'
+                                         */
+  3.1415926535897931E+000 ,             /* Gain_Gain : '<S12>/Gain'
+                                         */
+  3.1415926535897931E+000 ,             /* Gain1_Gain : '<S12>/Gain1'
                                          */
   0.0 ,                                 /* invgeo_alpha_1_InitialValu : '<Root>/invgeo_alpha_1'
                                          */
-  20.0 ,                                /* Constant_Value : '<S62>/Constant'
+  0.0 ,                                 /* invgeo_alpha_2_InitialValu : '<Root>/invgeo_alpha_2'
                                          */
-  21.0 ,                                /* Constant_Value_h : '<S63>/Constant'
+  1000.0 ,                              /* a1_Value : '<S6>/a1'
+                                         */
+  750.0 ,                               /* a2_Value : '<S6>/a2'
+                                         */
+  0.0 ,                                 /* DelayInput1_X0 : '<S37>/Delay Input1'
+                                         */
+  0.0 ,                                 /* DelayInput1_X0_b : '<S38>/Delay Input1'
+                                         */
+  200.0 ,                               /* SFunction_p6 : '<Root>/State Machine'
+                                         */
+  2.0 ,                                 /* SFunction_p7 : '<Root>/State Machine'
+                                         */
+  0.01 ,                                /* DiscreteTimeIntegrator_g : '<S42>/Discrete-Time Integrator'
+                                         */
+  0.0 ,                                 /* DiscreteTimeIntegrator_I : '<S42>/Discrete-Time Integrator'
+                                         */
+  1.0 ,                                 /* timebase_Value : '<S42>/time base'
+                                         */
+  20.0 ,                                /* Constant_Value_g : '<S70>/Constant'
+                                         */
+  21.0 ,                                /* Constant_Value_h : '<S71>/Constant'
                                          */
   32768U ,                              /* Constant_Value_i : '<S3>/Constant'
                                          */
@@ -33,11 +63,13 @@ Parameters_MPC_framework MPC_framework_P = {
                                          */
   32768U ,                              /* SFunction_p5 : '<Root>/State Machine'
                                          */
+  0U ,                                  /* Switch1_Threshold : '<Root>/Switch1'
+                                         */
   0U ,                                  /* Switch_Threshold : '<Root>/Switch'
                                          */
-  0U ,                                  /* DelayInput1_X0 : '<S72>/Delay Input1'
+  0U ,                                  /* DelayInput1_X0_f : '<S80>/Delay Input1'
                                          */
-  0U ,                                  /* DelayInput1_X0_k : '<S98>/Delay Input1'
+  0U ,                                  /* DelayInput1_X0_k : '<S106>/Delay Input1'
                                          */
   255U ,                                /* invgeo_error_InitialValue : '<Root>/invgeo_error'
                                          */
@@ -45,22 +77,10 @@ Parameters_MPC_framework MPC_framework_P = {
                                          */
   2U ,                                  /* SFunction_p2 : '<Root>/State Machine'
                                          */
-  1U ,                                  /* Constant_Value_f : '<S17>/Constant'
+  1U ,                                  /* Constant_Value_f : '<S18>/Constant'
                                          */
-  1U ,                                  /* Constant_Value_n : '<S18>/Constant'
+  1U                                    /* Constant_Value_n : '<S19>/Constant'
                                          */
-  /* Start of '<Root>/Inverse geometry' */
-  {
-    1000.0 ,                            /* a1_Value : '<S6>/a1'
-                                         */
-    750.0 ,                             /* a2_Value : '<S6>/a2'
-                                         */
-    0.0 ,                               /* DelayInput1_X0 : '<S36>/Delay Input1'
-                                         */
-    0.0                                 /* DelayInput1_X0_b : '<S37>/Delay Input1'
-                                         */
-  }
-  /* End of '<Root>/Inverse geometry' */
 };
 
 /* File trailer for Real-Time Workshop generated code.

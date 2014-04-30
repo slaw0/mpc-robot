@@ -22,6 +22,7 @@ static void enable_c2_MPC_framework(void);
 static void disable_c2_MPC_framework(void);
 static void finalize_c2_MPC_framework(void);
 static void sf_c2_MPC_framework(void);
+static void c2_c2_MPC_framework(void);
 static real_T c2_mpower(real_T c2_a);
 static real_T c2_atan2(real_T c2_Y, real_T c2_X);
 static real_T c2_sign(real_T c2_X);
@@ -64,6 +65,26 @@ static void finalize_c2_MPC_framework(void)
 static void sf_c2_MPC_framework(void)
 {
   uint8_T c2_previousEvent;
+  _sfTime_ = (real_T)ssGetT(chartInstance.S);
+  _SFD_DATA_RANGE_CHECK(*c2_x(), 1U);
+  _SFD_DATA_RANGE_CHECK(*c2_y(), 8U);
+  _SFD_DATA_RANGE_CHECK(*c2_al1_c(), 3U);
+  _SFD_DATA_RANGE_CHECK(*c2_al2_c(), 4U);
+  _SFD_DATA_RANGE_CHECK(*c2_a1(), 5U);
+  _SFD_DATA_RANGE_CHECK(*c2_a2(), 2U);
+  _SFD_DATA_RANGE_CHECK(*c2_al1(), 0U);
+  _SFD_DATA_RANGE_CHECK(*c2_al2(), 7U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_error(), 6U);
+  c2_previousEvent = _sfEvent_;
+  _sfEvent_ = CALL_EVENT;
+  c2_c2_MPC_framework();
+  _sfEvent_ = c2_previousEvent;
+  sf_debug_check_for_state_inconsistency(_MPC_frameworkMachineNumber_,
+   chartInstance.chartNumber, chartInstance.instanceNumber);
+}
+
+static void c2_c2_MPC_framework(void)
+{
   real_T c2_b_x;
   real_T c2_b_y;
   real_T c2_b_al1_c;
@@ -71,7 +92,13 @@ static void sf_c2_MPC_framework(void)
   real_T c2_b_a1;
   real_T c2_b_a2;
   real_T c2_al2_2;
+  real_T c2_al1_al2_2;
+  real_T c2_sin_al1_al2_2;
+  real_T c2_cos_al1_al2_2;
   real_T c2_al2_1;
+  real_T c2_al1_al2_1;
+  real_T c2_sin_al1_al2_1;
+  real_T c2_cos_al1_al2_1;
   real_T c2_al2_n;
   real_T c2_al2_p;
   real_T c2_al1_2;
@@ -134,22 +161,40 @@ static void sf_c2_MPC_framework(void)
   real_T c2_r_y;
   real_T c2_n_x;
   real_T c2_s_y;
+  real_T c2_f_A;
+  real_T c2_f_B;
   real_T c2_o_x;
   real_T c2_t_y;
-  real_T c2_p_x;
+  real_T c2_f_z;
   real_T c2_u_y;
-  _sfTime_ = (real_T)ssGetT(chartInstance.S);
-  _SFD_DATA_RANGE_CHECK(*c2_x(), 1U);
-  _SFD_DATA_RANGE_CHECK(*c2_y(), 8U);
-  _SFD_DATA_RANGE_CHECK(*c2_al1_c(), 3U);
-  _SFD_DATA_RANGE_CHECK(*c2_al2_c(), 4U);
-  _SFD_DATA_RANGE_CHECK(*c2_a1(), 5U);
-  _SFD_DATA_RANGE_CHECK(*c2_a2(), 2U);
-  _SFD_DATA_RANGE_CHECK(*c2_al1(), 0U);
-  _SFD_DATA_RANGE_CHECK(*c2_al2(), 7U);
-  _SFD_DATA_RANGE_CHECK((real_T)*c2_error(), 6U);
-  c2_previousEvent = _sfEvent_;
-  _sfEvent_ = CALL_EVENT;
+  real_T c2_p_x;
+  real_T c2_v_y;
+  real_T c2_g_A;
+  real_T c2_g_B;
+  real_T c2_q_x;
+  real_T c2_w_y;
+  real_T c2_g_z;
+  real_T c2_x_y;
+  real_T c2_r_x;
+  real_T c2_y_y;
+  real_T c2_h_A;
+  real_T c2_h_B;
+  real_T c2_s_x;
+  real_T c2_ab_y;
+  real_T c2_h_z;
+  real_T c2_bb_y;
+  real_T c2_t_x;
+  real_T c2_cb_y;
+  real_T c2_i_A;
+  real_T c2_i_B;
+  real_T c2_u_x;
+  real_T c2_db_y;
+  real_T c2_i_z;
+  real_T c2_eb_y;
+  real_T c2_v_x;
+  real_T c2_fb_y;
+  real_T c2_w_x;
+  real_T c2_gb_y;
   _SFD_CC_CALL(CHART_ENTER_DURING_FUNCTION_TAG,1);
   c2_b_x = *c2_x();
   c2_b_y = *c2_y();
@@ -157,11 +202,23 @@ static void sf_c2_MPC_framework(void)
   c2_b_al2_c = *c2_al2_c();
   c2_b_a1 = *c2_a1();
   c2_b_a2 = *c2_a2();
-  sf_debug_push_symbol_scope(22U, 0U);
+  sf_debug_push_symbol_scope(28U, 0U);
   sf_debug_symbol_scope_add_symbol("al2_2", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_al2_2, 0);
+  sf_debug_symbol_scope_add_symbol("al1_al2_2", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
+   0U, 0, 0U, 0, &c2_al1_al2_2, 0);
+  sf_debug_symbol_scope_add_symbol("sin_al1_al2_2", 0, 0U, 0U, 0U, 0U, 1.0, 0,
+   0.0, 0U, 0, 0U, 0, &c2_sin_al1_al2_2, 0);
+  sf_debug_symbol_scope_add_symbol("cos_al1_al2_2", 0, 0U, 0U, 0U, 0U, 1.0, 0,
+   0.0, 0U, 0, 0U, 0, &c2_cos_al1_al2_2, 0);
   sf_debug_symbol_scope_add_symbol("al2_1", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_al2_1, 0);
+  sf_debug_symbol_scope_add_symbol("al1_al2_1", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
+   0U, 0, 0U, 0, &c2_al1_al2_1, 0);
+  sf_debug_symbol_scope_add_symbol("sin_al1_al2_1", 0, 0U, 0U, 0U, 0U, 1.0, 0,
+   0.0, 0U, 0, 0U, 0, &c2_sin_al1_al2_1, 0);
+  sf_debug_symbol_scope_add_symbol("cos_al1_al2_1", 0, 0U, 0U, 0U, 0U, 1.0, 0,
+   0.0, 0U, 0, 0U, 0, &c2_cos_al1_al2_1, 0);
   sf_debug_symbol_scope_add_symbol("al2_n", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_al2_n, 0);
   sf_debug_symbol_scope_add_symbol("al2_p", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
@@ -296,47 +353,78 @@ static void sf_c2_MPC_framework(void)
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,25);
     c2_al2_n = -c2_al2_p;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,27);
-    c2_n_x = c2_al1_1 + c2_al2_p;
+    c2_n_x = c2_al1_1;
     c2_s_y = cos(c2_n_x);
-    if(CV_EML_IF(0, 1, c2_b_x == c2_b_a1 * c2_cos_al1_n + c2_b_a2 * c2_s_y)) {
-      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,28);
-      c2_al2_1 = c2_al2_p;
-      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,29);
-      c2_al2_2 = c2_al2_n;
-    } else {
-      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,31);
-      c2_al2_1 = c2_al2_n;
-      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,32);
-      c2_al2_2 = c2_al2_p;
-    }
+    c2_f_A = c2_b_x - c2_b_a1 * c2_s_y;
+    c2_f_B = c2_b_a2;
+    c2_o_x = c2_f_A;
+    c2_t_y = c2_f_B;
+    c2_f_z = c2_o_x / c2_t_y;
+    c2_u_y = c2_f_z;
+    c2_cos_al1_al2_1 = c2_u_y;
+    _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,28);
+    c2_p_x = c2_al1_1;
+    c2_v_y = sin(c2_p_x);
+    c2_g_A = c2_b_y - c2_b_a1 * c2_v_y;
+    c2_g_B = c2_b_a2;
+    c2_q_x = c2_g_A;
+    c2_w_y = c2_g_B;
+    c2_g_z = c2_q_x / c2_w_y;
+    c2_x_y = c2_g_z;
+    c2_sin_al1_al2_1 = c2_x_y;
+    _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,29);
+    c2_al1_al2_1 = c2_atan2(c2_sin_al1_al2_1, c2_cos_al1_al2_1);
+    _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,30);
+    c2_al2_1 = c2_al1_al2_1 - c2_al1_1;
+    _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,32);
+    c2_r_x = c2_al1_2;
+    c2_y_y = cos(c2_r_x);
+    c2_h_A = c2_b_x - c2_b_a1 * c2_y_y;
+    c2_h_B = c2_b_a2;
+    c2_s_x = c2_h_A;
+    c2_ab_y = c2_h_B;
+    c2_h_z = c2_s_x / c2_ab_y;
+    c2_bb_y = c2_h_z;
+    c2_cos_al1_al2_2 = c2_bb_y;
+    _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,33);
+    c2_t_x = c2_al1_2;
+    c2_cb_y = sin(c2_t_x);
+    c2_i_A = c2_b_y - c2_b_a1 * c2_cb_y;
+    c2_i_B = c2_b_a2;
+    c2_u_x = c2_i_A;
+    c2_db_y = c2_i_B;
+    c2_i_z = c2_u_x / c2_db_y;
+    c2_eb_y = c2_i_z;
+    c2_sin_al1_al2_2 = c2_eb_y;
+    _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,34);
+    c2_al1_al2_2 = c2_atan2(c2_sin_al1_al2_2, c2_cos_al1_al2_2);
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,35);
-    c2_o_x = c2_b_al1_c - c2_al1_1;
-    c2_t_y = fabs(c2_o_x);
-    c2_p_x = c2_b_al1_c - c2_al1_2;
-    c2_u_y = fabs(c2_p_x);
-    if(CV_EML_IF(0, 2, c2_t_y < c2_u_y)) {
-      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,36);
+    c2_al2_2 = c2_al1_al2_2 - c2_al1_2;
+    _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,37);
+    c2_v_x = c2_b_al1_c - c2_al1_1;
+    c2_fb_y = fabs(c2_v_x);
+    c2_w_x = c2_b_al1_c - c2_al1_2;
+    c2_gb_y = fabs(c2_w_x);
+    if(CV_EML_IF(0, 1, c2_fb_y < c2_gb_y)) {
+      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,38);
       c2_b_al1 = c2_al1_1;
-      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,37);
+      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,39);
       c2_b_al2 = c2_al2_1;
     } else {
-      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,39);
+      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,41);
       c2_b_al1 = c2_al1_2;
-      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,40);
+      _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,42);
       c2_b_al2 = c2_al2_2;
     }
-    _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,43);
+    _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,45);
     c2_b_error = 0U;
   }
-  _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,-43);
+  _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,-45);
   sf_debug_pop_symbol_scope();
   *c2_al1() = c2_b_al1;
   *c2_al2() = c2_b_al2;
   *c2_error() = c2_b_error;
   _SFD_CC_CALL(EXIT_OUT_OF_FUNCTION_TAG,1);
-  _sfEvent_ = c2_previousEvent;
-  sf_debug_check_for_state_inconsistency(_MPC_frameworkMachineNumber_,
-   chartInstance.chartNumber, chartInstance.instanceNumber);
 }
 
 static real_T c2_mpower(real_T c2_a)
@@ -571,10 +659,10 @@ static void sf_load_state_c2_MPC_framework(FILE *c2_file)
 /* SFunction Glue Code */
 void sf_c2_MPC_framework_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2267698949U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(3302522005U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(477742053U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(401702944U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(3865842959U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2698768910U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(1172414857U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(1731265564U);
 }
 
 mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
@@ -586,10 +674,10 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
   {
     mxArray *mxChecksum = mxCreateDoubleMatrix(4,1,mxREAL);
     double *pr = mxGetPr(mxChecksum);
-    pr[0] = (double)(4177632627U);
-    pr[1] = (double)(3369926759U);
-    pr[2] = (double)(2211162526U);
-    pr[3] = (double)(4053111967U);
+    pr[0] = (double)(4146277402U);
+    pr[1] = (double)(3031080980U);
+    pr[2] = (double)(1162626880U);
+    pr[3] = (double)(4240345295U);
     mxSetField(mxAutoinheritanceInfo,0,"checksum",mxChecksum);
   }
   {
@@ -803,11 +891,10 @@ static void chart_debug_initialization(SimStruct *S)
         _SFD_CV_INIT_TRANS(0,0,NULL,NULL,0,NULL);
 
         /* Initialization of EML Model Coverage */
-        _SFD_CV_INIT_EML(0,1,3,0,0,0,0,0);
-        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,1105);
-        _SFD_CV_INIT_EML_IF(0,0,98,140,756,917);
-        _SFD_CV_INIT_EML_IF(0,1,756,808,860,917);
-        _SFD_CV_INIT_EML_IF(0,2,927,971,1018,1072);
+        _SFD_CV_INIT_EML(0,1,2,0,0,0,0,0);
+        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,1304);
+        _SFD_CV_INIT_EML_IF(0,0,98,140,1126,1271);
+        _SFD_CV_INIT_EML_IF(0,1,1126,1170,1217,1271);
         _SFD_TRANS_COV_WTS(0,0,0,1,0);
         if(chartAlreadyPresent==0)
         {
@@ -908,10 +995,10 @@ static void mdlSetWorkWidths_c2_MPC_framework(SimStruct *S)
     ssSetOptions(S,ssGetOptions(S)|SS_OPTION_WORKS_WITH_CODE_REUSE);
   }
 
-  ssSetChecksum0(S,(1702540849U));
-  ssSetChecksum1(S,(1166673137U));
-  ssSetChecksum2(S,(2209122499U));
-  ssSetChecksum3(S,(1272556604U));
+  ssSetChecksum0(S,(3922593521U));
+  ssSetChecksum1(S,(3406186879U));
+  ssSetChecksum2(S,(792656156U));
+  ssSetChecksum3(S,(150753648U));
 
   ssSetExplicitFCSSCtrl(S,1);
 }

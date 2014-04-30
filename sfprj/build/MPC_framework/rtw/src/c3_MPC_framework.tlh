@@ -5,11 +5,23 @@
    
    
    
-   typedef struct {
-boolean_T bit01_not_empty;
-int8_T bit01;
-} %<SFInfo.ChartInstanceTypedef>;
-
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
 %closefile typedefsBuf
    %if !WHITE_SPACE(typedefsBuf)
