@@ -22,122 +22,188 @@ Link map of __start
   00000060 000000 00008070 00000370    decrementer_isr (entry of .text) 	dec_handler.o 
   00000064 000038 00008074 00000374  1 .text 	copyappbios.o 
   00000064 000038 00008074 00000374  4 copyappbios 	copyappbios.o 
-  0000009c 002a8c 000080ac 000003ac  1 .text 	MPC_framework.o 
-  0000009c 000020 000080ac 000003ac  4 MPC_framework_SetEventsForThisBaseStep 	MPC_framework.o 
-  000000bc 0007ac 000080cc 000003cc  4 MPC_framework_PRIMITIVE 	MPC_framework.o 
-  00000868 0006b4 00008878 00000b78  4 MPC_fram_StateMachine 	MPC_framework.o 
-  00000f1c 001114 00008f2c 0000122c  4 MPC_framework_step0 	MPC_framework.o 
-  00002030 000140 0000a040 00002340  4 MPC_framework_step 	MPC_framework.o 
-  00002170 000628 0000a180 00002480  4 MPC_framework_initialize 	MPC_framework.o 
-  00002798 000494 0000a7a8 00002aa8  1 .text 	mpc555dk_main.o 
-  00002798 0001fc 0000a7a8 00002aa8  4 rt_OneStep 	mpc555dk_main.o 
-  00002994 00011c 0000a9a4 00002ca4  4 main 	mpc555dk_main.o 
-  00002ab0 00098c 0000aac0 00002dc0  1 .text 	lib_drivers.555.a can_callback.o
-  00002ab0 00004c 0000aac0 00002dc0  4 loadfpctxt 	lib_drivers.555.a can_callback.o
-  00002afc 000060 0000ab0c 00002e0c  4 savefpctxt 	lib_drivers.555.a can_callback.o
-  00002b5c 0000a8 0000ab6c 00002e6c  4 setCanModuleIrqLevel 	lib_drivers.555.a can_callback.o
-  00002c04 0000bc 0000ac14 00002f14  4 setCanModuleCallback 	lib_drivers.555.a can_callback.o
-  00002cc0 0001bc 0000acd0 00002fd0  4 mainHandler 	lib_drivers.555.a can_callback.o
-  00002e7c 0004fc 0000ae8c 0000318c  1 .text 	lib_drivers.555.a can_driver.o
-  00002e7c 0000a0 0000ae8c 0000318c  4 constructCanModule 	lib_drivers.555.a can_driver.o
-  00002f1c 000024 0000af2c 0000322c  4 disableCanModuleBuffer 	lib_drivers.555.a can_driver.o
-  00002f40 0000ec 0000af50 00003250  4 loadCanMessage 	lib_drivers.555.a can_driver.o
-  0000302c 00012c 0000b03c 0000333c  4 setCanModuleMasks 	lib_drivers.555.a can_driver.o
-  00003158 000098 0000b168 00003468  4 setCanModuleDefaults 	lib_drivers.555.a can_driver.o
-  000031f0 000094 0000b200 00003500  4 setCanBitTiming 	lib_drivers.555.a can_driver.o
-  00003284 00048c 0000b294 00003594  1 .text 	lib_drivers.555.a can_rx.o
-  00003284 000190 0000b294 00003594  4 receiveCanMessage 	lib_drivers.555.a can_rx.o
-  00003414 0000b4 0000b424 00003724  4 initCanRx 	lib_drivers.555.a can_rx.o
-  000034c8 000780 0000b4d8 000037d8  1 .text 	lib_drivers.555.a can_tx_queue.o
-  000034c8 000118 0000b4d8 000037d8  4 canModuleInitTxBuffer 	lib_drivers.555.a can_tx_queue.o
-  000035e0 000250 0000b5f0 000038f0  4 sendCanMessage 	lib_drivers.555.a can_tx_queue.o
-  00003830 0000b8 0000b840 00003b40  4 unloadCanMsg 	lib_drivers.555.a can_tx_queue.o
-  000038e8 000114 0000b8f8 00003bf8  4 SBTQ_sendAckISR 	lib_drivers.555.a can_tx_queue.o
-  000039fc 000158 0000ba0c 00003d0c  4 pqinsert 	lib_drivers.555.a can_tx_queue.o
-  00003b54 0005e0 0000bb64 00003e64  1 .text 	lib_drivers.555.a isr.o
-  00003b54 00004c 0000bb64 00003e64  4 loadfpctxt 	lib_drivers.555.a isr.o
-  00003ba0 000060 0000bbb0 00003eb0  4 savefpctxt 	lib_drivers.555.a isr.o
-  00003c00 0000a8 0000bc10 00003f10  4 initIrqModule 	lib_drivers.555.a isr.o
-  00003ca8 000178 0000bcb8 00003fb8  4 registerIRQ_Handler 	lib_drivers.555.a isr.o
-  00003e20 000030 0000be30 00004130  4 getIRLfromINT_IRQ_LEVEL 	lib_drivers.555.a isr.o
-  00003e50 000030 0000be60 00004160  4 getILBSfromINT_IRQ_LEVEL 	lib_drivers.555.a isr.o
-  00003e80 000004 0000be90 00004190  4 NOP_IRQ 	lib_drivers.555.a isr.o
-  00003e84 000150 0000be94 00004194  4 external_interrupt_isr 	lib_drivers.555.a isr.o
-  00003fd4 0000a0 0000bfe4 000042e4  4 LEV7_IRQ 	lib_drivers.555.a isr.o
-  00004074 0001f8 0000c084 00004384  1 .text 	lib_drivers.555.a pit.o
-  00004074 000028 0000c084 00004384  4 setPitModuleIrqLevel 	lib_drivers.555.a pit.o
-  0000409c 0000dc 0000c0ac 000043ac  4 setPitPeriod 	lib_drivers.555.a pit.o
-  00004178 0001d4 0000c188 00004488  1 .text 	rtwlib.a rt_zcfcn.o
-  00004178 0001d4 0000c188 00004488  4 rt_ZCFcn 	rtwlib.a rt_zcfcn.o
-  0000434c 000aec 0000c35c 0000465c  1 .text 	Runtime.PPCEABI.H.a runtime.o
-  0000434c 00005c 0000c35c 0000465c  4 __cvt_fp2unsigned 	Runtime.PPCEABI.H.a runtime.o
-  000043a8 00004c 0000c3b8 000046b8  4 __save_gpr 	Runtime.PPCEABI.H.a runtime.o
-  000043b4 000000 0000c3c4 00004704    _savegpr_17 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  000043c4 000000 0000c3d4 00004704    _savegpr_21 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  000043cc 000000 0000c3dc 00004704    _savegpr_23 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  000043d0 000000 0000c3e0 00004704    _savegpr_24 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  000043d4 000000 0000c3e4 00004704    _savegpr_25 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  000043d8 000000 0000c3e8 00004704    _savegpr_26 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  000043dc 000000 0000c3ec 00004704    _savegpr_27 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  000043f4 00004c 0000c404 00004704  4 __restore_gpr 	Runtime.PPCEABI.H.a runtime.o
-  00004400 000000 0000c410 00004750    _restgpr_17 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  00004410 000000 0000c420 00004750    _restgpr_21 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  00004418 000000 0000c428 00004750    _restgpr_23 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  0000441c 000000 0000c42c 00004750    _restgpr_24 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  00004420 000000 0000c430 00004750    _restgpr_25 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  00004424 000000 0000c434 00004750    _restgpr_26 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  00004428 000000 0000c438 00004750    _restgpr_27 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
-  00004440 0000ec 0000c450 00004750  1 .text 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\signal.o
-  00004440 0000b0 0000c450 00004750  4 raise 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\signal.o
-  000044f0 000184 0000c500 00004800  1 .text 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
-  000044f0 000034 0000c500 00004800  4 abort 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
-  00004524 000084 0000c534 00004834  4 exit 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
-  000045a8 000078 0000c5b8 000048b8  4 __exit 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  0000009c 00026c 000080ac 000003ac  1 .text 	rt_nonfinite.o 
+  0000009c 00016c 000080ac 000003ac  4 rt_InitInfAndNaN 	rt_nonfinite.o 
+  00000208 000054 00008218 00000518  4 rtIsInf 	rt_nonfinite.o 
+  0000025c 00002c 0000826c 0000056c  4 rtIsNaN 	rt_nonfinite.o 
+  00000288 005b24 00008298 00000598  1 .text 	MPC_framework.o 
+  00000288 000020 00008298 00000598  4 MPC_framework_SetEventsForThisBaseStep 	MPC_framework.o 
+  000002a8 000a3c 000082b8 000005b8  4 MPC_framework_PRIMITIVE 	MPC_framework.o 
+  00000ce4 0012b4 00008cf4 00000ff4  4 MPC_fram_StateMachine 	MPC_framework.o 
+  00001f98 0002c0 00009fa8 000022a8  4 Jointreferencesingal 	MPC_framework.o 
+  00002258 000810 0000a268 00002568  4 MP_Trajectorydesign1 	MPC_framework.o 
+  00002a68 00243c 0000aa78 00002d78  4 MPC_framework_step0 	MPC_framework.o 
+  00004ea4 000140 0000ceb4 000051b4  4 MPC_framework_step 	MPC_framework.o 
+  00004fe4 000808 0000cff4 000052f4  4 MPC_framework_initialize 	MPC_framework.o 
+  000057ec 000494 0000d7fc 00005afc  1 .text 	mpc555dk_main.o 
+  000057ec 0001fc 0000d7fc 00005afc  4 rt_OneStep 	mpc555dk_main.o 
+  000059e8 00011c 0000d9f8 00005cf8  4 main 	mpc555dk_main.o 
+  00005b04 00098c 0000db14 00005e14  1 .text 	lib_drivers.555.a can_callback.o
+  00005b04 00004c 0000db14 00005e14  4 loadfpctxt 	lib_drivers.555.a can_callback.o
+  00005b50 000060 0000db60 00005e60  4 savefpctxt 	lib_drivers.555.a can_callback.o
+  00005bb0 0000a8 0000dbc0 00005ec0  4 setCanModuleIrqLevel 	lib_drivers.555.a can_callback.o
+  00005c58 0000bc 0000dc68 00005f68  4 setCanModuleCallback 	lib_drivers.555.a can_callback.o
+  00005d14 0001bc 0000dd24 00006024  4 mainHandler 	lib_drivers.555.a can_callback.o
+  00005ed0 0004fc 0000dee0 000061e0  1 .text 	lib_drivers.555.a can_driver.o
+  00005ed0 0000a0 0000dee0 000061e0  4 constructCanModule 	lib_drivers.555.a can_driver.o
+  00005f70 000024 0000df80 00006280  4 disableCanModuleBuffer 	lib_drivers.555.a can_driver.o
+  00005f94 0000ec 0000dfa4 000062a4  4 loadCanMessage 	lib_drivers.555.a can_driver.o
+  00006080 00012c 0000e090 00006390  4 setCanModuleMasks 	lib_drivers.555.a can_driver.o
+  000061ac 000098 0000e1bc 000064bc  4 setCanModuleDefaults 	lib_drivers.555.a can_driver.o
+  00006244 000094 0000e254 00006554  4 setCanBitTiming 	lib_drivers.555.a can_driver.o
+  000062d8 00048c 0000e2e8 000065e8  1 .text 	lib_drivers.555.a can_rx.o
+  000062d8 000190 0000e2e8 000065e8  4 receiveCanMessage 	lib_drivers.555.a can_rx.o
+  00006468 0000b4 0000e478 00006778  4 initCanRx 	lib_drivers.555.a can_rx.o
+  0000651c 000780 0000e52c 0000682c  1 .text 	lib_drivers.555.a can_tx_queue.o
+  0000651c 000118 0000e52c 0000682c  4 canModuleInitTxBuffer 	lib_drivers.555.a can_tx_queue.o
+  00006634 000250 0000e644 00006944  4 sendCanMessage 	lib_drivers.555.a can_tx_queue.o
+  00006884 0000b8 0000e894 00006b94  4 unloadCanMsg 	lib_drivers.555.a can_tx_queue.o
+  0000693c 000114 0000e94c 00006c4c  4 SBTQ_sendAckISR 	lib_drivers.555.a can_tx_queue.o
+  00006a50 000158 0000ea60 00006d60  4 pqinsert 	lib_drivers.555.a can_tx_queue.o
+  00006ba8 0005e0 0000ebb8 00006eb8  1 .text 	lib_drivers.555.a isr.o
+  00006ba8 00004c 0000ebb8 00006eb8  4 loadfpctxt 	lib_drivers.555.a isr.o
+  00006bf4 000060 0000ec04 00006f04  4 savefpctxt 	lib_drivers.555.a isr.o
+  00006c54 0000a8 0000ec64 00006f64  4 initIrqModule 	lib_drivers.555.a isr.o
+  00006cfc 000178 0000ed0c 0000700c  4 registerIRQ_Handler 	lib_drivers.555.a isr.o
+  00006e74 000030 0000ee84 00007184  4 getIRLfromINT_IRQ_LEVEL 	lib_drivers.555.a isr.o
+  00006ea4 000030 0000eeb4 000071b4  4 getILBSfromINT_IRQ_LEVEL 	lib_drivers.555.a isr.o
+  00006ed4 000004 0000eee4 000071e4  4 NOP_IRQ 	lib_drivers.555.a isr.o
+  00006ed8 000150 0000eee8 000071e8  4 external_interrupt_isr 	lib_drivers.555.a isr.o
+  00007028 0000a0 0000f038 00007338  4 LEV7_IRQ 	lib_drivers.555.a isr.o
+  000070c8 0001f8 0000f0d8 000073d8  1 .text 	lib_drivers.555.a pit.o
+  000070c8 000028 0000f0d8 000073d8  4 setPitModuleIrqLevel 	lib_drivers.555.a pit.o
+  000070f0 0000dc 0000f100 00007400  4 setPitPeriod 	lib_drivers.555.a pit.o
+  000071cc 000060 0000f1dc 000074dc  1 .text 	rtwlib.a rt_atan2.o
+  000071cc 000060 0000f1dc 000074dc  4 rt_atan2 	rtwlib.a rt_atan2.o
+  0000722c 000aec 0000f23c 0000753c  1 .text 	Runtime.PPCEABI.H.a runtime.o
+  0000722c 00005c 0000f23c 0000753c  4 __cvt_fp2unsigned 	Runtime.PPCEABI.H.a runtime.o
+  00007288 00004c 0000f298 00007598  4 __save_fpr 	Runtime.PPCEABI.H.a runtime.o
+  0000728c 000000 0000f29c 000075e4    _savefpr_15 (entry of __save_fpr) 	Runtime.PPCEABI.H.a runtime.o
+  000072a4 000000 0000f2b4 000075e4    _savefpr_21 (entry of __save_fpr) 	Runtime.PPCEABI.H.a runtime.o
+  000072ac 000000 0000f2bc 000075e4    _savefpr_23 (entry of __save_fpr) 	Runtime.PPCEABI.H.a runtime.o
+  000072bc 000000 0000f2cc 000075e4    _savefpr_27 (entry of __save_fpr) 	Runtime.PPCEABI.H.a runtime.o
+  000072d4 00004c 0000f2e4 000075e4  4 __restore_fpr 	Runtime.PPCEABI.H.a runtime.o
+  000072d8 000000 0000f2e8 00007630    _restfpr_15 (entry of __restore_fpr) 	Runtime.PPCEABI.H.a runtime.o
+  000072f0 000000 0000f300 00007630    _restfpr_21 (entry of __restore_fpr) 	Runtime.PPCEABI.H.a runtime.o
+  000072f8 000000 0000f308 00007630    _restfpr_23 (entry of __restore_fpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007308 000000 0000f318 00007630    _restfpr_27 (entry of __restore_fpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007320 00004c 0000f330 00007630  4 __save_gpr 	Runtime.PPCEABI.H.a runtime.o
+  0000732c 000000 0000f33c 0000767c    _savegpr_17 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  0000733c 000000 0000f34c 0000767c    _savegpr_21 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007344 000000 0000f354 0000767c    _savegpr_23 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007348 000000 0000f358 0000767c    _savegpr_24 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  0000734c 000000 0000f35c 0000767c    _savegpr_25 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007350 000000 0000f360 0000767c    _savegpr_26 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007354 000000 0000f364 0000767c    _savegpr_27 (entry of __save_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  0000736c 00004c 0000f37c 0000767c  4 __restore_gpr 	Runtime.PPCEABI.H.a runtime.o
+  00007378 000000 0000f388 000076c8    _restgpr_17 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007388 000000 0000f398 000076c8    _restgpr_21 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007390 000000 0000f3a0 000076c8    _restgpr_23 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007394 000000 0000f3a4 000076c8    _restgpr_24 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  00007398 000000 0000f3a8 000076c8    _restgpr_25 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  0000739c 000000 0000f3ac 000076c8    _restgpr_26 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  000073a0 000000 0000f3b0 000076c8    _restgpr_27 (entry of __restore_gpr) 	Runtime.PPCEABI.H.a runtime.o
+  000073b8 0000ec 0000f3c8 000076c8  1 .text 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\signal.o
+  000073b8 0000b0 0000f3c8 000076c8  4 raise 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\signal.o
+  00007468 000184 0000f478 00007778  1 .text 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  00007468 000034 0000f478 00007778  4 abort 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  0000749c 000084 0000f4ac 000077ac  4 exit 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  00007520 000078 0000f530 00007830  4 __exit 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  00007598 000270 0000f5a8 000078a8  1 .text 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00007598 000270 0000f5a8 000078a8  4 __ieee754_atan2 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00007808 0007a4 0000f818 00007b18  1 .text 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00007808 0007a4 0000f818 00007b18  4 __ieee754_pow 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00007fac 00038c 0000ffbc 000082bc  1 .text 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00007fac 00038c 0000ffbc 000082bc  4 __ieee754_rem_pio2 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00008338 00021c 00010348 00008648  1 .text 	MSL_C.PPCEABI.bare.H.a e_sqrt.o
+  00008338 00021c 00010348 00008648  4 __ieee754_sqrt 	MSL_C.PPCEABI.bare.H.a e_sqrt.o
+  00008554 0000f0 00010564 00008864  1 .text 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  00008554 0000f0 00010564 00008864  4 __kernel_cos 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  00008644 000e00 00010654 00008954  1 .text 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00008644 000e00 00010654 00008954  4 __kernel_rem_pio2 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00009444 0000a0 00011454 00009754  1 .text 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  00009444 0000a0 00011454 00009754  4 __kernel_sin 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  000094e4 000210 000114f4 000097f4  1 .text 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  000094e4 000210 000114f4 000097f4  4 atan 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  000096f4 000028 00011704 00009a04  1 .text 	MSL_C.PPCEABI.bare.H.a s_copysign.o
+  000096f4 000028 00011704 00009a04  4 copysign 	MSL_C.PPCEABI.bare.H.a s_copysign.o
+  0000971c 0000d4 0001172c 00009a2c  1 .text 	MSL_C.PPCEABI.bare.H.a s_cos.o
+  0000971c 0000d4 0001172c 00009a2c  4 cos 	MSL_C.PPCEABI.bare.H.a s_cos.o
+  000097f0 000148 00011800 00009b00  1 .text 	MSL_C.PPCEABI.bare.H.a s_floor.o
+  000097f0 000148 00011800 00009b00  4 floor 	MSL_C.PPCEABI.bare.H.a s_floor.o
+  00009938 0001b4 00011948 00009c48  1 .text 	MSL_C.PPCEABI.bare.H.a s_ldexp.o
+  00009938 0001b4 00011948 00009c48  4 ldexp 	MSL_C.PPCEABI.bare.H.a s_ldexp.o
+  00009aec 0000d8 00011afc 00009dfc  1 .text 	MSL_C.PPCEABI.bare.H.a s_sin.o
+  00009aec 0000d8 00011afc 00009dfc  4 sin 	MSL_C.PPCEABI.bare.H.a s_sin.o
+  00009bc4 000020 00011bd4 00009ed4  1 .text 	MSL_C.PPCEABI.bare.H.a w_atan2.o
+  00009bc4 000020 00011bd4 00009ed4  4 atan2 	MSL_C.PPCEABI.bare.H.a w_atan2.o
+  00009be4 000020 00011bf4 00009ef4  1 .text 	MSL_C.PPCEABI.bare.H.a w_pow.o
+  00009be4 000020 00011bf4 00009ef4  4 pow 	MSL_C.PPCEABI.bare.H.a w_pow.o
+  00009c04 000020 00011c14 00009f14  1 .text 	MSL_C.PPCEABI.bare.H.a w_sqrt.o
+  00009c04 000020 00011c14 00009f14  4 sqrt 	MSL_C.PPCEABI.bare.H.a w_sqrt.o
+  00009c24 000cb0 00011c34 00009f34  1 .text 	MSL_C.PPCEABI.bare.H.a math_ppc.o
+  00009c24 000020 00011c34 00009f34  4 scalbn 	MSL_C.PPCEABI.bare.H.a math_ppc.o
 
 
 .rodata section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000018 0000c630 00004930  1 .rodata 	Runtime.PPCEABI.H.a runtime.o
-  00000000 000018 0000c630 00004930  8 __constants 	Runtime.PPCEABI.H.a runtime.o
+  00000000 000018 00011c58 00009f58  1 .rodata 	Runtime.PPCEABI.H.a runtime.o
+  00000000 000018 00011c58 00009f58  8 __constants 	Runtime.PPCEABI.H.a runtime.o
+  00000018 000030 00011c70 00009f70  1 .rodata 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000018 000000 00011c70 00009f70    ...rodata.0 (entry of .rodata) 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000018 000010 00011c70 00009f70  8 bp 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000028 000010 00011c80 00009f80  8 dp_h 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000038 000010 00011c90 00009f90  8 dp_l 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000048 000188 00011ca0 00009fa0  1 .rodata 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000048 000108 00011ca0 00009fa0  8 two_over_pi 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000150 000080 00011da8 0000a0a8  8 npio2_hw 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  000001d0 000050 00011e28 0000a128  1 .rodata 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  000001d0 000010 00011e28 0000a128  8 init_jk 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  000001e0 000040 00011e38 0000a138  8 PIo2 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00000220 000098 00011e78 0000a178  1 .rodata 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000220 000000 00011e78 0000a178    ...rodata.0 (entry of .rodata) 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000220 000020 00011e78 0000a178  8 atanhi 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000240 000020 00011e98 0000a198  8 atanlo 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000260 000058 00011eb8 0000a1b8  8 aT 	MSL_C.PPCEABI.bare.H.a s_atan.o
 
 
 .application_bios section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000078 0000c650 00004950  1 .application_bios 	exceptions.o 
-  00000000 000000 0000c650 00004950    reserved0x0 (entry of .application_bios) 	exceptions.o 
-  00000004 000000 0000c654 00004954    application_reset (entry of .application_bios) 	exceptions.o 
-  00000008 000000 0000c658 00004958    machine_check_exception (entry of .application_bios) 	exceptions.o 
-  0000000c 000000 0000c65c 0000495c    data_access_exception (entry of .application_bios) 	exceptions.o 
-  00000010 000000 0000c660 00004960    instruct_access_exception (entry of .application_bios) 	exceptions.o 
-  00000014 000000 0000c664 00004964    external_interrupt_exception (entry of .application_bios) 	exceptions.o 
-  00000018 000000 0000c668 00004968    alignment_exception (entry of .application_bios) 	exceptions.o 
-  0000001c 000000 0000c66c 0000496c    program_exception (entry of .application_bios) 	exceptions.o 
-  00000020 000000 0000c670 00004970    fp_unavailable_exception (entry of .application_bios) 	exceptions.o 
-  00000024 000000 0000c674 00004974    decrementer_exception (entry of .application_bios) 	exceptions.o 
-  00000028 000000 0000c678 00004978    reserved0x50 (entry of .application_bios) 	exceptions.o 
-  0000002c 000000 0000c67c 0000497c    reserved0x58 (entry of .application_bios) 	exceptions.o 
-  00000030 000000 0000c680 00004980    system_call_exception (entry of .application_bios) 	exceptions.o 
-  00000034 000000 0000c684 00004984    trace_exception (entry of .application_bios) 	exceptions.o 
-  00000038 000000 0000c688 00004988    fp_assist_exception (entry of .application_bios) 	exceptions.o 
-  0000003c 000000 0000c68c 0000498c    software_emulation_exception (entry of .application_bios) 	exceptions.o 
-  00000040 000000 0000c690 00004990    reserved0x80 (entry of .application_bios) 	exceptions.o 
-  00000044 000000 0000c694 00004994    reserved0x88 (entry of .application_bios) 	exceptions.o 
-  00000048 000000 0000c698 00004998    reserved0x90 (entry of .application_bios) 	exceptions.o 
-  0000004c 000000 0000c69c 0000499c    instruction_protection_exception (entry of .application_bios) 	exceptions.o 
-  00000050 000000 0000c6a0 000049a0    data_protection_exception (entry of .application_bios) 	exceptions.o 
-  00000054 000000 0000c6a4 000049a4    reserved0xA8 (entry of .application_bios) 	exceptions.o 
-  00000058 000000 0000c6a8 000049a8    reserved0xB0 (entry of .application_bios) 	exceptions.o 
-  0000005c 000000 0000c6ac 000049ac    reserved0xC8 (entry of .application_bios) 	exceptions.o 
-  00000060 000000 0000c6b0 000049b0    reserved0xD0 (entry of .application_bios) 	exceptions.o 
-  00000064 000000 0000c6b4 000049b4    reserved0xD8 (entry of .application_bios) 	exceptions.o 
-  00000068 000000 0000c6b8 000049b8    data_breakpoint (entry of .application_bios) 	exceptions.o 
-  0000006c 000000 0000c6bc 000049bc    instruct_breakpoint (entry of .application_bios) 	exceptions.o 
-  00000070 000000 0000c6c0 000049c0    maskable_external_breakpoint (entry of .application_bios) 	exceptions.o 
-  00000074 000000 0000c6c4 000049c4    nonmaskable_external_breakpoint (entry of .application_bios) 	exceptions.o 
+  00000000 000078 00011f10 0000a210  1 .application_bios 	exceptions.o 
+  00000000 000000 00011f10 0000a210    reserved0x0 (entry of .application_bios) 	exceptions.o 
+  00000004 000000 00011f14 0000a214    application_reset (entry of .application_bios) 	exceptions.o 
+  00000008 000000 00011f18 0000a218    machine_check_exception (entry of .application_bios) 	exceptions.o 
+  0000000c 000000 00011f1c 0000a21c    data_access_exception (entry of .application_bios) 	exceptions.o 
+  00000010 000000 00011f20 0000a220    instruct_access_exception (entry of .application_bios) 	exceptions.o 
+  00000014 000000 00011f24 0000a224    external_interrupt_exception (entry of .application_bios) 	exceptions.o 
+  00000018 000000 00011f28 0000a228    alignment_exception (entry of .application_bios) 	exceptions.o 
+  0000001c 000000 00011f2c 0000a22c    program_exception (entry of .application_bios) 	exceptions.o 
+  00000020 000000 00011f30 0000a230    fp_unavailable_exception (entry of .application_bios) 	exceptions.o 
+  00000024 000000 00011f34 0000a234    decrementer_exception (entry of .application_bios) 	exceptions.o 
+  00000028 000000 00011f38 0000a238    reserved0x50 (entry of .application_bios) 	exceptions.o 
+  0000002c 000000 00011f3c 0000a23c    reserved0x58 (entry of .application_bios) 	exceptions.o 
+  00000030 000000 00011f40 0000a240    system_call_exception (entry of .application_bios) 	exceptions.o 
+  00000034 000000 00011f44 0000a244    trace_exception (entry of .application_bios) 	exceptions.o 
+  00000038 000000 00011f48 0000a248    fp_assist_exception (entry of .application_bios) 	exceptions.o 
+  0000003c 000000 00011f4c 0000a24c    software_emulation_exception (entry of .application_bios) 	exceptions.o 
+  00000040 000000 00011f50 0000a250    reserved0x80 (entry of .application_bios) 	exceptions.o 
+  00000044 000000 00011f54 0000a254    reserved0x88 (entry of .application_bios) 	exceptions.o 
+  00000048 000000 00011f58 0000a258    reserved0x90 (entry of .application_bios) 	exceptions.o 
+  0000004c 000000 00011f5c 0000a25c    instruction_protection_exception (entry of .application_bios) 	exceptions.o 
+  00000050 000000 00011f60 0000a260    data_protection_exception (entry of .application_bios) 	exceptions.o 
+  00000054 000000 00011f64 0000a264    reserved0xA8 (entry of .application_bios) 	exceptions.o 
+  00000058 000000 00011f68 0000a268    reserved0xB0 (entry of .application_bios) 	exceptions.o 
+  0000005c 000000 00011f6c 0000a26c    reserved0xC8 (entry of .application_bios) 	exceptions.o 
+  00000060 000000 00011f70 0000a270    reserved0xD0 (entry of .application_bios) 	exceptions.o 
+  00000064 000000 00011f74 0000a274    reserved0xD8 (entry of .application_bios) 	exceptions.o 
+  00000068 000000 00011f78 0000a278    data_breakpoint (entry of .application_bios) 	exceptions.o 
+  0000006c 000000 00011f7c 0000a27c    instruct_breakpoint (entry of .application_bios) 	exceptions.o 
+  00000070 000000 00011f80 0000a280    maskable_external_breakpoint (entry of .application_bios) 	exceptions.o 
+  00000074 000000 00011f84 0000a284    nonmaskable_external_breakpoint (entry of .application_bios) 	exceptions.o 
 
 
 .ctors section layout
@@ -150,10 +216,10 @@ Link map of __start
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000000 0000c6c8 000049c8  1 .dtors$00 	Linker Generated File 
-  00000000 000000 0000c6c8 000049c8  4 _dtors 	Linker Generated File 
-  00000000 000000 0000c6c8 000049c8  1 .dtors$99 	Linker Generated File 
-  00000000 000004 0000c6c8 000049c8  4 _dtors$99 	Linker Generated File 
+  00000000 000000 00011f88 0000a288  1 .dtors$00 	Linker Generated File 
+  00000000 000000 00011f88 0000a288  4 _dtors 	Linker Generated File 
+  00000000 000000 00011f88 0000a288  1 .dtors$99 	Linker Generated File 
+  00000000 000004 00011f88 0000a288  4 _dtors$99 	Linker Generated File 
 
 
 .BINARY section layout
@@ -178,30 +244,30 @@ extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000020 0000c6cc 000049cc  1 .init 	__ppc_eabi_init.o 
-  00000000 00001c 0000c6cc 000049cc  4 __init_hardware 	__ppc_eabi_init.o 
-  0000001c 000004 0000c6e8 000049e8  4 __flush_cache 	__ppc_eabi_init.o 
-  00000020 000198 0000c6ec 000049ec  1 .init 	Runtime.PPCEABI.H.a __start.o
-  00000020 000068 0000c6ec 000049ec  4 __start 	Runtime.PPCEABI.H.a __start.o
-  00000088 000050 0000c754 00004a54  4 __copy_rom_section 	Runtime.PPCEABI.H.a __start.o
-  000000d8 000030 0000c7a4 00004aa4  4 __init_bss_section 	Runtime.PPCEABI.H.a __start.o
-  00000108 00001c 0000c7d4 00004ad4  4 __init_registers 	Runtime.PPCEABI.H.a __start.o
-  00000124 000094 0000c7f0 00004af0  4 __init_data 	Runtime.PPCEABI.H.a __start.o
-  000001b8 000134 0000c884 00004b84  1 .init 	Runtime.PPCEABI.H.a __mem.o
-  000001b8 000050 0000c884 00004b84  4 memcpy 	Runtime.PPCEABI.H.a __mem.o
-  00000208 0000b4 0000c8d4 00004bd4  4 __fill_mem 	Runtime.PPCEABI.H.a __mem.o
-  000002bc 000030 0000c988 00004c88  4 memset 	Runtime.PPCEABI.H.a __mem.o
-  000002ec 00009c 0000c9b8 00004cb8  1 .init 	Linker Generated File 
-  000002ec 000084 0000c9b8 00004cb8  4 _rom_copy_info 	Linker Generated File 
-  00000370 000018 0000ca3c 00004d3c  4 _bss_init_info 	Linker Generated File 
+  00000000 000020 00011f8c 0000a28c  1 .init 	__ppc_eabi_init.o 
+  00000000 00001c 00011f8c 0000a28c  4 __init_hardware 	__ppc_eabi_init.o 
+  0000001c 000004 00011fa8 0000a2a8  4 __flush_cache 	__ppc_eabi_init.o 
+  00000020 000198 00011fac 0000a2ac  1 .init 	Runtime.PPCEABI.H.a __start.o
+  00000020 000068 00011fac 0000a2ac  4 __start 	Runtime.PPCEABI.H.a __start.o
+  00000088 000050 00012014 0000a314  4 __copy_rom_section 	Runtime.PPCEABI.H.a __start.o
+  000000d8 000030 00012064 0000a364  4 __init_bss_section 	Runtime.PPCEABI.H.a __start.o
+  00000108 00001c 00012094 0000a394  4 __init_registers 	Runtime.PPCEABI.H.a __start.o
+  00000124 000094 000120b0 0000a3b0  4 __init_data 	Runtime.PPCEABI.H.a __start.o
+  000001b8 000134 00012144 0000a444  1 .init 	Runtime.PPCEABI.H.a __mem.o
+  000001b8 000050 00012144 0000a444  4 memcpy 	Runtime.PPCEABI.H.a __mem.o
+  00000208 0000b4 00012194 0000a494  4 __fill_mem 	Runtime.PPCEABI.H.a __mem.o
+  000002bc 000030 00012248 0000a548  4 memset 	Runtime.PPCEABI.H.a __mem.o
+  000002ec 00009c 00012278 0000a578  1 .init 	Linker Generated File 
+  000002ec 000084 00012278 0000a578  4 _rom_copy_info 	Linker Generated File 
+  00000370 000018 000122fc 0000a5fc  4 _bss_init_info 	Linker Generated File 
 
 
 .usr_init section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000024 0000ca60 00004d60  1 .usr_init 	internal_flash_init.o 
-  00000000 000000 0000ca60 00004d60    usr_init (entry of .usr_init) 	internal_flash_init.o 
+  00000000 000024 00012320 0000a620  1 .usr_init 	internal_flash_init.o 
+  00000000 000000 00012320 0000a620    usr_init (entry of .usr_init) 	internal_flash_init.o 
 
 
 .fini section layout
@@ -214,71 +280,207 @@ extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000020 003f9878 00004d88  1 .data 	MPC_framework_data.o 
-  00000000 000020 003f9878 00004d88  8 MPC_framework_P 	MPC_framework_data.o 
-  00000020 000008 003f9898 00004da8  1 .data 	mpc555dk_main.o 
-  00000020 000008 003f9898 00004da8  8 @stringBase0 	mpc555dk_main.o 
+  00000000 0000b8 003f9878 0000a648  1 .data 	MPC_framework_data.o 
+  00000000 0000b8 003f9878 0000a648  8 MPC_framework_P 	MPC_framework_data.o 
+  000000b8 000008 003f9930 0000a700  1 .data 	mpc555dk_main.o 
+  000000b8 000008 003f9930 0000a700  8 @stringBase0 	mpc555dk_main.o 
 
 
 .sdata section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000004 003f98a0 00004db0  1 .sdata 	MPC_framework.o 
-  00000000 000004 003f98a0 00004db0  4 MPC_framework_M 	MPC_framework.o 
+  00000000 000016 003f9938 0000a708  1 .sdata 	MPC_framework.o 
+  00000000 000004 003f9938 0000a708  4 MPC_framework_M 	MPC_framework.o 
+  00000004 000006 003f993c 0000a70c  2 eml_em_bv0$847 	MPC_framework.o 
+  0000000a 000006 003f9942 0000a712  2 eml_em_bv1$848 	MPC_framework.o 
+  00000010 000006 003f9948 0000a718  2 eml_em_bv2$849 	MPC_framework.o 
+  00000016 000002 003f9950 0000a720  8 *fill*
+  00000018 000074 003f9950 0000a720  1 .sdata 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\float.o
+  00000018 000004 003f9950 0000a720  4 __float_nan 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\float.o
+  00000020 000008 003f9958 0000a728  8 __double_epsilon 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\float.o
 
 
 .sbss section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000008 003f98a8 00004db8  1 .sbss 	MPC_framework.o 
-  00000000 000008 003f98a8 00004db8  8 MPC_framework_M_ 	MPC_framework.o 
-  00000008 000010 003f98b0 00004dc0  1 .sbss 	mpc555dk_main.o 
-  00000008 000008 003f98b0 00004dc0  8 TaskRunningFlags 	mpc555dk_main.o 
-  00000010 000008 003f98b8 00004dc8  8 OverrunFlags 	mpc555dk_main.o 
-  00000018 00000c 003f98c0 00004dd0  1 .sbss 	lib_drivers.555.a isr.o
-  00000018 000004 003f98c0 00004dd0  4 IRQ_ENABLE_COUNT_SEMAPHORE 	lib_drivers.555.a isr.o
-  0000001c 000004 003f98c4 00004dd4  4 IRQ2_FLOAT_FLAG 	lib_drivers.555.a isr.o
-  00000020 000004 003f98c8 00004dd8  4 IRQ1_FLOAT_FLAG 	lib_drivers.555.a isr.o
-  00000024 000004 003f98d0 00004de0  8 *fill*
-  00000028 000010 003f98d0 00004de0  1 .sbss 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
-  00000028 000004 003f98d0 00004de0  4 __aborting 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
-  0000002c 000004 003f98d4 00004de4  4 __atexit_curr_func 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
-  00000030 000004 003f98d8 00004de8  4 __stdio_exit 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
-  00000034 000004 003f98dc 00004dec  4 __console_exit 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  00000000 000028 003f9960 0000a730  1 .sbss 	rt_nonfinite.o 
+  00000000 000004 003f9960 0000a730  4 rtNaNF 	rt_nonfinite.o 
+  00000004 000004 003f9964 0000a734  4 rtMinusInfF 	rt_nonfinite.o 
+  00000008 000004 003f9968 0000a738  4 rtInfF 	rt_nonfinite.o 
+  00000010 000008 003f9970 0000a740  8 rtNaN 	rt_nonfinite.o 
+  00000018 000008 003f9978 0000a748  8 rtMinusInf 	rt_nonfinite.o 
+  00000020 000008 003f9980 0000a750  8 rtInf 	rt_nonfinite.o 
+  00000028 000009 003f9988 0000a758  1 .sbss 	MPC_framework.o 
+  00000028 000008 003f9988 0000a758  8 MPC_framework_M_ 	MPC_framework.o 
+  00000030 000001 003f9990 0000a760  1 _sfEvent_MPC_framework_ 	MPC_framework.o 
+  00000031 000007 003f9998 0000a768  8 *fill*
+  00000038 000010 003f9998 0000a768  1 .sbss 	mpc555dk_main.o 
+  00000038 000008 003f9998 0000a768  8 TaskRunningFlags 	mpc555dk_main.o 
+  00000040 000008 003f99a0 0000a770  8 OverrunFlags 	mpc555dk_main.o 
+  00000048 00000c 003f99a8 0000a778  1 .sbss 	lib_drivers.555.a isr.o
+  00000048 000004 003f99a8 0000a778  4 IRQ_ENABLE_COUNT_SEMAPHORE 	lib_drivers.555.a isr.o
+  0000004c 000004 003f99ac 0000a77c  4 IRQ2_FLOAT_FLAG 	lib_drivers.555.a isr.o
+  00000050 000004 003f99b0 0000a780  4 IRQ1_FLOAT_FLAG 	lib_drivers.555.a isr.o
+  00000054 000004 003f99b8 0000a788  8 *fill*
+  00000058 000004 003f99b8 0000a788  1 .sbss 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\errno.o
+  00000058 000004 003f99b8 0000a788  4 errno 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\errno.o
+  0000005c 000004 003f99c0 0000a790  8 *fill*
+  00000060 000010 003f99c0 0000a790  1 .sbss 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  00000060 000004 003f99c0 0000a790  4 __aborting 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  00000064 000004 003f99c4 0000a794  4 __atexit_curr_func 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  00000068 000004 003f99c8 0000a798  4 __stdio_exit 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  0000006c 000004 003f99cc 0000a79c  4 __console_exit 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
 
 
 .sdata2 section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000068 003f98e0 00004db8  1 .sdata2 	MPC_framework.o 
-  00000000 000008 003f98e0 00004db8  8 @566 	MPC_framework.o 
-  00000008 000008 003f98e8 00004dc0  8 @567 	MPC_framework.o 
-  00000010 000008 003f98f0 00004dc8  8 @568 	MPC_framework.o 
-  00000018 000008 003f98f8 00004dd0  8 @569 	MPC_framework.o 
-  00000020 000008 003f9900 00004dd8  8 @570 	MPC_framework.o 
-  00000028 000008 003f9908 00004de0  8 @632 	MPC_framework.o 
-  00000030 000008 003f9910 00004de8  8 @633 	MPC_framework.o 
-  00000038 000008 003f9918 00004df0  8 @634 	MPC_framework.o 
-  00000040 000008 003f9920 00004df8  8 @635 	MPC_framework.o 
-  00000048 000008 003f9928 00004e00  8 @805 	MPC_framework.o 
-  00000050 000008 003f9930 00004e08  8 @808 	MPC_framework.o 
-  00000058 000004 003f9938 00004e10  4 @875 	MPC_framework.o 
-  0000005c 000004 003f993c 00004e14  4 @876 	MPC_framework.o 
-  00000060 000004 003f9940 00004e18  4 @877 	MPC_framework.o 
-  00000064 000004 003f9944 00004e1c  4 @878 	MPC_framework.o 
-  00000068 000008 003f9948 00004e20  1 .sdata2 	mpc555dk_main.o 
-  00000068 000004 003f9948 00004e20  4 @599 	mpc555dk_main.o 
-  0000006c 000004 003f994c 00004e24  4 @600 	mpc555dk_main.o 
-  00000070 000020 003f9950 00004e28  1 .sdata2 	lib_drivers.555.a pit.o
-  00000070 000008 003f9950 00004e28  8 @45 	lib_drivers.555.a pit.o
-  00000078 000008 003f9958 00004e30  8 @46 	lib_drivers.555.a pit.o
-  00000080 000004 003f9960 00004e38  4 @47 	lib_drivers.555.a pit.o
-  00000088 000008 003f9968 00004e40  8 @50 	lib_drivers.555.a pit.o
-  00000090 000008 003f9970 00004e48  1 .sdata2 	rtwlib.a rt_zcfcn.o
-  00000090 000008 003f9970 00004e48  8 @86 	rtwlib.a rt_zcfcn.o
+  00000000 0000b8 003f99d0 0000a730  1 .sdata2 	MPC_framework.o 
+  00000000 000008 003f99d0 0000a730  8 @531 	MPC_framework.o 
+  00000008 000008 003f99d8 0000a738  8 @532 	MPC_framework.o 
+  00000010 000008 003f99e0 0000a740  8 @533 	MPC_framework.o 
+  00000018 000008 003f99e8 0000a748  8 @607 	MPC_framework.o 
+  00000020 000008 003f99f0 0000a750  8 @608 	MPC_framework.o 
+  00000028 000008 003f99f8 0000a758  8 @609 	MPC_framework.o 
+  00000030 000008 003f9a00 0000a760  8 @612 	MPC_framework.o 
+  00000038 000008 003f9a08 0000a768  8 @617 	MPC_framework.o 
+  00000040 000008 003f9a10 0000a770  8 @781 	MPC_framework.o 
+  00000048 000008 003f9a18 0000a778  8 @782 	MPC_framework.o 
+  00000050 000008 003f9a20 0000a780  8 @783 	MPC_framework.o 
+  00000058 000008 003f9a28 0000a788  8 @784 	MPC_framework.o 
+  00000060 000008 003f9a30 0000a790  8 @785 	MPC_framework.o 
+  00000068 000008 003f9a38 0000a798  8 @829 	MPC_framework.o 
+  00000070 000008 003f9a40 0000a7a0  8 @830 	MPC_framework.o 
+  00000078 000008 003f9a48 0000a7a8  8 @831 	MPC_framework.o 
+  00000080 000008 003f9a50 0000a7b0  8 @832 	MPC_framework.o 
+  00000088 000008 003f9a58 0000a7b8  8 @1413 	MPC_framework.o 
+  00000090 000008 003f9a60 0000a7c0  8 @1414 	MPC_framework.o 
+  00000098 000008 003f9a68 0000a7c8  8 @1415 	MPC_framework.o 
+  000000a0 000008 003f9a70 0000a7d0  8 @1418 	MPC_framework.o 
+  000000a8 000004 003f9a78 0000a7d8  4 @1509 	MPC_framework.o 
+  000000ac 000004 003f9a7c 0000a7dc  4 @1510 	MPC_framework.o 
+  000000b0 000004 003f9a80 0000a7e0  4 @1511 	MPC_framework.o 
+  000000b4 000004 003f9a84 0000a7e4  4 @1512 	MPC_framework.o 
+  000000b8 000008 003f9a88 0000a7e8  1 .sdata2 	mpc555dk_main.o 
+  000000b8 000004 003f9a88 0000a7e8  4 @599 	mpc555dk_main.o 
+  000000bc 000004 003f9a8c 0000a7ec  4 @600 	mpc555dk_main.o 
+  000000c0 000020 003f9a90 0000a7f0  1 .sdata2 	lib_drivers.555.a pit.o
+  000000c0 000008 003f9a90 0000a7f0  8 @45 	lib_drivers.555.a pit.o
+  000000c8 000008 003f9a98 0000a7f8  8 @46 	lib_drivers.555.a pit.o
+  000000d0 000004 003f9aa0 0000a800  4 @47 	lib_drivers.555.a pit.o
+  000000d8 000008 003f9aa8 0000a808  8 @50 	lib_drivers.555.a pit.o
+  000000e0 000008 003f9ab0 0000a810  1 .sdata2 	rtwlib.a rt_atan2.o
+  000000e0 000008 003f9ab0 0000a810  8 @498 	rtwlib.a rt_atan2.o
+  000000e8 000058 003f9ab8 0000a818  1 .sdata2 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  000000e8 000008 003f9ab8 0000a818  8 @466 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  000000f0 000008 003f9ac0 0000a820  8 @467 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  000000f8 000008 003f9ac8 0000a828  8 @468 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00000100 000008 003f9ad0 0000a830  8 @469 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00000108 000008 003f9ad8 0000a838  8 @470 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00000110 000008 003f9ae0 0000a840  8 @471 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00000118 000008 003f9ae8 0000a848  8 @472 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00000120 000008 003f9af0 0000a850  8 @473 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00000128 000008 003f9af8 0000a858  8 @474 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00000130 000008 003f9b00 0000a860  8 @475 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00000138 000008 003f9b08 0000a868  8 @476 	MSL_C.PPCEABI.bare.H.a e_atan2.o
+  00000140 000110 003f9b10 0000a870  1 .sdata2 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000140 000008 003f9b10 0000a870  8 @715 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000148 000008 003f9b18 0000a878  8 @716 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000150 000008 003f9b20 0000a880  8 @717 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000158 000008 003f9b28 0000a888  8 @718 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000160 000008 003f9b30 0000a890  8 @719 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000168 000008 003f9b38 0000a898  8 @720 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000170 000008 003f9b40 0000a8a0  8 @721 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000178 000008 003f9b48 0000a8a8  8 @722 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000180 000008 003f9b50 0000a8b0  8 @723 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000188 000008 003f9b58 0000a8b8  8 @724 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000190 000008 003f9b60 0000a8c0  8 @725 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000198 000008 003f9b68 0000a8c8  8 @726 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001a0 000008 003f9b70 0000a8d0  8 @727 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001a8 000008 003f9b78 0000a8d8  8 @728 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001b0 000008 003f9b80 0000a8e0  8 @729 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001b8 000008 003f9b88 0000a8e8  8 @730 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001c0 000008 003f9b90 0000a8f0  8 @731 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001c8 000008 003f9b98 0000a8f8  8 @732 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001d0 000008 003f9ba0 0000a900  8 @733 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001d8 000008 003f9ba8 0000a908  8 @734 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001e0 000008 003f9bb0 0000a910  8 @735 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001e8 000008 003f9bb8 0000a918  8 @736 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001f0 000008 003f9bc0 0000a920  8 @737 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  000001f8 000008 003f9bc8 0000a928  8 @738 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000200 000008 003f9bd0 0000a930  8 @739 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000208 000008 003f9bd8 0000a938  8 @740 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000210 000008 003f9be0 0000a940  8 @741 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000218 000008 003f9be8 0000a948  8 @742 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000220 000008 003f9bf0 0000a950  8 @743 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000228 000008 003f9bf8 0000a958  8 @744 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000230 000008 003f9c00 0000a960  8 @745 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000238 000008 003f9c08 0000a968  8 @746 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000240 000008 003f9c10 0000a970  8 @747 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000248 000008 003f9c18 0000a978  8 @749 	MSL_C.PPCEABI.bare.H.a e_pow.o
+  00000250 000058 003f9c20 0000a980  1 .sdata2 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000250 000008 003f9c20 0000a980  8 @515 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000258 000008 003f9c28 0000a988  8 @516 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000260 000008 003f9c30 0000a990  8 @517 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000268 000008 003f9c38 0000a998  8 @518 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000270 000008 003f9c40 0000a9a0  8 @519 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000278 000008 003f9c48 0000a9a8  8 @520 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000280 000008 003f9c50 0000a9b0  8 @521 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000288 000008 003f9c58 0000a9b8  8 @522 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000290 000008 003f9c60 0000a9c0  8 @523 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  00000298 000008 003f9c68 0000a9c8  8 @524 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  000002a0 000008 003f9c70 0000a9d0  8 @527 	MSL_C.PPCEABI.bare.H.a e_rem_pio2.o
+  000002a8 000008 003f9c78 0000a9d8  1 .sdata2 	MSL_C.PPCEABI.bare.H.a e_sqrt.o
+  000002a8 000008 003f9c78 0000a9d8  8 @488 	MSL_C.PPCEABI.bare.H.a e_sqrt.o
+  000002b0 000048 003f9c80 0000a9e0  1 .sdata2 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002b0 000008 003f9c80 0000a9e0  8 @424 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002b8 000008 003f9c88 0000a9e8  8 @425 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002c0 000008 003f9c90 0000a9f0  8 @426 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002c8 000008 003f9c98 0000a9f8  8 @427 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002d0 000008 003f9ca0 0000aa00  8 @428 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002d8 000008 003f9ca8 0000aa08  8 @429 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002e0 000008 003f9cb0 0000aa10  8 @430 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002e8 000008 003f9cb8 0000aa18  8 @431 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002f0 000008 003f9cc0 0000aa20  8 @432 	MSL_C.PPCEABI.bare.H.a k_cos.o
+  000002f8 000040 003f9cc8 0000aa28  1 .sdata2 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  000002f8 000008 003f9cc8 0000aa28  8 @829 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00000300 000008 003f9cd0 0000aa30  8 @830 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00000308 000008 003f9cd8 0000aa38  8 @831 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00000310 000008 003f9ce0 0000aa40  8 @832 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00000318 000008 003f9ce8 0000aa48  8 @833 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00000320 000008 003f9cf0 0000aa50  8 @834 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00000328 000008 003f9cf8 0000aa58  8 @835 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00000330 000008 003f9d00 0000aa60  8 @839 	MSL_C.PPCEABI.bare.H.a k_rem_pio2.o
+  00000338 000038 003f9d08 0000aa68  1 .sdata2 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  00000338 000008 003f9d08 0000aa68  8 @420 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  00000340 000008 003f9d10 0000aa70  8 @421 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  00000348 000008 003f9d18 0000aa78  8 @422 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  00000350 000008 003f9d20 0000aa80  8 @423 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  00000358 000008 003f9d28 0000aa88  8 @424 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  00000360 000008 003f9d30 0000aa90  8 @425 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  00000368 000008 003f9d38 0000aa98  8 @426 	MSL_C.PPCEABI.bare.H.a k_sin.o
+  00000370 000028 003f9d40 0000aaa0  1 .sdata2 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000370 000008 003f9d40 0000aaa0  8 @480 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000378 000008 003f9d48 0000aaa8  8 @481 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000380 000008 003f9d50 0000aab0  8 @482 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000388 000008 003f9d58 0000aab8  8 @483 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000390 000008 003f9d60 0000aac0  8 @484 	MSL_C.PPCEABI.bare.H.a s_atan.o
+  00000398 000008 003f9d68 0000aac8  1 .sdata2 	MSL_C.PPCEABI.bare.H.a s_cos.o
+  00000398 000008 003f9d68 0000aac8  8 @420 	MSL_C.PPCEABI.bare.H.a s_cos.o
+  000003a0 000010 003f9d70 0000aad0  1 .sdata2 	MSL_C.PPCEABI.bare.H.a s_floor.o
+  000003a0 000008 003f9d70 0000aad0  8 @448 	MSL_C.PPCEABI.bare.H.a s_floor.o
+  000003a8 000008 003f9d78 0000aad8  8 @449 	MSL_C.PPCEABI.bare.H.a s_floor.o
+  000003b0 000028 003f9d80 0000aae0  1 .sdata2 	MSL_C.PPCEABI.bare.H.a s_ldexp.o
+  000003b0 000008 003f9d80 0000aae0  8 @445 	MSL_C.PPCEABI.bare.H.a s_ldexp.o
+  000003b8 000008 003f9d88 0000aae8  8 @446 	MSL_C.PPCEABI.bare.H.a s_ldexp.o
+  000003c0 000008 003f9d90 0000aaf0  8 @447 	MSL_C.PPCEABI.bare.H.a s_ldexp.o
+  000003c8 000008 003f9d98 0000aaf8  8 @448 	MSL_C.PPCEABI.bare.H.a s_ldexp.o
+  000003d0 000008 003f9da0 0000ab00  8 @449 	MSL_C.PPCEABI.bare.H.a s_ldexp.o
+  000003d8 000008 003f9da8 0000ab08  1 .sdata2 	MSL_C.PPCEABI.bare.H.a s_sin.o
+  000003d8 000008 003f9da8 0000ab08  8 @420 	MSL_C.PPCEABI.bare.H.a s_sin.o
 
 
 .sbss2 section layout
@@ -291,27 +493,27 @@ extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000010 003f9978 00004e50  1 .bss 	can_frame_ground.o 
-  00000000 000010 003f9978 00004e50  8 CAN_FRAME_GROUND 	can_frame_ground.o 
-  00000010 0004b8 003f9988 00004e60  1 .bss 	MPC_framework.o 
-  00000010 000000 003f9988 00004e60    ...bss.0 (entry of .bss) 	MPC_framework.o 
-  00000010 000130 003f9988 00004e60  8 MPC_framework_B 	MPC_framework.o 
-  00000140 00001c 003f9ab8 00004f90  4 MPC_framework_DWork 	MPC_framework.o 
-  0000015c 000014 003f9ad4 00004fac  4 MPC_framework_PrevZCSigState 	MPC_framework.o 
-  00000170 000100 003f9ae8 00004fc0  8 canTxQueueCAN_A$870 	MPC_framework.o 
-  00000270 000010 003f9be8 000050c0  8 canTxQueueLinksCAN_A$871 	MPC_framework.o 
-  00000280 000124 003f9bf8 000050d0  4 GlobalModuleCAN_B 	MPC_framework.o 
-  000003a4 000124 003f9d1c 000051f4  4 GlobalModuleCAN_A 	MPC_framework.o 
-  000004c8 000164 003f9e40 00005318  1 .bss 	lib_drivers.555.a isr.o
-  000004c8 000000 003f9e40 00005318    ...bss.0 (entry of .bss) 	lib_drivers.555.a isr.o
-  000004c8 0000a0 003f9e40 00005318  8 IRQ_LEVEL_OBJECTS 	lib_drivers.555.a isr.o
-  00000568 000040 003f9ee0 000053b8  8 IRQ1_JUMP_TABLE 	lib_drivers.555.a isr.o
-  000005a8 000084 003f9f20 000053f8  4 IRQ2_JUMP_TABLE 	lib_drivers.555.a isr.o
-  0000062c 000004 003f9fa8 00005480  8 *fill*
-  00000630 000018 003f9fa8 00005480  1 .bss 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\signal.o
-  00000630 000018 003f9fa8 00005480  8 signal_funcs 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\signal.o
-  00000648 000100 003f9fc0 00005498  1 .bss 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
-  00000648 000100 003f9fc0 00005498  8 __atexit_funcs 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  00000000 000010 003f9db0 0000ab10  1 .bss 	can_frame_ground.o 
+  00000000 000010 003f9db0 0000ab10  8 CAN_FRAME_GROUND 	can_frame_ground.o 
+  00000010 000610 003f9dc0 0000ab20  1 .bss 	MPC_framework.o 
+  00000010 000000 003f9dc0 0000ab20    ...bss.0 (entry of .bss) 	MPC_framework.o 
+  00000010 000238 003f9dc0 0000ab20  8 MPC_framework_B 	MPC_framework.o 
+  00000248 000068 003f9ff8 0000ad58  8 MPC_framework_DWork 	MPC_framework.o 
+  000002b0 000018 003fa060 0000adc0  8 MPC_framework_PrevZCSigState 	MPC_framework.o 
+  000002c8 000100 003fa078 0000add8  8 canTxQueueCAN_A$1502 	MPC_framework.o 
+  000003c8 000010 003fa178 0000aed8  8 canTxQueueLinksCAN_A$1503 	MPC_framework.o 
+  000003d8 000124 003fa188 0000aee8  4 GlobalModuleCAN_B 	MPC_framework.o 
+  000004fc 000124 003fa2ac 0000b00c  4 GlobalModuleCAN_A 	MPC_framework.o 
+  00000620 000164 003fa3d0 0000b130  1 .bss 	lib_drivers.555.a isr.o
+  00000620 000000 003fa3d0 0000b130    ...bss.0 (entry of .bss) 	lib_drivers.555.a isr.o
+  00000620 0000a0 003fa3d0 0000b130  8 IRQ_LEVEL_OBJECTS 	lib_drivers.555.a isr.o
+  000006c0 000040 003fa470 0000b1d0  8 IRQ1_JUMP_TABLE 	lib_drivers.555.a isr.o
+  00000700 000084 003fa4b0 0000b210  4 IRQ2_JUMP_TABLE 	lib_drivers.555.a isr.o
+  00000784 000004 003fa538 0000b298  8 *fill*
+  00000788 000018 003fa538 0000b298  1 .bss 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\signal.o
+  00000788 000018 003fa538 0000b298  8 signal_funcs 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\MSL_Common\Src\signal.o
+  000007a0 000100 003fa550 0000b2b0  1 .bss 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
+  000007a0 000100 003fa550 0000b2b0  8 __atexit_funcs 	MSL_C.PPCEABI.bare.H.a E:\Products\EPPC\Layout\PowerPC_EABI_Support\MSL\MSL_C\PPC_EABI\SRC\abort_exit_ppc_eabi.o
 
 
 .PPC.EMB.sdata0 section layout
@@ -330,24 +532,24 @@ Memory map:
                    Starting Size     File     ROM      RAM Buffer
                    address           Offset   Address  Address
      .flash_entry  00008000 00000004 00000300 00008000 00008000
-            .text  00008010 00004620 00000310 00008010 00008010
-          .rodata  0000c630 00000018 00004930 0000c630 0000c630
-  .application_bios  0000c650 00000078 00004950 0000c650 0000c650
-           .ctors  0000c6c8 00000000 000049c8 0000c6c8 0000c6c8
-           .dtors  0000c6c8 00000004 000049c8 0000c6c8 0000c6c8
-          .BINARY  0000c6cc 00000000 000049cc 0000c6cc 0000c6cc
-            extab  0000c6cc 00000000 000049cc 0000c6cc 0000c6cc
-       extabindex  0000c6cc 00000000 000049cc 0000c6cc 0000c6cc
-            .init  0000c6cc 00000388 000049cc 0000c6cc 0000c6cc
-        .usr_init  0000ca60 00000024 00004d60 0000ca60 0000ca60
-            .data  003f9878 00000028 00004d88 0000cb00 0000cb00
-           .sdata  003f98a0 00000004 00004db0 0000cb28 0000cb28
-            .sbss  003f98a8 00000038 00004db8 0000cb30 0000cb30
-          .sdata2  003f98e0 00000098 00004db8 0000cb30 0000cb30
-           .sbss2  003f9978 00000000 00004e50 0000cbc8 0000cbc8
-             .bss  003f9978 00000748 00004e50 0000cbc8 0000cbc8
-  .PPC.EMB.sdata0  003fa0c0 00000000 00004e50 0000cbc8 0000cbc8
-   .PPC.EMB.sbss0  003fa0c0 00000000 00004e50 0000cbc8 0000cbc8
+            .text  00008010 00009c44 00000310 00008010 00008010
+          .rodata  00011c58 000002b8 00009f58 00011c58 00011c58
+  .application_bios  00011f10 00000078 0000a210 00011f10 00011f10
+           .ctors  00011f88 00000000 0000a288 00011f88 00011f88
+           .dtors  00011f88 00000004 0000a288 00011f88 00011f88
+          .BINARY  00011f8c 00000000 0000a28c 00011f8c 00011f8c
+            extab  00011f8c 00000000 0000a28c 00011f8c 00011f8c
+       extabindex  00011f8c 00000000 0000a28c 00011f8c 00011f8c
+            .init  00011f8c 00000388 0000a28c 00011f8c 00011f8c
+        .usr_init  00012320 00000024 0000a620 00012320 00012320
+            .data  003f9878 000000c0 0000a648 000123c0 000123c0
+           .sdata  003f9938 00000028 0000a708 00012480 00012480
+            .sbss  003f9960 00000070 0000a730 000124a8 000124a8
+          .sdata2  003f99d0 000003e0 0000a730 000124a8 000124a8
+           .sbss2  003f9db0 00000000 0000ab10 00012888 00012888
+             .bss  003f9db0 000008a0 0000ab10 00012888 00012888
+  .PPC.EMB.sdata0  003fa650 00000000 0000ab10 00012888 00012888
+   .PPC.EMB.sbss0  003fa650 00000000 0000ab10 00012888 00012888
 
 
 Linker generated symbols:
@@ -360,106 +562,106 @@ _application_exception_table_target_base 003f9800
                  _ram_len 00006800
                _e_ram_org 00800000
                _e_ram_len 00040000
-_application_exception_table_text_base 0000c650
+_application_exception_table_text_base 00011f10
 _application_exception_table_size 00000078
-                   _finit 0000c6cc
-               _finit_rom 0000c6cc
+                   _finit 00011f8c
+               _finit_rom 00011f8c
                _init_size 00000388
                    _ftext 00008010
                _ftext_rom 00008010
-               _text_size 00004620
-                  _frdata 0000c630
-              _frdata_rom 0000c630
-              _rdata_size 00000018
+               _text_size 00009c44
+                  _frdata 00011c58
+              _frdata_rom 00011c58
+              _rdata_size 000002b8
               _extab_size 00000000
-                    _feti 0000c6cc
-                _feti_rom 0000c6cc
+                    _feti 00011f8c
+                _feti_rom 00011f8c
                 _eti_size 00000000
                    _fdata 003f9878
-               _fdata_rom 0000cb00
-               _data_size 00000028
-                  _fsdata 003f98a0
-              _fsdata_rom 0000cb28
-              _sdata_size 00000004
-                   _fsbss 003f98a8
-               _sbss_size 00000038
-                 _fsdata2 003f98e0
-             _fsdata2_rom 0000cb30
-             _sdata2_size 00000098
-                  _fsbss2 003f9978
+               _fdata_rom 000123c0
+               _data_size 000000c0
+                  _fsdata 003f9938
+              _fsdata_rom 00012480
+              _sdata_size 00000028
+                   _fsbss 003f9960
+               _sbss_size 00000070
+                 _fsdata2 003f99d0
+             _fsdata2_rom 000124a8
+             _sdata2_size 000003e0
+                  _fsbss2 003f9db0
               _sbss2_size 00000000
-                    _fbss 003f9978
-                _bss_size 00000748
-                 _fsdata0 003fa0c0
-             _fsdata0_rom 0000cbc8
+                    _fbss 003f9db0
+                _bss_size 000008a0
+                 _fsdata0 003fa650
+             _fsdata0_rom 00012888
              _sdata0_size 00000000
-                  _fsbss0 003fa0c0
+                  _fsbss0 003fa650
               _sbss0_size 00000000
-              _stack_size 00005f38
+              _stack_size 000059a8
                _heap_size 00100000
            _f_flash_entry 00008000
        _f_flash_entry_rom 00008000
            _e_flash_entry 00008004
                   _f_text 00008010
               _f_text_rom 00008010
-                  _e_text 0000c630
-                _f_rodata 0000c630
-            _f_rodata_rom 0000c630
-                _e_rodata 0000c648
-      _f_application_bios 0000c650
-  _f_application_bios_rom 0000c650
-      _e_application_bios 0000c6c8
-                 _f_ctors 0000c6c8
-             _f_ctors_rom 0000c6c8
-                 _e_ctors 0000c6c8
-                 _f_dtors 0000c6c8
-             _f_dtors_rom 0000c6c8
-                 _e_dtors 0000c6cc
-                _f_BINARY 0000c6cc
-            _f_BINARY_rom 0000c6cc
-                _e_BINARY 0000c6cc
-                  _fextab 0000c6cc
-              _fextab_rom 0000c6cc
-                  _eextab 0000c6cc
-             _fextabindex 0000c6cc
-         _fextabindex_rom 0000c6cc
-             _eextabindex 0000c6cc
-                  _f_init 0000c6cc
-              _f_init_rom 0000c6cc
-                  _e_init 0000ca54
-              _f_usr_init 0000ca60
-          _f_usr_init_rom 0000ca60
-              _e_usr_init 0000ca84
-                  _f_fini 0000ca84
-              _f_fini_rom 0000ca84
-                  _e_fini 0000ca84
+                  _e_text 00011c54
+                _f_rodata 00011c58
+            _f_rodata_rom 00011c58
+                _e_rodata 00011f10
+      _f_application_bios 00011f10
+  _f_application_bios_rom 00011f10
+      _e_application_bios 00011f88
+                 _f_ctors 00011f88
+             _f_ctors_rom 00011f88
+                 _e_ctors 00011f88
+                 _f_dtors 00011f88
+             _f_dtors_rom 00011f88
+                 _e_dtors 00011f8c
+                _f_BINARY 00011f8c
+            _f_BINARY_rom 00011f8c
+                _e_BINARY 00011f8c
+                  _fextab 00011f8c
+              _fextab_rom 00011f8c
+                  _eextab 00011f8c
+             _fextabindex 00011f8c
+         _fextabindex_rom 00011f8c
+             _eextabindex 00011f8c
+                  _f_init 00011f8c
+              _f_init_rom 00011f8c
+                  _e_init 00012314
+              _f_usr_init 00012320
+          _f_usr_init_rom 00012320
+              _e_usr_init 00012344
+                  _f_fini 00012344
+              _f_fini_rom 00012344
+                  _e_fini 00012344
                   _f_data 003f9878
-              _f_data_rom 0000cb00
-                  _e_data 003f98a0
-                 _f_sdata 003f98a0
-             _f_sdata_rom 0000cb28
-                 _e_sdata 003f98a4
-                  _f_sbss 003f98a8
-                  _e_sbss 003f98e0
-                _f_sdata2 003f98e0
-            _f_sdata2_rom 0000cb30
-                _e_sdata2 003f9978
-                 _f_sbss2 003f9978
-                 _e_sbss2 003f9978
-                   _f_bss 003f9978
-                   _e_bss 003fa0c0
-        _f_PPC_EMB_sdata0 003fa0c0
-    _f_PPC_EMB_sdata0_rom 0000cbc8
-        _e_PPC_EMB_sdata0 003fa0c0
-         _f_PPC_EMB_sbss0 003fa0c0
-         _e_PPC_EMB_sbss0 003fa0c0
+              _f_data_rom 000123c0
+                  _e_data 003f9938
+                 _f_sdata 003f9938
+             _f_sdata_rom 00012480
+                 _e_sdata 003f9960
+                  _f_sbss 003f9960
+                  _e_sbss 003f99d0
+                _f_sdata2 003f99d0
+            _f_sdata2_rom 000124a8
+                _e_sdata2 003f9db0
+                 _f_sbss2 003f9db0
+                 _e_sbss2 003f9db0
+                   _f_bss 003f9db0
+                   _e_bss 003fa650
+        _f_PPC_EMB_sdata0 003fa650
+    _f_PPC_EMB_sdata0_rom 00012888
+        _e_PPC_EMB_sdata0 003fa650
+         _f_PPC_EMB_sbss0 003fa650
+         _e_PPC_EMB_sbss0 003fa650
               _stack_addr 003ffff8
-               _stack_end 003fa0c0
+               _stack_end 003fa650
                _heap_addr 002cfff0
                 _heap_end 003cfff0
-             _nbfunctions 0000003a
+             _nbfunctions 00000052
            SIZEOF_HEADERS 00000300
-               _SDA_BASE_ 004018a0
-              _SDA2_BASE_ 004018e0
-           _ABS_SDA_BASE_ 004018a0
-          _ABS_SDA2_BASE_ 004018e0
+               _SDA_BASE_ 00401938
+              _SDA2_BASE_ 004019d0
+           _ABS_SDA_BASE_ 00401938
+          _ABS_SDA2_BASE_ 004019d0

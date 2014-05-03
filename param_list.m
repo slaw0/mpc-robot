@@ -2,6 +2,7 @@
 clear
 clc
 
+fundamental_sample_time = 0.01;
 %% CAN communication parameters
 init_1_message_frequency = 0.01;
 
@@ -11,16 +12,21 @@ init_ack_sync_message = uint8(20);
 init_ack_async_message = uint8(21);
 
 %% Incremental counter configuration parameters
-incntr_max_val = uint32(2^24);
+incntr_max_val = uint32(2^24)-1;
+incntr_half_val = floor(incntr_max_val/2);
 incntr_display_max_val = uint32(hex2dec('FFFF'));
 incntr_out_value_gain = single(double(incntr_max_val) / double(incntr_display_max_val));
+increments_per_turn = 115349;
+increments_per_half_turn = floor(increments_per_turn / 2);
 
 %% Control parameters
 DA_max = uint16(hex2dec('FFFF'));
-motor_stopped_value = DA_max/2;
+motor_stopped_value = DA_max / 2;
 motor_positive_value = DA_max * 0.6;
 motor_negative_value = DA_max * 0.4;
+trajectory_time = 2; % desired trajectory running time in seconds
+ticks_per_trajectory_time = trajectory_time / fundamental_sample_time;
 
 %% Robot parameters
-a1 = 1; % Segment 1 length
-a2 = 0.75; % segment 2 length
+a1 = 1000; % Segment 1 length
+a2 = 750; % segment 2 length

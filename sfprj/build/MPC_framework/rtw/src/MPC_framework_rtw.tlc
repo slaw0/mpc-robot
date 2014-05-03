@@ -1,7 +1,7 @@
 %implements "machineSource" "C"
 %function CacheMachineDefinitions(block,system,hFile,cFile) void
 %openfile tmpFcnBuf
-            
+   uint8_T %<SLibGetSFEventName()>;         
             
 %closefile tmpFcnBuf
 %<SLibSetModelFileAttribute(cFile,"Definitions",tmpFcnBuf)>\
@@ -10,6 +10,7 @@
 %function DumpMachineInitializer(block) Output
 
 %openfile tmpFcnBuf
+%<SLibGetSFEventName()> = CALL_EVENT;
 
 %closefile tmpFcnBuf
 %if !WHITE_SPACE(tmpFcnBuf)

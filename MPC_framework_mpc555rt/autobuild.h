@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.462
+ * Model version                        : 1.1070
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Fri Apr 18 16:33:34 2014
+ * Real-Time Workshop file generated on : Wed Apr 30 19:37:50 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Fri Apr 18 16:33:35 2014
+ * C source code generated on           : Wed Apr 30 19:37:50 2014
  */
 
 #ifndef _RTW_HEADER_autobuild_h_

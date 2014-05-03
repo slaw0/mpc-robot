@@ -1,0 +1,204 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDefines(block,system) void
+   %openfile chartConstBuf
+   %closefile chartConstBuf
+   %return chartConstBuf
+%endfunction %% ChartDefines
+%function ChartFunctions(block,system) void
+   %openfile chartFcnsBuf
+     %assign junkVal = LibGenMathFcnCall("abs",FcnGetDataTypeIdFromName("double"),"0.0","")
+%assign junkVal = LibGenMathFcnCall("rtIsNaN",FcnGetDataTypeIdFromName("double"),"0.0","")
+%assign junkVal = LibGenMathFcnCall("rtIsInf",FcnGetDataTypeIdFromName("double"),"0.0","")
+%assign junkVal = LibGenMathFcnCall("pow",FcnGetDataTypeIdFromName("double"),"0.0","0.0")
+%assign junkVal = LibGenMathFcnCall("sqrt",FcnGetDataTypeIdFromName("double"),"0.0","")
+%assign junkVal = LibGenMathFcnCall("atan2",FcnGetDataTypeIdFromName("double"),"0.0","0.0")
+%assign junkVal = LibGenMathFcnCall("cos",FcnGetDataTypeIdFromName("double"),"0.0","")
+%assign junkVal = LibGenMathFcnCall("sin",FcnGetDataTypeIdFromName("double"),"0.0","")
+         
+         
+         
+         
+            
+            
+            
+   %closefile chartFcnsBuf
+   %return chartFcnsBuf
+%endfunction %% ChartFunctions
+%function ChartSharedFunctions(block,system) void
+   %openfile chartFcnsBuf
+                 %if %<!SFLibLookupUtilityFunction("lfcbphdbbaaiimgd_sign")>
+                    real_T lfcbphdbbaaiimgd_sign(real_T eml_X)
+{
+real_T eml_S;
+eml_S = 0.0;
+if((boolean_T)rtIsNaN(eml_X)) {
+return %<LibGetMathConstant(LibRealNonFinite("nan"), FcnGetDataTypeIdFromName("double"))>;
+} else if(eml_X > 0.0) {
+return 1.0;
+} else if(eml_X < 0.0) {
+return -1.0;
+}
+return eml_S;
+}
+                    %<SFLibInsertUtilityFunction("lfcbphdbbaaiimgd_sign")>
+                 %endif
+   %closefile chartFcnsBuf
+   %return chartFcnsBuf
+%endfunction %% ChartSharedFunctions
+%function Outputs(block,system) void
+   %openfile codeBuf
+      
+{
+real_T eml_y;
+real_T eml_z;
+uint8_T eml_error;
+real_T eml_b_z;
+real_T eml_c_z;
+real_T eml_r;
+eml_y = sqrt(pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+if((pow(eml_y, 2.0) > pow(%<LibSFInputs(block, 4, 0)>, 2.0) + pow(%<LibSFInputs(block, 5, 0)>, 2.0)) || (eml_y < %<LibSFInputs(block, 4, 0)> - %<LibSFInputs(block, 5, 0)>)) {
+eml_z = %<LibSFInputs(block, 2, 0)>;
+eml_y = %<LibSFInputs(block, 3, 0)>;
+eml_error = 1U;
+} else {
+eml_y = %<LibSFInputs(block, 4, 0)> + %<LibSFInputs(block, 5, 0)> * ((((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(%<LibSFInputs(block, 4, 0)>, 2.0)) - pow(%<LibSFInputs(block, 5, 0)>, 2.0)) / (2.0 * %<LibSFInputs(block, 4, 0)> * %<LibSFInputs(block, 5, 0)>));
+eml_z = (eml_y * %<LibSFInputs(block, 1, 0)> + %<LibSFInputs(block, 0, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_y, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+eml_b_z = (eml_y * %<LibSFInputs(block, 1, 0)> - %<LibSFInputs(block, 0, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_y, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+eml_c_z = (eml_y * %<LibSFInputs(block, 0, 0)> + %<LibSFInputs(block, 1, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_y, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+eml_y = (eml_y * %<LibSFInputs(block, 0, 0)> - %<LibSFInputs(block, 1, 0)> * sqrt((pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0)) - pow(eml_y, 2.0))) / (pow(%<LibSFInputs(block, 0, 0)>, 2.0) + pow(%<LibSFInputs(block, 1, 0)>, 2.0));
+if(((boolean_T)rtIsNaN(eml_y)) || ((boolean_T)rtIsNaN(eml_z))) {
+eml_r = %<LibGetMathConstant(LibRealNonFinite("nan"), FcnGetDataTypeIdFromName("double"))>;
+} else if(((boolean_T)rtIsInf(eml_z)) && ((boolean_T)rtIsInf(eml_y))) {
+eml_r = rt_atan2(lfcbphdbbaaiimgd_sign(eml_z), lfcbphdbbaaiimgd_sign(eml_y));
+} else if(eml_y == 0.0) {
+if(eml_z > 0.0) {
+eml_r = 1.5707963267948966E+000;
+} else if(eml_z < 0.0) {
+eml_r = -1.5707963267948966E+000;
+} else {
+eml_r = 0.0;
+}
+} else {
+eml_r = rt_atan2(eml_z, eml_y);
+}
+if(((boolean_T)rtIsNaN(eml_c_z)) || ((boolean_T)rtIsNaN(eml_b_z))) {
+eml_c_z = %<LibGetMathConstant(LibRealNonFinite("nan"), FcnGetDataTypeIdFromName("double"))>;
+} else if(((boolean_T)rtIsInf(eml_b_z)) && ((boolean_T)rtIsInf(eml_c_z))) {
+eml_c_z = rt_atan2(lfcbphdbbaaiimgd_sign(eml_b_z), lfcbphdbbaaiimgd_sign(eml_c_z));
+} else if(eml_c_z == 0.0) {
+if(eml_b_z > 0.0) {
+eml_c_z = 1.5707963267948966E+000;
+} else if(eml_b_z < 0.0) {
+eml_c_z = -1.5707963267948966E+000;
+} else {
+eml_c_z = 0.0;
+}
+} else {
+eml_c_z = rt_atan2(eml_b_z, eml_c_z);
+}
+eml_y = (%<LibSFInputs(block, 0, 0)> - %<LibSFInputs(block, 4, 0)> * cos(eml_r)) / %<LibSFInputs(block, 5, 0)>;
+eml_z = (%<LibSFInputs(block, 1, 0)> - %<LibSFInputs(block, 4, 0)> * sin(eml_r)) / %<LibSFInputs(block, 5, 0)>;
+if(((boolean_T)rtIsNaN(eml_y)) || ((boolean_T)rtIsNaN(eml_z))) {
+eml_y = %<LibGetMathConstant(LibRealNonFinite("nan"), FcnGetDataTypeIdFromName("double"))>;
+} else if(((boolean_T)rtIsInf(eml_z)) && ((boolean_T)rtIsInf(eml_y))) {
+eml_y = rt_atan2(lfcbphdbbaaiimgd_sign(eml_z), lfcbphdbbaaiimgd_sign(eml_y));
+} else if(eml_y == 0.0) {
+if(eml_z > 0.0) {
+eml_y = 1.5707963267948966E+000;
+} else if(eml_z < 0.0) {
+eml_y = -1.5707963267948966E+000;
+} else {
+eml_y = 0.0;
+}
+} else {
+eml_y = rt_atan2(eml_z, eml_y);
+}
+eml_b_z = eml_y - eml_r;
+eml_z = (%<LibSFInputs(block, 0, 0)> - %<LibSFInputs(block, 4, 0)> * cos(eml_c_z)) / %<LibSFInputs(block, 5, 0)>;
+eml_y = (%<LibSFInputs(block, 1, 0)> - %<LibSFInputs(block, 4, 0)> * sin(eml_c_z)) / %<LibSFInputs(block, 5, 0)>;
+if(((boolean_T)rtIsNaN(eml_z)) || ((boolean_T)rtIsNaN(eml_y))) {
+eml_y = %<LibGetMathConstant(LibRealNonFinite("nan"), FcnGetDataTypeIdFromName("double"))>;
+} else if(((boolean_T)rtIsInf(eml_y)) && ((boolean_T)rtIsInf(eml_z))) {
+eml_y = rt_atan2(lfcbphdbbaaiimgd_sign(eml_y), lfcbphdbbaaiimgd_sign(eml_z));
+} else if(eml_z == 0.0) {
+if(eml_y > 0.0) {
+eml_y = 1.5707963267948966E+000;
+} else if(eml_y < 0.0) {
+eml_y = -1.5707963267948966E+000;
+} else {
+eml_y = 0.0;
+}
+} else {
+eml_y = rt_atan2(eml_y, eml_z);
+}
+if(fabs(%<LibSFInputs(block, 2, 0)> - eml_r) < fabs(%<LibSFInputs(block, 2, 0)> - eml_c_z)) {
+eml_z = eml_r;
+eml_y = eml_b_z;
+} else {
+eml_z = eml_c_z;
+eml_y -= eml_c_z;
+}
+eml_error = 0U;
+}
+%<LibSFOutputs(block, 1, 0)> = eml_z;
+%<LibSFOutputs(block, 2, 0)> = eml_y;
+%<LibSFOutputs(block, 3, 0)> = eml_error;
+}
+   %closefile codeBuf
+   %return codeBuf
+%endfunction  %% Outputs
+%function InlinedInitializerCode(block,system) Output
+   %<SLibResetSFChartInstanceAccessed(block)>\
+   %openfile initBodyBuf
+      
+   %closefile initBodyBuf
+   %if !WHITE_SPACE(initBodyBuf)
+      /* Initialize code for chart: '%<LibGetBlockName(block)>' */
+      %<initBodyBuf>\
+   %endif
+%endfunction
+
+
+%function EnableUnboundOutputEventsCode(block,system) Output
+   %openfile initBodyBuf
+      
+   %closefile initBodyBuf
+   %if !WHITE_SPACE(initBodyBuf)
+      /* Enable code for chart: '%<LibGetBlockName(block)>' */
+      %<initBodyBuf>\
+   %endif
+%endfunction
+
+%function DisableUnboundOutputEventsCode(block,system) Output
+   %openfile initBodyBuf
+      
+   %closefile initBodyBuf
+   %if !WHITE_SPACE(initBodyBuf)
+      /* Disable code for chart: '%<LibGetBlockName(block)>' */
+      %<initBodyBuf>\
+   %endif
+%endfunction
+
+%function DumpSharedUtils(block,system) void
+%endfunction
+
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   0 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      DataTypeIdx  0\
+      IsComplex    0\
+      IsFixPoint   0\
+      With         1\
+      Dimensions   [1,1]\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

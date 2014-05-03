@@ -1,0 +1,52 @@
+
+%implements "chartHeader" "C"
+%function CacheOutputs(block,system,typeDefHFile,hFile,cFile) void
+%openfile typedefsBuf
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+%closefile typedefsBuf
+   %if !WHITE_SPACE(typedefsBuf)
+      %openfile tempBuf
+#ifndef _CSC2_MPC_FRAMEWORK_CHARTSTRUCT_
+#define _CSC2_MPC_FRAMEWORK_CHARTSTRUCT_
+      %<typedefsBuf>\
+ #endif /* _CSC2_MPC_FRAMEWORK_CHARTSTRUCT_ */
+      %closefile tempBuf
+%<SLibSetModelFileAttribute(typeDefHFile,"Typedefs",tempBuf)>
+   %endif
+
+%openfile externFcnsBuf
+   
+   
+   
+   
+%closefile externFcnsBuf
+%<SLibSetModelFileAttribute(hFile,"ExternFcns",externFcnsBuf)>
+   %openfile externFcnsBuf
+         %if %<!SFLibLookupUtilityFunctionDecl("lfcbphdbbaaiimgd_sign")>
+            real_T lfcbphdbbaaiimgd_sign(real_T eml_X);
+            %<SFLibInsertUtilityFunctionDecl("lfcbphdbbaaiimgd_sign")>
+         %endif
+   %closefile externFcnsBuf
+   %<SLibSetModelFileAttribute(hFile,"ExternFcns",externFcnsBuf)>
+
+%endfunction %% CacheOutputs
