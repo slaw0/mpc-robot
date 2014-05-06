@@ -1,5 +1,8 @@
 function [al1, al2, error] = invgeo(x, y, al1_c, al2_c, a1, a2)
     
+    seg1_limit = 90 / 180 * pi;
+    seg2_limit = 150 / 180 * pi;
+
     d = sqrt(x^2 + y^2);
     if ((d^2 > (a1^2 + a2^2)) | (d < (a1 - a2)))
         al1 = al1_c;
@@ -21,11 +24,6 @@ function [al1, al2, error] = invgeo(x, y, al1_c, al2_c, a1, a2)
     
     al1_2 = atan2(sin_al1_n, cos_al1_p);
     
-<<<<<<< HEAD
-    al1
-    
-    sin_al2 = 1/2/a2*(-x*cos(al1)^2+a2*cos(al1)*cos(al2)+a1*cos(al1)^3-(cos(al1)^2*(-x*cos(al1)-a2*cos(al2)+a1*cos(al1)^2+2*a2*cos(al1)^2*cos(al2))^2)^(1/2))/sin(al1)/cos(al1)^2
-=======
     al2_p = acos(cos_al2);
     al2_n = -al2_p; 
     
@@ -39,6 +37,27 @@ function [al1, al2, error] = invgeo(x, y, al1_c, al2_c, a1, a2)
     al1_al2_2 = atan2(sin_al1_al2_2, cos_al1_al2_2);
     al2_2 = al1_al2_2 - al1_2;
     
+    seg1_usable = ones(1, 2);
+    seg2_usable = ones(1, 2);
+    
+    if (abs(al1_1) > seg1_limit)
+        seg1_usable(1) = 0;
+    end
+    if (abs(al1_2) > seg2_limit)
+        seg1_usable(2) = 0;
+    end
+    if (sum(seg1_usable == 0))
+       error = uint8(1);
+       return;
+    end
+    
+    if (abs(al1_c - al1_1) < abs(al1_c - al1_2))
+        al1 = al1_1;
+        al2 = al2_1;
+    else
+        al1 = al1_2;
+        al2 = al2_2;
+    end
+    
     error = uint8(0);  
->>>>>>> ca23ad72d6e6b3b796b7279db9827fd9e79aeea7
 end

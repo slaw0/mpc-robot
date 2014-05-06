@@ -24,7 +24,7 @@ DA_max = uint16(hex2dec('FFFF'));
 motor_stopped_value = DA_max / 2;
 motor_positive_value = DA_max * 0.6;
 motor_negative_value = DA_max * 0.4;
-trajectory_time = 2; % desired trajectory running time in seconds
+trajectory_time = 5; % desired trajectory running time in seconds
 ticks_per_trajectory_time = trajectory_time / fundamental_sample_time;
 
 %% Robot parameters
