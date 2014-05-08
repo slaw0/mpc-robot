@@ -49,8 +49,9 @@ real_T eml_temp;
 int32_T eml_k;
 int32_T eml_c;
 int32_T eml_j;
-real_T eml_B[6];
-real_T eml_Ao[6];
+real32_T eml_b_y[36];
+real32_T eml_B[6];
+real32_T eml_Ao[6];
 /* %<" This block supports an embeddable subset of the MATLAB language."> */
 /* %<" See the help menu for details. "> */
 for(eml_em_i0 = 0; eml_em_i0 < 6; eml_em_i0++) {
@@ -76,41 +77,41 @@ eml_em_dv2[2] = %<LibSFInputs(block, 2, 0)>;
 eml_em_dv2[3] = 1.0;
 eml_em_dv2[4] = 0.0;
 eml_em_dv2[5] = 0.0;
-for(eml_em_i0 = 0; eml_em_i0 < 6; eml_em_i0++) {
-eml_A[6 * eml_em_i0] = eml_em_dv0[eml_em_i0];
-eml_A[1 + 6 * eml_em_i0] = eml_em_dv1[eml_em_i0];
-eml_A[2 + 6 * eml_em_i0] = eml_em_dv2[eml_em_i0];
-eml_A[3 + 6 * eml_em_i0] = (real_T)eml_em_bv0[eml_em_i0];
-eml_A[4 + 6 * eml_em_i0] = (real_T)eml_em_bv1[eml_em_i0];
-eml_A[5 + 6 * eml_em_i0] = (real_T)eml_em_bv2[eml_em_i0];
-eml_pivot[eml_em_i0] = (int8_T)(1 + eml_em_i0);
+for(eml_em_i1 = 0; eml_em_i1 < 6; eml_em_i1++) {
+eml_A[6 * eml_em_i1] = eml_em_dv0[eml_em_i1];
+eml_A[1 + 6 * eml_em_i1] = eml_em_dv1[eml_em_i1];
+eml_A[2 + 6 * eml_em_i1] = eml_em_dv2[eml_em_i1];
+eml_A[3 + 6 * eml_em_i1] = (real_T)eml_em_bv0[eml_em_i1];
+eml_A[4 + 6 * eml_em_i1] = (real_T)eml_em_bv1[eml_em_i1];
+eml_A[5 + 6 * eml_em_i1] = (real_T)eml_em_bv2[eml_em_i1];
+eml_pivot[eml_em_i1] = (int8_T)(1 + eml_em_i1);
 }
-for(eml_em_i0 = 0; eml_em_i0 < 5; eml_em_i0++) {
-eml_em_i1 = eml_em_i0 + 1;
-eml_temp = fabs(eml_A[eml_em_i0 + 6 * eml_em_i0]);
-for(eml_k = eml_em_i0 + 2; eml_k <= 6; eml_k++) {
-if(fabs(eml_A[(eml_k - 1) + 6 * eml_em_i0]) > eml_temp) {
-eml_temp = fabs(eml_A[(eml_k - 1) + 6 * eml_em_i0]);
-eml_em_i1 = eml_k;
+for(eml_em_i1 = 0; eml_em_i1 < 5; eml_em_i1++) {
+eml_em_i0 = eml_em_i1 + 1;
+eml_temp = fabs(eml_A[eml_em_i1 + 6 * eml_em_i1]);
+for(eml_k = eml_em_i1 + 2; eml_k <= 6; eml_k++) {
+if(fabs(eml_A[(eml_k - 1) + 6 * eml_em_i1]) > eml_temp) {
+eml_temp = fabs(eml_A[(eml_k - 1) + 6 * eml_em_i1]);
+eml_em_i0 = eml_k;
 }
 }
-if(eml_em_i1 != eml_em_i0 + 1) {
+if(eml_em_i0 != eml_em_i1 + 1) {
 for(eml_k = 0; eml_k < 6; eml_k++) {
-eml_temp = eml_A[(eml_em_i1 - 1) + 6 * eml_k];
-eml_A[(eml_em_i1 - 1) + 6 * eml_k] = eml_A[eml_em_i0 + 6 * eml_k];
-eml_A[eml_em_i0 + 6 * eml_k] = eml_temp;
+eml_temp = eml_A[(eml_em_i0 - 1) + 6 * eml_k];
+eml_A[(eml_em_i0 - 1) + 6 * eml_k] = eml_A[eml_em_i1 + 6 * eml_k];
+eml_A[eml_em_i1 + 6 * eml_k] = eml_temp;
 }
-eml_k = (int32_T)eml_pivot[eml_em_i0];
-eml_pivot[eml_em_i0] = eml_pivot[eml_em_i1 - 1];
-eml_pivot[eml_em_i1 - 1] = (int8_T)eml_k;
+eml_k = (int32_T)eml_pivot[eml_em_i1];
+eml_pivot[eml_em_i1] = eml_pivot[eml_em_i0 - 1];
+eml_pivot[eml_em_i0 - 1] = (int8_T)eml_k;
 }
-if(eml_A[eml_em_i0 + 6 * eml_em_i0] != 0.0) {
-for(eml_k = eml_em_i0 + 2; eml_k <= 6; eml_k++) {
-eml_A[(eml_k - 1) + 6 * eml_em_i0] /= eml_A[eml_em_i0 + 6 * eml_em_i0];
+if(eml_A[eml_em_i1 + 6 * eml_em_i1] != 0.0) {
+for(eml_k = eml_em_i1 + 2; eml_k <= 6; eml_k++) {
+eml_A[(eml_k - 1) + 6 * eml_em_i1] /= eml_A[eml_em_i1 + 6 * eml_em_i1];
 }
-for(eml_em_i1 = eml_em_i0 + 2; eml_em_i1 <= 6; eml_em_i1++) {
-for(eml_k = eml_em_i0 + 2; eml_k <= 6; eml_k++) {
-eml_A[(eml_k - 1) + 6 * (eml_em_i1 - 1)] -= eml_A[(eml_k - 1) + 6 * eml_em_i0] * eml_A[eml_em_i0 + 6 * (eml_em_i1 - 1)];
+for(eml_em_i0 = eml_em_i1 + 2; eml_em_i0 <= 6; eml_em_i0++) {
+for(eml_k = eml_em_i1 + 2; eml_k <= 6; eml_k++) {
+eml_A[(eml_k - 1) + 6 * (eml_em_i0 - 1)] -= eml_A[(eml_k - 1) + 6 * eml_em_i1] * eml_A[eml_em_i1 + 6 * (eml_em_i0 - 1)];
 }
 }
 }
@@ -119,8 +120,8 @@ eml_k = 1;
 sf_label_%<block.BlockIdx[0]>_%<block.BlockIdx[2]>_1:;
 if(eml_k <= 6) {
 if((eml_A[(eml_k - 1) + 6 * (eml_k - 1)] == 0.0) || ((boolean_T)rtIsNaN(eml_A[(eml_k - 1) + 6 * (eml_k - 1)]))) {
-for(eml_em_i0 = 0; eml_em_i0 < 36; eml_em_i0++) {
-eml_y[eml_em_i0] = %<LibGetMathConstant(LibRealNonFinite("inf"), FcnGetDataTypeIdFromName("double"))>;
+for(eml_em_i1 = 0; eml_em_i1 < 36; eml_em_i1++) {
+eml_y[eml_em_i1] = %<LibGetMathConstant(LibRealNonFinite("inf"), FcnGetDataTypeIdFromName("double"))>;
 }
 } else {
 eml_k++;
@@ -137,27 +138,32 @@ eml_y[(eml_em_i1 - 1) + 6 * (eml_c - 1)] -= eml_y[(eml_em_i0 - 1) + 6 * (eml_c -
 }
 }
 }
-for(eml_em_i1 = 6; eml_em_i1 > 0; eml_em_i1 += -1) {
-eml_y[(eml_em_i1 - 1) + 6 * (eml_c - 1)] /= eml_A[(eml_em_i1 - 1) + 6 * (eml_em_i1 - 1)];
-if(eml_y[(eml_em_i1 - 1) + 6 * (eml_c - 1)] != 0.0) {
-eml_j = eml_em_i1 - 1;
-for(eml_em_i0 = 1; eml_em_i0 <= eml_j; eml_em_i0++) {
-eml_y[(eml_em_i0 - 1) + 6 * (eml_c - 1)] -= eml_y[(eml_em_i1 - 1) + 6 * (eml_c - 1)] * eml_A[(eml_em_i0 - 1) + 6 * (eml_em_i1 - 1)];
+for(eml_j = 6; eml_j > 0; eml_j += -1) {
+eml_y[(eml_j - 1) + 6 * (eml_c - 1)] /= eml_A[(eml_j - 1) + 6 * (eml_j - 1)];
+if(eml_y[(eml_j - 1) + 6 * (eml_c - 1)] != 0.0) {
+eml_em_i0 = eml_j - 1;
+for(eml_em_i1 = 1; eml_em_i1 <= eml_em_i0; eml_em_i1++) {
+eml_y[(eml_em_i1 - 1) + 6 * (eml_c - 1)] -= eml_y[(eml_j - 1) + 6 * (eml_c - 1)] * eml_A[(eml_em_i1 - 1) + 6 * (eml_j - 1)];
 }
 }
 }
+}
+}
+for(eml_em_i1 = 0; eml_em_i1 < 6; eml_em_i1++) {
+for(eml_em_i0 = 0; eml_em_i0 < 6; eml_em_i0++) {
+eml_b_y[eml_em_i0 + 6 * eml_em_i1] = (real32_T)eml_y[eml_em_i0 + 6 * eml_em_i1];
 }
 }
 eml_B[0] = %<LibSFInputs(block, 1, 0)>;
-eml_B[1] = 0.0;
-eml_B[2] = 0.0;
+eml_B[1] = 0.0F;
+eml_B[2] = 0.0F;
 eml_B[3] = %<LibSFInputs(block, 0, 0)>;
-eml_B[4] = 0.0;
-eml_B[5] = 0.0;
+eml_B[4] = 0.0F;
+eml_B[5] = 0.0F;
 for(eml_em_i1 = 0; eml_em_i1 < 6; eml_em_i1++) {
-eml_Ao[eml_em_i1] = 0.0;
+eml_Ao[eml_em_i1] = 0.0F;
 for(eml_em_i0 = 0; eml_em_i0 < 6; eml_em_i0++) {
-eml_Ao[eml_em_i1] += eml_y[eml_em_i1 + 6 * eml_em_i0] * eml_B[eml_em_i0];
+eml_Ao[eml_em_i1] += eml_b_y[eml_em_i1 + 6 * eml_em_i0] * eml_B[eml_em_i0];
 }
 }
 %<LibSFOutputs(block, 1, 0)> = eml_Ao[0];

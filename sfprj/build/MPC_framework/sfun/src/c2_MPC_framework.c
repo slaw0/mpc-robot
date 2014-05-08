@@ -23,17 +23,17 @@ static void disable_c2_MPC_framework(void);
 static void finalize_c2_MPC_framework(void);
 static void sf_c2_MPC_framework(void);
 static void c2_c2_MPC_framework(void);
-static real_T c2_mpower(real_T c2_a);
-static real_T c2_atan2(real_T c2_Y, real_T c2_X);
-static real_T c2_sign(real_T c2_X);
-static real_T *c2_x(void);
-static real_T *c2_y(void);
-static real_T *c2_al1_c(void);
-static real_T *c2_al2_c(void);
-static real_T *c2_a1(void);
-static real_T *c2_a2(void);
-static real_T *c2_al1(void);
-static real_T *c2_al2(void);
+static real32_T c2_mpower(real32_T c2_a);
+static real32_T c2_atan2(real32_T c2_Y, real32_T c2_X);
+static real32_T c2_sign(real32_T c2_X);
+static real32_T *c2_x(void);
+static real32_T *c2_y(void);
+static real32_T *c2_al1_c(void);
+static real32_T *c2_al2_c(void);
+static real32_T *c2_a1(void);
+static real32_T *c2_a2(void);
+static real32_T *c2_al1(void);
+static real32_T *c2_al2(void);
 static uint8_T *c2_error(void);
 static void init_dsm_address_info(void);
 static void sf_save_state_c2_MPC_framework(FILE *c2_file);
@@ -66,15 +66,15 @@ static void sf_c2_MPC_framework(void)
 {
   uint8_T c2_previousEvent;
   _sfTime_ = (real_T)ssGetT(chartInstance.S);
-  _SFD_DATA_RANGE_CHECK(*c2_x(), 1U);
-  _SFD_DATA_RANGE_CHECK(*c2_y(), 8U);
-  _SFD_DATA_RANGE_CHECK(*c2_al1_c(), 3U);
-  _SFD_DATA_RANGE_CHECK(*c2_al2_c(), 4U);
-  _SFD_DATA_RANGE_CHECK(*c2_a1(), 5U);
-  _SFD_DATA_RANGE_CHECK(*c2_a2(), 2U);
-  _SFD_DATA_RANGE_CHECK(*c2_al1(), 0U);
-  _SFD_DATA_RANGE_CHECK(*c2_al2(), 7U);
-  _SFD_DATA_RANGE_CHECK((real_T)*c2_error(), 6U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_x(), 6U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_y(), 5U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_al1_c(), 0U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_al2_c(), 1U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_a1(), 8U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_a2(), 3U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_al1(), 2U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_al2(), 4U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c2_error(), 7U);
   c2_previousEvent = _sfEvent_;
   _sfEvent_ = CALL_EVENT;
   c2_c2_MPC_framework();
@@ -85,116 +85,116 @@ static void sf_c2_MPC_framework(void)
 
 static void c2_c2_MPC_framework(void)
 {
-  real_T c2_b_x;
-  real_T c2_b_y;
-  real_T c2_b_al1_c;
-  real_T c2_b_al2_c;
-  real_T c2_b_a1;
-  real_T c2_b_a2;
-  real_T c2_al2_2;
-  real_T c2_al1_al2_2;
-  real_T c2_sin_al1_al2_2;
-  real_T c2_cos_al1_al2_2;
-  real_T c2_al2_1;
-  real_T c2_al1_al2_1;
-  real_T c2_sin_al1_al2_1;
-  real_T c2_cos_al1_al2_1;
-  real_T c2_al2_n;
-  real_T c2_al2_p;
-  real_T c2_al1_2;
-  real_T c2_al1_1;
-  real_T c2_cos_al1_n;
-  real_T c2_cos_al1_p;
-  real_T c2_sin_al1_n;
-  real_T c2_sin_al1_p;
-  real_T c2_D;
-  real_T c2_cos_al2;
-  real_T c2_d;
+  real32_T c2_b_x;
+  real32_T c2_b_y;
+  real32_T c2_b_al1_c;
+  real32_T c2_b_al2_c;
+  real32_T c2_b_a1;
+  real32_T c2_b_a2;
+  real32_T c2_al2_2;
+  real32_T c2_al1_al2_2;
+  real32_T c2_sin_al1_al2_2;
+  real32_T c2_cos_al1_al2_2;
+  real32_T c2_al2_1;
+  real32_T c2_al1_al2_1;
+  real32_T c2_sin_al1_al2_1;
+  real32_T c2_cos_al1_al2_1;
+  real32_T c2_al2_n;
+  real32_T c2_al2_p;
+  real32_T c2_al1_2;
+  real32_T c2_al1_1;
+  real32_T c2_cos_al1_n;
+  real32_T c2_cos_al1_p;
+  real32_T c2_sin_al1_n;
+  real32_T c2_sin_al1_p;
+  real32_T c2_D;
+  real32_T c2_cos_al2;
+  real32_T c2_d;
   uint8_T c2_b_error;
-  real_T c2_b_al2;
-  real_T c2_b_al1;
-  real_T c2_c_x;
-  real_T c2_c_y;
+  real32_T c2_b_al2;
+  real32_T c2_b_al1;
+  real32_T c2_c_x;
+  real32_T c2_c_y;
   boolean_T c2_em_b0;
   boolean_T c2_em_b1;
-  real_T c2_A;
-  real_T c2_B;
-  real_T c2_d_x;
-  real_T c2_d_y;
-  real_T c2_z;
-  real_T c2_e_y;
-  real_T c2_e_x;
-  real_T c2_f_y;
-  real_T c2_b_A;
-  real_T c2_b_B;
-  real_T c2_f_x;
-  real_T c2_g_y;
-  real_T c2_b_z;
-  real_T c2_h_y;
-  real_T c2_g_x;
-  real_T c2_i_y;
-  real_T c2_c_A;
-  real_T c2_c_B;
-  real_T c2_h_x;
-  real_T c2_j_y;
-  real_T c2_c_z;
-  real_T c2_k_y;
-  real_T c2_i_x;
-  real_T c2_l_y;
-  real_T c2_d_A;
-  real_T c2_d_B;
-  real_T c2_j_x;
-  real_T c2_m_y;
-  real_T c2_d_z;
-  real_T c2_n_y;
-  real_T c2_k_x;
-  real_T c2_o_y;
-  real_T c2_e_A;
-  real_T c2_e_B;
-  real_T c2_l_x;
-  real_T c2_p_y;
-  real_T c2_e_z;
-  real_T c2_q_y;
-  real_T c2_m_x;
+  real32_T c2_A;
+  real32_T c2_B;
+  real32_T c2_d_x;
+  real32_T c2_d_y;
+  real32_T c2_z;
+  real32_T c2_e_y;
+  real32_T c2_e_x;
+  real32_T c2_f_y;
+  real32_T c2_b_A;
+  real32_T c2_b_B;
+  real32_T c2_f_x;
+  real32_T c2_g_y;
+  real32_T c2_b_z;
+  real32_T c2_h_y;
+  real32_T c2_g_x;
+  real32_T c2_i_y;
+  real32_T c2_c_A;
+  real32_T c2_c_B;
+  real32_T c2_h_x;
+  real32_T c2_j_y;
+  real32_T c2_c_z;
+  real32_T c2_k_y;
+  real32_T c2_i_x;
+  real32_T c2_l_y;
+  real32_T c2_d_A;
+  real32_T c2_d_B;
+  real32_T c2_j_x;
+  real32_T c2_m_y;
+  real32_T c2_d_z;
+  real32_T c2_n_y;
+  real32_T c2_k_x;
+  real32_T c2_o_y;
+  real32_T c2_e_A;
+  real32_T c2_e_B;
+  real32_T c2_l_x;
+  real32_T c2_p_y;
+  real32_T c2_e_z;
+  real32_T c2_q_y;
+  real32_T c2_m_x;
   real_T c2_k;
   real_T c2_b_k;
-  real_T c2_r_y;
-  real_T c2_n_x;
-  real_T c2_s_y;
-  real_T c2_f_A;
-  real_T c2_f_B;
-  real_T c2_o_x;
-  real_T c2_t_y;
-  real_T c2_f_z;
-  real_T c2_u_y;
-  real_T c2_p_x;
-  real_T c2_v_y;
-  real_T c2_g_A;
-  real_T c2_g_B;
-  real_T c2_q_x;
-  real_T c2_w_y;
-  real_T c2_g_z;
-  real_T c2_x_y;
-  real_T c2_r_x;
-  real_T c2_y_y;
-  real_T c2_h_A;
-  real_T c2_h_B;
-  real_T c2_s_x;
-  real_T c2_ab_y;
-  real_T c2_h_z;
-  real_T c2_bb_y;
-  real_T c2_t_x;
-  real_T c2_cb_y;
-  real_T c2_i_A;
-  real_T c2_i_B;
-  real_T c2_u_x;
-  real_T c2_db_y;
-  real_T c2_i_z;
-  real_T c2_eb_y;
-  real_T c2_v_x;
-  real_T c2_fb_y;
-  real_T c2_w_x;
-  real_T c2_gb_y;
+  real32_T c2_r_y;
+  real32_T c2_n_x;
+  real32_T c2_s_y;
+  real32_T c2_f_A;
+  real32_T c2_f_B;
+  real32_T c2_o_x;
+  real32_T c2_t_y;
+  real32_T c2_f_z;
+  real32_T c2_u_y;
+  real32_T c2_p_x;
+  real32_T c2_v_y;
+  real32_T c2_g_A;
+  real32_T c2_g_B;
+  real32_T c2_q_x;
+  real32_T c2_w_y;
+  real32_T c2_g_z;
+  real32_T c2_x_y;
+  real32_T c2_r_x;
+  real32_T c2_y_y;
+  real32_T c2_h_A;
+  real32_T c2_h_B;
+  real32_T c2_s_x;
+  real32_T c2_ab_y;
+  real32_T c2_h_z;
+  real32_T c2_bb_y;
+  real32_T c2_t_x;
+  real32_T c2_cb_y;
+  real32_T c2_i_A;
+  real32_T c2_i_B;
+  real32_T c2_u_x;
+  real32_T c2_db_y;
+  real32_T c2_i_z;
+  real32_T c2_eb_y;
+  real32_T c2_v_x;
+  real32_T c2_fb_y;
+  real32_T c2_w_x;
+  real32_T c2_gb_y;
   _SFD_CC_CALL(CHART_ENTER_DURING_FUNCTION_TAG,1);
   c2_b_x = *c2_x();
   c2_b_y = *c2_y();
@@ -203,66 +203,66 @@ static void c2_c2_MPC_framework(void)
   c2_b_a1 = *c2_a1();
   c2_b_a2 = *c2_a2();
   sf_debug_push_symbol_scope(28U, 0U);
-  sf_debug_symbol_scope_add_symbol("al2_2", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
+  sf_debug_symbol_scope_add_symbol("al2_2", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_al2_2, 0);
-  sf_debug_symbol_scope_add_symbol("al1_al2_2", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
+  sf_debug_symbol_scope_add_symbol("al1_al2_2", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
    0U, 0, 0U, 0, &c2_al1_al2_2, 0);
-  sf_debug_symbol_scope_add_symbol("sin_al1_al2_2", 0, 0U, 0U, 0U, 0U, 1.0, 0,
+  sf_debug_symbol_scope_add_symbol("sin_al1_al2_2", 1, 0U, 0U, 0U, 0U, 1.0, 0,
    0.0, 0U, 0, 0U, 0, &c2_sin_al1_al2_2, 0);
-  sf_debug_symbol_scope_add_symbol("cos_al1_al2_2", 0, 0U, 0U, 0U, 0U, 1.0, 0,
+  sf_debug_symbol_scope_add_symbol("cos_al1_al2_2", 1, 0U, 0U, 0U, 0U, 1.0, 0,
    0.0, 0U, 0, 0U, 0, &c2_cos_al1_al2_2, 0);
-  sf_debug_symbol_scope_add_symbol("al2_1", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
+  sf_debug_symbol_scope_add_symbol("al2_1", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_al2_1, 0);
-  sf_debug_symbol_scope_add_symbol("al1_al2_1", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
+  sf_debug_symbol_scope_add_symbol("al1_al2_1", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
    0U, 0, 0U, 0, &c2_al1_al2_1, 0);
-  sf_debug_symbol_scope_add_symbol("sin_al1_al2_1", 0, 0U, 0U, 0U, 0U, 1.0, 0,
+  sf_debug_symbol_scope_add_symbol("sin_al1_al2_1", 1, 0U, 0U, 0U, 0U, 1.0, 0,
    0.0, 0U, 0, 0U, 0, &c2_sin_al1_al2_1, 0);
-  sf_debug_symbol_scope_add_symbol("cos_al1_al2_1", 0, 0U, 0U, 0U, 0U, 1.0, 0,
+  sf_debug_symbol_scope_add_symbol("cos_al1_al2_1", 1, 0U, 0U, 0U, 0U, 1.0, 0,
    0.0, 0U, 0, 0U, 0, &c2_cos_al1_al2_1, 0);
-  sf_debug_symbol_scope_add_symbol("al2_n", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
+  sf_debug_symbol_scope_add_symbol("al2_n", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_al2_n, 0);
-  sf_debug_symbol_scope_add_symbol("al2_p", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
+  sf_debug_symbol_scope_add_symbol("al2_p", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_al2_p, 0);
-  sf_debug_symbol_scope_add_symbol("al1_2", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
+  sf_debug_symbol_scope_add_symbol("al1_2", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_al1_2, 0);
-  sf_debug_symbol_scope_add_symbol("al1_1", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
+  sf_debug_symbol_scope_add_symbol("al1_1", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_al1_1, 0);
-  sf_debug_symbol_scope_add_symbol("cos_al1_n", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
+  sf_debug_symbol_scope_add_symbol("cos_al1_n", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
    0U, 0, 0U, 0, &c2_cos_al1_n, 0);
-  sf_debug_symbol_scope_add_symbol("cos_al1_p", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
+  sf_debug_symbol_scope_add_symbol("cos_al1_p", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
    0U, 0, 0U, 0, &c2_cos_al1_p, 0);
-  sf_debug_symbol_scope_add_symbol("sin_al1_n", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
+  sf_debug_symbol_scope_add_symbol("sin_al1_n", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
    0U, 0, 0U, 0, &c2_sin_al1_n, 0);
-  sf_debug_symbol_scope_add_symbol("sin_al1_p", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
+  sf_debug_symbol_scope_add_symbol("sin_al1_p", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
    0U, 0, 0U, 0, &c2_sin_al1_p, 0);
-  sf_debug_symbol_scope_add_symbol("D", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("D", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c2_D, 0);
-  sf_debug_symbol_scope_add_symbol("cos_al2", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
+  sf_debug_symbol_scope_add_symbol("cos_al2", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0,
    0U, 0, 0U, 0, &c2_cos_al2, 0);
-  sf_debug_symbol_scope_add_symbol("d", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("d", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c2_d, 0);
   sf_debug_symbol_scope_add_symbol("error", 3, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_b_error, 0);
-  sf_debug_symbol_scope_add_symbol("al2", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("al2", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c2_b_al2, 0);
-  sf_debug_symbol_scope_add_symbol("al1", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("al1", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c2_b_al1, 0);
-  sf_debug_symbol_scope_add_symbol("a2", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("a2", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c2_b_a2, 0);
-  sf_debug_symbol_scope_add_symbol("a1", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("a1", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c2_b_a1, 0);
-  sf_debug_symbol_scope_add_symbol("al2_c", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
+  sf_debug_symbol_scope_add_symbol("al2_c", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_b_al2_c, 0);
-  sf_debug_symbol_scope_add_symbol("al1_c", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
+  sf_debug_symbol_scope_add_symbol("al1_c", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U,
    0, 0U, 0, &c2_b_al1_c, 0);
-  sf_debug_symbol_scope_add_symbol("y", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("y", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c2_b_y, 0);
-  sf_debug_symbol_scope_add_symbol("x", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("x", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c2_b_x, 0);
   CV_EML_FCN(0, 0);
   _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,3);
   c2_c_x = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
-  c2_c_y = sqrt(c2_c_x);
+  c2_c_y = (real32_T)sqrt((real_T)c2_c_x);
   c2_d = c2_c_y;
   _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,4);
   c2_em_b0 = (c2_mpower(c2_d) > c2_mpower(c2_b_a1) + c2_mpower(c2_b_a2));
@@ -278,7 +278,7 @@ static void c2_c2_MPC_framework(void)
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,11);
     c2_A = ((c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_b_a1)) -
       c2_mpower(c2_b_a2);
-    c2_B = 2.0 * c2_b_a1 * c2_b_a2;
+    c2_B = 2.0F * c2_b_a1 * c2_b_a2;
     c2_d_x = c2_A;
     c2_d_y = c2_B;
     c2_z = c2_d_x / c2_d_y;
@@ -288,7 +288,7 @@ static void c2_c2_MPC_framework(void)
     c2_D = c2_b_a1 + c2_b_a2 * c2_cos_al2;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,14);
     c2_e_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
-    c2_f_y = sqrt(c2_e_x);
+    c2_f_y = (real32_T)sqrt((real_T)c2_e_x);
     c2_b_A = c2_D * c2_b_y + c2_b_x * c2_f_y;
     c2_b_B = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
     c2_f_x = c2_b_A;
@@ -298,7 +298,7 @@ static void c2_c2_MPC_framework(void)
     c2_sin_al1_p = c2_h_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,15);
     c2_g_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
-    c2_i_y = sqrt(c2_g_x);
+    c2_i_y = (real32_T)sqrt((real_T)c2_g_x);
     c2_c_A = c2_D * c2_b_y - c2_b_x * c2_i_y;
     c2_c_B = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
     c2_h_x = c2_c_A;
@@ -308,7 +308,7 @@ static void c2_c2_MPC_framework(void)
     c2_sin_al1_n = c2_k_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,17);
     c2_i_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
-    c2_l_y = sqrt(c2_i_x);
+    c2_l_y = (real32_T)sqrt((real_T)c2_i_x);
     c2_d_A = c2_D * c2_b_x + c2_b_y * c2_l_y;
     c2_d_B = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
     c2_j_x = c2_d_A;
@@ -318,7 +318,7 @@ static void c2_c2_MPC_framework(void)
     c2_cos_al1_p = c2_n_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,18);
     c2_k_x = (c2_mpower(c2_b_x) + c2_mpower(c2_b_y)) - c2_mpower(c2_D);
-    c2_o_y = sqrt(c2_k_x);
+    c2_o_y = (real32_T)sqrt((real_T)c2_k_x);
     c2_e_A = c2_D * c2_b_x - c2_b_y * c2_o_y;
     c2_e_B = c2_mpower(c2_b_x) + c2_mpower(c2_b_y);
     c2_l_x = c2_e_A;
@@ -336,11 +336,11 @@ static void c2_c2_MPC_framework(void)
     c2_b_k = c2_k;
     _SFD_EML_ARRAY_BOUNDS_CHECK("x", (int32_T)_SFD_INTEGER_CHECK("k", c2_b_k),
      1, 1, 1);
-    if(c2_m_x < -1.0) {
+    if((real_T)c2_m_x < -1.0) {
     } else {
       _SFD_EML_ARRAY_BOUNDS_CHECK("x", (int32_T)_SFD_INTEGER_CHECK("k", c2_b_k),
        1, 1, 1);
-      if(c2_m_x > 1.0) {
+      if((real_T)c2_m_x > 1.0) {
       } else {
         goto label_1;
       }
@@ -348,13 +348,13 @@ static void c2_c2_MPC_framework(void)
     sf_mex_call("error", 0U, 1U, 15,
      "Domain error. To compute complex results from real x, use \'acos(complex(x))\'.");
     label_1:;
-    c2_r_y = acos(c2_m_x);
+    c2_r_y = (real32_T)acos((real_T)c2_m_x);
     c2_al2_p = c2_r_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,25);
     c2_al2_n = -c2_al2_p;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,27);
     c2_n_x = c2_al1_1;
-    c2_s_y = cos(c2_n_x);
+    c2_s_y = (real32_T)cos((real_T)c2_n_x);
     c2_f_A = c2_b_x - c2_b_a1 * c2_s_y;
     c2_f_B = c2_b_a2;
     c2_o_x = c2_f_A;
@@ -364,7 +364,7 @@ static void c2_c2_MPC_framework(void)
     c2_cos_al1_al2_1 = c2_u_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,28);
     c2_p_x = c2_al1_1;
-    c2_v_y = sin(c2_p_x);
+    c2_v_y = (real32_T)sin((real_T)c2_p_x);
     c2_g_A = c2_b_y - c2_b_a1 * c2_v_y;
     c2_g_B = c2_b_a2;
     c2_q_x = c2_g_A;
@@ -378,7 +378,7 @@ static void c2_c2_MPC_framework(void)
     c2_al2_1 = c2_al1_al2_1 - c2_al1_1;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,32);
     c2_r_x = c2_al1_2;
-    c2_y_y = cos(c2_r_x);
+    c2_y_y = (real32_T)cos((real_T)c2_r_x);
     c2_h_A = c2_b_x - c2_b_a1 * c2_y_y;
     c2_h_B = c2_b_a2;
     c2_s_x = c2_h_A;
@@ -388,7 +388,7 @@ static void c2_c2_MPC_framework(void)
     c2_cos_al1_al2_2 = c2_bb_y;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,33);
     c2_t_x = c2_al1_2;
-    c2_cb_y = sin(c2_t_x);
+    c2_cb_y = (real32_T)sin((real_T)c2_t_x);
     c2_i_A = c2_b_y - c2_b_a1 * c2_cb_y;
     c2_i_B = c2_b_a2;
     c2_u_x = c2_i_A;
@@ -402,9 +402,9 @@ static void c2_c2_MPC_framework(void)
     c2_al2_2 = c2_al1_al2_2 - c2_al1_2;
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,37);
     c2_v_x = c2_b_al1_c - c2_al1_1;
-    c2_fb_y = fabs(c2_v_x);
+    c2_fb_y = (real32_T)fabs((real_T)c2_v_x);
     c2_w_x = c2_b_al1_c - c2_al1_2;
-    c2_gb_y = fabs(c2_w_x);
+    c2_gb_y = (real32_T)fabs((real_T)c2_w_x);
     if(CV_EML_IF(0, 1, c2_fb_y < c2_gb_y)) {
       _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,38);
       c2_b_al1 = c2_al1_1;
@@ -427,21 +427,21 @@ static void c2_c2_MPC_framework(void)
   _SFD_CC_CALL(EXIT_OUT_OF_FUNCTION_TAG,1);
 }
 
-static real_T c2_mpower(real_T c2_a)
+static real32_T c2_mpower(real32_T c2_a)
 {
-  real_T c2_b_a;
+  real32_T c2_b_a;
   real_T c2_b;
   real_T c2_k;
   real_T c2_b_k;
-  real_T c2_b_x;
-  real_T c2_xk;
-  real_T c2_ak;
+  real32_T c2_b_x;
+  real32_T c2_xk;
+  real32_T c2_ak;
   real_T c2_c_x;
   real_T c2_b_xk;
   real_T c2_bk;
   real_T c2_d_x;
   real_T c2_b_y;
-  real_T c2_c_y;
+  real32_T c2_c_y;
   c2_b_a = c2_a;
   c2_b = 2.0;
   c2_k = 1.0;
@@ -452,7 +452,7 @@ static real_T c2_mpower(real_T c2_a)
   c2_c_x = c2_b;
   c2_b_xk = c2_c_x;
   c2_bk = c2_b_xk;
-  if(c2_ak < 0.0) {
+  if((real_T)c2_ak < 0.0) {
     c2_d_x = c2_bk;
     c2_b_y = floor(c2_d_x);
     if(c2_b_y != c2_bk) {
@@ -462,42 +462,42 @@ static real_T c2_mpower(real_T c2_a)
   }
   _SFD_EML_ARRAY_BOUNDS_CHECK("y", (int32_T)_SFD_INTEGER_CHECK("k", c2_b_k), 1,
    1, 1);
-  c2_c_y = pow(c2_ak, c2_bk);
+  c2_c_y = (real32_T)pow((real_T)c2_ak, c2_bk);
   return c2_c_y;
 }
 
-static real_T c2_atan2(real_T c2_Y, real_T c2_X)
+static real32_T c2_atan2(real32_T c2_Y, real32_T c2_X)
 {
   real_T c2_k;
   real_T c2_b_k;
-  real_T c2_b_x;
-  real_T c2_xk;
-  real_T c2_yk;
-  real_T c2_c_x;
-  real_T c2_b_xk;
-  real_T c2_c_xk;
-  real_T c2_b_y;
-  real_T c2_d_x;
-  real_T c2_e_x;
+  real32_T c2_b_x;
+  real32_T c2_xk;
+  real32_T c2_yk;
+  real32_T c2_c_x;
+  real32_T c2_b_xk;
+  real32_T c2_c_xk;
+  real32_T c2_b_y;
+  real32_T c2_d_x;
+  real32_T c2_e_x;
   boolean_T c2_b;
-  real_T c2_f_x;
+  real32_T c2_f_x;
   boolean_T c2_b_b;
   real_T c2_g_x;
-  real_T c2_r;
-  real_T c2_c_y;
-  real_T c2_b_r;
-  real_T c2_h_x;
+  real32_T c2_r;
+  real32_T c2_c_y;
+  real32_T c2_b_r;
+  real32_T c2_h_x;
   boolean_T c2_c_b;
-  real_T c2_i_x;
+  real32_T c2_i_x;
   boolean_T c2_d_b;
-  real_T c2_j_x;
-  real_T c2_c_r;
+  real32_T c2_j_x;
+  real32_T c2_c_r;
   real_T c2_k_x;
-  real_T c2_d_r;
+  real32_T c2_d_r;
   real_T c2_l_x;
-  real_T c2_e_r;
-  real_T c2_m_x;
-  real_T c2_f_r;
+  real32_T c2_e_r;
+  real32_T c2_m_x;
+  real32_T c2_f_r;
   c2_k = 1.0;
   c2_b_k = c2_k;
   c2_b_x = c2_Y;
@@ -511,22 +511,23 @@ static real_T c2_atan2(real_T c2_Y, real_T c2_X)
   c2_b_y = c2_yk;
   c2_d_x = c2_c_xk;
   c2_e_x = c2_d_x;
-  c2_b = rtIsNaN(c2_e_x);
+  c2_b = rtIsNaN((real_T)c2_e_x);
   if(c2_b) {
     goto label_1;
   } else {
     c2_f_x = c2_b_y;
-    c2_b_b = rtIsNaN(c2_f_x);
+    c2_b_b = rtIsNaN((real_T)c2_f_x);
     if(c2_b_b) {
       goto label_1;
     } else {
       c2_h_x = c2_b_y;
-      c2_c_b = rtIsInf(c2_h_x);
+      c2_c_b = rtIsInf((real_T)c2_h_x);
       if(c2_c_b) {
         c2_i_x = c2_d_x;
-        c2_d_b = rtIsInf(c2_i_x);
+        c2_d_b = rtIsInf((real_T)c2_i_x);
         if(c2_d_b) {
-          c2_j_x = atan2(c2_sign(c2_b_y), c2_sign(c2_d_x));
+          c2_j_x = (real32_T)atan2((real_T)c2_sign(c2_b_y),
+           (real_T)c2_sign(c2_d_x));
           c2_c_r = c2_j_x;
           c2_b_r = c2_c_r;
           goto label_2;
@@ -534,105 +535,105 @@ static real_T c2_atan2(real_T c2_Y, real_T c2_X)
       }
     }
   }
-  if(c2_d_x == 0.0) {
-    if(c2_b_y > 0.0) {
+  if((real_T)c2_d_x == 0.0) {
+    if((real_T)c2_b_y > 0.0) {
       c2_k_x = 1.5707963267948966E+000;
-      c2_d_r = c2_k_x;
+      c2_d_r = (real32_T)c2_k_x;
       c2_b_r = c2_d_r;
-    } else if(c2_b_y < 0.0) {
+    } else if((real_T)c2_b_y < 0.0) {
       c2_l_x = -1.5707963267948966E+000;
-      c2_e_r = c2_l_x;
+      c2_e_r = (real32_T)c2_l_x;
       c2_b_r = c2_e_r;
     } else {
-      c2_b_r = 0.0;
+      c2_b_r = 0.0F;
     }
   } else {
-    c2_m_x = atan2(c2_b_y, c2_d_x);
+    c2_m_x = (real32_T)atan2((real_T)c2_b_y, (real_T)c2_d_x);
     c2_f_r = c2_m_x;
     c2_b_r = c2_f_r;
   }
   goto label_2;
   label_1:;
   c2_g_x = rtNaN;
-  c2_r = c2_g_x;
+  c2_r = (real32_T)c2_g_x;
   c2_c_y = c2_r;
   c2_b_r = c2_c_y;
   label_2:;
   return c2_b_r;
 }
 
-static real_T c2_sign(real_T c2_X)
+static real32_T c2_sign(real32_T c2_X)
 {
-  real_T c2_S;
+  real32_T c2_S;
   real_T c2_k;
   real_T c2_b_k;
-  real_T c2_b_x;
-  real_T c2_c_x;
+  real32_T c2_b_x;
+  real32_T c2_c_x;
   boolean_T c2_b;
   real_T c2_b_y;
-  c2_S = 0.0;
+  c2_S = 0.0F;
   c2_k = 1.0;
   c2_b_k = c2_k;
   _SFD_EML_ARRAY_BOUNDS_CHECK("X", (int32_T)_SFD_INTEGER_CHECK("k", c2_b_k), 1,
    1, 1);
   c2_b_x = c2_X;
   c2_c_x = c2_b_x;
-  c2_b = rtIsNaN(c2_c_x);
+  c2_b = rtIsNaN((real_T)c2_c_x);
   if(c2_b) {
     _SFD_EML_ARRAY_BOUNDS_CHECK("S", (int32_T)_SFD_INTEGER_CHECK("k", c2_b_k),
      1, 1, 1);
     c2_b_y = rtNaN;
-    return c2_b_y;
-  } else if(c2_b_x > 0.0) {
+    return (real32_T)c2_b_y;
+  } else if((real_T)c2_b_x > 0.0) {
     _SFD_EML_ARRAY_BOUNDS_CHECK("S", (int32_T)_SFD_INTEGER_CHECK("k", c2_b_k),
      1, 1, 1);
-    return 1.0;
-  } else if(c2_b_x < 0.0) {
+    return 1.0F;
+  } else if((real_T)c2_b_x < 0.0) {
     _SFD_EML_ARRAY_BOUNDS_CHECK("S", (int32_T)_SFD_INTEGER_CHECK("k", c2_b_k),
      1, 1, 1);
-    return -1.0;
+    return -1.0F;
   }
   return c2_S;
 }
 
-static real_T *c2_x(void)
+static real32_T *c2_x(void)
 {
-  return (real_T *)ssGetInputPortSignal(chartInstance.S, 0);
+  return (real32_T *)ssGetInputPortSignal(chartInstance.S, 0);
 }
 
-static real_T *c2_y(void)
+static real32_T *c2_y(void)
 {
-  return (real_T *)ssGetInputPortSignal(chartInstance.S, 1);
+  return (real32_T *)ssGetInputPortSignal(chartInstance.S, 1);
 }
 
-static real_T *c2_al1_c(void)
+static real32_T *c2_al1_c(void)
 {
-  return (real_T *)ssGetInputPortSignal(chartInstance.S, 2);
+  return (real32_T *)ssGetInputPortSignal(chartInstance.S, 2);
 }
 
-static real_T *c2_al2_c(void)
+static real32_T *c2_al2_c(void)
 {
-  return (real_T *)ssGetInputPortSignal(chartInstance.S, 3);
+  return (real32_T *)ssGetInputPortSignal(chartInstance.S, 3);
 }
 
-static real_T *c2_a1(void)
+static real32_T *c2_a1(void)
 {
-  return (real_T *)ssGetInputPortSignal(chartInstance.S, 4);
+  return (real32_T *)ssGetInputPortSignal(chartInstance.S, 4);
 }
 
-static real_T *c2_a2(void)
+static real32_T *c2_a2(void)
 {
-  return (real_T *)ssGetInputPortSignal(chartInstance.S, 5);
+  return (real32_T *)ssGetInputPortSignal(chartInstance.S, 5);
 }
 
-static real_T *c2_al1(void)
+static real32_T *c2_al1(void)
 {
-  return (real_T *)ssGetOutputPortSignal(chartInstance.S, 1);
+  return (real32_T *)ssGetOutputPortSignal(chartInstance.S, 1);
 }
 
-static real_T *c2_al2(void)
+static real32_T *c2_al2(void)
 {
-  return (real_T *)ssGetOutputPortSignal(chartInstance.S, 2);
+  return (real32_T *)ssGetOutputPortSignal(chartInstance.S, 2);
 }
 
 static uint8_T *c2_error(void)
@@ -659,10 +660,10 @@ static void sf_load_state_c2_MPC_framework(FILE *c2_file)
 /* SFunction Glue Code */
 void sf_c2_MPC_framework_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(3865842959U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2698768910U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(1172414857U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(1731265564U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2338191497U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(1346483638U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(4065586142U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(3078168226U);
 }
 
 mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
@@ -674,10 +675,10 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
   {
     mxArray *mxChecksum = mxCreateDoubleMatrix(4,1,mxREAL);
     double *pr = mxGetPr(mxChecksum);
-    pr[0] = (double)(4146277402U);
-    pr[1] = (double)(3031080980U);
-    pr[2] = (double)(1162626880U);
-    pr[3] = (double)(4240345295U);
+    pr[0] = (double)(3709739402U);
+    pr[1] = (double)(3068353971U);
+    pr[2] = (double)(401223129U);
+    pr[3] = (double)(43679264U);
     mxSetField(mxAutoinheritanceInfo,0,"checksum",mxChecksum);
   }
   {
@@ -693,7 +694,7 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,0,"type",mxType);
@@ -709,7 +710,7 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,1,"type",mxType);
@@ -725,7 +726,7 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,2,"type",mxType);
@@ -741,7 +742,7 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,3,"type",mxType);
@@ -757,7 +758,7 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,4,"type",mxType);
@@ -773,7 +774,7 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,5,"type",mxType);
@@ -797,7 +798,7 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,0,"type",mxType);
@@ -813,7 +814,7 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,1,"type",mxType);
@@ -830,7 +831,7 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
       mxSetField(mxType,0,"base",mxCreateDoubleScalar(3));
-      mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(3));
+      mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,2,"type",mxType);
     }
@@ -870,15 +871,15 @@ static void chart_debug_initialization(SimStruct *S)
            0,
            0);
 
-          _SFD_SET_DATA_PROPS(1,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"x",0);
-          _SFD_SET_DATA_PROPS(8,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"y",0);
-          _SFD_SET_DATA_PROPS(3,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"al1_c",0);
-          _SFD_SET_DATA_PROPS(4,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"al2_c",0);
-          _SFD_SET_DATA_PROPS(5,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"a1",0);
-          _SFD_SET_DATA_PROPS(2,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"a2",0);
-          _SFD_SET_DATA_PROPS(0,2,0,1,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"al1",0);
-          _SFD_SET_DATA_PROPS(7,2,0,1,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"al2",0);
-          _SFD_SET_DATA_PROPS(6,2,0,1,SF_UINT8,0,NULL,0,0,0,0.0,1.0,0,"error",0);
+          _SFD_SET_DATA_PROPS(6,1,1,0,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"x",0);
+          _SFD_SET_DATA_PROPS(5,1,1,0,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"y",0);
+          _SFD_SET_DATA_PROPS(0,1,1,0,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"al1_c",0);
+          _SFD_SET_DATA_PROPS(1,1,1,0,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"al2_c",0);
+          _SFD_SET_DATA_PROPS(8,1,1,0,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"a1",0);
+          _SFD_SET_DATA_PROPS(3,1,1,0,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"a2",0);
+          _SFD_SET_DATA_PROPS(2,2,0,1,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"al1",0);
+          _SFD_SET_DATA_PROPS(4,2,0,1,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"al2",0);
+          _SFD_SET_DATA_PROPS(7,2,0,1,SF_UINT8,0,NULL,0,0,0,0.0,1.0,0,"error",0);
           _SFD_STATE_INFO(0,0,2);
           _SFD_CH_SUBSTATE_COUNT(0);
           _SFD_CH_SUBSTATE_DECOMP(0);
@@ -904,15 +905,15 @@ static void chart_debug_initialization(SimStruct *S)
            1,NULL,NULL,
            0,NULL,NULL);
         }
-        _SFD_SET_DATA_VALUE_PTR(1U, c2_x());
-        _SFD_SET_DATA_VALUE_PTR(8U, c2_y());
-        _SFD_SET_DATA_VALUE_PTR(3U, c2_al1_c());
-        _SFD_SET_DATA_VALUE_PTR(4U, c2_al2_c());
-        _SFD_SET_DATA_VALUE_PTR(5U, c2_a1());
-        _SFD_SET_DATA_VALUE_PTR(2U, c2_a2());
-        _SFD_SET_DATA_VALUE_PTR(0U, c2_al1());
-        _SFD_SET_DATA_VALUE_PTR(7U, c2_al2());
-        _SFD_SET_DATA_VALUE_PTR(6U, c2_error());
+        _SFD_SET_DATA_VALUE_PTR(6U, c2_x());
+        _SFD_SET_DATA_VALUE_PTR(5U, c2_y());
+        _SFD_SET_DATA_VALUE_PTR(0U, c2_al1_c());
+        _SFD_SET_DATA_VALUE_PTR(1U, c2_al2_c());
+        _SFD_SET_DATA_VALUE_PTR(8U, c2_a1());
+        _SFD_SET_DATA_VALUE_PTR(3U, c2_a2());
+        _SFD_SET_DATA_VALUE_PTR(2U, c2_al1());
+        _SFD_SET_DATA_VALUE_PTR(4U, c2_al2());
+        _SFD_SET_DATA_VALUE_PTR(7U, c2_error());
       }
     }
   } else {
@@ -995,10 +996,10 @@ static void mdlSetWorkWidths_c2_MPC_framework(SimStruct *S)
     ssSetOptions(S,ssGetOptions(S)|SS_OPTION_WORKS_WITH_CODE_REUSE);
   }
 
-  ssSetChecksum0(S,(3922593521U));
-  ssSetChecksum1(S,(3406186879U));
-  ssSetChecksum2(S,(792656156U));
-  ssSetChecksum3(S,(150753648U));
+  ssSetChecksum0(S,(2623585705U));
+  ssSetChecksum1(S,(2744121787U));
+  ssSetChecksum2(S,(1147323441U));
+  ssSetChecksum3(S,(3807912315U));
 
   ssSetExplicitFCSSCtrl(S,1);
 }

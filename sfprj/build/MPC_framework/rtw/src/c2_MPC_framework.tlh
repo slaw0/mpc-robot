@@ -23,6 +23,15 @@
    
    
    
+   
+   
+   
+   
+   
+   
+   
+   
+   
 %closefile typedefsBuf
    %if !WHITE_SPACE(typedefsBuf)
       %openfile tempBuf
@@ -42,9 +51,13 @@
 %closefile externFcnsBuf
 %<SLibSetModelFileAttribute(hFile,"ExternFcns",externFcnsBuf)>
    %openfile externFcnsBuf
-         %if %<!SFLibLookupUtilityFunctionDecl("lfcbphdbbaaiimgd_sign")>
-            real_T lfcbphdbbaaiimgd_sign(real_T eml_X);
-            %<SFLibInsertUtilityFunctionDecl("lfcbphdbbaaiimgd_sign")>
+         %if %<!SFLibLookupUtilityFunctionDecl("iekfhdbajekfekfk_atan2")>
+            real32_T iekfhdbajekfekfk_atan2(real32_T eml_Y, real32_T eml_X);
+            %<SFLibInsertUtilityFunctionDecl("iekfhdbajekfekfk_atan2")>
+         %endif
+         %if %<!SFLibLookupUtilityFunctionDecl("phdjopphcjmoekno_sign")>
+            real32_T phdjopphcjmoekno_sign(real32_T eml_X);
+            %<SFLibInsertUtilityFunctionDecl("phdjopphcjmoekno_sign")>
          %endif
    %closefile externFcnsBuf
    %<SLibSetModelFileAttribute(hFile,"ExternFcns",externFcnsBuf)>

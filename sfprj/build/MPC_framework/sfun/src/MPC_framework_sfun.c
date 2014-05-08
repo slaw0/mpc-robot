@@ -155,10 +155,10 @@ unsigned int sf_MPC_framework_process_check_sum_call( int nlhs, mxArray *
       return 0;
     }
   } else{
-    ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(1490572897U);
-    ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2226872517U);
-    ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(2719556646U);
-    ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(3632837662U);
+    ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(1668668189U);
+    ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2221628940U);
+    ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(2567303048U);
+    ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(1553375730U);
   }
   return 1;
 #else

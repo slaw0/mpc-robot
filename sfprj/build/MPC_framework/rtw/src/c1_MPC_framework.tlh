@@ -4,15 +4,12 @@
 %openfile typedefsBuf
    
    typedef struct {
-uint32_T temporalCounter_i1;
+uint16_T temporalCounter_i1;
 uint8_T is_CONTROLLER;
 uint8_T is_HOLD;
+uint8_T is_MOVING;
 uint8_T is_OPERATION;
 uint8_T is_PRIMITIVE;
-uint8_T is_SEGMENT_1;
-uint8_T is_SEGMENT_2;
-uint8_T is_active_SEGMENT_1;
-uint8_T is_active_SEGMENT_2;
 uint8_T is_c1_MPC_framework;
 uint8_T trajectory_ready;
 } %<SFInfo.ChartInstanceTypedef>;

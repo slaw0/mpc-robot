@@ -1,0 +1,43 @@
+CC     = "c:\matlab\r2006a\sys\lcc\bin\lcc.exe"
+LD     = "c:\matlab\r2006a\sys\lcc\bin\lcclnk.exe"
+LIBCMD = "c:\matlab\r2006a\sys\lcc\bin\lcclib.exe"
+CFLAGS = -c -Zp8 -DMATLAB_MEX_FILE -noregistrylookup
+LDFLAGS = -s -dll -L"c:\matlab\r2006a\sys\lcc\lib"
+LIBFLAGS = 
+
+OBJECTS = \
+	"controller_test_2006a_sfun.obj"\
+	"controller_test_2006a_sfun_registry.obj"\
+	"c3_controller_test_2006a.obj"\
+	"c4_controller_test_2006a.obj"\
+	"c7_controller_test_2006a.obj"\
+	"c8_controller_test_2006a.obj"\
+	"lccstub.obj"\
+	"c:\matlab\r2006a\sys\lcc\mex\lccdef.def"\
+	"c:\matlab\r2006a\stateflow\c\debugger\lib\win32\sfc_debuglcc.lib"\
+	"c:\matlab\r2006a\stateflow\c\mex\lib\win32\sfc_mexlcc.lib"\
+	"c:\matlab\r2006a\extern\lib\win32\lcc\libmex.lib"\
+	"c:\matlab\r2006a\extern\lib\win32\lcc\libmx.lib"\
+	"c:\matlab\r2006a\extern\lib\win32\lcc\libfixedpoint.lib"\
+	"c:\matlab\r2006a\extern\lib\win32\lcc\libut.lib"\
+	"c:\matlab\r2006a\toolbox\dspblks\lib\win32\dsp_dyn_rt_lcc.lib"\
+
+INCLUDE_PATH= -I"c:\matlab\r2006a\sys\lcc\include"  -I"c:\matlab\r2006a\extern\include"  -I"c:\matlab\r2006a\simulink\include"  -I"c:\matlab\r2006a\stateflow\c\mex\include"  -I"c:\matlab\r2006a\stateflow\c\debugger\include"  -I"c:\matlab\r2006a\toolbox\eml\lib\dsp"  -I"c:\users\opra\mpc-555 robot\mpc-robot\2012 version\sfprj\build\controller_test_2006a\sfun\src"  -I"c:\users\opra\mpc-555 robot\mpc-robot\2012 version" 
+ 
+
+controller_test_2006a_sfun.mexw32 : $(MAKEFILE) $(OBJECTS)
+	$(LD) $(LDFLAGS) -o controller_test_2006a_sfun.mexw32 @controller_test_2006a_sfun.lmko
+controller_test_2006a_sfun.obj :	"controller_test_2006a_sfun.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "controller_test_2006a_sfun.c"
+controller_test_2006a_sfun_registry.obj :	"controller_test_2006a_sfun_registry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "controller_test_2006a_sfun_registry.c"
+c3_controller_test_2006a.obj :	"c3_controller_test_2006a.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c3_controller_test_2006a.c"
+c4_controller_test_2006a.obj :	"c4_controller_test_2006a.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c4_controller_test_2006a.c"
+c7_controller_test_2006a.obj :	"c7_controller_test_2006a.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c7_controller_test_2006a.c"
+c8_controller_test_2006a.obj :	"c8_controller_test_2006a.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c8_controller_test_2006a.c"
+lccstub.obj :	"c:\matlab\r2006a\sys\lcc\mex\lccstub.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c:\matlab\r2006a\sys\lcc\mex\lccstub.c"

@@ -38,9 +38,10 @@ real_T eml_em_dv1[6];
 real_T eml_em_dv2[6];
 int32_T eml_em_i0;
 real_T eml_em_dv3[18];
-real_T eml_a0[6];
-real_T eml_Q[3];
 int32_T eml_em_i1;
+real32_T eml_em_fv0[18];
+real32_T eml_a0[6];
+real32_T eml_Q[3];
 eml_t_sim = %<LibSFInputs(block, 6, 0)>;
 if(%<LibSFInputs(block, 6, 0)> >= %<LibSFInputs(block, 7, 0)>) {
 /* %<" This block supports an embeddable subset of the MATLAB language."> */
@@ -70,6 +71,11 @@ eml_em_dv3[3 * eml_em_i0] = eml_em_dv0[eml_em_i0];
 eml_em_dv3[1 + 3 * eml_em_i0] = eml_em_dv1[eml_em_i0];
 eml_em_dv3[2 + 3 * eml_em_i0] = eml_em_dv2[eml_em_i0];
 }
+for(eml_em_i1 = 0; eml_em_i1 < 6; eml_em_i1++) {
+for(eml_em_i0 = 0; eml_em_i0 < 3; eml_em_i0++) {
+eml_em_fv0[eml_em_i0 + 3 * eml_em_i1] = (real32_T)eml_em_dv3[eml_em_i0 + 3 * eml_em_i1];
+}
+}
 eml_a0[0] = %<LibSFInputs(block, 0, 0)>;
 eml_a0[1] = %<LibSFInputs(block, 1, 0)>;
 eml_a0[2] = %<LibSFInputs(block, 2, 0)>;
@@ -77,9 +83,9 @@ eml_a0[3] = %<LibSFInputs(block, 3, 0)>;
 eml_a0[4] = %<LibSFInputs(block, 4, 0)>;
 eml_a0[5] = %<LibSFInputs(block, 5, 0)>;
 for(eml_em_i0 = 0; eml_em_i0 < 3; eml_em_i0++) {
-eml_Q[eml_em_i0] = 0.0;
+eml_Q[eml_em_i0] = 0.0F;
 for(eml_em_i1 = 0; eml_em_i1 < 6; eml_em_i1++) {
-eml_Q[eml_em_i0] += eml_em_dv3[eml_em_i0 + 3 * eml_em_i1] * eml_a0[eml_em_i1];
+eml_Q[eml_em_i0] += eml_em_fv0[eml_em_i0 + 3 * eml_em_i1] * eml_a0[eml_em_i1];
 }
 }
 %<LibSFOutputs(block, 1, 0)> = eml_Q[0];

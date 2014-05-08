@@ -27,15 +27,15 @@ static real_T c7_b_mpower(real_T c7_a);
 static real_T c7_c_mpower(real_T c7_a);
 static void c7_invNxN(real_T *c7_x, real_T *c7_y);
 static real_T c7_norm(real_T *c7_x);
-static real_T *c7_A(void);
-static real_T *c7_B(void);
+static real32_T *c7_A(void);
+static real32_T *c7_B(void);
 static real_T *c7_t(void);
-static real_T *c7_a0(void);
-static real_T *c7_a1(void);
-static real_T *c7_a2(void);
-static real_T *c7_a3(void);
-static real_T *c7_a4(void);
-static real_T *c7_a5(void);
+static real32_T *c7_a0(void);
+static real32_T *c7_a1(void);
+static real32_T *c7_a2(void);
+static real32_T *c7_a3(void);
+static real32_T *c7_a4(void);
+static real32_T *c7_a5(void);
 static void init_dsm_address_info(void);
 static void sf_save_state_c7_MPC_framework(FILE *c7_file);
 static void sf_load_state_c7_MPC_framework(FILE *c7_file);
@@ -66,17 +66,17 @@ static void finalize_c7_MPC_framework(void)
 static void sf_c7_MPC_framework(void)
 {
   uint8_T c7_previousEvent;
-  real_T c7_b_A;
-  real_T c7_b_B;
+  real32_T c7_b_A;
+  real32_T c7_b_B;
   real_T c7_b_t;
-  real_T c7_Ao[6];
+  real32_T c7_Ao[6];
   real_T c7_T[6][6];
-  real_T c7_b_a5;
-  real_T c7_b_a4;
-  real_T c7_b_a3;
-  real_T c7_b_a2;
-  real_T c7_b_a1;
-  real_T c7_b_a0;
+  real32_T c7_b_a5;
+  real32_T c7_b_a4;
+  real32_T c7_b_a3;
+  real32_T c7_b_a2;
+  real32_T c7_b_a1;
+  real32_T c7_b_a0;
   real_T c7_a;
   real_T c7_b_a;
   real_T c7_b;
@@ -200,19 +200,22 @@ static void sf_c7_MPC_framework(void)
       '='
     }, { ' ' }, { '%' }, { 'e' }, { '.' } };
   char c7_em_cv1[103][1];
-  real_T c7_k_B[6];
   int32_T c7_em_i13;
   int32_T c7_em_i14;
+  real32_T c7_v_y[6][6];
+  real32_T c7_k_B[6];
+  int32_T c7_em_i15;
+  int32_T c7_em_i16;
   _sfTime_ = (real_T)ssGetT(chartInstance.S);
-  _SFD_DATA_RANGE_CHECK(*c7_A(), 8U);
-  _SFD_DATA_RANGE_CHECK(*c7_B(), 1U);
-  _SFD_DATA_RANGE_CHECK(*c7_t(), 4U);
-  _SFD_DATA_RANGE_CHECK(*c7_a0(), 2U);
-  _SFD_DATA_RANGE_CHECK(*c7_a1(), 7U);
-  _SFD_DATA_RANGE_CHECK(*c7_a2(), 5U);
-  _SFD_DATA_RANGE_CHECK(*c7_a3(), 3U);
-  _SFD_DATA_RANGE_CHECK(*c7_a4(), 6U);
-  _SFD_DATA_RANGE_CHECK(*c7_a5(), 0U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c7_A(), 2U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c7_B(), 1U);
+  _SFD_DATA_RANGE_CHECK(*c7_t(), 5U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c7_a0(), 7U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c7_a1(), 6U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c7_a2(), 0U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c7_a3(), 4U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c7_a4(), 8U);
+  _SFD_DATA_RANGE_CHECK((real_T)*c7_a5(), 3U);
   c7_previousEvent = _sfEvent_;
   _sfEvent_ = CALL_EVENT;
   _SFD_CC_CALL(CHART_ENTER_DURING_FUNCTION_TAG,4);
@@ -220,27 +223,27 @@ static void sf_c7_MPC_framework(void)
   c7_b_B = *c7_B();
   c7_b_t = *c7_t();
   sf_debug_push_symbol_scope(11U, 0U);
-  sf_debug_symbol_scope_add_symbol("Ao", 0, 1U, 6U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("Ao", 1, 1U, 6U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 1, &c7_Ao, 0);
   sf_debug_symbol_scope_add_symbol("T", 0, 2U, 6U, 6U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 1, &c7_T, 0);
-  sf_debug_symbol_scope_add_symbol("a5", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("a5", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c7_b_a5, 0);
-  sf_debug_symbol_scope_add_symbol("a4", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("a4", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c7_b_a4, 0);
-  sf_debug_symbol_scope_add_symbol("a3", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("a3", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c7_b_a3, 0);
-  sf_debug_symbol_scope_add_symbol("a2", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("a2", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c7_b_a2, 0);
-  sf_debug_symbol_scope_add_symbol("a1", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("a1", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c7_b_a1, 0);
-  sf_debug_symbol_scope_add_symbol("a0", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("a0", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c7_b_a0, 0);
   sf_debug_symbol_scope_add_symbol("t", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c7_b_t, 0);
-  sf_debug_symbol_scope_add_symbol("B", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("B", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c7_b_B, 0);
-  sf_debug_symbol_scope_add_symbol("A", 0, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
+  sf_debug_symbol_scope_add_symbol("A", 1, 0U, 0U, 0U, 0U, 1.0, 0, 0.0, 0U, 0,
    0U, 0, &c7_b_A, 0);
   CV_EML_FCN(0, 0);
   /*  This block supports an embeddable subset of the MATLAB language. */
@@ -395,17 +398,22 @@ static void sf_c7_MPC_framework(void)
       0U, 1U, 2, 1, 103), 6, c7_rcond);
     label_1:;
   }
-  c7_k_B[0] = c7_b_B;
-  c7_k_B[1] = 0.0;
-  c7_k_B[2] = 0.0;
-  c7_k_B[3] = c7_b_A;
-  c7_k_B[4] = 0.0;
-  c7_k_B[5] = 0.0;
   for(c7_em_i13 = 0; c7_em_i13 < 6; c7_em_i13 = c7_em_i13 + 1) {
-    c7_Ao[c7_em_i13] = 0.0;
     for(c7_em_i14 = 0; c7_em_i14 < 6; c7_em_i14 = c7_em_i14 + 1) {
-      c7_Ao[c7_em_i13] = c7_Ao[c7_em_i13] + c7_s_y[c7_em_i14][c7_em_i13] *
-        c7_k_B[c7_em_i14];
+      c7_v_y[c7_em_i13][c7_em_i14] = (real32_T)c7_s_y[c7_em_i13][c7_em_i14];
+    }
+  }
+  c7_k_B[0] = c7_b_B;
+  c7_k_B[1] = 0.0F;
+  c7_k_B[2] = 0.0F;
+  c7_k_B[3] = c7_b_A;
+  c7_k_B[4] = 0.0F;
+  c7_k_B[5] = 0.0F;
+  for(c7_em_i15 = 0; c7_em_i15 < 6; c7_em_i15 = c7_em_i15 + 1) {
+    c7_Ao[c7_em_i15] = 0.0F;
+    for(c7_em_i16 = 0; c7_em_i16 < 6; c7_em_i16 = c7_em_i16 + 1) {
+      c7_Ao[c7_em_i15] = c7_Ao[c7_em_i15] + c7_v_y[c7_em_i16][c7_em_i15] *
+        c7_k_B[c7_em_i16];
     }
   }
   _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,6);
@@ -553,11 +561,11 @@ static real_T c7_c_mpower(real_T c7_a)
 
 static void c7_invNxN(real_T *c7_x, real_T *c7_y)
 {
-  int32_T c7_em_i15;
-  int32_T c7_em_i16;
+  int32_T c7_em_i17;
+  int32_T c7_em_i18;
   real_T c7_b_A[6][6];
   real_T c7_c_A[6][6];
-  int32_T c7_em_i17;
+  int32_T c7_em_i19;
   real_T c7_pivot[6][1];
   real_T c7_k;
   real_T c7_b_k;
@@ -589,19 +597,19 @@ static void c7_invNxN(real_T *c7_x, real_T *c7_y)
   real_T c7_b_j;
   real_T c7_em_d3;
   real_T c7_d_i;
-  int32_T c7_em_i18;
-  int32_T c7_em_i19;
-  real_T c7_f_x[6][6];
   int32_T c7_em_i20;
-  real_T c7_b_p[6][1];
   int32_T c7_em_i21;
+  real_T c7_f_x[6][6];
   int32_T c7_em_i22;
+  real_T c7_b_p[6][1];
+  int32_T c7_em_i23;
+  int32_T c7_em_i24;
   real_T c7_c_k;
   real_T c7_d_k;
   real_T c7_g_x;
   boolean_T c7_b;
   real_T c7_g_y;
-  int32_T c7_em_i23;
+  int32_T c7_em_i25;
   real_T c7_e_k;
   real_T c7_c;
   real_T c7_em_d4;
@@ -619,15 +627,15 @@ static void c7_invNxN(real_T *c7_x, real_T *c7_y)
   real_T c7_i_y;
   real_T c7_f_j;
   real_T c7_g_i;
-  for(c7_em_i15 = 0; c7_em_i15 < 6; c7_em_i15 = c7_em_i15 + 1) {
-    for(c7_em_i16 = 0; c7_em_i16 < 6; c7_em_i16 = c7_em_i16 + 1) {
-      c7_y[6 * c7_em_i15 + c7_em_i16] = 0.0;
-      c7_b_A[c7_em_i15][c7_em_i16] = c7_x[6 * c7_em_i15 + c7_em_i16];
-      c7_c_A[c7_em_i15][c7_em_i16] = c7_b_A[c7_em_i15][c7_em_i16];
+  for(c7_em_i17 = 0; c7_em_i17 < 6; c7_em_i17 = c7_em_i17 + 1) {
+    for(c7_em_i18 = 0; c7_em_i18 < 6; c7_em_i18 = c7_em_i18 + 1) {
+      c7_y[6 * c7_em_i17 + c7_em_i18] = 0.0;
+      c7_b_A[c7_em_i17][c7_em_i18] = c7_x[6 * c7_em_i17 + c7_em_i18];
+      c7_c_A[c7_em_i17][c7_em_i18] = c7_b_A[c7_em_i17][c7_em_i18];
     }
   }
-  for(c7_em_i17 = 0; c7_em_i17 < 6; c7_em_i17 = c7_em_i17 + 1) {
-    c7_pivot[c7_em_i17][0] = 1.0 + (real_T)c7_em_i17;
+  for(c7_em_i19 = 0; c7_em_i19 < 6; c7_em_i19 = c7_em_i19 + 1) {
+    c7_pivot[c7_em_i19][0] = 1.0 + (real_T)c7_em_i19;
   }
   for(c7_k = 1.0; c7_k <= 5.0; c7_k = c7_k + 1.0) {
     c7_b_k = c7_k;
@@ -737,17 +745,17 @@ static void c7_invNxN(real_T *c7_x, real_T *c7_y)
       }
     }
   }
-  for(c7_em_i18 = 0; c7_em_i18 < 6; c7_em_i18 = c7_em_i18 + 1) {
-    for(c7_em_i19 = 0; c7_em_i19 < 6; c7_em_i19 = c7_em_i19 + 1) {
-      c7_f_x[c7_em_i18][c7_em_i19] = c7_c_A[c7_em_i18][c7_em_i19];
+  for(c7_em_i20 = 0; c7_em_i20 < 6; c7_em_i20 = c7_em_i20 + 1) {
+    for(c7_em_i21 = 0; c7_em_i21 < 6; c7_em_i21 = c7_em_i21 + 1) {
+      c7_f_x[c7_em_i20][c7_em_i21] = c7_c_A[c7_em_i20][c7_em_i21];
     }
   }
-  for(c7_em_i20 = 0; c7_em_i20 < 6; c7_em_i20 = c7_em_i20 + 1) {
-    c7_b_p[c7_em_i20][0] = c7_pivot[c7_em_i20][0];
+  for(c7_em_i22 = 0; c7_em_i22 < 6; c7_em_i22 = c7_em_i22 + 1) {
+    c7_b_p[c7_em_i22][0] = c7_pivot[c7_em_i22][0];
   }
-  for(c7_em_i21 = 0; c7_em_i21 < 6; c7_em_i21 = c7_em_i21 + 1) {
-    for(c7_em_i22 = 0; c7_em_i22 < 6; c7_em_i22 = c7_em_i22 + 1) {
-      c7_x[6 * c7_em_i21 + c7_em_i22] = c7_f_x[c7_em_i21][c7_em_i22];
+  for(c7_em_i23 = 0; c7_em_i23 < 6; c7_em_i23 = c7_em_i23 + 1) {
+    for(c7_em_i24 = 0; c7_em_i24 < 6; c7_em_i24 = c7_em_i24 + 1) {
+      c7_x[6 * c7_em_i23 + c7_em_i24] = c7_f_x[c7_em_i23][c7_em_i24];
     }
   }
   c7_c_k = 1.0;
@@ -858,15 +866,15 @@ static void c7_invNxN(real_T *c7_x, real_T *c7_y)
     return;
   }
   c7_g_y = rtInf;
-  for(c7_em_i23 = 0; c7_em_i23 < 36; c7_em_i23 = c7_em_i23 + 1) {
-    (*(real_T (*)[36])c7_y)[c7_em_i23] = c7_g_y;
+  for(c7_em_i25 = 0; c7_em_i25 < 36; c7_em_i25 = c7_em_i25 + 1) {
+    (*(real_T (*)[36])c7_y)[c7_em_i25] = c7_g_y;
   }
 }
 
 static real_T c7_norm(real_T *c7_x)
 {
-  int32_T c7_em_i24;
-  int32_T c7_em_i25;
+  int32_T c7_em_i26;
+  int32_T c7_em_i27;
   real_T c7_b_x[6][6];
   real_T c7_zero;
   real_T c7_b_y;
@@ -879,9 +887,9 @@ static real_T c7_norm(real_T *c7_x)
   real_T c7_c_y;
   real_T c7_d_x;
   boolean_T c7_b;
-  for(c7_em_i24 = 0; c7_em_i24 < 6; c7_em_i24 = c7_em_i24 + 1) {
-    for(c7_em_i25 = 0; c7_em_i25 < 6; c7_em_i25 = c7_em_i25 + 1) {
-      c7_b_x[c7_em_i24][c7_em_i25] = c7_x[6 * c7_em_i24 + c7_em_i25];
+  for(c7_em_i26 = 0; c7_em_i26 < 6; c7_em_i26 = c7_em_i26 + 1) {
+    for(c7_em_i27 = 0; c7_em_i27 < 6; c7_em_i27 = c7_em_i27 + 1) {
+      c7_b_x[c7_em_i26][c7_em_i27] = c7_x[6 * c7_em_i26 + c7_em_i27];
     }
   }
   c7_zero = 0.0;
@@ -915,14 +923,14 @@ static real_T c7_norm(real_T *c7_x)
   return c7_b_y;
 }
 
-static real_T *c7_A(void)
+static real32_T *c7_A(void)
 {
-  return (real_T *)ssGetInputPortSignal(chartInstance.S, 0);
+  return (real32_T *)ssGetInputPortSignal(chartInstance.S, 0);
 }
 
-static real_T *c7_B(void)
+static real32_T *c7_B(void)
 {
-  return (real_T *)ssGetInputPortSignal(chartInstance.S, 1);
+  return (real32_T *)ssGetInputPortSignal(chartInstance.S, 1);
 }
 
 static real_T *c7_t(void)
@@ -930,34 +938,34 @@ static real_T *c7_t(void)
   return (real_T *)ssGetInputPortSignal(chartInstance.S, 2);
 }
 
-static real_T *c7_a0(void)
+static real32_T *c7_a0(void)
 {
-  return (real_T *)ssGetOutputPortSignal(chartInstance.S, 1);
+  return (real32_T *)ssGetOutputPortSignal(chartInstance.S, 1);
 }
 
-static real_T *c7_a1(void)
+static real32_T *c7_a1(void)
 {
-  return (real_T *)ssGetOutputPortSignal(chartInstance.S, 2);
+  return (real32_T *)ssGetOutputPortSignal(chartInstance.S, 2);
 }
 
-static real_T *c7_a2(void)
+static real32_T *c7_a2(void)
 {
-  return (real_T *)ssGetOutputPortSignal(chartInstance.S, 3);
+  return (real32_T *)ssGetOutputPortSignal(chartInstance.S, 3);
 }
 
-static real_T *c7_a3(void)
+static real32_T *c7_a3(void)
 {
-  return (real_T *)ssGetOutputPortSignal(chartInstance.S, 4);
+  return (real32_T *)ssGetOutputPortSignal(chartInstance.S, 4);
 }
 
-static real_T *c7_a4(void)
+static real32_T *c7_a4(void)
 {
-  return (real_T *)ssGetOutputPortSignal(chartInstance.S, 5);
+  return (real32_T *)ssGetOutputPortSignal(chartInstance.S, 5);
 }
 
-static real_T *c7_a5(void)
+static real32_T *c7_a5(void)
 {
-  return (real_T *)ssGetOutputPortSignal(chartInstance.S, 6);
+  return (real32_T *)ssGetOutputPortSignal(chartInstance.S, 6);
 }
 
 static void init_dsm_address_info(void)
@@ -979,10 +987,10 @@ static void sf_load_state_c7_MPC_framework(FILE *c7_file)
 /* SFunction Glue Code */
 void sf_c7_MPC_framework_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(1179489131U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(3334039932U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(321698092U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(1017684408U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2642840675U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(1700170992U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(3274027122U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(2829506229U);
 }
 
 mxArray *sf_c7_MPC_framework_get_autoinheritance_info(void)
@@ -1013,8 +1021,8 @@ mxArray *sf_c7_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
-      mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
+      mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(1));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,0,"type",mxType);
     }
@@ -1029,8 +1037,8 @@ mxArray *sf_c7_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
-      mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
+      mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(1));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,1,"type",mxType);
     }
@@ -1069,7 +1077,7 @@ mxArray *sf_c7_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,0,"type",mxType);
@@ -1085,7 +1093,7 @@ mxArray *sf_c7_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,1,"type",mxType);
@@ -1101,7 +1109,7 @@ mxArray *sf_c7_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,2,"type",mxType);
@@ -1117,7 +1125,7 @@ mxArray *sf_c7_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,3,"type",mxType);
@@ -1133,7 +1141,7 @@ mxArray *sf_c7_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,4,"type",mxType);
@@ -1149,7 +1157,7 @@ mxArray *sf_c7_MPC_framework_get_autoinheritance_info(void)
     {
       const char *typeFields[] = {"base","aliasId","fixpt"};
       mxArray *mxType = mxCreateStructMatrix(1,1,3,typeFields);
-      mxSetField(mxType,0,"base",mxCreateDoubleScalar(10));
+      mxSetField(mxType,0,"base",mxCreateDoubleScalar(9));
       mxSetField(mxType,0,"aliasId",mxCreateDoubleScalar(0));
       mxSetField(mxType,0,"fixpt",mxCreateDoubleMatrix(0,0,mxREAL));
       mxSetField(mxData,5,"type",mxType);
@@ -1190,15 +1198,15 @@ static void chart_debug_initialization(SimStruct *S)
            0,
            0);
 
-          _SFD_SET_DATA_PROPS(8,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"A",0);
-          _SFD_SET_DATA_PROPS(1,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"B",0);
-          _SFD_SET_DATA_PROPS(4,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"t",0);
-          _SFD_SET_DATA_PROPS(2,2,0,1,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"a0",0);
-          _SFD_SET_DATA_PROPS(7,2,0,1,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"a1",0);
-          _SFD_SET_DATA_PROPS(5,2,0,1,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"a2",0);
-          _SFD_SET_DATA_PROPS(3,2,0,1,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"a3",0);
-          _SFD_SET_DATA_PROPS(6,2,0,1,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"a4",0);
-          _SFD_SET_DATA_PROPS(0,2,0,1,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"a5",0);
+          _SFD_SET_DATA_PROPS(2,1,1,0,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"A",0);
+          _SFD_SET_DATA_PROPS(1,1,1,0,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"B",0);
+          _SFD_SET_DATA_PROPS(5,1,1,0,SF_DOUBLE,0,NULL,0,0,0,0.0,1.0,0,"t",0);
+          _SFD_SET_DATA_PROPS(7,2,0,1,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"a0",0);
+          _SFD_SET_DATA_PROPS(6,2,0,1,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"a1",0);
+          _SFD_SET_DATA_PROPS(0,2,0,1,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"a2",0);
+          _SFD_SET_DATA_PROPS(4,2,0,1,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"a3",0);
+          _SFD_SET_DATA_PROPS(8,2,0,1,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"a4",0);
+          _SFD_SET_DATA_PROPS(3,2,0,1,SF_SINGLE,0,NULL,0,0,0,0.0,1.0,0,"a5",0);
           _SFD_STATE_INFO(0,0,2);
           _SFD_CH_SUBSTATE_COUNT(0);
           _SFD_CH_SUBSTATE_DECOMP(0);
@@ -1222,15 +1230,15 @@ static void chart_debug_initialization(SimStruct *S)
            1,NULL,NULL,
            0,NULL,NULL);
         }
-        _SFD_SET_DATA_VALUE_PTR(8U, c7_A());
+        _SFD_SET_DATA_VALUE_PTR(2U, c7_A());
         _SFD_SET_DATA_VALUE_PTR(1U, c7_B());
-        _SFD_SET_DATA_VALUE_PTR(4U, c7_t());
-        _SFD_SET_DATA_VALUE_PTR(2U, c7_a0());
-        _SFD_SET_DATA_VALUE_PTR(7U, c7_a1());
-        _SFD_SET_DATA_VALUE_PTR(5U, c7_a2());
-        _SFD_SET_DATA_VALUE_PTR(3U, c7_a3());
-        _SFD_SET_DATA_VALUE_PTR(6U, c7_a4());
-        _SFD_SET_DATA_VALUE_PTR(0U, c7_a5());
+        _SFD_SET_DATA_VALUE_PTR(5U, c7_t());
+        _SFD_SET_DATA_VALUE_PTR(7U, c7_a0());
+        _SFD_SET_DATA_VALUE_PTR(6U, c7_a1());
+        _SFD_SET_DATA_VALUE_PTR(0U, c7_a2());
+        _SFD_SET_DATA_VALUE_PTR(4U, c7_a3());
+        _SFD_SET_DATA_VALUE_PTR(8U, c7_a4());
+        _SFD_SET_DATA_VALUE_PTR(3U, c7_a5());
       }
     }
   } else {
@@ -1310,10 +1318,10 @@ static void mdlSetWorkWidths_c7_MPC_framework(SimStruct *S)
     ssSetOptions(S,ssGetOptions(S)|SS_OPTION_WORKS_WITH_CODE_REUSE);
   }
 
-  ssSetChecksum0(S,(3377461026U));
-  ssSetChecksum1(S,(150108156U));
-  ssSetChecksum2(S,(1753973591U));
-  ssSetChecksum3(S,(1089863391U));
+  ssSetChecksum0(S,(1250168077U));
+  ssSetChecksum1(S,(3637738057U));
+  ssSetChecksum2(S,(4174540004U));
+  ssSetChecksum3(S,(3132531198U));
 
   ssSetExplicitFCSSCtrl(S,1);
 }

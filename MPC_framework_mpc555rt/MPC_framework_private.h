@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.1070
+ * Model version                        : 1.1466
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Wed Apr 30 19:37:50 2014
+ * Real-Time Workshop file generated on : Thu May 08 18:43:44 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Wed Apr 30 19:37:50 2014
+ * C source code generated on           : Thu May 08 18:43:45 2014
  */
 
 #ifndef _RTW_HEADER_MPC_framework_private_h_
@@ -44,17 +44,22 @@ extern CAN_MODULE GlobalModuleCAN_A;
 // will reference.
 extern CAN_MODULE GlobalModuleCAN_B;
 
-real_T lfcbphdbbaaiimgd_sign(real_T eml_X);
+real32_T iekfhdbajekfekfk_atan2(real32_T eml_Y, real32_T eml_X);
 
+real32_T phdjopphcjmoekno_sign(real32_T eml_X);
+
+void mul_wide_s32(int32_T in0, int32_T in1, uint32_T *ptrOutBitsHi, uint32_T
+ *ptrOutBitsLo);
+int32_T mul_s32_s32_s32_sat(int32_T a, int32_T b);
 void controller_messagesen_Start(void);
 void controller_messagesen(void);
 void MPC_frame_StateMachine_Init(void);
 void MPC_fram_StateMachine_Start(void);
 void MPC_fram_StateMachine(void);
-void Jointreferencesingal(real_T rtu_a0, real_T rtu_a1, real_T rtu_a2, real_T
- rtu_a3, real_T rtu_a4, real_T rtu_a5, real_T rtu_t_sim, real_T rtu_t_end,
- rtB_Jointreferencesingal *localB);
-void MP_Trajectorydesign1(real_T rtu_A, real_T rtu_B, real_T rtu_t,
+void Jointreferencesingal(real32_T rtu_a0, real32_T rtu_a1, real32_T rtu_a2,
+ real32_T rtu_a3, real32_T rtu_a4, real32_T rtu_a5, real_T rtu_t_sim, real_T
+ rtu_t_end, rtB_Jointreferencesingal *localB);
+void MP_Trajectorydesign1(real32_T rtu_A, real32_T rtu_B, real_T rtu_t,
  rtB_MP_Trajectorydesign1 *localB);
 
 #endif                                  /* _RTW_HEADER_MPC_framework_private_h_ */

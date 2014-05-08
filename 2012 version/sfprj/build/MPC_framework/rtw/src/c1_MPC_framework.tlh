@@ -1,0 +1,43 @@
+
+%implements "chartHeader" "C"
+%function CacheOutputs(block,system,typeDefHFile,hFile,cFile) void
+%openfile typedefsBuf
+   
+   typedef struct {
+uint32_T temporalCounter_i1;
+uint8_T is_CONTROLLER;
+uint8_T is_HOLD;
+uint8_T is_OPERATION;
+uint8_T is_PRIMITIVE;
+uint8_T is_SEGMENT_1;
+uint8_T is_SEGMENT_2;
+uint8_T is_active_SEGMENT_1;
+uint8_T is_active_SEGMENT_2;
+uint8_T is_c1_MPC_framework;
+} %<SFInfo.ChartInstanceTypedef>;
+
+   
+%closefile typedefsBuf
+   %if !WHITE_SPACE(typedefsBuf)
+      %openfile tempBuf
+#ifndef _CSC1_MPC_FRAMEWORK_CHARTSTRUCT_
+#define _CSC1_MPC_FRAMEWORK_CHARTSTRUCT_
+      %<typedefsBuf>\
+ #endif /* _CSC1_MPC_FRAMEWORK_CHARTSTRUCT_ */
+      %closefile tempBuf
+%<SLibSetModelFileAttribute(typeDefHFile,"Typedefs",tempBuf)>
+   %endif
+
+%openfile externFcnsBuf
+   
+   
+   
+   
+   
+%closefile externFcnsBuf
+%<SLibSetModelFileAttribute(hFile,"ExternFcns",externFcnsBuf)>
+   %openfile externFcnsBuf
+   %closefile externFcnsBuf
+   %<SLibSetModelFileAttribute(hFile,"ExternFcns",externFcnsBuf)>
+
+%endfunction %% CacheOutputs
