@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.1466
+ * Model version                        : 1.1495
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Thu May 08 18:43:44 2014
+ * Real-Time Workshop file generated on : Tue May 13 15:11:08 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Thu May 08 18:43:45 2014
+ * C source code generated on           : Tue May 13 15:11:08 2014
  */
 
 #include "MPC_framework.h"
@@ -277,8 +277,24 @@ void controller_messagesen(void)
 
 /* Functions for block: '<Root>/State Machine' */
 
+static void MPC_framework_INIT_ACK(void );
 static void MPC_framework_CONTROLLER(void );
 
+static void MPC_framework_INIT_ACK(void )
+{
+  MPC_framework_DWork.StateMachine.is_c1_MPC_framework =
+    (uint8_T)MPC_framework_IN_OPERATION;
+  MPC_framework_B.controller_enable = 0.0F;
+  MPC_framework_B.trajectory_enable = 0U;
+  MPC_framework_DWork.StateMachine.is_OPERATION =
+    (uint8_T)MPC_framework_IN_PRIMITIVE;
+  MPC_framework_B.operation_mode = 1U;
+  MPC_framework_DWork.StateMachine.is_PRIMITIVE =
+    (uint8_T)MPC_framework_IN_STOPPED;
+  MPC_framework_B.motor1_reference = (real32_T)MPC_framework_P.SFunction_p7;
+  MPC_framework_B.motor2_reference = (real32_T)MPC_framework_P.SFunction_p7;
+  MPC_framework_B.da_out_trigger = 1.0F;
+}
 static void MPC_framework_CONTROLLER(void )
 {
   if(MPC_framework_B.CANMessageUnpackingCANdb_dc == 8.0F) {
@@ -302,6 +318,8 @@ static void MPC_framework_CONTROLLER(void )
     MPC_framework_DWork.StateMachine.is_OPERATION =
       (uint8_T)MPC_framework_IN_BLUETOOTH;
     MPC_framework_B.operation_mode = 4U;
+    MPC_framework_B.motor1_reference = (real32_T)MPC_framework_P.SFunction_p7;
+    MPC_framework_B.motor2_reference = (real32_T)MPC_framework_P.SFunction_p7;
   } else if(MPC_framework_B.CANMessageUnpackingCANdb_dc == 6.0F) {
     switch(MPC_framework_DWork.StateMachine.is_CONTROLLER) {
      case MPC_framework_IN_HOLD:
@@ -323,6 +341,8 @@ static void MPC_framework_CONTROLLER(void )
     MPC_framework_DWork.StateMachine.is_OPERATION =
       (uint8_T)MPC_framework_IN_CONFIG;
     MPC_framework_B.operation_mode = 3U;
+    MPC_framework_B.motor1_reference = (real32_T)MPC_framework_P.SFunction_p7;
+    MPC_framework_B.motor2_reference = (real32_T)MPC_framework_P.SFunction_p7;
   } else if(MPC_framework_B.CANMessageUnpackingCANdb_dc == 1.0F) {
     switch(MPC_framework_DWork.StateMachine.is_CONTROLLER) {
      case MPC_framework_IN_HOLD:
@@ -536,16 +556,7 @@ void MPC_fram_StateMachine(void)
       }
       break;
      case MPC_framework_IN_INIT_ACK:
-      MPC_framework_DWork.StateMachine.is_c1_MPC_framework =
-        (uint8_T)MPC_framework_IN_OPERATION;
-      MPC_framework_DWork.StateMachine.is_OPERATION =
-        (uint8_T)MPC_framework_IN_PRIMITIVE;
-      MPC_framework_B.operation_mode = 1U;
-      MPC_framework_DWork.StateMachine.is_PRIMITIVE =
-        (uint8_T)MPC_framework_IN_STOPPED;
-      MPC_framework_B.motor1_reference = (real32_T)MPC_framework_P.SFunction_p7;
-      MPC_framework_B.motor2_reference = (real32_T)MPC_framework_P.SFunction_p7;
-      MPC_framework_B.da_out_trigger = 1.0F;
+      MPC_framework_INIT_ACK();
       break;
      case MPC_framework_IN_OPERATION:
       switch(MPC_framework_DWork.StateMachine.is_OPERATION) {
@@ -585,6 +596,10 @@ void MPC_fram_StateMachine(void)
           MPC_framework_DWork.StateMachine.is_OPERATION =
             (uint8_T)MPC_framework_IN_CONFIG;
           MPC_framework_B.operation_mode = 3U;
+          MPC_framework_B.motor1_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
+          MPC_framework_B.motor2_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
         } else {
           MPC_framework_B.controller_enable = 0.0F;
         }
@@ -625,26 +640,46 @@ void MPC_fram_StateMachine(void)
           MPC_framework_DWork.StateMachine.is_OPERATION =
             (uint8_T)MPC_framework_IN_BLUETOOTH;
           MPC_framework_B.operation_mode = 4U;
+          MPC_framework_B.motor1_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
+          MPC_framework_B.motor2_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
         } else if(MPC_framework_B.CANMessageUnpackingCANdb_dc == 7.0F) {
           MPC_framework_B.sync_command = 4U;
           MPC_framework_DWork.StateMachine.is_OPERATION =
             (uint8_T)MPC_framework_IN_CONFIG;
           MPC_framework_B.operation_mode = 3U;
+          MPC_framework_B.motor1_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
+          MPC_framework_B.motor2_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
         } else if(MPC_framework_B.CANMessageUnpackingCANdb_dc == 5.0F) {
           MPC_framework_B.sync_command = 3U;
           MPC_framework_DWork.StateMachine.is_OPERATION =
             (uint8_T)MPC_framework_IN_CONFIG;
           MPC_framework_B.operation_mode = 3U;
+          MPC_framework_B.motor1_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
+          MPC_framework_B.motor2_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
         } else if(MPC_framework_B.CANMessageUnpackingCANdb_dc == 4.0F) {
           MPC_framework_B.sync_command = 2U;
           MPC_framework_DWork.StateMachine.is_OPERATION =
             (uint8_T)MPC_framework_IN_CONFIG;
           MPC_framework_B.operation_mode = 3U;
+          MPC_framework_B.motor1_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
+          MPC_framework_B.motor2_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
         } else if(MPC_framework_B.CANMessageUnpackingCANdb_dc == 3.0F) {
           MPC_framework_B.sync_command = 1U;
           MPC_framework_DWork.StateMachine.is_OPERATION =
             (uint8_T)MPC_framework_IN_CONFIG;
           MPC_framework_B.operation_mode = 3U;
+          MPC_framework_B.motor1_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
+          MPC_framework_B.motor2_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
         } else {
           MPC_framework_B.controller_enable = 0.0F;
           MPC_framework_B.sync_command = 0U;
@@ -704,6 +739,10 @@ void MPC_fram_StateMachine(void)
           MPC_framework_DWork.StateMachine.is_OPERATION =
             (uint8_T)MPC_framework_IN_BLUETOOTH;
           MPC_framework_B.operation_mode = 4U;
+          MPC_framework_B.motor1_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
+          MPC_framework_B.motor2_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
         } else if(MPC_framework_B.CANMessageUnpackingCANdb_dc == 6.0F) {
           switch(MPC_framework_DWork.StateMachine.is_PRIMITIVE) {
            case MPC_framework_IN_MOVING:
@@ -721,6 +760,10 @@ void MPC_fram_StateMachine(void)
           MPC_framework_DWork.StateMachine.is_OPERATION =
             (uint8_T)MPC_framework_IN_CONFIG;
           MPC_framework_B.operation_mode = 3U;
+          MPC_framework_B.motor1_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
+          MPC_framework_B.motor2_reference =
+            (real32_T)MPC_framework_P.SFunction_p7;
         } else {
           MPC_framework_B.controller_enable = 0.0F;
           switch(MPC_framework_DWork.StateMachine.is_PRIMITIVE) {
@@ -738,16 +781,24 @@ void MPC_fram_StateMachine(void)
             } else {
               switch(MPC_framework_DWork.StateMachine.is_MOVING) {
                case MPC_frame_IN_NEGATIVE_MOV_SEG_1:
-                MPC_framework_B.da_out_trigger = 0.0F;
+                MPC_framework_B.motor1_reference =
+                  (real32_T)MPC_framework_P.SFunction_p3;
+                MPC_framework_B.da_out_trigger = 1.0F;
                 break;
                case MPC_frame_IN_NEGATIVE_MOV_SEG_2:
-                MPC_framework_B.da_out_trigger = 0.0F;
+                MPC_framework_B.motor2_reference =
+                  (real32_T)MPC_framework_P.SFunction_p4;
+                MPC_framework_B.da_out_trigger = 1.0F;
                 break;
                case MPC_frame_IN_POSITIVE_MOV_SEG_1:
-                MPC_framework_B.da_out_trigger = 0.0F;
+                MPC_framework_B.motor1_reference =
+                  (real32_T)MPC_framework_P.SFunction_p5;
+                MPC_framework_B.da_out_trigger = 1.0F;
                 break;
                case MPC_frame_IN_POSITIVE_MOV_SEG_2:
-                MPC_framework_B.da_out_trigger = 0.0F;
+                MPC_framework_B.motor2_reference =
+                  (real32_T)MPC_framework_P.SFunction_p6;
+                MPC_framework_B.da_out_trigger = 1.0F;
                 break;
               }
             }
@@ -759,38 +810,38 @@ void MPC_fram_StateMachine(void)
                 (uint8_T)MPC_framework_IN_MOVING;
               MPC_framework_DWork.StateMachine.is_MOVING =
                 (uint8_T)MPC_frame_IN_NEGATIVE_MOV_SEG_2;
-              MPC_framework_B.motor2_reference =
-                (real32_T)MPC_framework_P.SFunction_p4;
-              MPC_framework_B.da_out_trigger = 1.0F;
+              MPC_framework_B.motor1_reference =
+                (real32_T)MPC_framework_P.SFunction_p7;
             } else if(MPC_framework_B.CANMessageUnpackingCANdb_l == 3) {
               MPC_framework_B.stop_trigger = 0U;
               MPC_framework_DWork.StateMachine.is_PRIMITIVE =
                 (uint8_T)MPC_framework_IN_MOVING;
               MPC_framework_DWork.StateMachine.is_MOVING =
                 (uint8_T)MPC_frame_IN_NEGATIVE_MOV_SEG_1;
-              MPC_framework_B.motor1_reference =
-                (real32_T)MPC_framework_P.SFunction_p3;
-              MPC_framework_B.da_out_trigger = 1.0F;
+              MPC_framework_B.motor2_reference =
+                (real32_T)MPC_framework_P.SFunction_p7;
             } else if(MPC_framework_B.CANMessageUnpackingCANdb_l == 2) {
               MPC_framework_B.stop_trigger = 0U;
               MPC_framework_DWork.StateMachine.is_PRIMITIVE =
                 (uint8_T)MPC_framework_IN_MOVING;
               MPC_framework_DWork.StateMachine.is_MOVING =
                 (uint8_T)MPC_frame_IN_POSITIVE_MOV_SEG_2;
-              MPC_framework_B.motor2_reference =
-                (real32_T)MPC_framework_P.SFunction_p6;
-              MPC_framework_B.da_out_trigger = 1.0F;
+              MPC_framework_B.motor1_reference =
+                (real32_T)MPC_framework_P.SFunction_p7;
             } else if(MPC_framework_B.CANMessageUnpackingCANdb_l == 1) {
               MPC_framework_B.stop_trigger = 0U;
               MPC_framework_DWork.StateMachine.is_PRIMITIVE =
                 (uint8_T)MPC_framework_IN_MOVING;
               MPC_framework_DWork.StateMachine.is_MOVING =
                 (uint8_T)MPC_frame_IN_POSITIVE_MOV_SEG_1;
-              MPC_framework_B.motor1_reference =
-                (real32_T)MPC_framework_P.SFunction_p5;
-              MPC_framework_B.da_out_trigger = 1.0F;
+              MPC_framework_B.motor2_reference =
+                (real32_T)MPC_framework_P.SFunction_p7;
             } else {
-              MPC_framework_B.da_out_trigger = 0.0F;
+              MPC_framework_B.motor1_reference =
+                (real32_T)MPC_framework_P.SFunction_p7;
+              MPC_framework_B.motor2_reference =
+                (real32_T)MPC_framework_P.SFunction_p7;
+              MPC_framework_B.da_out_trigger = 1.0F;
             }
             break;
            default:
@@ -1084,7 +1135,6 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
   real32_T rtb_Divide_p;
   real32_T rtb_Gain_f;
   real32_T rtb_Gain1_l;
-  real32_T rtb_Sum_a;
   real32_T rtb_Product_o0;
   real32_T rtb_Divide_c;
   real32_T rtb_Gain2_i;
@@ -1696,10 +1746,8 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
         sqrtf((real32_T)pow((real_T)MPC_framework_B.CANMessageUnpackingCANdb_g,
         2.0) + (real32_T)pow((real_T)MPC_framework_B.CANMessageUnpackingCANdb_d,
         2.0));
-      if(((real32_T)pow((real_T)eml_y, 2.0) >
-        (real32_T)pow((real_T)MPC_framework_P.a1_Value, 2.0) +
-        (real32_T)pow((real_T)MPC_framework_P.a2_Value, 2.0)) || (eml_y <
-        MPC_framework_P.a1_Value - MPC_framework_P.a2_Value)) {
+      if((eml_y > MPC_framework_P.a1_Value + MPC_framework_P.a2_Value) || (eml_y
+        < MPC_framework_P.a1_Value - MPC_framework_P.a2_Value)) {
         eml_al1 = MPC_framework_B.Gain4;
         eml_y = MPC_framework_B.Gain5;
         eml_error = 1U;
@@ -1934,11 +1982,11 @@ void MPC_framework_step0(void)          /* Sample time: [0.01s, 0.0s] */
     }
     if(MPC_framework_DWork.Controller_MODE == SUBSYS_ENABLED) {
 
-      /* Sum: '<S2>/Sum' */
-      rtb_Sum_a = rtb_Switch1_idx - MPC_framework_B.Gain4;
-
-      /* Product: '<S22>/Product' */
-      rtb_Product_o0 = rtb_Sum_a * MPC_framework_P.Ap1_Value;
+      /* Product: '<S22>/Product' incorporates:
+       *  Sum: '<S2>/Sum'
+       */
+      rtb_Product_o0 = (rtb_Switch1_idx - MPC_framework_B.Gain4) *
+        MPC_framework_P.Ap1_Value;
 
       /* Product: '<S25>/Divide' incorporates:
        *  Product: '<S25>/Product'

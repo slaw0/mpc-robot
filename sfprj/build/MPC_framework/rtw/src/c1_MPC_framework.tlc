@@ -35,10 +35,23 @@
          
          
          
+         static void %<block.SymbolMapping.INIT_ACK>(%<LibSFPassThruPairs(block,1)> %<LibSFPassThruDummy(block)>);
          static void %<block.SymbolMapping.CONTROLLER>(%<LibSFPassThruPairs(block,1)> %<LibSFPassThruDummy(block)>);
             
             
             
+            static void %<block.SymbolMapping.INIT_ACK>(%<LibSFPassThruPairs(block,1)> %<LibSFPassThruDummy(block)>)
+{
+%<LibSFChartInstance(block)>is_c1_MPC_framework = (uint8_T)%<block.SymbolMapping.IN_OPERATION>;
+%<LibSFOutputs(block, 7, 0)> = 0.0F;
+%<LibSFOutputs(block, 12, 0)> = 0U;
+%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_PRIMITIVE>;
+%<LibSFOutputs(block, 9, 0)> = 1U;
+%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0F;
+}
             static void %<block.SymbolMapping.CONTROLLER>(%<LibSFPassThruPairs(block,1)> %<LibSFPassThruDummy(block)>)
 {
 if(%<LibSFInputs(block, 3, 0)> == 8.0F) {
@@ -56,6 +69,8 @@ break;
 }
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_BLUETOOTH>;
 %<LibSFOutputs(block, 9, 0)> = 4U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 3, 0)> == 6.0F) {
 switch(%<LibSFChartInstance(block)>is_CONTROLLER) {
 case %<block.SymbolMapping.IN_HOLD>:
@@ -71,6 +86,8 @@ break;
 }
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
 %<LibSFOutputs(block, 9, 0)> = 3U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 3, 0)> == 1.0F) {
 switch(%<LibSFChartInstance(block)>is_CONTROLLER) {
 case %<block.SymbolMapping.IN_HOLD>:
@@ -189,13 +206,7 @@ if((%<LibSFInputs(block, 0, 0)> == 1) && (%<LibSFInputs(block, 1, 0)> == 1)) {
 }
 break;
 case %<block.SymbolMapping.IN_INIT_ACK>:
-%<LibSFChartInstance(block)>is_c1_MPC_framework = (uint8_T)%<block.SymbolMapping.IN_OPERATION>;
-%<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_PRIMITIVE>;
-%<LibSFOutputs(block, 9, 0)> = 1U;
-%<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_STOPPED>;
-%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
-%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0F;
+%<block.SymbolMapping.INIT_ACK>(%<LibSFPassThruArgs(block,1)>);
 break;
 case %<block.SymbolMapping.IN_OPERATION>:
 switch(%<LibSFChartInstance(block)>is_OPERATION) {
@@ -222,6 +233,8 @@ if(%<LibSFInputs(block, 3, 0)> == 1.0F) {
 } else if(%<LibSFInputs(block, 3, 0)> == 6.0F) {
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
 %<LibSFOutputs(block, 9, 0)> = 3U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else {
 %<LibSFOutputs(block, 7, 0)> = 0.0F;
 }
@@ -249,22 +262,32 @@ if(%<LibSFInputs(block, 3, 0)> == 1.0F) {
 } else if(%<LibSFInputs(block, 3, 0)> == 8.0F) {
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_BLUETOOTH>;
 %<LibSFOutputs(block, 9, 0)> = 4U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 3, 0)> == 7.0F) {
 %<LibSFOutputs(block, 10, 0)> = 4U;
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
 %<LibSFOutputs(block, 9, 0)> = 3U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 3, 0)> == 5.0F) {
 %<LibSFOutputs(block, 10, 0)> = 3U;
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
 %<LibSFOutputs(block, 9, 0)> = 3U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 3, 0)> == 4.0F) {
 %<LibSFOutputs(block, 10, 0)> = 2U;
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
 %<LibSFOutputs(block, 9, 0)> = 3U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 3, 0)> == 3.0F) {
 %<LibSFOutputs(block, 10, 0)> = 1U;
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
 %<LibSFOutputs(block, 9, 0)> = 3U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else {
 %<LibSFOutputs(block, 7, 0)> = 0.0F;
 %<LibSFOutputs(block, 10, 0)> = 0U;
@@ -309,6 +332,8 @@ break;
 }
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_BLUETOOTH>;
 %<LibSFOutputs(block, 9, 0)> = 4U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 3, 0)> == 6.0F) {
 switch(%<LibSFChartInstance(block)>is_PRIMITIVE) {
 case %<block.SymbolMapping.IN_MOVING>:
@@ -322,6 +347,8 @@ break;
 }
 %<LibSFChartInstance(block)>is_OPERATION = (uint8_T)%<block.SymbolMapping.IN_CONFIG>;
 %<LibSFOutputs(block, 9, 0)> = 3U;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else {
 %<LibSFOutputs(block, 7, 0)> = 0.0F;
 switch(%<LibSFChartInstance(block)>is_PRIMITIVE) {
@@ -335,16 +362,20 @@ if(%<LibSFInputs(block, 2, 0)> == 5) {
 } else {
 switch(%<LibSFChartInstance(block)>is_MOVING) {
 case %<block.SymbolMapping.IN_NEGATIVE_MOV_SEG_1>:
-%<LibSFOutputs(block, 8, 0)> = 0.0F;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p3, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0F;
 break;
 case %<block.SymbolMapping.IN_NEGATIVE_MOV_SEG_2>:
-%<LibSFOutputs(block, 8, 0)> = 0.0F;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p4, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0F;
 break;
 case %<block.SymbolMapping.IN_POSITIVE_MOV_SEG_1>:
-%<LibSFOutputs(block, 8, 0)> = 0.0F;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p5, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0F;
 break;
 case %<block.SymbolMapping.IN_POSITIVE_MOV_SEG_2>:
-%<LibSFOutputs(block, 8, 0)> = 0.0F;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p6, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0F;
 break;
 }
 }
@@ -354,28 +385,26 @@ if(%<LibSFInputs(block, 2, 0)> == 4) {
 %<LibSFOutputs(block, 4, 0)> = 0U;
 %<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
 %<LibSFChartInstance(block)>is_MOVING = (uint8_T)%<block.SymbolMapping.IN_NEGATIVE_MOV_SEG_2>;
-%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p4, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0F;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 2, 0)> == 3) {
 %<LibSFOutputs(block, 4, 0)> = 0U;
 %<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
 %<LibSFChartInstance(block)>is_MOVING = (uint8_T)%<block.SymbolMapping.IN_NEGATIVE_MOV_SEG_1>;
-%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p3, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0F;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 2, 0)> == 2) {
 %<LibSFOutputs(block, 4, 0)> = 0U;
 %<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
 %<LibSFChartInstance(block)>is_MOVING = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV_SEG_2>;
-%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p6, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0F;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else if(%<LibSFInputs(block, 2, 0)> == 1) {
 %<LibSFOutputs(block, 4, 0)> = 0U;
 %<LibSFChartInstance(block)>is_PRIMITIVE = (uint8_T)%<block.SymbolMapping.IN_MOVING>;
 %<LibSFChartInstance(block)>is_MOVING = (uint8_T)%<block.SymbolMapping.IN_POSITIVE_MOV_SEG_1>;
-%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p5, "", "", 0)>;
-%<LibSFOutputs(block, 8, 0)> = 1.0F;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
 } else {
-%<LibSFOutputs(block, 8, 0)> = 0.0F;
+%<LibSFOutputs(block, 5, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 6, 0)> = (real32_T)%<LibBlockParameter(p7, "", "", 0)>;
+%<LibSFOutputs(block, 8, 0)> = 1.0F;
 }
 break;
 default:

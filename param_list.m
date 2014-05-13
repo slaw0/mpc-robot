@@ -25,8 +25,8 @@ motor_stopped_value = DA_max / 2;
 motor_positive_value_seg_1 = DA_max * 0.52;
 motor_negative_value_seg_1 = DA_max * 0.48;
 
-motor_positive_value_seg_2 = DA_max * 0.48;
-motor_negative_value_seg_2 = DA_max * 0.52;
+motor_positive_value_seg_2 = DA_max * 0.485;
+motor_negative_value_seg_2 = DA_max * 0.515;
 
 trajectory_time = 5; % desired trajectory running time in seconds
 ticks_per_trajectory_time = trajectory_time / fundamental_sample_time;

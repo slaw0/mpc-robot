@@ -265,7 +265,7 @@ static void c2_c2_MPC_framework(void)
   c2_c_y = (real32_T)sqrt((real_T)c2_c_x);
   c2_d = c2_c_y;
   _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,4);
-  c2_em_b0 = (c2_mpower(c2_d) > c2_mpower(c2_b_a1) + c2_mpower(c2_b_a2));
+  c2_em_b0 = (c2_d > c2_b_a1 + c2_b_a2);
   c2_em_b1 = (c2_d < c2_b_a1 - c2_b_a2);
   if(CV_EML_IF(0, 0, c2_em_b0 || c2_em_b1)) {
     _SFD_EML_CALL(STATE_DURING_DURING_ACTION_TAG,0,5);
@@ -660,10 +660,10 @@ static void sf_load_state_c2_MPC_framework(FILE *c2_file)
 /* SFunction Glue Code */
 void sf_c2_MPC_framework_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2338191497U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(1346483638U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(4065586142U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(3078168226U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(976754495U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2450187096U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(3761924733U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(1321091409U);
 }
 
 mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
@@ -675,10 +675,10 @@ mxArray *sf_c2_MPC_framework_get_autoinheritance_info(void)
   {
     mxArray *mxChecksum = mxCreateDoubleMatrix(4,1,mxREAL);
     double *pr = mxGetPr(mxChecksum);
-    pr[0] = (double)(3709739402U);
-    pr[1] = (double)(3068353971U);
-    pr[2] = (double)(401223129U);
-    pr[3] = (double)(43679264U);
+    pr[0] = (double)(376277256U);
+    pr[1] = (double)(2338174529U);
+    pr[2] = (double)(4164341131U);
+    pr[3] = (double)(1132625652U);
     mxSetField(mxAutoinheritanceInfo,0,"checksum",mxChecksum);
   }
   {
@@ -893,9 +893,9 @@ static void chart_debug_initialization(SimStruct *S)
 
         /* Initialization of EML Model Coverage */
         _SFD_CV_INIT_EML(0,1,2,0,0,0,0,0);
-        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,1304);
-        _SFD_CV_INIT_EML_IF(0,0,98,140,1126,1271);
-        _SFD_CV_INIT_EML_IF(0,1,1126,1170,1217,1271);
+        _SFD_CV_INIT_EML_FCN(0,0,"eML_blk_kernel",0,-1,1296);
+        _SFD_CV_INIT_EML_IF(0,0,98,133,1118,1263);
+        _SFD_CV_INIT_EML_IF(0,1,1118,1162,1209,1263);
         _SFD_TRANS_COV_WTS(0,0,0,1,0);
         if(chartAlreadyPresent==0)
         {
@@ -996,10 +996,10 @@ static void mdlSetWorkWidths_c2_MPC_framework(SimStruct *S)
     ssSetOptions(S,ssGetOptions(S)|SS_OPTION_WORKS_WITH_CODE_REUSE);
   }
 
-  ssSetChecksum0(S,(2623585705U));
-  ssSetChecksum1(S,(2744121787U));
-  ssSetChecksum2(S,(1147323441U));
-  ssSetChecksum3(S,(3807912315U));
+  ssSetChecksum0(S,(2390408860U));
+  ssSetChecksum1(S,(1084335824U));
+  ssSetChecksum2(S,(1294869783U));
+  ssSetChecksum3(S,(1829175565U));
 
   ssSetExplicitFCSSCtrl(S,1);
 }

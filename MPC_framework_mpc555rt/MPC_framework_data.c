@@ -3,11 +3,11 @@
  *
  * Real-Time Workshop code generated for Simulink model MPC_framework.
  *
- * Model version                        : 1.1466
+ * Model version                        : 1.1495
  * Real-Time Workshop file version      : 6.4  (R2006a)  03-Feb-2006
- * Real-Time Workshop file generated on : Thu May 08 18:43:44 2014
+ * Real-Time Workshop file generated on : Tue May 13 15:11:08 2014
  * TLC version                          : 6.4 (Jan 31 2006)
- * C source code generated on           : Thu May 08 18:43:45 2014
+ * C source code generated on           : Tue May 13 15:11:08 2014
  */
 
 #include "MPC_framework.h"
@@ -45,9 +45,9 @@ Parameters_MPC_framework MPC_framework_P = {
                                          */
   0.0F ,                                /* invgeo_alpha_2_InitialValu : '<Root>/invgeo_alpha_2'
                                          */
-  3.0F ,                                /* Ap1_Value : '<S2>/Ap1'
+  4.0F ,                                /* Ap1_Value : '<S2>/Ap1'
                                          */
-  0.06666667014F ,                      /* Ap2_Value : '<S2>/Ap2'
+  0.6999999881F ,                       /* Ap2_Value : '<S2>/Ap2'
                                          */
   0.009999999776F ,                     /* T_Value : '<S2>/T'
                                          */
@@ -57,7 +57,7 @@ Parameters_MPC_framework MPC_framework_P = {
                                          */
   0.0F ,                                /* UnitDelay_X0_b : '<S24>/Unit Delay'
                                          */
-  2.0F ,                                /* Td1_Value : '<S2>/Td1'
+  2.299999952F ,                        /* Td1_Value : '<S2>/Td1'
                                          */
   0.5F ,                                /* Saturation_UpperSat : '<S22>/Saturation'
                                          */
@@ -73,7 +73,7 @@ Parameters_MPC_framework MPC_framework_P = {
                                          */
   0.0F ,                                /* UnitDelay_X0_o : '<S26>/Unit Delay'
                                          */
-  0.0F ,                                /* Td2_Value : '<S2>/Td2'
+  0.3000000119F ,                       /* Td2_Value : '<S2>/Td2'
                                          */
   0.5F ,                                /* Saturation_UpperSat_i : '<S23>/Saturation'
                                          */
@@ -93,13 +93,13 @@ Parameters_MPC_framework MPC_framework_P = {
                                          */
   32768.0F ,                            /* c2_Value : '<S2>/c2'
                                          */
-  42598.0F ,                            /* Saturation1_UpperSat_a : '<S3>/Saturation1'
+  45875.0F ,                            /* Saturation1_UpperSat_a : '<S3>/Saturation1'
                                          */
-  22937.0F ,                            /* Saturation1_LowerSat_m : '<S3>/Saturation1'
+  19661.0F ,                            /* Saturation1_LowerSat_m : '<S3>/Saturation1'
                                          */
-  42598.0F ,                            /* Saturation2_UpperSat : '<S3>/Saturation2'
+  45875.0F ,                            /* Saturation2_UpperSat : '<S3>/Saturation2'
                                          */
-  22937.0F ,                            /* Saturation2_LowerSat : '<S3>/Saturation2'
+  19661.0F ,                            /* Saturation2_LowerSat : '<S3>/Saturation2'
                                          */
   600.0F ,                              /* a1_Value : '<S6>/a1'
                                          */
@@ -119,17 +119,17 @@ Parameters_MPC_framework MPC_framework_P = {
                                          */
   32768U ,                              /* Constant_Value_i : '<S3>/Constant'
                                          */
-  42598U ,                              /* Saturation_UpperSat_n : '<S3>/Saturation'
+  45875U ,                              /* Saturation_UpperSat_n : '<S3>/Saturation'
                                          */
-  22937U ,                              /* Saturation_LowerSat_i : '<S3>/Saturation'
+  19661U ,                              /* Saturation_LowerSat_i : '<S3>/Saturation'
                                          */
   31457U ,                              /* SFunction_p3 : '<Root>/State Machine'
                                          */
-  34078U ,                              /* SFunction_p4 : '<Root>/State Machine'
+  33423U ,                              /* SFunction_p4 : '<Root>/State Machine'
                                          */
   34078U ,                              /* SFunction_p5 : '<Root>/State Machine'
                                          */
-  31457U ,                              /* SFunction_p6 : '<Root>/State Machine'
+  32112U ,                              /* SFunction_p6 : '<Root>/State Machine'
                                          */
   32768U ,                              /* SFunction_p7 : '<Root>/State Machine'
                                          */

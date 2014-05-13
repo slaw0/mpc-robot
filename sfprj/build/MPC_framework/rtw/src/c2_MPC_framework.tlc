@@ -13,10 +13,10 @@
 %function ChartFunctions(block,system) void
    %openfile chartFcnsBuf
      %assign junkVal = LibGenMathFcnCall("abs",FcnGetDataTypeIdFromName("single"),"0.0","")
-%assign junkVal = LibGenMathFcnCall("pow",FcnGetDataTypeIdFromName("double"),"0.0","0.0")
 %assign junkVal = LibGenMathFcnCall("sin",FcnGetDataTypeIdFromName("single"),"0.0","")
 %assign junkVal = LibGenMathFcnCall("cos",FcnGetDataTypeIdFromName("single"),"0.0","")
 %assign junkVal = LibGenMathFcnCall("sqrt",FcnGetDataTypeIdFromName("single"),"0.0","")
+%assign junkVal = LibGenMathFcnCall("pow",FcnGetDataTypeIdFromName("double"),"0.0","0.0")
 %assign junkVal = LibGenMathFcnCall("rtIsNaN",FcnGetDataTypeIdFromName("single"),"0.0","")
 %assign junkVal = LibGenMathFcnCall("rtIsInf",FcnGetDataTypeIdFromName("single"),"0.0","")
 %assign junkVal = LibGenMathFcnCall("atan2",FcnGetDataTypeIdFromName("single"),"0.0","0.0")
@@ -83,7 +83,7 @@ real32_T eml_al1;
 uint8_T eml_error;
 real32_T eml_al1_1;
 eml_y = sqrtf((real32_T)pow((real_T)%<LibSFInputs(block, 0, 0)>, 2.0) + (real32_T)pow((real_T)%<LibSFInputs(block, 1, 0)>, 2.0));
-if(((real32_T)pow((real_T)eml_y, 2.0) > (real32_T)pow((real_T)%<LibSFInputs(block, 4, 0)>, 2.0) + (real32_T)pow((real_T)%<LibSFInputs(block, 5, 0)>, 2.0)) || (eml_y < %<LibSFInputs(block, 4, 0)> - %<LibSFInputs(block, 5, 0)>)) {
+if((eml_y > %<LibSFInputs(block, 4, 0)> + %<LibSFInputs(block, 5, 0)>) || (eml_y < %<LibSFInputs(block, 4, 0)> - %<LibSFInputs(block, 5, 0)>)) {
 eml_al1 = %<LibSFInputs(block, 2, 0)>;
 eml_y = %<LibSFInputs(block, 3, 0)>;
 eml_error = 1U;
