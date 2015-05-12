@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.1498"
+    ComputedModelVersion    "1.1503"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -46,10 +46,10 @@ Model {
   Created		  "Tue Dec 17 14:33:00 2013"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "Developer"
+  LastModifiedBy	  "user"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 14 16:55:23 2014"
-  ModelVersionFormat	  "1.%<AutoIncrement:1498>"
+  LastModifiedDate	  "Thu May 07 13:26:02 2015"
+  ModelVersionFormat	  "1.%<AutoIncrement:1503>"
   ConfigurationManager	  "None"
   TargetProperties	  "DataTag0"
   LinearizationMsg	  "none"
@@ -759,9 +759,6 @@ Model {
       Deterministic	      on
       X0		      "0"
       OutPortSampleTime	      "-1"
-    }
-    Block {
-      BlockType		      Reference
     }
     Block {
       BlockType		      RelationalOperator
@@ -2516,7 +2513,7 @@ Model {
       System {
 	Name			"DA_out_value sender"
 	Location		[391, 186, 1199, 746]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2735,9 +2732,9 @@ Model {
 	  Position		  [325, 100, 425, 140]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -2749,7 +2746,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "init_1_message_frequency"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -2820,9 +2817,9 @@ Model {
 	  Position		  [360, 90, 460, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -2834,7 +2831,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "-1"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -6011,9 +6008,9 @@ Model {
 	  Position		  [55, 90, 155, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -6022,9 +6019,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('0C')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "3"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -6192,9 +6189,9 @@ Model {
 	  Position		  [360, 100, 460, 140]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -6206,7 +6203,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "-1"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -6466,9 +6463,9 @@ Model {
 	  Position		  [15, 135, 115, 175]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -6477,9 +6474,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('07')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "4"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -6846,9 +6843,9 @@ Model {
 	  Position		  [555, 100, 655, 140]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -6860,7 +6857,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "-1"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -7000,9 +6997,9 @@ Model {
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Comp"
 "are\nTo Constant"
 	      SourceType	      "Compare To Constant"
-	      ShowPortLabels	      "on"
+	      ShowPortLabels	      on
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -7011,7 +7008,7 @@ Model {
 	      relop		      "=="
 	      const		      "init_ack_sync_message"
 	      LogicOutDataTypeMode    "uint8"
-	      ZeroCross		      "off"
+	      ZeroCross		      off
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -7110,9 +7107,9 @@ Model {
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Comp"
 "are\nTo Constant"
 	      SourceType	      "Compare To Constant"
-	      ShowPortLabels	      "on"
+	      ShowPortLabels	      on
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -7121,7 +7118,7 @@ Model {
 	      relop		      "=="
 	      const		      "init_ack_async_message"
 	      LogicOutDataTypeMode    "uint8"
-	      ZeroCross		      "off"
+	      ZeroCross		      off
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -7157,9 +7154,9 @@ Model {
 	  Position		  [40, 50, 140, 90]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -7168,9 +7165,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('02')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "5"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -7182,9 +7179,9 @@ Model {
 	  Position		  [40, 145, 140, 185]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -7193,9 +7190,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('03')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "6"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -7287,9 +7284,9 @@ Model {
 	  Position		  [35, 90, 135, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -7298,9 +7295,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('0F')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "7"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -7536,9 +7533,9 @@ Model {
 	  SourceBlock		  "simulink/Logic and Bit\nOperations/Detect\n"
 "Change"
 	  SourceType		  "Detect Change"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -7592,9 +7589,9 @@ Model {
 	      Position		      [360, 95, 460, 135]
 	      SourceBlock	      "mpc555toucan/TouCAN Transmit"
 	      SourceType	      "MPC555 TouCAN Transmit"
-	      ShowPortLabels	      "on"
+	      ShowPortLabels	      on
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -7606,7 +7603,7 @@ Model {
 	      bufferids		      "0"
 	      buffers_used	      "0, 1, 2"
 	      t			      "-1"
-	      enablePassThru	      "off"
+	      enablePassThru	      off
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -7686,9 +7683,9 @@ Model {
 	  Position		  [55, 90, 155, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -7697,9 +7694,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('08')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "8"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -7834,7 +7831,7 @@ Model {
       System {
 	Name			"request_incremental_value sender"
 	Location		[419, 269, 921, 621]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -7966,9 +7963,9 @@ Model {
 	  Position		  [360, 90, 460, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Transmit"
 	  SourceType		  "MPC555 TouCAN Transmit"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -7980,7 +7977,7 @@ Model {
 	  bufferids		  "0"
 	  buffers_used		  "0, 1, 2"
 	  t			  "-1"
-	  enablePassThru	  "off"
+	  enablePassThru	  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -8037,9 +8034,9 @@ Model {
 	  Position		  [55, 90, 155, 130]
 	  SourceBlock		  "mpc555toucan/TouCAN Receive"
 	  SourceType		  "MPC555 TouCAN Receive"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -8048,9 +8045,9 @@ Model {
 	  module		  "A"
 	  ids			  "hex2dec('04')"
 	  notification_type	  "Function Call Outport"
-	  auto_select_buffer	  "on"
+	  auto_select_buffer	  on
 	  bufferids		  "9"
-	  use_queue		  "off"
+	  use_queue		  off
 	  queue_length		  "3"
 	  message_type		  "Standard (11-bit identifier)"
 	  t			  "-1"
@@ -8213,9 +8210,9 @@ Model {
 	  SourceBlock		  "simulink/Logic and Bit\nOperations/Compare"
 "\nTo Zero"
 	  SourceType		  "Compare To Zero"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -8223,7 +8220,7 @@ Model {
 	  RTWMemSecDataParameters "Inherit from model"
 	  relop			  ">"
 	  LogicOutDataTypeMode	  "uint8"
-	  ZeroCross		  "off"
+	  ZeroCross		  off
 	}
 	Block {
 	  BlockType		  Reference
@@ -8233,9 +8230,9 @@ Model {
 	  SourceBlock		  "simulink/Logic and Bit\nOperations/Detect\n"
 "Change"
 	  SourceType		  "Detect Change"
-	  ShowPortLabels	  "on"
+	  ShowPortLabels	  on
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -8297,9 +8294,9 @@ Model {
 	      Position		      [465, 95, 565, 135]
 	      SourceBlock	      "mpc555toucan/TouCAN Transmit"
 	      SourceType	      "MPC555 TouCAN Transmit"
-	      ShowPortLabels	      "on"
+	      ShowPortLabels	      on
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -8311,7 +8308,7 @@ Model {
 	      bufferids		      "0"
 	      buffers_used	      "0, 1, 2"
 	      t			      "-1"
-	      enablePassThru	      "off"
+	      enablePassThru	      off
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -9652,347 +9649,344 @@ MatData {
   }
   DataRecord {
     Tag			    DataTag0
-    Data		    "  %)30     .    ,$L   8    (    $0         !     "
-"     $    &    :&%N9&QE   !    %P   %)45T-O;F9I9W5R871I;VXN5&%R9V5T  X   #@2@"
-"  !@    @    !          4    (    E     $    !          X    8'P  !@    @    "
-")          4    (    Z!X   $    !          (   #H'@   0   %<   \"(!   R 4  - "
-"%  !@%0  X!X  .@>             %)45T-O;F9I9W5R871I;VX 5&%R9V5T &%C=&EV94QI<W0 "
-"3&ES=$AE860 9&]W;@!.;V1E &1A=&$ 35!#-34U9&M#;VYF:6< 4UE35$5-7T-,3T-+4P!C;VYF:"
-"6=U<F%T:6]N7W1Y<&4 :&ED9&5N7V-O;F9I9W5R871I;VX 35!#-7AX7U9A<FEA;G0 -34U $]S8V"
-"EL;&%T;W)?1G)E<75E;F-Y #(P %53255?4$Q04D-27T)?348 55-)55]03%!20U)?0E]$259& %5"
-"3255?4T-#4E]\"7T1&3D@ 55-)55]30T-27T)?1$9.3 !54TE57U-#0U)?0E]%0D1& $5X=%]-;V1"
-"E7U-E<FEA; !%>'1?36]D95]397)I86Q?4W1A=&4 4WES=&5M7T9R97%U96YC>0!3>7-T96U?0VQO"
-"8VL 0TQ+3U54 ')E<V]U<F-E<P!3>7-T96U297-O=7)C97, <FEG:'0 5$]50T%. $-!3E]! %1/5"
-"4-!3E]04D]04P!4<F%N<VUI=%]\"=69F97)?3G5M8F5R #  25)17TQE=F5L $E.5%],159%3#$ 3"
-"6%S:W, 5$]50T%.7TU!4TM3 %1I;6EN9P!43U5#04Y?5$E-24Y' $-!3E]\"875D7U)A=&4 0T%.7"
-"T)I=%]2871E $YU;6)E<E]/9E]1=6%N=&$ 4V%M<&QE7U!O:6YT %)E<WEC:')O;FEZ871I;VY?2G"
-"5M<%]7:61T: !296=I<W1E<E]#;VYF:6=U<F%T:6]N %)E<75I<F53:&%R9614>$)U9F9E<@!#04Y"
-"?0@!)3E1?3$5614PR $-!3E]# $YO=$%V86EL86)L90!-97-S86=E $-!3E]#7P!)3E1?3$5614PS"
-" $-!3E]#7TY! %1/54-!3E]215-/55)#15, 5&5R;6EN871O<@!C;&%S<VME>0!S;W5R8V5,:6)R8"
-"7)Y &UP8S4U-71O=6-A;@!M<&,U-35D<FEV97)S &)L;V-K %%334-- %-#22!#;VYF:6=U<F%T:6"
-"]N %-#23$ 45--0TU?4T-) %-#25]M;V1E7V-O;G1R;VP .\"UB:70@9&%T80!,;V]P8F%C:U]M;V"
-"1E $)I=%]R871E7V%C:&EE=F5D %-#>$)2 %-Y<W1E;5]C;&]C:P!30TDR $U)3U,Q $U)3U,Q($-"
-"O;F9I9W5R871I;VX 4')E<V-A;&5R $UO9'5L=7-?0V]U;G1E<E\\V $U)3U-?0T]53E1%4@!-;V1"
-"U;'5S7TQO861?4V5N<VET:79I='D 1&ES86)L960 0VQO8VM?4')E<V-A;&5R $UO9'5L=7-?3&%T"
-"8VA?4F5G:7-T97( 36]D=6QU<U]#;W5N=&5R7S(R $UI;W-297-O=7)C97, 5&%R9V5T<T-O;6UO;"
-"D-O;F9I9P!#0U  0T-0($-O;F9I9W5R871I;VX 0T-07U)%4T]54D-%4P                    "
-"           0    (               $    $               !    !@              \" "
-"    D               @    ;               (    '0              \"    !\\      "
-"         @    E               (    )P              \"    #(               @  "
-"  W               !    .               \"    #X               @   !!         "
-"      (    20              \"    $T               @   !3              !4    5"
-"0              5    %<                                                       "
-"   0                    $          @    $               (          P    (    "
-"           ,         !     $               0         !0    $    $          4 "
-"         P    (    #          8         !@    $               <         !P   "
-"                 @         \"                     D         \"0              "
-"      H         !P                    L         \"                     P     "
-"    \"0                    T         \"@                    X         !P     "
-"               \\         \"                    !          \"0               "
-"    !$         \"P    $    '         !(         #                            "
-"    @    $              !,         #                                @    $   "
-" \"         !0         #                                @    $    6         !"
-"4         #                                @    $    8         !8         #  "
-"                              @    $    :         !<         #               "
-"                 @    $    <         !@         #                            "
-"    @    $    >         !D         #                                @    $   "
-" @         !H         #                                @    $    B         !L"
-"         #                               #0    $    %         !P         #@  "
-" \"8              !T         #@   \"8    G         !X         #P    $    F   "
-"      !\\         $    \"D              \"          $    \"D    J         \"$"
-"         $0    $    I         \"(         $@    $    2         \",         $P"
-"    $    M         \"0          @    $    N         \"4         #            "
-"                    @    $    O         \"8         #                        "
-"        @    $    Q         \"<         #                                @   "
-" $    S         \"@         #                                @    $    U     "
-"    \"D         #                                @    $    W         \"H     "
-"    #                                @    $    Y         \"L         #       "
-"                         @    $    [         \"P         #                   "
-"             @    $    ]         \"T          P   #\\              \"X       "
-"  #                                @    $    _         \"\\         #        "
-"                        @    $   !\"         #          #                    "
-"            @    $   !$         #$         #                                @"
-"    $   !&         #(         #                                @    $   !(   "
-"      #,         #                                @    $   !*         #0     "
-"    #                                @    $   !,         #4         #        "
-"                        @    $   !.         #8         #                     "
-"           @    $   !0         #<         #                                @ "
-"   $   !2         #@         #                                @    $   !4    "
-"     #D         #                                @    $   !6         #H      "
-"   #                                @    $   !8         #L         #         "
-"                       @    $   !:         #P         #                      "
-"          @    $   !<         #T         #                                @  "
-"  $   !>         #X         #                                @    $   !@     "
-"    #\\         #                                @    $   !B         $       "
-"   #                                @    $   !D         $$         #         "
-"                       @    $   !F         $(         #                      "
-"          @    $   !H         $,         #                                @  "
-"  $   !J         $0         #                                @    $   !L     "
-"    $4         #                                @    $   !N         $8       "
-"  #                                @    $   !P         $<         #          "
-"                      @    $   !R         $@         #                       "
-"         @    $   !T         $D         #                                @   "
-" $   !V         $H         #                                @    $   !X      "
-"   $L         #                                @    $   !Z         $P        "
-" #                                @    $   !\\         $T         #          "
-"                      @    $   !^         $X         #                       "
-"         @    $   \"          $\\         #                                @ "
-"   $   \"\"         %          #                                @    $   \"$ "
-"        %$         #                                @    $   \"&         %(  "
-"       #                                @    $   \"(         %,         #    "
-"                            @    $   \"*         %0         #                "
-"                @    $   \",         %4         #                            "
-"    @    $   \".         %8         #                                @    $  "
-" \"0         %<         #                                @    $   \"2        "
-" %@         #                                @    $   \"4         %D         "
-"#                                @    $   \"6         %H         #           "
-"                     @    $   \"8         %L         #                       "
-"         @    $   \":         %P         #                                @  "
-"  $   \"<         %T         #                                @    $   \">   "
-"      %X         #                                @    $   \"@         %\\   "
-"      #                                @    $   \"B         &          #     "
-"                                     \"     P    $    O    /0    $    P      "
-"    $    %     0   \"X    %    !P    $    ,    &@    $    -    '     $    L  "
-"  .0    $    M    .@         \\    #@    H    !          L    !     0    P   "
-"      #0    X         #P   !     !     @   !$    !     P   !(    !    !    !,"
-"    !    !0   !0    !    !@   !4    !    !P   !8    !    \"    !<    !    \"0"
-"   !@    !    \"@   !D    !    \"P                    4    '     0   \"@    :"
-"     0   \"D    <     0   \"H    Y     0   \"L    Z         #L    (    \"@   "
-" $    .    \"P    $    /    '@    $    9    +P    $    ?    ,0    $    A    -"
-"     $    F    -@    $    G    #          -          4    @         \"$    B "
-"        \",    D     0   !     F     0   !<    N     0   !@               8  "
-"  H     0   !$    I     0   !(    J     0   !,    K     0   !0    L     0   !"
-"4    M     0   !8         !0   \"          (0   \"(         ,    \"0    !    "
-"&@   \"8    !    '0   \"X    !    '@               @   \"@    !    &P   \"T  "
-"  !    '          !    ,P    $    @    !0   \"          (0   \"(         -0  "
-" \"0    !    (@   \"8    !    )    \"X    !    )0               0   \"@    ! "
-"   (P               0    4    !    ,0    $    %     0   #(    !    !0    $   "
-" S     0    4    !    -     $    %     0   #4    !    !0    $    V     0    4"
-"    !    -P    $    %     0   #@    !    !0    $    Y    !     H         /P  "
-"  L    !    .@   $     !    0    $@    !    1@         &    \"P    $    [    "
-"0@        !#    1     $    \\    10    $    ]    1@    $    ^    1P    $    _"
-"          8    +     0   $$   !\"         $,   !$     0   $(   !%     0   $, "
-"  !&     0   $0   !'     0   $4         !0    H         2@    L    !    1P   "
-"$L    !    2    $P    !    3    %(    !    4     0    +     0   $D   !.      "
-"   $\\   !0     0   $H   !1     0   $L         !     L    !    30   $X       "
-"  3P   %     !    3@   %$    !    3P                    (    *         %8    "
-"+     0   %$                    !    !0    $   !2     0    4    !    4P    $ "
-"   %     0   %0    !    !0    $   !5     0    4    !    5@    $    %     0   "
-"%<    !    !0    $   !8     0    4    !    60    $    %     0   %\\    %    !"
-"P    $   !:    &@    $   !;    '     $   !<    .0    $   !=    .@    $   !>  "
-"   0    4    !    8     $    %     0   &$    !    !0    $   !B     0    4    "
-"!    8P    $    %     0   &0    !    !0    $   !E     0    4    !    9@    $ "
-"   %     0   &<    !    !0    $   !H     0    4    !    :0    $    %     0   "
-"&H    !    !0    $   !K     0    4    !    ;     $    %     0   &T    !    !0"
-"    $   !N     0    4    !    ;P    $    %     0   '     !    !0    $   !Q   "
-"  0    4    !    <@    $    %     0   ',    !    !0    $   !T     0    4    !"
-"    =0    $    %     0   '8    !    !0    $   !W     0    4    !    >     $  "
-"  %     0   'D    !    !0    $   !Z     0    4    !    >P    $    %     0   '"
-"P    !    !0    $   !]     0    4    !    ?@    $    %     0   '\\    !    !0"
-"    $   \"      0    4    !    @0    $    %     0   ((    !    !0    $   \"# "
-"    0    4    !    A     $    %     0   (4    !    !0    $   \"&     0    4  "
-"  !    AP    $    %     0   (@    !    !0    $   \")     0    4    !    B@   "
-" $    %     0   (L    !    !0    $   \",     0    4    !    C0    $    %     "
-"0   (X    !    !0    $   \"/     0    4    !    D     $    %     0   )$      "
-"         X   !X    !@    @    !          4    (     0    $    !          X   "
-"!(    !@    @    -          4    (    !0    $    !          8    4        W0("
-"    !     0    $         #@   $@    &    \"     0         !0    @    !    %  "
-"   $         $    !0   !3>7-T96T@0V]N9FEG=7)A=&EO;@     .    ,     8    (    "
-"\"0(        %    \"     $    !     0         \"  $       X    X    !@    @   "
-" &          4    (     0    $    !          D    (               .    .     8"
-"    (    !@         %    \"     $    !     0         )    \"               #@"
-"   #@    &    \"     8         !0    @    !     0    $         \"0    @      "
-"         X    X    !@    @    &          4    (     0    $    !          D   "
-" (               .    .     8    (    !@         %    \"     $    !     0    "
-"     )    \"               #@   #     &    \"     D\"        !0    @    !    "
-" 0    $          @ !       .    ,     8    (    \"0(        %    \"     $    "
-"!     0         \"  $       X    X    !@    @    &          4    (     0    $"
-"    !          D    (         - 2@T$.    .     8    (    !@         %    \"  "
-"   $    !     0         )    \"         #0$G-!#@   #@    &    \"     8       "
-"  !0    @    !     0    $         \"0    @         T!)S00X   !(    !@    @   "
-" -          4    (    !0    $    !          8    4        W0(    !     0    0"
-"         #@   $@    &    \"     T         !0    @    %     0    $         !@ "
-"  !0       #= @    $    !    !0         .    2     8    (    !          %    "
-"\"     $    4     0         0    %    %1/54-!3B!#;VYF:6=U<F%T:6]N      X    P"
-"    !@    @    ) @        4    (     0    $    !          (  0      #@   $@  "
-"  &    \"     T         !0    @    %     0    $         !@   !0       #= @   "
-" $    !    \"0         .    .     8    (    !@         %    \"     $    !    "
-" 0         )    \"               #@   #@    &    \"     8         !0    @    "
-"!     0    $         \"0    @         @(0.00X    X    !@    @    &          4"
-"    (     0    $    !          D    (            ,$ .    .     8    (    !@  "
-"       %    \"     $    !     0         )    \"            .@_#@   #@    &   "
-" \"     8         !0    @    !     0    $         \"0    @           #P/PX   "
-"!     !@    @    -          4    (     0    0    !          8    0    !0    4"
-"    &    !     X   !(    !@    @    -          4    (    !0    $    !        "
-"  8    4        W0(    !     0    H         #@   #     &    \"     D\"       "
-" !0    @    !     0    $          @ !       .    2     8    (    #0         %"
-"    \"     4    !     0         &    %        -T\"     0    $    (          X"
-"   !(    !@    @    -          4    (    !0    $    !          8    4        "
-"W0(    !     0    P         #@   #@    &    \"     8         !0    @    !    "
-" 0    $         \"0    @               X   !     !@    @    -          4    ("
-"     0    0    !          8    0     @    <    (    !     X   !(    !@    @  "
-"  -          4    (    !0    $    !          8    4        W0(    !     0    "
-"T         #@   #     &    \"     D\"        !0    @    !     0    $          "
-"@ !       .    2     8    (    #0         %    \"     4    !     0         & "
-"   %        -T\"     0    $    +          X   !P    !@    @    $          4  "
-"  (     0   #H    !         !     Z    0T%.7T,@:7,@;F]T(&%V86EL86)L92!W:71H('"
-"1H:7,@35!#-7AX('!R;V-E<W-O<B!V87)I86YT+@        X   !(    !@    @    -       "
-"   4    (    !0    $    !          8    4        W0(    !     0    X         "
-"#@   $@    &    \"     T         !0    @    %     0    $         !@   !0     "
-"  #= @    $    !    $          .    .     8    (    !@         %    \"     $ "
-"   !     0         )    \"               #@   $@    &    \"     T         !0 "
-"   @    %     0    $         !@   !0       #= @    $    !    $0         .    "
-",     8    (    \"0(        %    \"     $    !     0         \"  $       X   "
-"!(    !@    @    -          4    (    !0    $    !          8    4        W0("
-"    !     0    \\         #@   $@    &    \"     T         !0    @    %     0"
-"    $         !@   !0       #= @    $    !    #@         .    2     8    (   "
-" #0         %    \"     4    !     0         &    %        -T\"     0    $   "
-" '          X   !(    !@    @    -          4    (    !0    $    !          8"
-"    4        W0(    !     0   !(         #@   $@    &    \"     T         !0 "
-"   @    %     0    $         !@   !0       #= @    $    !    $P         .    "
-"2     8    (    !          %    \"     $    5     0         0    %0   $U00S4U"
-"-61K0V]N9FEG+E1/54-!3@    X   !(    !@    @    -          4    (    !0    $  "
-"  !          8    4        W0(    !     0    8         #@   %     &    \"    "
-" 0         !0    @    !    '     $         $    !P   !-4$,U-35D:T-O;F9I9RY365"
-"-414U?0TQ/0TM3      X   !(    !@    @    -          4    (    !0    $    !   "
-"       8    4        W0(    !     0    ,         #@   $@    &    \"     T    "
-"     !0    @    %     0    $         !@   !0       #= @    $    !     @      "
-"   .    8     8    (    !          %    \"     $    K     0         0    *P  "
-" $U00U]F<F%M97=O<FLO35!#-34U\"E)E<V]U<F-E\"D-O;F9I9W5R871I;VX       X   !(   "
-" !@    @    -          4    (    !0    $    !          8    4        W0(    !"
-"     0   !4         #@   $@    &    \"     T         !0    @    %     0    $ "
-"        !@   !0       #= @    $    !    %P         .    2     8    (    #0   "
-"      %    \"     4    !     0         &    %        -T\"     0    $    9    "
-"      X   !(    !@    @    -          4    (    !0    $    !          8    4 "
-"       W0(    !     0   !L         #@   $@    &    \"     T         !0    @  "
-"  %     0    $         !@   !0       #= @    $    !    '0         .    2     "
-"8    (    #0         %    \"     4    !     0         &    %        -T\"     "
-"0    $    ?          X   !(    !@    @    -          4    (    !0    $    !  "
-"        8    4        W0(    !     0   \"$         #@   $@    &    \"     T  "
-"       !0    @    %     0    $         !@   !0       #= @    $    !    (P    "
-"     .    2     8    (    #0         %    \"     4    !     0         &    % "
-"       -T\"     0    $    E          X    P    !@    @    ) @        4    (  "
-"   0    $    !          (  0      #@   #     &    \"     D\"        !0    @  "
-"  !     0    $          @ !       .    4     8    (    !          %    \"    "
-" $    9     0         0    &0   %-T86YD87)D('1R86YS;6ET+W)E8V5I=F4         #@"
-"   #@    &    \"     8         !0    @    !     0    $         \"0    @    [L"
-"1,[L<?\"0 X    X    !@    @    &          4    (     0    $    !          D  "
-"  (          ! 4$ .    .     8    (    !@         %    \"     $    !     0   "
-"      )    \"         #0$G-!#@   $@    &    \"     T         !0    @    %    "
-" 0    $         !@   !0       #= @    $    !    )P         .    ,     8    ( "
-"   \"0(        %    \"     $    !     0         \"  $       X   !0    !@    @"
-"    $          4    (     0   !D    !         !     9    4W1A;F1A<F0@=')A;G-M"
-":70O<F5C96EV90         .    .     8    (    !@         %    \"     $    !    "
-" 0         )    \"    #NQ$SNQQ\\) #@   #@    &    \"     8         !0    @   "
-" !     0    $         \"0    @          $!00 X    X    !@    @    &          "
-"4    (     0    $    !          D    (         - 2<T$.    2     8    (    #0 "
-"        %    \"     4    !     0         &    %        -T\"     0    $    H  "
-"        X    P    !@    @    ) @        4    (     0    $    !          (  0 "
-"     #@   #@    &    \"     8         !0    @    !     0    $         \"0    "
-"@               X    P    !@    @    ) @        4    (     0    $    !       "
-"   (  0      #@   #@    &    \"     8         !0    @    !     0    $        "
-" \"0    @               X    X    !@    @    &          4    (     0    $    "
-"!          D    (               .    2     8    (    #0         %    \"     4"
-"    !     0         &    %        -T\"     0    $    J          X    P    !@ "
-"   @    ) @        4    (     0    $    !          (  0      #@   #@    &    "
+    Data		    "  %)30     .    H$H   8    (    $0         !     "
+"     $    &    :&%N9&QE   !    %P   %)45T-O;F9I9W5R871I;VXN5&%R9V5T  X   !02@"
+"  !@    @    !          4    (    DP    $    !          X   #8'@  !@    @    "
+")          4    (    J!X   $    !          (   \"H'@   0   %<   \"(!   R 4  -"
+" %   P%0  H!X  *@>             %)45T-O;F9I9W5R871I;VX 5&%R9V5T &%C=&EV94QI<W0"
+" 3&ES=$AE860 9&]W;@!.;V1E &1A=&$ 35!#-34U9&M#;VYF:6< 4UE35$5-7T-,3T-+4P!C;VYF"
+":6=U<F%T:6]N7W1Y<&4 :&ED9&5N7V-O;F9I9W5R871I;VX 35!#-7AX7U9A<FEA;G0 -34U $]S8"
+"VEL;&%T;W)?1G)E<75E;F-Y #(P %53255?4$Q04D-27T)?348 55-)55]03%!20U)?0E]$259& %"
+"53255?4T-#4E]\"7T1&3D@ 55-)55]30T-27T)?1$9.3 !54TE57U-#0U)?0E]%0D1& $5X=%]-;V"
+"1E7U-E<FEA; !%>'1?36]D95]397)I86Q?4W1A=&4 4WES=&5M7T9R97%U96YC>0!3>7-T96U?0VQ"
+"O8VL 0TQ+3U54 ')E<V]U<F-E<P!3>7-T96U297-O=7)C97, <FEG:'0 5$]50T%. $-!3E]! %1/"
+"54-!3E]04D]04P!4<F%N<VUI=%]\"=69F97)?3G5M8F5R #  25)17TQE=F5L $E.5%],159%3#$ "
+"36%S:W, 5$]50T%.7TU!4TM3 %1I;6EN9P!43U5#04Y?5$E-24Y' $-!3E]\"875D7U)A=&4 0T%."
+"7T)I=%]2871E $YU;6)E<E]/9E]1=6%N=&$ 4V%M<&QE7U!O:6YT %)E<WEC:')O;FEZ871I;VY?2"
+"G5M<%]7:61T: !296=I<W1E<E]#;VYF:6=U<F%T:6]N %)E<75I<F53:&%R9614>$)U9F9E<@!#04"
+"Y?0@!)3E1?3$5614PR $-!3E]# $YO=$%V86EL86)L90!-97-S86=E $-!3E]#7P!)3E1?3$5614P"
+"S $-!3E]#7TY! %1/54-!3E]215-/55)#15, 5&5R;6EN871O<@!C;&%S<VME>0!S;W5R8V5,:6)R"
+"87)Y &UP8S4U-71O=6-A;@!M<&,U-35D<FEV97)S &)L;V-K %%334-- %-#22!#;VYF:6=U<F%T:"
+"6]N %-#23$ 45--0TU?4T-) %-#25]M;V1E7V-O;G1R;VP .\"UB:70@9&%T80!,;V]P8F%C:U]M;"
+"V1E $)I=%]R871E7V%C:&EE=F5D %-#>$)2 %-Y<W1E;5]C;&]C:P!30TDR $U)3U,Q $U)3U,Q($"
+"-O;F9I9W5R871I;VX 4')E<V-A;&5R $UO9'5L=7-?0V]U;G1E<E\\V $U)3U-?0T]53E1%4@!-;V"
+"1U;'5S7TQO861?4V5N<VET:79I='D 1&ES86)L960 0VQO8VM?4')E<V-A;&5R $UO9'5L=7-?3&%"
+"T8VA?4F5G:7-T97( 36]D=6QU<U]#;W5N=&5R7S(R $UI;W-297-O=7)C97, 5&%R9V5T<T-O;6UO"
+";D-O;F9I9P!#0U  0T-0($-O;F9I9W5R871I;VX 0T-07U)%4T]54D-%4P                   "
+"            0    (               $    $               !    !@              \""
+"     D               @    ;               (    '0              \"    !\\     "
+"          @    E               (    )P              \"    #(               @ "
+"   W               !    .               \"    #X               @   !!        "
+"       (    20              \"    $T               @   !3              !4    "
+"50              5    %<                                                      "
+"    0                    $          @    $               (          P    (   "
+"            ,         !     $               0         !0    $    $          4"
+"          P    (    #          8         !@    $               <         !P  "
+"                  @         \"                     D         \"0             "
+"       H         !P                    L         \"                     P    "
+"     \"0                    T         \"@                    X         !P    "
+"                \\         \"                    !          \"0              "
+"     !$         \"P    $    '         !(         #                           "
+"     @    $    \"         !,         #                                @    $ "
+"   4         !0         #                                @    $    6         "
+"!4         #                                @    $    8         !8         # "
+"                               @    $    :         !<         #              "
+"                  @    $    <         !@         #                           "
+"     @    $    >         !D         #                                @    $  "
+"  @         !H         #                               #0    $    %         !"
+"L         #@   \"0              !P         #@   \"0    E         !T         #"
+"P    $    D         !X         $    \"<              !\\         $    \"<    "
+"H         \"          $0    $    G         \"$         $@    $    2         "
+"\"(         $P    $    K         \",          @    $    L         \"0        "
+" #                                @    $    M         \"4         #          "
+"                      @    $    O         \"8         #                      "
+"          @    $    Q         \"<         #                                @ "
+"   $    S         \"@         #                                @    $    U   "
+"      \"D         #                                @    $    W         \"H   "
+"      #                                @    $    Y         \"L         #     "
+"                           @    $    [         \"P          P   #T           "
+"   \"T         #                                @    $    ]         \"X      "
+"   #                                @    $   !          \"\\         #       "
+"                         @    $   !\"         #          #                   "
+"             @    $   !$         #$         #                                "
+"@    $   !&         #(         #                                @    $   !(  "
+"       #,         #                                @    $   !*         #0    "
+"     #                                @    $   !,         #4         #       "
+"                         @    $   !.         #8         #                    "
+"            @    $   !0         #<         #                                @"
+"    $   !2         #@         #                                @    $   !4   "
+"      #D         #                                @    $   !6         #H     "
+"    #                                @    $   !8         #L         #        "
+"                        @    $   !:         #P         #                     "
+"           @    $   !<         #T         #                                @ "
+"   $   !>         #X         #                                @    $   !@    "
+"     #\\         #                                @    $   !B         $      "
+"    #                                @    $   !D         $$         #        "
+"                        @    $   !F         $(         #                     "
+"           @    $   !H         $,         #                                @ "
+"   $   !J         $0         #                                @    $   !L    "
+"     $4         #                                @    $   !N         $8      "
+"   #                                @    $   !P         $<         #         "
+"                       @    $   !R         $@         #                      "
+"          @    $   !T         $D         #                                @  "
+"  $   !V         $H         #                                @    $   !X     "
+"    $L         #                                @    $   !Z         $P       "
+"  #                                @    $   !\\         $T         #         "
+"                       @    $   !^         $X         #                      "
+"          @    $   \"          $\\         #                                @"
+"    $   \"\"         %          #                                @    $   \"$"
+"         %$         #                                @    $   \"&         %( "
+"        #                                @    $   \"(         %,         #   "
+"                             @    $   \"*         %0         #               "
+"                 @    $   \",         %4         #                           "
+"     @    $   \".         %8         #                                @    $ "
+"  \"0         %<         #                                @    $   \"2       "
+"  %@         #                                @    $   \"4         %D        "
+" #                                @    $   \"6         %H         #          "
+"                      @    $   \"8         %L         #                      "
+"          @    $   \":         %P         #                                @ "
+"   $   \"<         %T         #                                @    $   \">  "
+"       %X         #                                @    $   \"@         %\\  "
+"       #                                          \"     P    $    O    /0   "
+" $    P          $    %     0   \"X    %    !P    $    ,    &@    $    -    '"
+"     $    L    .0    $    M    .@         \\    #@    H    !          L    ! "
+"    0    P         #0    X         #P   !     !     @   !$    !     P   !(   "
+" !    !    !,    !    !0   !0    !    !@   !4    !    !P   !8    !    \"    !"
+"<    !    \"0   !@    !    \"@   !D    !    \"P                    4    '    "
+" 0   \"@    :     0   \"D    <     0   \"H    Y     0   \"L    Z         #L  "
+"  (    \"@    $    .    \"P    $    /    '@    $    9    +P    $    ?    ,0  "
+"  $    A    -     $    F    -@    $    G    #          -          4    @     "
+"    \"$    B         \",    D     0   !     F     0   !<    N     0   !@     "
+"          8    H     0   !$    I     0   !(    J     0   !,    K     0   !0  "
+"  L     0   !4    M     0   !8         !0   \"          (0   \"(         ,   "
+" \"0    !    &@   \"8    !    '0   \"X    !    '@               @   \"@    ! "
+"   &P   \"T    !    '          !    ,P    $    @    !0   \"          (0   \"("
+"         -0   \"0    !    (@   \"8    !    )    \"X    !    )0               "
+"0   \"@    !    (P               0    4    !    ,0    $    %     0   #(    ! "
+"   !0    $    S     0    4    !    -     $    %     0   #4    !    !0    $   "
+" V     0    4    !    -P    $    %     0   #@    $    \"@         _    \"P   "
+" $    Y    0     $    _    2     $   !%          8    +     0   #H   !\"     "
+"    $,   !$     0   #L   !%     0   #P   !&     0   #T   !'     0   #X       "
+"  !@    L    !    0    $(         0P   $0    !    00   $4    !    0@   $8    "
+"!    0P   $<    !    1          %    \"@        !*    \"P    $   !&    2P    "
+"$   !'    3     $   !+    4@    $   !/    !     L    !    2    $X         3P "
+"  %     !    20   %$    !    2@         $    \"P    $   !,    3@        !/   "
+" 4     $   !-    40    $   !.                     @    H         5@    L    !"
+"    4                     $    %     0   %$    !    !0    $   !2     0    4  "
+"  !    4P    $    %     0   %0    !    !0    $   !5     0    4    !    5@    "
+"$    %     0   %<    !    !0    $   !8     0    4    !    7@    4    '     0 "
+"  %D    :     0   %H    <     0   %L    Y     0   %P    Z     0   %T    !    "
+"!0    $   !?     0    4    !    8     $    %     0   &$    !    !0    $   !B "
+"    0    4    !    8P    $    %     0   &0    !    !0    $   !E     0    4   "
+" !    9@    $    %     0   &<    !    !0    $   !H     0    4    !    :0    $"
+"    %     0   &H    !    !0    $   !K     0    4    !    ;     $    %     0  "
+" &T    !    !0    $   !N     0    4    !    ;P    $    %     0   '     !    !"
+"0    $   !Q     0    4    !    <@    $    %     0   ',    !    !0    $   !T  "
+"   0    4    !    =0    $    %     0   '8    !    !0    $   !W     0    4    "
+"!    >     $    %     0   'D    !    !0    $   !Z     0    4    !    >P    $ "
+"   %     0   'P    !    !0    $   !]     0    4    !    ?@    $    %     0   "
+"'\\    !    !0    $   \"      0    4    !    @0    $    %     0   ((    !    "
+"!0    $   \"#     0    4    !    A     $    %     0   (4    !    !0    $   \""
+"&     0    4    !    AP    $    %     0   (@    !    !0    $   \")     0    4"
+"    !    B@    $    %     0   (L    !    !0    $   \",     0    4    !    C0 "
+"   $    %     0   (X    !    !0    $   \"/     0    4    !    D              "
+" #@   '@    &    \"     $         !0    @    !     0    $         #@   $@    "
+"&    \"     T         !0    @    %     0    $         !@   !0       #= @    $"
+"    !     0         .    2     8    (    !          %    \"     $    4     0 "
+"        0    %    %-Y<W1E;2!#;VYF:6=U<F%T:6]N      X    P    !@    @    ) @  "
+"      4    (     0    $    !          (  0      #@   #@    &    \"     8     "
+"    !0    @    !     0    $         \"0    @               X    X    !@    @ "
+"   &          4    (     0    $    !          D    (               .    .    "
+" 8    (    !@         %    \"     $    !     0         )    \"               "
+"#@   #@    &    \"     8         !0    @    !     0    $         \"0    @    "
+"           X    X    !@    @    &          4    (     0    $    !          D "
+"   (               .    ,     8    (    \"0(        %    \"     $    !     0 "
+"        \"  $       X    P    !@    @    ) @        4    (     0    $    !   "
+"       (  0      #@   #@    &    \"     8         !0    @    !     0    $    "
+"     \"0    @         T!*#00X    X    !@    @    &          4    (     0    $"
+"    !          D    (         - 2<T$.    .     8    (    !@         %    \"  "
+"   $    !     0         )    \"         #0$G-!#@   $@    &    \"     T       "
+"  !0    @    %     0    $         !@   !0       #= @    $    !    !          "
+".    2     8    (    #0         %    \"     4    !     0         &    %      "
+"  -T\"     0    $    %          X   !(    !@    @    $          4    (     0 "
+"  !0    !         !     4    5$]50T%.($-O;F9I9W5R871I;VX     #@   #     &    "
+"\"     D\"        !0    @    !     0    $          @ !       .    2     8    "
+"(    #0         %    \"     4    !     0         &    %        -T\"     0    "
+"$    )          X    X    !@    @    &          4    (     0    $    !       "
+"   D    (               .    .     8    (    !@         %    \"     $    !   "
+"  0         )    \"         \" A Y!#@   #@    &    \"     8         !0    @  "
+"  !     0    $         \"0    @            P0 X    X    !@    @    &         "
+" 4    (     0    $    !          D    (            Z#\\.    .     8    (    !"
+"@         %    \"     $    !     0         )    \"            / _#@   $     &"
+"    \"     T         !0    @    !    !     $         !@   !     %    !0    8 "
+"   $    #@   $@    &    \"     T         !0    @    %     0    $         !@  "
+" !0       #= @    $    !    \"@         .    ,     8    (    \"0(        %   "
+" \"     $    !     0         \"  $       X   !(    !@    @    -          4   "
+" (    !0    $    !          8    4        W0(    !     0    @         #@   $@"
+"    &    \"     T         !0    @    %     0    $         !@   !0       #= @ "
+"   $    !    #          .    .     8    (    !@         %    \"     $    !   "
+"  0         )    \"               #@   $     &    \"     T         !0    @   "
+" !    !     $         !@   !     \"    !P    @    $    #@   $@    &    \"    "
+" T         !0    @    %     0    $         !@   !0       #= @    $    !    #0"
+"         .    ,     8    (    \"0(        %    \"     $    !     0         \""
+"  $       X   !(    !@    @    -          4    (    !0    $    !          8  "
+"  4        W0(    !     0    L         #@   '     &    \"     0         !0   "
+" @    !    .@    $         $    #H   !#04Y?0R!I<R!N;W0@879A:6QA8FQE('=I=&@@=&"
+"AI<R!-4$,U>'@@<')O8V5S<V]R('9A<FEA;G0N        #@   $@    &    \"     T       "
+"  !0    @    %     0    $         !@   !0       #= @    $    !    #@         "
+".    2     8    (    #0         %    \"     4    !     0         &    %      "
+"  -T\"     0    $    0          X    X    !@    @    &          4    (     0 "
+"   $    !          D    (               .    2     8    (    #0         %    "
+"\"     4    !     0         &    %        -T\"     0    $    1          X    "
+"P    !@    @    ) @        4    (     0    $    !          (  0      #@   $@ "
+"   &    \"     T         !0    @    %     0    $         !@   !0       #= @  "
+"  $    !    #P         .    2     8    (    #0         %    \"     4    !    "
+" 0         &    %        -T\"     0    $    .          X   !(    !@    @    -"
+"          4    (    !0    $    !          8    4        W0(    !     0    <  "
+"       #@   $@    &    \"     T         !0    @    %     0    $         !@   "
+"!0       #= @    $    !    $@         .    2     8    (    #0         %    \""
+"     4    !     0         &    %        -T\"     0    $    3          X   !( "
+"   !@    @    $          4    (     0   !4    !         !     5    35!#-34U9&"
+"M#;VYF:6<N5$]50T%.    #@   $@    &    \"     T         !0    @    %     0    "
+"$         !@   !0       #= @    $    !    !@         .    4     8    (    !  "
+"        %    \"     $    <     0         0    '    $U00S4U-61K0V]N9FEG+E-94U1"
+"%35]#3$]#2U,     #@   $@    &    \"     T         !0    @    %     0    $    "
+"     !@   !0       #= @    $    !     P         .    2     8    (    #0      "
+"   %    \"     4    !     0         &    %        -T\"     0    $    \"      "
+"    X   !@    !@    @    $          4    (     0   \"L    !         !     K  "
+"  35!#7V9R86UE=V]R:R]-4$,U-34*4F5S;W5R8V4*0V]N9FEG=7)A=&EO;@      #@   $@    "
+"&    \"     T         !0    @    %     0    $         !@   !0       #= @    $"
+"    !    %0         .    2     8    (    #0         %    \"     4    !     0 "
+"        &    %        -T\"     0    $    7          X   !(    !@    @    -   "
+"       4    (    !0    $    !          8    4        W0(    !     0   !D     "
+"    #@   $@    &    \"     T         !0    @    %     0    $         !@   !0 "
+"      #= @    $    !    &P         .    2     8    (    #0         %    \"   "
+"  4    !     0         &    %        -T\"     0    $    =          X   !(    "
+"!@    @    -          4    (    !0    $    !          8    4        W0(    ! "
+"    0   !\\         #@   $@    &    \"     T         !0    @    %     0    $ "
+"        !@   !0       #= @    $    !    (0         .    2     8    (    #0   "
+"      %    \"     4    !     0         &    %        -T\"     0    $    C    "
+"      X    P    !@    @    ) @        4    (     0    $    !          (  0   "
+"   #@   #     &    \"     D\"        !0    @    !     0    $          @ !    "
+"   .    4     8    (    !          %    \"     $    9     0         0    &0  "
+" %-T86YD87)D('1R86YS;6ET+W)E8V5I=F4         #@   #@    &    \"     8         "
+"!0    @    !     0    $         \"0    @    [L1,[L<?\"0 X    X    !@    @    "
+"&          4    (     0    $    !          D    (          ! 4$ .    .     8 "
+"   (    !@         %    \"     $    !     0         )    \"         #0$G-!#@ "
+"  $@    &    \"     T         !0    @    %     0    $         !@   !0       #"
+"= @    $    !    )0         .    ,     8    (    \"0(        %    \"     $   "
+" !     0         \"  $       X   !0    !@    @    $          4    (     0   !"
+"D    !         !     9    4W1A;F1A<F0@=')A;G-M:70O<F5C96EV90         .    .  "
+"   8    (    !@         %    \"     $    !     0         )    \"    #NQ$SNQQ"
+"\\) #@   #@    &    \"     8         !0    @    !     0    $         \"0    @"
+"          $!00 X    X    !@    @    &          4    (     0    $    !        "
+"  D    (         - 2<T$.    2     8    (    #0         %    \"     4    !    "
+" 0         &    %        -T\"     0    $    F          X    P    !@    @    )"
+" @        4    (     0    $    !          (  0      #@   #@    &    \"     8 "
+"        !0    @    !     0    $         \"0    @               X    P    !@  "
+"  @    ) @        4    (     0    $    !          (  0      #@   #@    &    "
 "\"     8         !0    @    !     0    $         \"0    @               X    "
 "X    !@    @    &          4    (     0    $    !          D    (            "
 "   .    2     8    (    #0         %    \"     4    !     0         &    %   "
-"     -T\"     0    $    K          X    P    !@    @    ) @        4    (    "
-" 0    $    !          (  0 !    #@   $@    &    \"     T         !0    @    %"
-"     0    $         !@   !0       #= @    $    !    ,          .    2     8  "
-"  (    #0         %    \"     4    !     0         &    %        -T\"     0  "
-"  $    R          X   !(    !@    @    -          4    (    !0    $    !     "
-"     8    4        W0(    !     0   #0         #@   $@    &    \"     T      "
-"   !0    @    %     0    $         !@   !0       #= @    $    !    -@        "
-" .    2     8    (    #0         %    \"     4    !     0         &    %     "
-"   -T\"     0    $    X          X   !(    !@    @    -          4    (    !0"
-"    $    !          8    4        W0(    !     0   #H         #@   $@    &   "
-" \"     T         !0    @    %     0    $         !@   !0       #= @    $    "
-"!    /          .    2     8    (    #0         %    \"     4    !     0     "
-"    &    %        -T\"     0    $    ^          X   !(    !@    @    -       "
-"   4    (    !0    $    !          8    4        W0(    !     0   \"D        "
-" #@   $@    &    \"     T         !0    @    %     0    $         !@   !0    "
-"   #= @    $    !    +          .    2     8    (    #0         %    \"     4"
-"    !     0         &    %        -T\"     0    $   !!          X   !(    !@ "
-"   @    $          4    (     0   !0    !         !     4    35!#-34U9&M#;VYF"
-":6<N34E/4S$     #@   &@    &    \"     0         !0    @    !    ,@    $     "
-"    $    #(   !M<&,U-35D<FEV97)S+TUO9'5L87(@26YP=70O+T]U='!U= I3>7-T96T@*$U)3"
-"U,Q*0        X   !(    !@    @    -          4    (    !0    $    !          "
-"8    4        W0(    !     0   $          #@   $@    &    \"     T         !0"
-"    @    %     0    $         !@   !0       #= @    $    !    0P         .   "
-" 2     8    (    #0         %    \"     4    !     0         &    %        -T"
-"\"     0    $   !%          X   !(    !@    @    -          4    (    !0    $"
-"    !          8    4        W0(    !     0   $<         #@   $@    &    \"  "
-"   T         !0    @    %     0    $         !@   !0       #= @    $    !    "
-"20         .    2     8    (    #0         %    \"     4    !     0         &"
-"    %        -T\"     0    $   !+          X   !(    !@    @    -          4 "
-"   (    !0    $    !          8    4        W0(    !     0   $T         #@   "
-"$@    &    \"     T         !0    @    %     0    $         !@   !0       #= "
-"@    $    !    3P         .    2     8    (    #0         %    \"     4    ! "
-"    0         &    %        -T\"     0    $   !1          X   !(    !@    @  "
-"  -          4    (    !0    $    !          8    4        W0(    !     0   %"
-",         #@   $@    &    \"     T         !0    @    %     0    $         !@"
-"   !0       #= @    $    !    50         .    2     8    (    #0         %   "
-" \"     4    !     0         &    %        -T\"     0    $   !7          X   "
-"!(    !@    @    -          4    (    !0    $    !          8    4        W0("
-"    !     0   %D         #@   $@    &    \"     T         !0    @    %     0 "
-"   $         !@   !0       #= @    $    !    6P         .    2     8    (    "
-"#0         %    \"     4    !     0         &    %        -T\"     0    $   !"
-"=          X   !(    !@    @    -          4    (    !0    $    !          8 "
-"   4        W0(    !     0   %\\         #@   $@    &    \"     T         !0 "
-"   @    %     0    $         !@   !0       #= @    $    !    80         .    "
-"2     8    (    #0         %    \"     4    !     0         &    %        -T"
-"\"     0    $   !C          X   !(    !@    @    -          4    (    !0    $"
-"    !          8    4        W0(    !     0   &4         #@   $@    &    \"  "
-"   T         !0    @    %     0    $         !@   !0       #= @    $    !    "
-"9P         .    2     8    (    #0         %    \"     4    !     0         &"
-"    %        -T\"     0    $   !I          X   !(    !@    @    -          4 "
-"   (    !0    $    !          8    4        W0(    !     0   &L         #@   "
-"$@    &    \"     T         !0    @    %     0    $         !@   !0       #= "
-"@    $    !    ;0         .    2     8    (    #0         %    \"     4    ! "
-"    0         &    %        -T\"     0    $   !O          X   !(    !@    @  "
-"  -          4    (    !0    $    !          8    4        W0(    !     0   '"
-"$         #@   $@    &    \"     T         !0    @    %     0    $         !@"
-"   !0       #= @    $    !    <P         .    2     8    (    #0         %   "
-" \"     4    !     0         &    %        -T\"     0    $   !U          X   "
-"!(    !@    @    -          4    (    !0    $    !          8    4        W0("
-"    !     0   '<         #@   $@    &    \"     T         !0    @    %     0 "
-"   $         !@   !0       #= @    $    !    >0         .    2     8    (    "
-"#0         %    \"     4    !     0         &    %        -T\"     0    $   !"
-"[          X   !(    !@    @    -          4    (    !0    $    !          8 "
-"   4        W0(    !     0   'T         #@   $@    &    \"     T         !0  "
-"  @    %     0    $         !@   !0       #= @    $    !    ?P         .    2"
-"     8    (    #0         %    \"     4    !     0         &    %        -T\""
-"     0    $   \"!          X   !(    !@    @    -          4    (    !0    $ "
-"   !          8    4        W0(    !     0   (,         #@   $@    &    \"   "
-"  T         !0    @    %     0    $         !@   !0       #= @    $    !    A"
-"0         .    2     8    (    #0         %    \"     4    !     0         & "
-"   %        -T\"     0    $   \"'          X   !(    !@    @    -          4 "
-"   (    !0    $    !          8    4        W0(    !     0   (D         #@   "
-"$@    &    \"     T         !0    @    %     0    $         !@   !0       #= "
-"@    $    !    BP         .    2     8    (    #0         %    \"     4    ! "
-"    0         &    %        -T\"     0    $   \"-          X   !(    !@    @ "
-"   -          4    (    !0    $    !          8    4        W0(    !     0   "
-"(\\         #@   $@    &    \"     T         !0    @    %     0    $         "
-"!@   !0       #= @    $    !    D0         .    2     8    (    #0         % "
-"   \"     4    !     0         &    %        -T\"     0    $   \"3          X"
-"   !(    !@    @    -          4    (    !0    $    !          8    4        "
-"W0(    !     0   )4         #@   $@    &    \"     T         !0    @    %    "
-" 0    $         !@   !0       #= @    $    !    EP         .    2     8    ( "
-"   #0         %    \"     4    !     0         &    %        -T\"     0    $ "
-"  \"9          X   !(    !@    @    -          4    (    !0    $    !        "
-"  8    4        W0(    !     0   )L         #@   $@    &    \"     T         "
-"!0    @    %     0    $         !@   !0       #= @    $    !    G0         . "
+"     -T\"     0    $    H          X    P    !@    @    ) @        4    (    "
+" 0    $    !          (  0      #@   #@    &    \"     8         !0    @    !"
+"     0    $         \"0    @               X    X    !@    @    &          4 "
+"   (     0    $    !          D    (               .    2     8    (    #0   "
+"      %    \"     4    !     0         &    %        -T\"     0    $    I    "
+"      X    P    !@    @    ) @        4    (     0    $    !          (  0 ! "
+"   #@   $@    &    \"     T         !0    @    %     0    $         !@   !0  "
+"     #= @    $    !    +@         .    2     8    (    #0         %    \"    "
+" 4    !     0         &    %        -T\"     0    $    P          X   !(    !"
+"@    @    -          4    (    !0    $    !          8    4        W0(    !  "
+"   0   #(         #@   $@    &    \"     T         !0    @    %     0    $   "
+"      !@   !0       #= @    $    !    -          .    2     8    (    #0     "
+"    %    \"     4    !     0         &    %        -T\"     0    $    V      "
+"    X   !(    !@    @    -          4    (    !0    $    !          8    4   "
+"     W0(    !     0   #@         #@   $@    &    \"     T         !0    @    "
+"%     0    $         !@   !0       #= @    $    !    .@         .    2     8 "
+"   (    #0         %    \"     4    !     0         &    %        -T\"     0 "
+"   $    \\          X   !(    !@    @    -          4    (    !0    $    !   "
+"       8    4        W0(    !     0   \"<         #@   $@    &    \"     T   "
+"      !0    @    %     0    $         !@   !0       #= @    $    !    *@     "
+"    .    2     8    (    #0         %    \"     4    !     0         &    %  "
+"      -T\"     0    $    _          X   !(    !@    @    $          4    (   "
+"  0   !0    !         !     4    35!#-34U9&M#;VYF:6<N34E/4S$     #@   &@    &"
+"    \"     0         !0    @    !    ,@    $         $    #(   !M<&,U-35D<FEV"
+"97)S+TUO9'5L87(@26YP=70O+T]U='!U= I3>7-T96T@*$U)3U,Q*0        X   !(    !@   "
+" @    -          4    (    !0    $    !          8    4        W0(    !     0"
+"   #X         #@   $@    &    \"     T         !0    @    %     0    $       "
+"  !@   !0       #= @    $    !    00         .    2     8    (    #0         "
+"%    \"     4    !     0         &    %        -T\"     0    $   !#          "
+"X   !(    !@    @    -          4    (    !0    $    !          8    4       "
+" W0(    !     0   $4         #@   $@    &    \"     T         !0    @    %   "
+"  0    $         !@   !0       #= @    $    !    1P         .    2     8    ("
+"    #0         %    \"     4    !     0         &    %        -T\"     0    $"
+"   !)          X   !(    !@    @    -          4    (    !0    $    !        "
+"  8    4        W0(    !     0   $L         #@   $@    &    \"     T         "
+"!0    @    %     0    $         !@   !0       #= @    $    !    30         . "
 "   2     8    (    #0         %    \"     4    !     0         &    %        "
-"-T\"     0    $   \"?          X   !(    !@    @    -          4    (    !0  "
-"  $    !          8    4        W0(    !     0   *$         #@   $@    &    "
-"\"     T         !0    @    %     0    $         !@   !0       #= @    $    !"
-"    HP         .    2     8    (    #0         %    \"     4    !     0      "
-"   &    %        -T\"     0    $   \"E          X   \"(    !@    @    )      "
-"    4    (     0   %@    !          (   !8      %)30     .    2     8    (   "
-"  @         %    \"     $    !     0         %  0 !P    $    '    :&%N9&QE   "
-".          "
+"-T\"     0    $   !/          X   !(    !@    @    -          4    (    !0   "
+" $    !          8    4        W0(    !     0   %$         #@   $@    &    \""
+"     T         !0    @    %     0    $         !@   !0       #= @    $    !  "
+"  4P         .    2     8    (    #0         %    \"     4    !     0        "
+" &    %        -T\"     0    $   !5          X   !(    !@    @    -          "
+"4    (    !0    $    !          8    4        W0(    !     0   %<         #@ "
+"  $@    &    \"     T         !0    @    %     0    $         !@   !0       #"
+"= @    $    !    60         .    2     8    (    #0         %    \"     4    "
+"!     0         &    %        -T\"     0    $   !;          X   !(    !@    @"
+"    -          4    (    !0    $    !          8    4        W0(    !     0  "
+" %T         #@   $@    &    \"     T         !0    @    %     0    $         "
+"!@   !0       #= @    $    !    7P         .    2     8    (    #0         % "
+"   \"     4    !     0         &    %        -T\"     0    $   !A          X "
+"  !(    !@    @    -          4    (    !0    $    !          8    4        W"
+"0(    !     0   &,         #@   $@    &    \"     T         !0    @    %     "
+"0    $         !@   !0       #= @    $    !    90         .    2     8    (  "
+"  #0         %    \"     4    !     0         &    %        -T\"     0    $  "
+" !G          X   !(    !@    @    -          4    (    !0    $    !          "
+"8    4        W0(    !     0   &D         #@   $@    &    \"     T         !0"
+"    @    %     0    $         !@   !0       #= @    $    !    :P         .   "
+" 2     8    (    #0         %    \"     4    !     0         &    %        -T"
+"\"     0    $   !M          X   !(    !@    @    -          4    (    !0    $"
+"    !          8    4        W0(    !     0   &\\         #@   $@    &    \" "
+"    T         !0    @    %     0    $         !@   !0       #= @    $    !   "
+" <0         .    2     8    (    #0         %    \"     4    !     0         "
+"&    %        -T\"     0    $   !S          X   !(    !@    @    -          4"
+"    (    !0    $    !          8    4        W0(    !     0   '4         #@  "
+" $@    &    \"     T         !0    @    %     0    $         !@   !0       #="
+" @    $    !    =P         .    2     8    (    #0         %    \"     4    !"
+"     0         &    %        -T\"     0    $   !Y          X   !(    !@    @ "
+"   -          4    (    !0    $    !          8    4        W0(    !     0   "
+"'L         #@   $@    &    \"     T         !0    @    %     0    $         !"
+"@   !0       #= @    $    !    ?0         .    2     8    (    #0         %  "
+"  \"     4    !     0         &    %        -T\"     0    $   !_          X  "
+" !(    !@    @    -          4    (    !0    $    !          8    4        W0"
+"(    !     0   ($         #@   $@    &    \"     T         !0    @    %     0"
+"    $         !@   !0       #= @    $    !    @P         .    2     8    (   "
+" #0         %    \"     4    !     0         &    %        -T\"     0    $   "
+"\"%          X   !(    !@    @    -          4    (    !0    $    !          "
+"8    4        W0(    !     0   (<         #@   $@    &    \"     T         !0"
+"    @    %     0    $         !@   !0       #= @    $    !    B0         .   "
+" 2     8    (    #0         %    \"     4    !     0         &    %        -T"
+"\"     0    $   \"+          X   !(    !@    @    -          4    (    !0    "
+"$    !          8    4        W0(    !     0   (T         #@   $@    &    \" "
+"    T         !0    @    %     0    $         !@   !0       #= @    $    !   "
+" CP         .    2     8    (    #0         %    \"     4    !     0         "
+"&    %        -T\"     0    $   \"1          X   !(    !@    @    -          "
+"4    (    !0    $    !          8    4        W0(    !     0   ),         #@ "
+"  $@    &    \"     T         !0    @    %     0    $         !@   !0       #"
+"= @    $    !    E0         .    2     8    (    #0         %    \"     4    "
+"!     0         &    %        -T\"     0    $   \"7          X   !(    !@    "
+"@    -          4    (    !0    $    !          8    4        W0(    !     0 "
+"  )D         #@   $@    &    \"     T         !0    @    %     0    $        "
+" !@   !0       #= @    $    !    FP         .    2     8    (    #0         %"
+"    \"     4    !     0         &    %        -T\"     0    $   \"=          "
+"X   !(    !@    @    -          4    (    !0    $    !          8    4       "
+" W0(    !     0   )\\         #@   $@    &    \"     T         !0    @    %  "
+"   0    $         !@   !0       #= @    $    !    H0         .    2     8    "
+"(    #0         %    \"     4    !     0         &    %        -T\"     0    "
+"$   \"C          X   \"(    !@    @    )          4    (     0   %@    !     "
+"     (   !8      %)30     .    2     8    (     @         %    \"     $    ! "
+"    0         %  0 !P    $    '    :&%N9&QE   .          "
   }
 }
 
@@ -10009,29 +10003,29 @@ Stateflow {
 		name                 		"MPC_framework"
 		created              		"17-Dec-2013 14:36:37"
 		isLibrary            		0
-		firstTarget          		179
+		firstTarget          		207
 		sfVersion            		64014000
 	}
 
 	chart {
 		id                                        		2
 		name                                      		"State Machine"
-		windowPosition                            		[18.75 21.75 960 690]
-		viewLimits                                		[1765.026 2910.651 0 817.5]
+		windowPosition                            		[-3 25.5 960 690]
+		viewLimits                                		[1400.27 2545.895 797.314 1614.814]
 		zoomFactor                                		1.25
 		screen                                    		[1 1 1280 1024 1.333333333333333]
 		treeNode                                  		[0 5 0 0]
-		firstTransition                           		28
+		firstTransition                           		40
 		viewObj                                   		2
-		visible                                   		1
 		machine                                   		1
 		subviewS {
-			x1        		1765.026
+			x1        		1400.27
+			y1        		797.314
 			zoomFactor		1.25
 		}
 		decomposition                             		CLUSTER_CHART
-		firstEvent                                		70
-		firstData                                 		71
+		firstEvent                                		98
+		firstData                                 		99
 		updateMethod                              		DISCRETE
 		sampleTime                                		"0.01"
 		chartFileNumber                           		1
@@ -10086,7 +10080,8 @@ Stateflow {
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[2 8 0 3]
-		firstTransition              		32
+		firstTransition              		44
+		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -10128,8 +10123,8 @@ Stateflow {
 		position                     		[428.2285 103.9286 892.2327 959.265]
 		fontSize                     		11.806
 		chart                        		2
-		treeNode                     		[5 6 8 16]
-		firstTransition              		30
+		treeNode                     		[5 6 8 17]
+		firstTransition              		42
 		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
@@ -10156,8 +10151,9 @@ Stateflow {
 		fontSize                     		11.806
 		chart                        		2
 		treeNode                     		[5 18 0 7]
-		firstTransition              		45
-		firstJunction                		22
+		firstTransition              		57
+		firstJunction                		26
+		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -10210,8 +10206,9 @@ Stateflow {
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[8 19 18 0]
-		firstTransition              		63
-		firstJunction                		25
+		firstTransition              		75
+		firstJunction                		29
+		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -10315,7 +10312,7 @@ Stateflow {
 		position                     		[467.9375 1147.9392 636.0001 287.25]
 		fontSize                     		11.806
 		chart                        		2
-		treeNode                     		[5 0 7 17]
+		treeNode                     		[5 0 17 0]
 		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
@@ -10329,14 +10326,21 @@ Stateflow {
 		id                           		17
 		labelString                  		"BLUETOOTH\n"
 						"entry: operation_mode=4;\n"
-						"motor1_reference=motor_stopped_value;\n"
-						"motor2_reference=motor_stopped_value;\n"
-						"during: controller_enable=0;"
-		position                     		[1496.4534 1216.3359 480.25 321.75]
+						"during: controller_enable=1;\n"
+						"alpha1_ref=alpha_in[0];\n"
+						"alpha2_ref=alpha_in[1];\n"
+						"motor1_reference=alpha1_ref;\n"
+						"motor2_reference=alpha2_ref;\n"
+						"trajectory_enable=0;\n"
+						"da_out_trigger=1;\n"
+						"exit: motor1_reference=motor_stopped_value;\n"
+						"motor2_reference=motor_stopped_value;"
+		position                     		[1496.4534 1095.3984 1361.9687 491.9063]
 		fontSize                     		11.806
 		chart                        		2
-		treeNode                     		[5 0 16 0]
-		visible                      		0
+		treeNode                     		[5 21 7 16]
+		firstTransition              		83
+		firstJunction                		32
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -10363,6 +10367,7 @@ Stateflow {
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[8 0 0 11]
+		visible                      		0
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -10378,6 +10383,85 @@ Stateflow {
 		fontSize                     		12
 		chart                        		2
 		treeNode                     		[11 0 0 10]
+		visible                      		0
+		subviewer                    		2
+		type                         		OR_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		20
+		labelString                  		"HOLD\n"
+						"entry:\n"
+						"trajectory_ready=0;\n"
+						"controller_message=4;\n"
+						"send_controller_message;"
+		position                     		[1782.4815 1202.1789 704.4814 359.5763]
+		fontSize                     		12
+		chart                        		2
+		treeNode                     		[17 23 21 0]
+		firstTransition              		87
+		firstJunction                		38
+		subviewer                    		2
+		type                         		OR_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		21
+		labelString                  		"TRAJECTORY\n"
+						"entry: controller_message=3;\n"
+						"send_controller_message;\n"
+						"trajectory_enable=1;\n"
+						"\n"
+						"exit:\n"
+						"alpha1_ref=invgeo_alpha_1;\n"
+						"alpha2_ref=invgeo_alpha_2;\n"
+						"motor1_reference=alpha1_ref;\n"
+						"motor2_reference=alpha2_ref;\n"
+						"invgeo_error=255;\n"
+						"trajectory_enable=0;"
+		position                     		[2542.7539 1123 209.8457 340.3278]
+		fontSize                     		12
+		chart                        		2
+		treeNode                     		[17 0 0 20]
+		subviewer                    		2
+		type                         		OR_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		22
+		labelString                  		"HOLD_main"
+		position                     		[1825.2662 1381.0044 202.9454 101.5123]
+		fontSize                     		12
+		arrowSize                    		9.705
+		chart                        		2
+		treeNode                     		[20 0 23 0]
+		subviewer                    		2
+		type                         		OR_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	state {
+		id                           		23
+		labelString                  		"HOLD_wait"
+		position                     		[2086.7611 1216.216 76.0996 50.7331]
+		fontSize                     		12
+		chart                        		2
+		treeNode                     		[20 0 0 22]
 		subviewer                    		2
 		type                         		OR_STATE
 		decomposition                		CLUSTER_STATE
@@ -10387,28 +10471,28 @@ Stateflow {
 	}
 
 	junction {
-		id         		20
+		id         		24
 		position   		[1891.969 415.944 8.4921]
 		arrowSize  		9.705
 		chart      		2
-		linkNode   		[11 23 24]
+		linkNode   		[11 27 28]
 		subviewer  		2
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	junction {
-		id         		21
+		id         		25
 		position   		[1844.2603 469.1439 8.4921]
 		arrowSize  		9.705
 		chart      		2
-		linkNode   		[11 26 27]
+		linkNode   		[11 30 31]
 		subviewer  		2
-		quantum    		[0 0 0 59]
+		quantum    		[0 0 0 71]
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	junction {
-		id         		22
+		id         		26
 		position   		[1914.4846 126.4371 7]
 		chart      		2
 		linkNode   		[8 0 0]
@@ -10417,54 +10501,130 @@ Stateflow {
 	}
 
 	junction {
-		id         		23
+		id         		27
 		position   		[2061.0468 406.6371 8.4921]
 		arrowSize  		9.705
 		chart      		2
-		linkNode   		[11 25 20]
+		linkNode   		[11 29 24]
 		subviewer  		2
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	junction {
-		id         		24
+		id         		28
 		position   		[2044.5322 431.0752 8.4921]
 		arrowSize  		9.705
 		chart      		2
-		linkNode   		[11 20 26]
+		linkNode   		[11 24 30]
 		subviewer  		2
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	junction {
-		id         		25
+		id         		29
 		position   		[2186.6816 403.1036 7]
 		chart      		2
-		linkNode   		[11 0 23]
+		linkNode   		[11 0 27]
 		subviewer  		2
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	junction {
-		id         		26
+		id         		30
 		position   		[2191.3691 434.0411 7]
 		chart      		2
-		linkNode   		[11 24 21]
+		linkNode   		[11 28 25]
 		subviewer  		2
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	junction {
-		id         		27
+		id         		31
 		position   		[2235.4316 475.2911 7]
 		chart      		2
-		linkNode   		[11 21 0]
+		linkNode   		[11 25 0]
+		subviewer  		2
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	junction {
+		id         		32
+		position   		[1940.3918 1161.0139 7]
+		chart      		2
+		linkNode   		[17 0 0]
+		subviewer  		2
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	junction {
+		id         		33
+		position   		[2228.605 1498.6179 8.4921]
+		arrowSize  		9.705
+		chart      		2
+		linkNode   		[20 37 39]
+		subviewer  		2
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	junction {
+		id         		34
+		position   		[2088.0324 1361.927 8.4921]
+		arrowSize  		9.705
+		chart      		2
+		linkNode   		[20 36 35]
+		subviewer  		2
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	junction {
+		id         		35
+		position   		[2221.5331 1440.9616 8.4921]
+		arrowSize  		9.705
+		chart      		2
+		linkNode   		[20 34 37]
+		subviewer  		2
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	junction {
+		id         		36
+		position   		[2334.7665 1311.1179 8.4921]
+		arrowSize  		9.705
+		chart      		2
+		linkNode   		[20 38 34]
+		subviewer  		2
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	junction {
+		id         		37
+		position   		[2360.87 1440.9616 7]
+		chart      		2
+		linkNode   		[20 35 33]
+		subviewer  		2
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	junction {
+		id         		38
+		position   		[2404.7763 1297.5241 7]
+		chart      		2
+		linkNode   		[20 0 36]
+		subviewer  		2
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	junction {
+		id         		39
+		position   		[2404.7763 1513.6179 7]
+		chart      		2
+		linkNode   		[20 33 0]
 		subviewer  		2
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	transition {
-		id             		28
+		id             		40
 		labelPosition  		[39.864 30.141 8.433 16.842]
 		fontSize       		12
 		src {
@@ -10476,7 +10636,7 @@ Stateflow {
 		}
 		midPoint       		[39.864 37.0515]
 		chart          		2
-		linkNode       		[2 0 29]
+		linkNode       		[2 0 41]
 		visible        		0
 		dataLimits     		[37.464 42.264 25.66 55.66]
 		subviewer      		2
@@ -10485,7 +10645,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		29
+		id             		41
 		labelString    		"[init_ack_sync==1 && init_ack_async==1]"
 		labelPosition  		[48.713 133.279 233.325 16.842]
 		fontSize       		12
@@ -10499,7 +10659,7 @@ Stateflow {
 		}
 		midPoint       		[42.1337 142.0349]
 		chart          		2
-		linkNode       		[2 28 31]
+		linkNode       		[2 40 43]
 		visible        		0
 		dataLimits     		[39.234 47.078 126.953 164.035]
 		stampAngle     		NaN
@@ -10509,7 +10669,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		30
+		id             		42
 		labelPosition  		[770.637 183.768 8.433 15.906]
 		fontSize       		11.806
 		src {
@@ -10521,14 +10681,14 @@ Stateflow {
 		}
 		midPoint       		[775.7495 197.3304]
 		chart          		2
-		linkNode       		[7 0 33]
+		linkNode       		[7 0 45]
 		dataLimits     		[767.54 786.631 189.135 214.266]
 		subviewer      		2
 		executionOrder 		1
 	}
 
 	transition {
-		id             		31
+		id             		43
 		labelPosition  		[283.07 178.287 8.433 16.842]
 		fontSize       		12
 		src {
@@ -10541,7 +10701,7 @@ Stateflow {
 		}
 		midPoint       		[282.0348 195.1622]
 		chart          		2
-		linkNode       		[2 29 0]
+		linkNode       		[2 41 0]
 		visible        		0
 		dataLimits     		[256.485 313.622 192.762 197.562]
 		stampAngle     		NaN
@@ -10551,7 +10711,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		32
+		id             		44
 		labelPosition  		[781.67 80.152 8.433 15.906]
 		fontSize       		11.806
 		src {
@@ -10563,7 +10723,7 @@ Stateflow {
 		}
 		midPoint       		[777.2699 85.3201]
 		chart          		2
-		linkNode       		[5 0 39]
+		linkNode       		[5 0 51]
 		dataLimits     		[774.87 779.67 73.929 103.929]
 		subviewer      		2
 		drawStyle      		SMART
@@ -10574,7 +10734,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		33
+		id             		45
 		labelString    		"[primitive_button==5]"
 		labelPosition  		[447.459 422.796 108.697 15.906]
 		fontSize       		11.806
@@ -10588,7 +10748,7 @@ Stateflow {
 		}
 		midPoint       		[556.4953 379.7643]
 		chart          		2
-		linkNode       		[7 30 37]
+		linkNode       		[7 42 49]
 		dataLimits     		[537.316 564.141 284.45 520.936]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10602,7 +10762,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		34
+		id             		46
 		labelString    		"[primitive_button==1]"
 		labelPosition  		[694.104 364.649 108.697 15.906]
 		fontSize       		11.806
@@ -10617,7 +10777,7 @@ Stateflow {
 		}
 		midPoint       		[744.577 475.001]
 		chart          		2
-		linkNode       		[7 35 36]
+		linkNode       		[7 47 48]
 		dataLimits     		[741.003 748.151 336.809 613.836]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10626,7 +10786,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		35
+		id             		47
 		labelString    		"[primitive_button==3]"
 		labelPosition  		[889.394 326.789 108.697 15.906]
 		fontSize       		11.806
@@ -10641,7 +10801,7 @@ Stateflow {
 		}
 		midPoint       		[931.7828 409.5388]
 		chart          		2
-		linkNode       		[7 37 34]
+		linkNode       		[7 49 46]
 		dataLimits     		[871.031 933.15 304.856 596.643]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10650,7 +10810,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		36
+		id             		48
 		labelString    		"[primitive_button==2]"
 		labelPosition  		[800.608 514.575 108.697 15.906]
 		fontSize       		11.806
@@ -10665,7 +10825,7 @@ Stateflow {
 		}
 		midPoint       		[849.9963 583.6976]
 		chart          		2
-		linkNode       		[7 34 0]
+		linkNode       		[7 46 0]
 		dataLimits     		[846.218 853.365 336.809 822.171]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10674,7 +10834,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		37
+		id             		49
 		labelString    		"[primitive_button==4]"
 		labelPosition  		[1052.969 382.377 108.697 15.906]
 		fontSize       		11.806
@@ -10689,7 +10849,7 @@ Stateflow {
 		}
 		midPoint       		[1215.419 550.3754]
 		chart          		2
-		linkNode       		[7 33 35]
+		linkNode       		[7 45 47]
 		dataLimits     		[871.031 1231.086 286.48 813.265]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10703,7 +10863,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		38
+		id             		50
 		labelString    		"[async_request==2]"
 		labelPosition  		[1508.994 752.539 103.075 15.906]
 		fontSize       		11.806
@@ -10717,7 +10877,7 @@ Stateflow {
 		}
 		midPoint       		[1476.0175 860.4597]
 		chart          		2
-		linkNode       		[5 43 54]
+		linkNode       		[5 55 66]
 		dataLimits     		[1320.461 1530.999 661.854 973.307]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10730,7 +10890,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		39
+		id             		51
 		labelString    		"[async_request==1]"
 		labelPosition  		[1259.717 194.774 103.075 15.906]
 		fontSize       		11.806
@@ -10744,7 +10904,7 @@ Stateflow {
 		}
 		midPoint       		[1352.8009 184.089]
 		chart          		2
-		linkNode       		[5 32 43]
+		linkNode       		[5 44 55]
 		dataLimits     		[1320.461 1375.303 165.32 215.178]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10758,7 +10918,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		40
+		id             		52
 		labelString    		"[async_request==6]"
 		labelPosition  		[582.191 1086.765 103.075 15.906]
 		fontSize       		11.806
@@ -10772,7 +10932,7 @@ Stateflow {
 		}
 		midPoint       		[575.9514 1102.9234]
 		chart          		2
-		linkNode       		[5 42 51]
+		linkNode       		[5 54 63]
 		dataLimits     		[542.532 607.682 1063.194 1147.939]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10785,7 +10945,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		41
+		id             		53
 		labelString    		"[async_request==6]"
 		labelPosition  		[1393.863 863.689 103.075 15.906]
 		fontSize       		11.806
@@ -10799,7 +10959,7 @@ Stateflow {
 		}
 		midPoint       		[1410.8458 1053.5232]
 		chart          		2
-		linkNode       		[5 50 55]
+		linkNode       		[5 62 67]
 		dataLimits     		[1103.938 1553.754 661.854 1232.602]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10811,7 +10971,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		42
+		id             		54
 		labelString    		"[async_request==1]"
 		labelPosition  		[398.004 1098.03 103.075 15.906]
 		fontSize       		11.806
@@ -10825,7 +10985,7 @@ Stateflow {
 		}
 		midPoint       		[506.4397 1108.0432]
 		chart          		2
-		linkNode       		[5 55 40]
+		linkNode       		[5 67 52]
 		dataLimits     		[489.698 522.782 1063.194 1147.939]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10838,7 +10998,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		43
+		id             		55
 		labelString    		"[async_request==2]"
 		labelPosition  		[1588.702 994.767 103.075 15.906]
 		fontSize       		11.806
@@ -10852,7 +11012,7 @@ Stateflow {
 		}
 		midPoint       		[1527.1784 1102.4765]
 		chart          		2
-		linkNode       		[5 39 38]
+		linkNode       		[5 51 50]
 		dataLimits     		[1103.938 1698.624 661.854 1343.836]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10865,7 +11025,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		44
+		id             		56
 		labelString    		"at(ticks_per_trajectory_time, tick)"
 		labelPosition  		[2308.931 586.572 183.661 16.842]
 		fontSize       		12
@@ -10875,11 +11035,11 @@ Stateflow {
 		}
 		dst {
 			id          		11
-			intersection		[2 1 0 0.7597 2264.962 555.7601 0 182.5637]
+			intersection		[2 1 0 0.7597 2264.962 555.7601 0 182.5636]
 		}
 		midPoint       		[2404.4862 577.5498]
 		chart          		2
-		linkNode       		[8 56 0]
+		linkNode       		[8 68 0]
 		dataLimits     		[2264.962 2491.246 544.532 577.99]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10892,12 +11052,12 @@ Stateflow {
 	}
 
 	transition {
-		id             		45
+		id             		57
 		labelString    		"[trajectory_ready==1]"
 		labelPosition  		[2008.98 102.381 118.068 16.842]
 		fontSize       		12
 		src {
-			id          		22
+			id          		26
 			intersection		[0 0.9894 0.1451 -1 1921.4104 127.4528 0 0]
 		}
 		dst {
@@ -10906,7 +11066,7 @@ Stateflow {
 		}
 		midPoint       		[2221.6721 110.1801]
 		chart          		2
-		linkNode       		[8 0 62]
+		linkNode       		[8 0 74]
 		dataLimits     		[1921.41 2384.191 109.219 201.861]
 		stampAngle     		0.0517
 		subviewer      		2
@@ -10920,7 +11080,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		46
+		id             		58
 		labelString    		"[async_request==3]{sync_command=1}"
 		labelPosition  		[353.201 1459.484 206.15 15.906]
 		fontSize       		11.806
@@ -10934,7 +11094,7 @@ Stateflow {
 		}
 		midPoint       		[513.5056 1446.5078]
 		chart          		2
-		linkNode       		[5 49 47]
+		linkNode       		[5 61 59]
 		dataLimits     		[511.687 544.368 1435.189 1452.508]
 		stampAngle     		-5.0712
 		subviewer      		2
@@ -10947,7 +11107,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		47
+		id             		59
 		labelString    		"[async_request==4]{sync_command=2}"
 		labelPosition  		[582.907 1457.122 206.15 15.906]
 		fontSize       		11.806
@@ -10961,7 +11121,7 @@ Stateflow {
 		}
 		midPoint       		[623.5919 1448.9654]
 		chart          		2
-		linkNode       		[5 46 0]
+		linkNode       		[5 58 0]
 		dataLimits     		[600.035 646.637 1435.189 1449.446]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10972,7 +11132,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		48
+		id             		60
 		labelString    		"[async_request==5]{sync_command=3}"
 		labelPosition  		[753.793 1446.803 206.15 15.906]
 		fontSize       		11.806
@@ -10986,7 +11146,7 @@ Stateflow {
 		}
 		midPoint       		[768.3253 1445.9025]
 		chart          		2
-		linkNode       		[5 53 49]
+		linkNode       		[5 65 61]
 		dataLimits     		[745.933 786.493 1435.189 1446.888]
 		stampAngle     		NaN
 		subviewer      		2
@@ -10997,7 +11157,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		49
+		id             		61
 		labelString    		"[async_request==7]{sync_command=4}"
 		labelPosition  		[908.135 1454.419 206.15 15.906]
 		fontSize       		11.806
@@ -11011,7 +11171,7 @@ Stateflow {
 		}
 		midPoint       		[943.3668 1452.7412]
 		chart          		2
-		linkNode       		[5 48 46]
+		linkNode       		[5 60 58]
 		dataLimits     		[911.802 973.477 1435.189 1452.993]
 		stampAngle     		NaN
 		subviewer      		2
@@ -11022,9 +11182,9 @@ Stateflow {
 	}
 
 	transition {
-		id             		50
+		id             		62
 		labelString    		"[async_request==8]"
-		labelPosition  		[1877.593 1046.06 103.075 15.906]
+		labelPosition  		[1877.593 955.934 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		8
@@ -11032,12 +11192,12 @@ Stateflow {
 		}
 		dst {
 			id          		17
-			intersection		[1 0 -1 0.7803 1871.1925 1216.3359 0 134.625]
+			intersection		[1 0 -1 0.2751 1871.1925 1095.3984 0 134.625]
 		}
-		midPoint       		[1871.1925 946.888]
+		midPoint       		[1871.1925 883.7902]
 		chart          		2
-		linkNode       		[5 54 41]
-		dataLimits     		[1868.793 1873.593 661.854 1216.336]
+		linkNode       		[5 66 53]
+		dataLimits     		[1868.793 1873.593 661.854 1095.398]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -11045,9 +11205,9 @@ Stateflow {
 	}
 
 	transition {
-		id             		51
+		id             		63
 		labelString    		"[async_request==8]"
-		labelPosition  		[1364.163 1264.693 103.075 15.906]
+		labelPosition  		[1366.496 1188.504 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		7
@@ -11055,12 +11215,12 @@ Stateflow {
 		}
 		dst {
 			id          		17
-			intersection		[4 -1 0 0.8543 1496.4534 1263.1994 0 -46.8635]
+			intersection		[4 -1 0 0.8159 1496.4534 1185.9693 0 -90.5709]
 		}
-		midPoint       		[1336.8811 1207.3962]
+		midPoint       		[1342.3892 1161.2153]
 		chart          		2
-		linkNode       		[5 40 52]
-		dataLimits     		[1252.12 1496.453 1063.194 1265.599]
+		linkNode       		[5 52 64]
+		dataLimits     		[1252.121 1496.453 1063.194 1188.369]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -11072,22 +11232,22 @@ Stateflow {
 	}
 
 	transition {
-		id             		52
+		id             		64
 		labelString    		"[async_request==8]"
-		labelPosition  		[1348.065 1337.731 103.075 15.906]
+		labelPosition  		[1347.54 1337.733 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		16
-			intersection		[2 1 0 0.7342 1103.9376 1358.8382 0 -18.3864]
+			intersection		[2 1 0 0.7342 1103.9376 1358.839 0 -18.3864]
 		}
 		dst {
 			id          		17
-			intersection		[4 -1 0 0.5571 1496.4534 1358.8382 0 18.3864]
+			intersection		[4 -1 0 0.4644 1496.4534 1358.839 0 18.3864]
 		}
-		midPoint       		[1304.4677 1358.8244]
+		midPoint       		[1304.4677 1358.839]
 		chart          		2
-		linkNode       		[5 51 53]
-		dataLimits     		[1103.938 1496.453 1356.438 1361.238]
+		linkNode       		[5 63 65]
+		dataLimits     		[1103.938 1496.453 1356.439 1361.239]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -11095,22 +11255,22 @@ Stateflow {
 	}
 
 	transition {
-		id             		53
+		id             		65
 		labelString    		"[async_request==6]"
-		labelPosition  		[1300.796 1392.627 103.075 15.906]
+		labelPosition  		[1300.883 1392.636 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		17
-			intersection		[4 -1 0 0.471 1496.4534 1386.5291 0 -9.3221]
+			intersection		[4 -1 0 0.4081 1496.4534 1386.5417 0 -9.3221]
 		}
 		dst {
 			id          		16
-			intersection		[2 1 0 0.8306 1103.9376 1386.5291 0 9.3221]
+			intersection		[2 1 0 0.8306 1103.9376 1386.5417 0 9.3221]
 		}
-		midPoint       		[1295.9232 1386.533]
+		midPoint       		[1295.9233 1386.5417]
 		chart          		2
-		linkNode       		[5 52 48]
-		dataLimits     		[1103.938 1496.453 1384.129 1388.929]
+		linkNode       		[5 64 60]
+		dataLimits     		[1103.938 1496.453 1384.142 1388.942]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -11118,22 +11278,22 @@ Stateflow {
 	}
 
 	transition {
-		id             		54
+		id             		66
 		labelString    		"[async_request==2]"
-		labelPosition  		[1717.007 1068.476 103.075 15.906]
+		labelPosition  		[1717.007 978.35 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		17
-			intersection		[1 0 -1 0.6948 1830.1311 1216.3359 0 93.5312]
+			intersection		[1 0 -1 0.245 1830.1311 1095.3984 0 93.5312]
 		}
 		dst {
 			id          		8
 			intersection		[3 0 1 0.6995 1830.1311 661.8536 0 -93.5312]
 		}
-		midPoint       		[1830.1311 931.3015]
+		midPoint       		[1830.1311 873.4618]
 		chart          		2
-		linkNode       		[5 38 50]
-		dataLimits     		[1827.731 1832.531 661.854 1216.336]
+		linkNode       		[5 50 62]
+		dataLimits     		[1827.731 1832.531 661.854 1095.398]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -11141,22 +11301,22 @@ Stateflow {
 	}
 
 	transition {
-		id             		55
+		id             		67
 		labelString    		"[async_request==1]"
-		labelPosition  		[1541.504 1154.137 103.075 15.906]
+		labelPosition  		[1581.385 1041.471 103.075 15.906]
 		fontSize       		11.806
 		src {
 			id          		17
-			intersection		[1 0 -1 0.0994 1544.1721 1216.3359 0 47.7187]
+			intersection		[1 0 -1 0.0665 1587.0243 1095.3984 0 90.5709]
 		}
 		dst {
 			id          		7
 			intersection		[2 1 0 0.9132 1320.4612 979.8835 0 -83.3101]
 		}
-		midPoint       		[1471.6645 1051.5581]
+		midPoint       		[1487.1384 999.2066]
 		chart          		2
-		linkNode       		[5 41 42]
-		dataLimits     		[1320.461 1544.172 977.484 1216.336]
+		linkNode       		[5 53 54]
+		dataLimits     		[1320.461 1587.024 977.484 1095.398]
 		stampAngle     		NaN
 		subviewer      		2
 		drawStyle      		SMART
@@ -11168,7 +11328,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		56
+		id             		68
 		labelPosition  		[1889.575 232.878 8.433 16.842]
 		fontSize       		12
 		src {
@@ -11180,7 +11340,7 @@ Stateflow {
 		}
 		midPoint       		[1887.8803 253.2558]
 		chart          		2
-		linkNode       		[8 62 44]
+		linkNode       		[8 74 56]
 		dataLimits     		[1885.48 1890.28 232.878 280.102]
 		subviewer      		2
 		drawStyle      		SMART
@@ -11188,7 +11348,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		57
+		id             		69
 		labelPosition  		[1715.02 374.724 8.433 16.842]
 		fontSize       		12
 		arrowSize      		9.705
@@ -11201,7 +11361,7 @@ Stateflow {
 		}
 		midPoint       		[1731.4316 377.1592]
 		chart          		2
-		linkNode       		[11 69 60]
+		linkNode       		[11 81 72]
 		dataLimits     		[1699.013 1786.699 374.587 397.521]
 		subviewer      		2
 		drawStyle      		SMART
@@ -11212,7 +11372,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		58
+		id             		70
 		labelString    		"[invgeo_done==1]"
 		labelPosition  		[1774.43 393.241 97.453 16.842]
 		fontSize       		12
@@ -11222,12 +11382,12 @@ Stateflow {
 			intersection		[2 1 0 0.1667 1740.5857 414.4435 0 0]
 		}
 		dst {
-			id          		20
+			id          		24
 			intersection		[0 -0.9986 -0.0526 -1 1883.4888 415.4973 0 0]
 		}
 		midPoint       		[1810.5737 414.9176]
 		chart          		2
-		linkNode       		[11 64 61]
+		linkNode       		[11 76 73]
 		dataLimits     		[1740.586 1883.489 412.079 417.894]
 		stampAngle     		-0.0526
 		subviewer      		2
@@ -11241,13 +11401,13 @@ Stateflow {
 	}
 
 	transition {
-		id             		59
+		id             		71
 		labelString    		"/send_controller_message"
 		labelPosition  		[1770.822 475.192 144.305 16.842]
 		fontSize       		12
 		arrowSize      		9.705
 		src {
-			id          		21
+			id          		25
 			intersection		[0 -1 0 -1 1835.7682 469.1439 0 0]
 		}
 		dst {
@@ -11256,7 +11416,7 @@ Stateflow {
 		}
 		midPoint       		[1791.5093 469.1439]
 		chart          		2
-		linkNode       		[11 67 68]
+		linkNode       		[11 79 80]
 		dataLimits     		[1740.586 1835.768 466.237 472.06]
 		subviewer      		2
 		drawStyle      		SMART
@@ -11268,22 +11428,22 @@ Stateflow {
 	}
 
 	transition {
-		id             		60
+		id             		72
 		labelString    		"[invgeo_error==0]{controller_message=1}"
 		labelPosition  		[1911.256 377.704 223.017 16.842]
 		fontSize       		12
 		arrowSize      		9.705
 		src {
-			id          		20
+			id          		24
 			intersection		[0 0.7117 -0.7025 -1 1898.0128 409.9783 0 0]
 		}
 		dst {
-			id          		23
+			id          		27
 			intersection		[0 -0.9191 -0.3939 -1 2053.2417 403.2921 0 0]
 		}
 		midPoint       		[1966.5425 399.7634]
 		chart          		2
-		linkNode       		[11 57 66]
+		linkNode       		[11 69 78]
 		dataLimits     		[1898.013 2053.242 395.833 409.978]
 		stampAngle     		-0.4599
 		subviewer      		2
@@ -11294,22 +11454,22 @@ Stateflow {
 	}
 
 	transition {
-		id             		61
+		id             		73
 		labelString    		"[invgeo_error==1]{controller_message=2}"
 		labelPosition  		[1898.616 437.366 223.017 16.842]
 		fontSize       		12
 		arrowSize      		9.705
 		src {
-			id          		20
+			id          		24
 			intersection		[0 0.9129 0.4081 -1 1899.7214 419.4096 0 0]
 		}
 		dst {
-			id          		24
+			id          		28
 			intersection		[0 -1 0 -1 2036.0401 431.0752 0 0]
 		}
 		midPoint       		[1961.4396 427.1633]
 		chart          		2
-		linkNode       		[11 58 65]
+		linkNode       		[11 70 77]
 		dataLimits     		[1899.721 2036.04 419.41 433.987]
 		subviewer      		2
 		slide {
@@ -11319,7 +11479,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		62
+		id             		74
 		labelString    		"[async_request==9]"
 		labelPosition  		[1769.569 111.442 110.571 16.842]
 		fontSize       		12
@@ -11328,12 +11488,12 @@ Stateflow {
 			intersection		[1 0 -1 0.2922 1743.8596 280.1021 0 0]
 		}
 		dst {
-			id          		22
+			id          		26
 			intersection		[0 -1 0 -1 1907.4846 126.4371 0 0]
 		}
 		midPoint       		[1797.5205 171.4741]
 		chart          		2
-		linkNode       		[8 45 56]
+		linkNode       		[8 57 68]
 		dataLimits     		[1743.86 1907.485 124.037 280.102]
 		stampAngle     		-1.5708
 		subviewer      		2
@@ -11347,12 +11507,12 @@ Stateflow {
 	}
 
 	transition {
-		id             		63
+		id             		75
 		labelString    		"[invgeo_error>1]"
 		labelPosition  		[1718.879 310.01 88.082 16.842]
 		fontSize       		12
 		src {
-			id          		20
+			id          		24
 			intersection		[0 -0.6455 -0.7638 -1 1886.4873 409.4577 0 0]
 		}
 		dst {
@@ -11361,7 +11521,7 @@ Stateflow {
 		}
 		midPoint       		[1838.3075 366.4064]
 		chart          		2
-		linkNode       		[11 0 69]
+		linkNode       		[11 0 81]
 		dataLimits     		[1810.732 1886.487 299.956 409.458]
 		stampAngle     		-5.5815
 		subviewer      		2
@@ -11373,21 +11533,21 @@ Stateflow {
 	}
 
 	transition {
-		id             		64
+		id             		76
 		labelString    		"/trajectory_ready=1"
 		labelPosition  		[2137.988 376.861 106.823 16.842]
 		fontSize       		12
 		src {
-			id          		23
+			id          		27
 			intersection		[0 0.9996 -0.0281 -1 2069.5355 406.3985 0 0]
 		}
 		dst {
-			id          		25
+			id          		29
 			intersection		[0 -0.9996 0.0281 -1 2179.6844 403.3003 0 0]
 		}
 		midPoint       		[2122.7455 404.9018]
 		chart          		2
-		linkNode       		[11 66 58]
+		linkNode       		[11 78 70]
 		dataLimits     		[2069.536 2179.684 401.126 406.399]
 		subviewer      		2
 		drawStyle      		SMART
@@ -11395,21 +11555,21 @@ Stateflow {
 	}
 
 	transition {
-		id             		65
+		id             		77
 		labelString    		"/trajectory_ready=0;"
 		labelPosition  		[2091.213 415.76 110.571 16.842]
 		fontSize       		12
 		src {
-			id          		24
+			id          		28
 			intersection		[0 0.9998 0.0202 -1 2053.0226 431.2467 0 0]
 		}
 		dst {
-			id          		26
+			id          		30
 			intersection		[0 -0.9998 -0.0202 -1 2184.3705 433.8997 0 0]
 		}
 		midPoint       		[2117.2921 432.5449]
 		chart          		2
-		linkNode       		[11 61 67]
+		linkNode       		[11 73 79]
 		dataLimits     		[2053.023 2184.371 431.247 436.138]
 		subviewer      		2
 		drawStyle      		SMART
@@ -11417,20 +11577,20 @@ Stateflow {
 	}
 
 	transition {
-		id             		66
+		id             		78
 		labelPosition  		[2246.504 424.342 8.433 16.842]
 		fontSize       		12
 		src {
-			id          		25
+			id          		29
 			intersection		[0 0.9831 -0.1828 -1 2193.5633 401.824 0 0]
 		}
 		dst {
-			id          		27
+			id          		31
 			intersection		[0 0.5369 -0.8437 -1 2239.1899 469.3852 0 0]
 		}
 		midPoint       		[2243.0826 417.8264]
 		chart          		2
-		linkNode       		[11 60 64]
+		linkNode       		[11 72 76]
 		dataLimits     		[2193.563 2249.325 400.742 469.385]
 		stampAngle     		-1.1607
 		subviewer      		2
@@ -11442,20 +11602,20 @@ Stateflow {
 	}
 
 	transition {
-		id             		67
+		id             		79
 		labelPosition  		[2213.222 454.499 8.433 16.842]
 		fontSize       		12
 		src {
-			id          		26
+			id          		30
 			intersection		[0 0.73 0.6834 -1 2196.4791 438.8249 0 0]
 		}
 		dst {
-			id          		27
+			id          		31
 			intersection		[0 -0.73 -0.6834 -1 2230.3216 470.5073 0 0]
 		}
 		midPoint       		[2211.0257 452.443]
 		chart          		2
-		linkNode       		[11 65 59]
+		linkNode       		[11 77 71]
 		dataLimits     		[2196.479 2230.322 438.825 470.507]
 		subviewer      		2
 		drawStyle      		SMART
@@ -11463,22 +11623,22 @@ Stateflow {
 	}
 
 	transition {
-		id             		68
+		id             		80
 		labelString    		"/invgeo_error=255"
 		labelPosition  		[2011.525 475.76 97.453 16.842]
 		fontSize       		12
 		arrowSize      		9.705
 		src {
-			id          		27
+			id          		31
 			intersection		[0 -0.9999 -0.0157 -1 2228.4323 475.1812 0 0]
 		}
 		dst {
-			id          		21
+			id          		25
 			intersection		[0 0.9999 0.0157 -1 1852.7516 469.2772 0 0]
 		}
 		midPoint       		[2037.5932 472.1821]
 		chart          		2
-		linkNode       		[11 59 0]
+		linkNode       		[11 71 0]
 		dataLimits     		[1852.752 2228.432 466.518 475.181]
 		subviewer      		2
 		drawStyle      		SMART
@@ -11486,7 +11646,7 @@ Stateflow {
 	}
 
 	transition {
-		id             		69
+		id             		81
 		labelString    		"[invgeo_error<2]"
 		labelPosition  		[1927.83 307.112 88.082 16.842]
 		fontSize       		12
@@ -11496,12 +11656,12 @@ Stateflow {
 			intersection		[2 1 0 0.25 1903.2035 308.6975 0 0]
 		}
 		dst {
-			id          		20
+			id          		24
 			intersection		[0 0.2054 -0.9787 -1 1893.7133 407.6328 0 0]
 		}
 		midPoint       		[1913.7298 343.6672]
 		chart          		2
-		linkNode       		[11 63 57]
+		linkNode       		[11 75 69]
 		dataLimits     		[1892.857 1914.607 308.698 407.633]
 		stampAngle     		-0.2069
 		subviewer      		2
@@ -11514,8 +11674,406 @@ Stateflow {
 		executionOrder 		1
 	}
 
+	transition {
+		id             		82
+		labelString    		"[async_request==9]"
+		labelPosition  		[1809.208 1144.769 110.571 16.842]
+		fontSize       		12
+		src {
+			id          		20
+			intersection		[1 0 -1 0.1448 1884.4934 1202.1789 0 0]
+		}
+		dst {
+			id          		32
+			intersection		[0 -1 0 -1 1933.3918 1161.0139 0 0]
+		}
+		midPoint       		[1897.9539 1172.6269]
+		chart          		2
+		linkNode       		[17 83 84]
+		dataLimits     		[1884.493 1933.392 1158.614 1202.179]
+		stampAngle     		-1.5708
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			sticky        		BOTH_STICK
+			arcL          		-55.8984
+			arcClockDir   		COUNTER_CLOCKWISE
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		83
+		labelString    		"[trajectory_ready==1]"
+		labelPosition  		[2075.057 1131.688 118.068 16.842]
+		fontSize       		12
+		src {
+			id          		32
+			intersection		[0 0.9987 -0.0516 -1 1947.3824 1160.6525 0 0]
+		}
+		dst {
+			id          		21
+			intersection		[4 -1 0 0.8943 2542.7539 1158.9591 0 0]
+		}
+		midPoint       		[2253.6555 1156.0821]
+		chart          		2
+		linkNode       		[17 0 82]
+		dataLimits     		[1947.382 2542.754 1155.638 1161.359]
+		stampAngle     		0.0517
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			sticky        		BOTH_STICK
+			arcL          		2.0547
+			midPointSticky		1
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		84
+		labelPosition  		[2120.832 1166.989 8.433 16.842]
+		fontSize       		12
+		src {
+			intersection		[0 0 1 0 2123.8763 1167.0656 0 0]
+		}
+		dst {
+			id          		20
+			intersection		[1 0 -1 0.4846 2123.8763 1202.1789 0 0]
+		}
+		midPoint       		[2123.8763 1181.1248]
+		chart          		2
+		linkNode       		[17 82 85]
+		dataLimits     		[2121.476 2126.276 1167.066 1202.179]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	transition {
+		id             		85
+		labelString    		"at(ticks_per_trajectory_time, tick)"
+		labelPosition  		[2548.474 1507.858 183.661 16.842]
+		fontSize       		12
+		src {
+			id          		21
+			intersection		[3 0 1 0.1324 2724.8149 1463.3277 0 -352.225]
+		}
+		dst {
+			id          		20
+			intersection		[2 1 0 0.7608 2486.9629 1475.7324 0 182.5685]
+		}
+		midPoint       		[2633.4061 1498.3579]
+		chart          		2
+		linkNode       		[17 84 0]
+		dataLimits     		[2486.963 2724.815 1463.328 1498.773]
+		stampAngle     		NaN
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			mode          		MIRROR_SLIDE
+			sticky        		BOTH_STICK
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		86
+		labelPosition  		[1890.242 1360.598 8.433 16.842]
+		fontSize       		12
+		arrowSize      		9.705
+		src {
+			intersection		[0 0 1 0 1899.9688 1346.5968 0 0]
+		}
+		dst {
+			id          		22
+			intersection		[1 0 -1 0.3681 1899.9688 1381.0044 0 0]
+		}
+		midPoint       		[1899.9688 1359.3798]
+		chart          		2
+		linkNode       		[20 96 89]
+		dataLimits     		[1897.057 1902.88 1346.597 1381.004]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	transition {
+		id             		87
+		labelString    		"[invgeo_error>1]"
+		labelPosition  		[1974.431 1229.702 88.082 16.842]
+		fontSize       		12
+		src {
+			id          		34
+			intersection		[0 -0.6455 -0.7638 -1 2082.5508 1355.4408 0 0]
+		}
+		dst {
+			id          		23
+			intersection		[4 -1 0 0.875 2086.7611 1222.5576 0 0]
+		}
+		midPoint       		[2061.579 1288.5043]
+		chart          		2
+		linkNode       		[20 0 88]
+		dataLimits     		[2060.288 2086.761 1220.158 1355.441]
+		stampAngle     		-5.5815
+		subviewer      		2
+		slide {
+			sticky        		SRC_STICK
+			midPointSticky		1
+		}
+		executionOrder 		3
+	}
+
+	transition {
+		id             		88
+		labelString    		"[invgeo_error<2]"
+		labelPosition  		[2141.329 1270.82 88.082 16.842]
+		fontSize       		12
+		arrowSize      		9.705
+		src {
+			id          		23
+			intersection		[3 0 1 0.3357 2137.3168 1266.9491 0 0]
+		}
+		dst {
+			id          		34
+			intersection		[0 0.1817 -0.9834 -1 2089.5754 1353.5763 0 0]
+		}
+		midPoint       		[2115.1691 1307.1442]
+		chart          		2
+		linkNode       		[20 87 93]
+		dataLimits     		[2088.476 2137.317 1266.949 1353.576]
+		stampAngle     		-0.1827
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			sticky        		BOTH_STICK
+			arcL          		-49.2844
+			arcClockDir   		COUNTER_CLOCKWISE
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		89
+		labelString    		"[invgeo_done==1]"
+		labelPosition  		[1970.493 1339.224 97.453 16.842]
+		fontSize       		12
+		arrowSize      		9.705
+		src {
+			id          		22
+			intersection		[2 1 0 0.1667 2028.2116 1397.9265 0 0]
+		}
+		dst {
+			id          		34
+			intersection		[0 -0.9986 -0.0526 -1 2079.5522 1361.4803 0 0]
+		}
+		midPoint       		[2053.3453 1380.0617]
+		chart          		2
+		linkNode       		[20 86 92]
+		dataLimits     		[2028.212 2079.552 1358.062 1397.927]
+		stampAngle     		-0.3613
+		subviewer      		2
+		slide {
+			sticky        		BOTH_STICK
+			arcL          		-5.25
+			arcClockDir   		COUNTER_CLOCKWISE
+			midPointSticky		1
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		90
+		labelString    		"/send_controller_message"
+		labelPosition  		[2111.276 1461.63 144.305 16.842]
+		fontSize       		12
+		arrowSize      		9.705
+		src {
+			id          		33
+			intersection		[0 -0.9987 0.0515 -1 2220.1241 1499.0553 0 0]
+		}
+		dst {
+			id          		22
+			intersection		[2 1 0 0.8251 2028.2116 1464.765 0 0]
+		}
+		midPoint       		[2125.2285 1481.9911]
+		chart          		2
+		linkNode       		[20 97 91]
+		dataLimits     		[2028.212 2220.124 1461.854 1499.245]
+		stampAngle     		0.1317
+		subviewer      		2
+		drawStyle      		SMART
+		slide {
+			sticky        		BOTH_STICK
+			arcL          		-17.7517
+			midPointSticky		1
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		91
+		labelString    		"/invgeo_error=255"
+		labelPosition  		[2281.429 1514.474 97.453 16.842]
+		fontSize       		12
+		arrowSize      		9.705
+		src {
+			id          		39
+			intersection		[0 -0.9964 -0.0848 -1 2397.8015 1513.024 0 0]
+		}
+		dst {
+			id          		33
+			intersection		[0 0.9964 0.0848 -1 2237.0664 1499.3383 0 0]
+		}
+		midPoint       		[2319.0899 1506.3222]
+		chart          		2
+		linkNode       		[20 90 0]
+		dataLimits     		[2237.066 2397.802 1497.26 1513.024]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	transition {
+		id             		92
+		labelString    		"[invgeo_error==1]{controller_message=2}"
+		labelPosition  		[2094.725 1383.721 223.017 16.842]
+		fontSize       		12
+		arrowSize      		9.705
+		src {
+			id          		34
+			intersection		[0 0.9129 0.4081 -1 2095.7848 1365.3927 0 0]
+		}
+		dst {
+			id          		35
+			intersection		[0 -1 0 -1 2213.041 1440.9616 0 0]
+		}
+		midPoint       		[2147.6927 1401.8338]
+		chart          		2
+		linkNode       		[20 89 95]
+		dataLimits     		[2095.785 2213.041 1365.393 1443.873]
+		stampAngle     		0.5345
+		subviewer      		2
+		slide {
+			sticky        		SRC_STICK
+		}
+		executionOrder 		2
+	}
+
+	transition {
+		id             		93
+		labelString    		"[invgeo_error==0]{controller_message=1}"
+		labelPosition  		[2122.529 1333.79 223.017 16.842]
+		fontSize       		12
+		arrowSize      		9.705
+		src {
+			id          		34
+			intersection		[0 0.9999 0.0128 -1 2096.5238 1362.0355 0 0]
+		}
+		dst {
+			id          		36
+			intersection		[0 -0.9191 -0.3939 -1 2326.9614 1307.7728 0 0]
+		}
+		midPoint       		[2194.4444 1323.9696]
+		chart          		2
+		linkNode       		[20 88 94]
+		dataLimits     		[2096.524 2326.961 1296.967 1362.036]
+		stampAngle     		-0.608
+		subviewer      		2
+		slide {
+			sticky        		SRC_STICK
+		}
+		executionOrder 		1
+	}
+
+	transition {
+		id             		94
+		labelString    		"/trajectory_ready=1"
+		labelPosition  		[2375.011 1275.996 106.823 16.842]
+		fontSize       		12
+		src {
+			id          		36
+			intersection		[0 0.9817 -0.1906 -1 2343.1029 1309.4992 0 0]
+		}
+		dst {
+			id          		38
+			intersection		[0 -0.9817 0.1906 -1 2397.9046 1298.8584 0 0]
+		}
+		midPoint       		[2367.5125 1304.7596]
+		chart          		2
+		linkNode       		[20 93 96]
+		dataLimits     		[2343.103 2397.905 1298.027 1309.499]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	transition {
+		id             		95
+		labelString    		"/trajectory_ready=0;"
+		labelPosition  		[2266.751 1415.81 110.571 16.842]
+		fontSize       		12
+		src {
+			id          		35
+			intersection		[0 1 0 -1 2230.0252 1440.9616 0 0]
+		}
+		dst {
+			id          		37
+			intersection		[0 -1 0 -1 2353.87 1440.9616 0 0]
+		}
+		midPoint       		[2290.3792 1440.9616]
+		chart          		2
+		linkNode       		[20 92 97]
+		dataLimits     		[2230.025 2353.87 1438.562 1443.362]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	transition {
+		id             		96
+		labelPosition  		[2404.776 1422.254 8.433 16.842]
+		fontSize       		12
+		src {
+			id          		38
+			intersection		[0 0 1 -1 2404.7763 1304.5241 0 0]
+		}
+		dst {
+			id          		39
+			intersection		[0 0 -1 -1 2404.7763 1506.6179 0 0]
+		}
+		midPoint       		[2404.7763 1405.7036]
+		chart          		2
+		linkNode       		[20 94 86]
+		dataLimits     		[2402.376 2407.176 1304.524 1506.618]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	transition {
+		id             		97
+		labelPosition  		[2383.774 1479.08 8.433 16.842]
+		fontSize       		12
+		src {
+			id          		37
+			intersection		[0 0.5172 0.8559 -1 2364.4904 1446.9527 0 0]
+		}
+		dst {
+			id          		39
+			intersection		[0 -0.5172 -0.8559 -1 2401.1559 1507.6268 0 0]
+		}
+		midPoint       		[2381.4166 1474.9622]
+		chart          		2
+		linkNode       		[20 95 90]
+		dataLimits     		[2364.49 2401.156 1446.953 1507.627]
+		subviewer      		2
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
 	event {
-		id         		70
+		id         		98
 		name       		"send_controller_message"
 		linkNode   		[2 0 0]
 		scope      		OUTPUT_EVENT
@@ -11524,9 +12082,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		71
+		id                            		99
 		name                          		"init_out_value"
-		linkNode                      		[2 0 72]
+		linkNode                      		[2 0 100]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11541,9 +12099,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		72
+		id                            		100
 		name                          		"init_out_enable"
-		linkNode                      		[2 71 73]
+		linkNode                      		[2 99 101]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11558,9 +12116,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		73
+		id                            		101
 		name                          		"init_ack_sync"
-		linkNode                      		[2 72 74]
+		linkNode                      		[2 100 102]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -11574,9 +12132,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		74
+		id                            		102
 		name                          		"init_ack_async"
-		linkNode                      		[2 73 75]
+		linkNode                      		[2 101 103]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -11590,9 +12148,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		75
+		id                            		103
 		name                          		"init_out_trigger"
-		linkNode                      		[2 74 76]
+		linkNode                      		[2 102 104]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11607,9 +12165,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		76
+		id                            		104
 		name                          		"stop_trigger"
-		linkNode                      		[2 75 77]
+		linkNode                      		[2 103 105]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11624,9 +12182,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		77
+		id                            		105
 		name                          		"primitive_button"
-		linkNode                      		[2 76 78]
+		linkNode                      		[2 104 106]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -11641,9 +12199,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		78
+		id                            		106
 		name                          		"motor1_reference"
-		linkNode                      		[2 77 79]
+		linkNode                      		[2 105 107]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11658,9 +12216,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		79
+		id                            		107
 		name                          		"motor2_reference"
-		linkNode                      		[2 78 80]
+		linkNode                      		[2 106 108]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11675,9 +12233,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		80
+		id                            		108
 		name                          		"motor_stopped_value"
-		linkNode                      		[2 79 81]
+		linkNode                      		[2 107 109]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		6
@@ -11694,9 +12252,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		81
+		id                            		109
 		name                          		"controller_enable"
-		linkNode                      		[2 80 82]
+		linkNode                      		[2 108 110]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11711,9 +12269,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		82
+		id                            		110
 		name                          		"init_1_message"
-		linkNode                      		[2 81 83]
+		linkNode                      		[2 109 111]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		machine                       		1
@@ -11731,9 +12289,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		83
+		id                            		111
 		name                          		"init_2_message"
-		linkNode                      		[2 82 84]
+		linkNode                      		[2 110 112]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		1
@@ -11752,9 +12310,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		84
+		id                            		112
 		name                          		"motor_positive_value_seg_1"
-		linkNode                      		[2 83 85]
+		linkNode                      		[2 111 113]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		4
@@ -11770,9 +12328,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		85
+		id                            		113
 		name                          		"motor_negative_value_seg_1"
-		linkNode                      		[2 84 86]
+		linkNode                      		[2 112 114]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		2
@@ -11788,9 +12346,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		86
+		id                            		114
 		name                          		"da_out_trigger"
-		linkNode                      		[2 85 87]
+		linkNode                      		[2 113 115]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11805,9 +12363,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		87
+		id                            		115
 		name                          		"async_request"
-		linkNode                      		[2 86 88]
+		linkNode                      		[2 114 116]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -11821,9 +12379,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		88
+		id                            		116
 		name                          		"operation_mode"
-		linkNode                      		[2 87 89]
+		linkNode                      		[2 115 117]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11838,9 +12396,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		89
+		id                            		117
 		name                          		"sync_command"
-		linkNode                      		[2 88 90]
+		linkNode                      		[2 116 118]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11855,9 +12413,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		90
+		id                            		118
 		name                          		"alpha1_ref"
-		linkNode                      		[2 89 91]
+		linkNode                      		[2 117 119]
 		scope                         		LOCAL_DATA
 		machine                       		1
 		props {
@@ -11871,9 +12429,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		91
+		id                            		119
 		name                          		"alpha2_ref"
-		linkNode                      		[2 90 92]
+		linkNode                      		[2 118 120]
 		scope                         		LOCAL_DATA
 		machine                       		1
 		props {
@@ -11887,9 +12445,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		92
+		id                            		120
 		name                          		"alpha_in"
-		linkNode                      		[2 91 93]
+		linkNode                      		[2 119 121]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -11906,9 +12464,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		93
+		id                            		121
 		name                          		"controller_message"
-		linkNode                      		[2 92 94]
+		linkNode                      		[2 120 122]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11922,9 +12480,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		94
+		id                            		122
 		name                          		"invgeo_error"
-		linkNode                      		[2 93 95]
+		linkNode                      		[2 121 123]
 		scope                         		DATA_STORE_MEMORY_DATA
 		machine                       		1
 		props {
@@ -11938,9 +12496,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		95
+		id                            		123
 		name                          		"invgeo_done"
-		linkNode                      		[2 94 96]
+		linkNode                      		[2 122 124]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -11954,9 +12512,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		96
+		id                            		124
 		name                          		"trajectory_enable"
-		linkNode                      		[2 95 97]
+		linkNode                      		[2 123 125]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -11971,9 +12529,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		97
+		id                            		125
 		name                          		"trajectory_time"
-		linkNode                      		[2 96 98]
+		linkNode                      		[2 124 126]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		8
@@ -11989,9 +12547,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		98
+		id                            		126
 		name                          		"invgeo_alpha_1"
-		linkNode                      		[2 97 99]
+		linkNode                      		[2 125 127]
 		scope                         		DATA_STORE_MEMORY_DATA
 		machine                       		1
 		props {
@@ -12005,9 +12563,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		99
+		id                            		127
 		name                          		"invgeo_alpha_2"
-		linkNode                      		[2 98 100]
+		linkNode                      		[2 126 128]
 		scope                         		DATA_STORE_MEMORY_DATA
 		machine                       		1
 		props {
@@ -12021,9 +12579,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		100
+		id                            		128
 		name                          		"ticks_per_trajectory_time"
-		linkNode                      		[2 99 101]
+		linkNode                      		[2 127 129]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		7
@@ -12039,9 +12597,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		101
+		id                            		129
 		name                          		"motor_positive_value_seg_2"
-		linkNode                      		[2 100 102]
+		linkNode                      		[2 128 130]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		5
@@ -12057,9 +12615,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		102
+		id                            		130
 		name                          		"motor_negative_value_seg_2"
-		linkNode                      		[2 101 103]
+		linkNode                      		[2 129 131]
 		scope                         		PARAMETER_DATA
 		initFromWorkspace             		1
 		paramIndexForInitFromWorkspace		3
@@ -12075,9 +12633,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		103
+		id                            		131
 		name                          		"trajectory_ready"
-		linkNode                      		[2 102 0]
+		linkNode                      		[2 130 0]
 		scope                         		LOCAL_DATA
 		machine                       		1
 		props {
@@ -12091,26 +12649,26 @@ Stateflow {
 	}
 
 	instance {
-		id     		104
+		id     		132
 		name   		"State Machine"
 		machine		1
 		chart  		2
 	}
 
 	chart {
-		id                                        		105
+		id                                        		133
 		name                                      		"Inverse geometry/Subsystem/invgeo"
 		windowPosition                            		[281.813 329.45 200.25 189.75]
 		viewLimits                                		[0 156.75 0 153.75]
 		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 106 0 0]
-		firstTransition                           		108
-		firstJunction                             		107
-		viewObj                                   		105
+		treeNode                                  		[0 134 0 0]
+		firstTransition                           		136
+		firstJunction                             		135
+		viewObj                                   		133
 		machine                                   		1
 		decomposition                             		CLUSTER_CHART
 		type                                      		EML_CHART
-		firstData                                 		109
+		firstData                                 		137
 		chartFileNumber                           		2
 		disableImplicitCasting                    		1
 		eml {
@@ -12119,14 +12677,14 @@ Stateflow {
 	}
 
 	state {
-		id                           		106
+		id                           		134
 		labelString                  		"eML_blk_kernel()"
 		position                     		[18 64.5 118 66]
 		fontSize                     		12
-		chart                        		105
-		treeNode                     		[105 0 0 0]
+		chart                        		133
+		treeNode                     		[133 0 0 0]
 		superState                   		SUBCHART
-		subviewer                    		105
+		subviewer                    		133
 		type                         		FUNC_STATE
 		decomposition                		CLUSTER_STATE
 		eml {
@@ -12188,16 +12746,16 @@ Stateflow {
 	}
 
 	junction {
-		id         		107
+		id         		135
 		position   		[23.5747 49.5747 7]
-		chart      		105
-		linkNode   		[105 0 0]
-		subviewer  		105
+		chart      		133
+		linkNode   		[133 0 0]
+		subviewer  		133
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	transition {
-		id             		108
+		id             		136
 		labelString    		"{eML_blk_kernel();}"
 		labelPosition  		[32.125 19.875 102.544 14.964]
 		fontSize       		12
@@ -12205,22 +12763,22 @@ Stateflow {
 			intersection		[0 0 1 0 23.5747 14.625 0 0]
 		}
 		dst {
-			id          		107
+			id          		135
 			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
 		}
 		midPoint       		[23.5747 24.9468]
-		chart          		105
-		linkNode       		[105 0 0]
+		chart          		133
+		linkNode       		[133 0 0]
 		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		105
+		subviewer      		133
 		drawStyle      		SMART
 		executionOrder 		1
 	}
 
 	data {
-		id                            		109
+		id                            		137
 		name                          		"x"
-		linkNode                      		[105 0 110]
+		linkNode                      		[133 0 138]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12241,9 +12799,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		110
+		id                            		138
 		name                          		"y"
-		linkNode                      		[105 109 111]
+		linkNode                      		[133 137 139]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12264,9 +12822,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		111
+		id                            		139
 		name                          		"al1_c"
-		linkNode                      		[105 110 112]
+		linkNode                      		[133 138 140]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12285,9 +12843,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		112
+		id                            		140
 		name                          		"al2_c"
-		linkNode                      		[105 111 113]
+		linkNode                      		[133 139 141]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12306,9 +12864,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		113
+		id                            		141
 		name                          		"a1"
-		linkNode                      		[105 112 114]
+		linkNode                      		[133 140 142]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12327,9 +12885,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		114
+		id                            		142
 		name                          		"a2"
-		linkNode                      		[105 113 115]
+		linkNode                      		[133 141 143]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12348,9 +12906,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		115
+		id                            		143
 		name                          		"al1"
-		linkNode                      		[105 114 116]
+		linkNode                      		[133 142 144]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -12369,9 +12927,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		116
+		id                            		144
 		name                          		"al2"
-		linkNode                      		[105 115 117]
+		linkNode                      		[133 143 145]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -12390,9 +12948,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		117
+		id                            		145
 		name                          		"error"
-		linkNode                      		[105 116 0]
+		linkNode                      		[133 144 0]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -12411,27 +12969,27 @@ Stateflow {
 	}
 
 	instance {
-		id     		118
+		id     		146
 		name   		"Inverse geometry/Subsystem/invgeo"
 		machine		1
-		chart  		105
+		chart  		133
 	}
 
 	chart {
-		id                                        		119
+		id                                        		147
 		name                                      		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
 					"rence singal 1"
 		windowPosition                            		[395.146 159.299 200.25 189.75]
 		viewLimits                                		[0 156.75 0 153.75]
 		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 120 0 0]
-		firstTransition                           		122
-		firstJunction                             		121
-		viewObj                                   		119
+		treeNode                                  		[0 148 0 0]
+		firstTransition                           		150
+		firstJunction                             		149
+		viewObj                                   		147
 		machine                                   		1
 		decomposition                             		CLUSTER_CHART
 		type                                      		EML_CHART
-		firstData                                 		123
+		firstData                                 		151
 		chartFileNumber                           		3
 		disableImplicitCasting                    		1
 		eml {
@@ -12440,14 +12998,14 @@ Stateflow {
 	}
 
 	state {
-		id                           		120
+		id                           		148
 		labelString                  		"eML_blk_kernel()"
 		position                     		[18 64.5 118 66]
 		fontSize                     		12
-		chart                        		119
-		treeNode                     		[119 0 0 0]
+		chart                        		147
+		treeNode                     		[147 0 0 0]
 		superState                   		SUBCHART
-		subviewer                    		119
+		subviewer                    		147
 		type                         		FUNC_STATE
 		decomposition                		CLUSTER_STATE
 		eml {
@@ -12483,16 +13041,16 @@ Stateflow {
 	}
 
 	junction {
-		id         		121
+		id         		149
 		position   		[23.5747 49.5747 7]
-		chart      		119
-		linkNode   		[119 0 0]
-		subviewer  		119
+		chart      		147
+		linkNode   		[147 0 0]
+		subviewer  		147
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	transition {
-		id             		122
+		id             		150
 		labelString    		"{eML_blk_kernel();}"
 		labelPosition  		[32.125 19.875 102.544 14.964]
 		fontSize       		12
@@ -12500,22 +13058,22 @@ Stateflow {
 			intersection		[0 0 1 0 23.5747 14.625 0 0]
 		}
 		dst {
-			id          		121
+			id          		149
 			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
 		}
 		midPoint       		[23.5747 24.9468]
-		chart          		119
-		linkNode       		[119 0 0]
+		chart          		147
+		linkNode       		[147 0 0]
 		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		119
+		subviewer      		147
 		drawStyle      		SMART
 		executionOrder 		1
 	}
 
 	data {
-		id                            		123
+		id                            		151
 		name                          		"a0"
-		linkNode                      		[119 0 124]
+		linkNode                      		[147 0 152]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12531,9 +13089,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		124
+		id                            		152
 		name                          		"a1"
-		linkNode                      		[119 123 125]
+		linkNode                      		[147 151 153]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12551,9 +13109,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		125
+		id                            		153
 		name                          		"a2"
-		linkNode                      		[119 124 126]
+		linkNode                      		[147 152 154]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12571,9 +13129,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		126
+		id                            		154
 		name                          		"a3"
-		linkNode                      		[119 125 127]
+		linkNode                      		[147 153 155]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -12588,566 +13146,12 @@ Stateflow {
 			}
 		}
 		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		127
-		name                          		"a4"
-		linkNode                      		[119 126 128]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		128
-		name                          		"a5"
-		linkNode                      		[119 127 129]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		129
-		name                          		"t_sim"
-		linkNode                      		[119 128 130]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		130
-		name                          		"qa"
-		linkNode                      		[119 129 131]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		131
-		name                          		"qap"
-		linkNode                      		[119 130 132]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		132
-		name                          		"qapp"
-		linkNode                      		[119 131 133]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		133
-		name                          		"t_end"
-		linkNode                      		[119 132 0]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	instance {
-		id     		134
-		name   		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
-					"rence singal 1"
-		machine		1
-		chart  		119
-	}
-
-	chart {
-		id                                        		135
-		name                                      		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
-					"rence singal 2"
-		windowPosition                            		[410.146 144.299 200.25 189.75]
-		viewLimits                                		[0 156.75 0 153.75]
-		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 136 0 0]
-		firstTransition                           		138
-		firstJunction                             		137
-		viewObj                                   		135
-		machine                                   		1
-		decomposition                             		CLUSTER_CHART
-		type                                      		EML_CHART
-		firstData                                 		139
-		chartFileNumber                           		4
-		disableImplicitCasting                    		1
-		eml {
-			name       		"fcn"
-		}
-	}
-
-	state {
-		id                           		136
-		labelString                  		"eML_blk_kernel()"
-		position                     		[18 64.5 118 66]
-		fontSize                     		12
-		chart                        		135
-		treeNode                     		[135 0 0 0]
-		superState                   		SUBCHART
-		subviewer                    		135
-		type                         		FUNC_STATE
-		decomposition                		CLUSTER_STATE
-		eml {
-			isEML                    		1
-			script                   		"function [qa,qap,qapp] = fcn(a0,a1,a2,a3,a4,a5,t_sim,t_end)"
-						"\n"
-						"% This block supports an embeddable subset of the MATLAB la"
-						"nguage.\n"
-						"% See the help menu for details. \n"
-						"if (t_sim>=t_end) \n"
-						"    t_sim = t_end;\n"
-						"end   \n"
-						"T = [t_sim^5/20 t_sim^4/12 t_sim^3/6 t_sim^2/2 t_sim 1;...\n"
-						"    t_sim^4/4 t_sim^3/3 t_sim^2/2 t_sim 1 0;...\n"
-						"    t_sim^3 t_sim^2 t_sim 1 0 0];\n"
-						"Q = T*[a0;a1;a2;a3;a4;a5];\n"
-						"\n"
-						"qa = Q(1);\n"
-						"qap = Q(2);\n"
-						"qapp = Q(3);\n"
-						"\n"
-						"    "
-			editorLayout             		"100 M4x1[192 170 925 773]"
-			fimathString             		"fimath(...\n"
-								"'RoundMode', 'floor',...\n"
-								"'OverflowMode', 'wrap',...\n"
-								"'ProductMode', 'KeepLSB', 'ProductWordLength', 32,..."
-								"\n"
-								"'SumMode', 'KeepLSB', 'SumWordLength', 32,...\n"
-								"'CastBeforeSum', false)"
-			treatIntsAsFixpt         		0
-		}
-	}
-
-	junction {
-		id         		137
-		position   		[23.5747 49.5747 7]
-		chart      		135
-		linkNode   		[135 0 0]
-		subviewer  		135
-		type       		CONNECTIVE_JUNCTION
-	}
-
-	transition {
-		id             		138
-		labelString    		"{eML_blk_kernel();}"
-		labelPosition  		[32.125 19.875 102.544 14.964]
-		fontSize       		12
-		src {
-			intersection		[0 0 1 0 23.5747 14.625 0 0]
-		}
-		dst {
-			id          		137
-			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
-		}
-		midPoint       		[23.5747 24.9468]
-		chart          		135
-		linkNode       		[135 0 0]
-		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		135
-		drawStyle      		SMART
-		executionOrder 		1
-	}
-
-	data {
-		id                            		139
-		name                          		"a0"
-		linkNode                      		[135 0 140]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		140
-		name                          		"a1"
-		linkNode                      		[135 139 141]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		141
-		name                          		"a2"
-		linkNode                      		[135 140 142]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		142
-		name                          		"a3"
-		linkNode                      		[135 141 143]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		143
-		name                          		"a4"
-		linkNode                      		[135 142 144]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		144
-		name                          		"a5"
-		linkNode                      		[135 143 145]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		145
-		name                          		"t_sim"
-		linkNode                      		[135 144 146]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		146
-		name                          		"qa"
-		linkNode                      		[135 145 147]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		147
-		name                          		"qap"
-		linkNode                      		[135 146 148]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		148
-		name                          		"qapp"
-		linkNode                      		[135 147 149]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		149
-		name                          		"t_end"
-		linkNode                      		[135 148 0]
-		scope                         		INPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	instance {
-		id     		150
-		name   		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
-					"rence singal 2"
-		machine		1
-		chart  		135
-	}
-
-	chart {
-		id                                        		151
-		name                                      		"Trajectory design/Trajectory design1/Init/Trajectory design 1"
-		windowPosition                            		[411.812 146.366 200.25 189.75]
-		viewLimits                                		[0 156.75 0 153.75]
-		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 152 0 0]
-		firstTransition                           		154
-		firstJunction                             		153
-		viewObj                                   		151
-		machine                                   		1
-		decomposition                             		CLUSTER_CHART
-		type                                      		EML_CHART
-		firstData                                 		155
-		chartFileNumber                           		7
-		disableImplicitCasting                    		1
-		eml {
-			name       		"fcn"
-		}
-	}
-
-	state {
-		id                           		152
-		labelString                  		"eML_blk_kernel()"
-		position                     		[18 64.5 118 66]
-		fontSize                     		12
-		chart                        		151
-		treeNode                     		[151 0 0 0]
-		superState                   		SUBCHART
-		subviewer                    		151
-		type                         		FUNC_STATE
-		decomposition                		CLUSTER_STATE
-		eml {
-			isEML                    		1
-			script                   		"function [a0,a1,a2,a3,a4,a5] = fcn(A,B,t)\n"
-						"% This block supports an embeddable subset of the MATLAB la"
-						"nguage.\n"
-						"% See the help menu for details. \n"
-						"T = [t^5/20 t^4/12 t^3/6 t^2/2 t 1;t^4/4 t^3/3 t^2/2 t 1 0;"
-						"t^3 t^2 t 1 0 0;0 0 0 0 0 1;0 0 0 0 1 0;0 0 0 1 0 0];\n"
-						"Ao = inv(T)*[B;0;0;A;0;0];\n"
-						"a0=Ao(1);\n"
-						"a1=Ao(2);\n"
-						"a2=Ao(3);\n"
-						"a3=Ao(4);\n"
-						"a4=Ao(5);\n"
-						"a5=Ao(6);"
-			editorLayout             		"100 M4x1[174 399 1016 538]"
-			fimathString             		"fimath(...\n"
-								"'RoundMode', 'floor',...\n"
-								"'OverflowMode', 'wrap',...\n"
-								"'ProductMode', 'KeepLSB', 'ProductWordLength', 32,..."
-								"\n"
-								"'SumMode', 'KeepLSB', 'SumWordLength', 32,...\n"
-								"'CastBeforeSum', false)"
-			treatIntsAsFixpt         		0
-		}
-	}
-
-	junction {
-		id         		153
-		position   		[23.5747 49.5747 7]
-		chart      		151
-		linkNode   		[151 0 0]
-		subviewer  		151
-		type       		CONNECTIVE_JUNCTION
-	}
-
-	transition {
-		id             		154
-		labelString    		"{eML_blk_kernel();}"
-		labelPosition  		[32.125 19.875 102.544 14.964]
-		fontSize       		12
-		src {
-			intersection		[0 0 1 0 23.5747 14.625 0 0]
-		}
-		dst {
-			id          		153
-			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
-		}
-		midPoint       		[23.5747 24.9468]
-		chart          		151
-		linkNode       		[151 0 0]
-		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		151
-		drawStyle      		SMART
-		executionOrder 		1
 	}
 
 	data {
 		id                            		155
-		name                          		"A"
-		linkNode                      		[151 0 156]
+		name                          		"a4"
+		linkNode                      		[147 154 156]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -13157,6 +13161,8 @@ Stateflow {
 			type {
 				method    		SF_INHERITED_TYPE
 				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
 			}
 		}
 		dataType                      		"Inherit: Same as Simulink"
@@ -13164,8 +13170,8 @@ Stateflow {
 
 	data {
 		id                            		156
-		name                          		"B"
-		linkNode                      		[151 155 157]
+		name                          		"a5"
+		linkNode                      		[147 155 157]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -13184,8 +13190,8 @@ Stateflow {
 
 	data {
 		id                            		157
-		name                          		"t"
-		linkNode                      		[151 156 158]
+		name                          		"t_sim"
+		linkNode                      		[147 156 158]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -13195,8 +13201,6 @@ Stateflow {
 			type {
 				method    		SF_INHERITED_TYPE
 				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
 			}
 		}
 		dataType                      		"Inherit: Same as Simulink"
@@ -13204,8 +13208,8 @@ Stateflow {
 
 	data {
 		id                            		158
-		name                          		"a0"
-		linkNode                      		[151 157 159]
+		name                          		"qa"
+		linkNode                      		[147 157 159]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -13224,8 +13228,8 @@ Stateflow {
 
 	data {
 		id                            		159
-		name                          		"a1"
-		linkNode                      		[151 158 160]
+		name                          		"qap"
+		linkNode                      		[147 158 160]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -13244,8 +13248,8 @@ Stateflow {
 
 	data {
 		id                            		160
-		name                          		"a2"
-		linkNode                      		[151 159 161]
+		name                          		"qapp"
+		linkNode                      		[147 159 161]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -13264,49 +13268,9 @@ Stateflow {
 
 	data {
 		id                            		161
-		name                          		"a3"
-		linkNode                      		[151 160 162]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		162
-		name                          		"a4"
-		linkNode                      		[151 161 163]
-		scope                         		OUTPUT_DATA
-		machine                       		1
-		props {
-			array {
-				size      		"-1"
-			}
-			type {
-				method    		SF_INHERITED_TYPE
-				primitive 		SF_DOUBLE_TYPE
-				isSigned  		1
-				wordLength		"16"
-			}
-		}
-		dataType                      		"Inherit: Same as Simulink"
-	}
-
-	data {
-		id                            		163
-		name                          		"a5"
-		linkNode                      		[151 162 0]
-		scope                         		OUTPUT_DATA
+		name                          		"t_end"
+		linkNode                      		[147 160 0]
+		scope                         		INPUT_DATA
 		machine                       		1
 		props {
 			array {
@@ -13323,27 +13287,29 @@ Stateflow {
 	}
 
 	instance {
-		id     		164
-		name   		"Trajectory design/Trajectory design1/Init/Trajectory design 1"
+		id     		162
+		name   		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
+					"rence singal 1"
 		machine		1
-		chart  		151
+		chart  		147
 	}
 
 	chart {
-		id                                        		165
-		name                                      		"Trajectory design/Trajectory design1/Init/Trajectory design 2"
-		windowPosition                            		[411.812 146.366 200.25 189.75]
+		id                                        		163
+		name                                      		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
+					"rence singal 2"
+		windowPosition                            		[410.146 144.299 200.25 189.75]
 		viewLimits                                		[0 156.75 0 153.75]
 		screen                                    		[1 1 1280 1024 1.333333333333333]
-		treeNode                                  		[0 166 0 0]
-		firstTransition                           		168
-		firstJunction                             		167
-		viewObj                                   		165
+		treeNode                                  		[0 164 0 0]
+		firstTransition                           		166
+		firstJunction                             		165
+		viewObj                                   		163
 		machine                                   		1
 		decomposition                             		CLUSTER_CHART
 		type                                      		EML_CHART
-		firstData                                 		169
-		chartFileNumber                           		8
+		firstData                                 		167
+		chartFileNumber                           		4
 		disableImplicitCasting                    		1
 		eml {
 			name       		"fcn"
@@ -13351,14 +13317,332 @@ Stateflow {
 	}
 
 	state {
-		id                           		166
+		id                           		164
 		labelString                  		"eML_blk_kernel()"
 		position                     		[18 64.5 118 66]
 		fontSize                     		12
-		chart                        		165
-		treeNode                     		[165 0 0 0]
+		chart                        		163
+		treeNode                     		[163 0 0 0]
 		superState                   		SUBCHART
-		subviewer                    		165
+		subviewer                    		163
+		type                         		FUNC_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			isEML                    		1
+			script                   		"function [qa,qap,qapp] = fcn(a0,a1,a2,a3,a4,a5,t_sim,t_end)"
+						"\n"
+						"% This block supports an embeddable subset of the MATLAB la"
+						"nguage.\n"
+						"% See the help menu for details. \n"
+						"if (t_sim>=t_end) \n"
+						"    t_sim = t_end;\n"
+						"end   \n"
+						"T = [t_sim^5/20 t_sim^4/12 t_sim^3/6 t_sim^2/2 t_sim 1;...\n"
+						"    t_sim^4/4 t_sim^3/3 t_sim^2/2 t_sim 1 0;...\n"
+						"    t_sim^3 t_sim^2 t_sim 1 0 0];\n"
+						"Q = T*[a0;a1;a2;a3;a4;a5];\n"
+						"\n"
+						"qa = Q(1);\n"
+						"qap = Q(2);\n"
+						"qapp = Q(3);\n"
+						"\n"
+						"    "
+			editorLayout             		"100 M4x1[192 170 925 773]"
+			fimathString             		"fimath(...\n"
+								"'RoundMode', 'floor',...\n"
+								"'OverflowMode', 'wrap',...\n"
+								"'ProductMode', 'KeepLSB', 'ProductWordLength', 32,..."
+								"\n"
+								"'SumMode', 'KeepLSB', 'SumWordLength', 32,...\n"
+								"'CastBeforeSum', false)"
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	junction {
+		id         		165
+		position   		[23.5747 49.5747 7]
+		chart      		163
+		linkNode   		[163 0 0]
+		subviewer  		163
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	transition {
+		id             		166
+		labelString    		"{eML_blk_kernel();}"
+		labelPosition  		[32.125 19.875 102.544 14.964]
+		fontSize       		12
+		src {
+			intersection		[0 0 1 0 23.5747 14.625 0 0]
+		}
+		dst {
+			id          		165
+			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
+		}
+		midPoint       		[23.5747 24.9468]
+		chart          		163
+		linkNode       		[163 0 0]
+		dataLimits     		[23.575 23.575 14.625 34.575]
+		subviewer      		163
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	data {
+		id                            		167
+		name                          		"a0"
+		linkNode                      		[163 0 168]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		168
+		name                          		"a1"
+		linkNode                      		[163 167 169]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		169
+		name                          		"a2"
+		linkNode                      		[163 168 170]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		170
+		name                          		"a3"
+		linkNode                      		[163 169 171]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		171
+		name                          		"a4"
+		linkNode                      		[163 170 172]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		172
+		name                          		"a5"
+		linkNode                      		[163 171 173]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		173
+		name                          		"t_sim"
+		linkNode                      		[163 172 174]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		174
+		name                          		"qa"
+		linkNode                      		[163 173 175]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		175
+		name                          		"qap"
+		linkNode                      		[163 174 176]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		176
+		name                          		"qapp"
+		linkNode                      		[163 175 177]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		177
+		name                          		"t_end"
+		linkNode                      		[163 176 0]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	instance {
+		id     		178
+		name   		"Trajectory design/Trajectory design1/Curve calculation/Joint refe"
+					"rence singal 2"
+		machine		1
+		chart  		163
+	}
+
+	chart {
+		id                                        		179
+		name                                      		"Trajectory design/Trajectory design1/Init/Trajectory design 1"
+		windowPosition                            		[411.812 146.366 200.25 189.75]
+		viewLimits                                		[0 156.75 0 153.75]
+		screen                                    		[1 1 1280 1024 1.333333333333333]
+		treeNode                                  		[0 180 0 0]
+		firstTransition                           		182
+		firstJunction                             		181
+		viewObj                                   		179
+		machine                                   		1
+		decomposition                             		CLUSTER_CHART
+		type                                      		EML_CHART
+		firstData                                 		183
+		chartFileNumber                           		7
+		disableImplicitCasting                    		1
+		eml {
+			name       		"fcn"
+		}
+	}
+
+	state {
+		id                           		180
+		labelString                  		"eML_blk_kernel()"
+		position                     		[18 64.5 118 66]
+		fontSize                     		12
+		chart                        		179
+		treeNode                     		[179 0 0 0]
+		superState                   		SUBCHART
+		subviewer                    		179
 		type                         		FUNC_STATE
 		decomposition                		CLUSTER_STATE
 		eml {
@@ -13389,16 +13673,16 @@ Stateflow {
 	}
 
 	junction {
-		id         		167
+		id         		181
 		position   		[23.5747 49.5747 7]
-		chart      		165
-		linkNode   		[165 0 0]
-		subviewer  		165
+		chart      		179
+		linkNode   		[179 0 0]
+		subviewer  		179
 		type       		CONNECTIVE_JUNCTION
 	}
 
 	transition {
-		id             		168
+		id             		182
 		labelString    		"{eML_blk_kernel();}"
 		labelPosition  		[32.125 19.875 102.544 14.964]
 		fontSize       		12
@@ -13406,22 +13690,22 @@ Stateflow {
 			intersection		[0 0 1 0 23.5747 14.625 0 0]
 		}
 		dst {
-			id          		167
+			id          		181
 			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
 		}
 		midPoint       		[23.5747 24.9468]
-		chart          		165
-		linkNode       		[165 0 0]
+		chart          		179
+		linkNode       		[179 0 0]
 		dataLimits     		[23.575 23.575 14.625 34.575]
-		subviewer      		165
+		subviewer      		179
 		drawStyle      		SMART
 		executionOrder 		1
 	}
 
 	data {
-		id                            		169
+		id                            		183
 		name                          		"A"
-		linkNode                      		[165 0 170]
+		linkNode                      		[179 0 184]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -13437,9 +13721,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		170
+		id                            		184
 		name                          		"B"
-		linkNode                      		[165 169 171]
+		linkNode                      		[179 183 185]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -13457,9 +13741,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		171
+		id                            		185
 		name                          		"t"
-		linkNode                      		[165 170 172]
+		linkNode                      		[179 184 186]
 		scope                         		INPUT_DATA
 		machine                       		1
 		props {
@@ -13477,9 +13761,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		172
+		id                            		186
 		name                          		"a0"
-		linkNode                      		[165 171 173]
+		linkNode                      		[179 185 187]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -13497,9 +13781,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		173
+		id                            		187
 		name                          		"a1"
-		linkNode                      		[165 172 174]
+		linkNode                      		[179 186 188]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -13517,9 +13801,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		174
+		id                            		188
 		name                          		"a2"
-		linkNode                      		[165 173 175]
+		linkNode                      		[179 187 189]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -13537,9 +13821,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		175
+		id                            		189
 		name                          		"a3"
-		linkNode                      		[165 174 176]
+		linkNode                      		[179 188 190]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -13557,9 +13841,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		176
+		id                            		190
 		name                          		"a4"
-		linkNode                      		[165 175 177]
+		linkNode                      		[179 189 191]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -13577,9 +13861,9 @@ Stateflow {
 	}
 
 	data {
-		id                            		177
+		id                            		191
 		name                          		"a5"
-		linkNode                      		[165 176 0]
+		linkNode                      		[179 190 0]
 		scope                         		OUTPUT_DATA
 		machine                       		1
 		props {
@@ -13597,27 +13881,301 @@ Stateflow {
 	}
 
 	instance {
-		id     		178
+		id     		192
+		name   		"Trajectory design/Trajectory design1/Init/Trajectory design 1"
+		machine		1
+		chart  		179
+	}
+
+	chart {
+		id                                        		193
+		name                                      		"Trajectory design/Trajectory design1/Init/Trajectory design 2"
+		windowPosition                            		[411.812 146.366 200.25 189.75]
+		viewLimits                                		[0 156.75 0 153.75]
+		screen                                    		[1 1 1280 1024 1.333333333333333]
+		treeNode                                  		[0 194 0 0]
+		firstTransition                           		196
+		firstJunction                             		195
+		viewObj                                   		193
+		machine                                   		1
+		decomposition                             		CLUSTER_CHART
+		type                                      		EML_CHART
+		firstData                                 		197
+		chartFileNumber                           		8
+		disableImplicitCasting                    		1
+		eml {
+			name       		"fcn"
+		}
+	}
+
+	state {
+		id                           		194
+		labelString                  		"eML_blk_kernel()"
+		position                     		[18 64.5 118 66]
+		fontSize                     		12
+		chart                        		193
+		treeNode                     		[193 0 0 0]
+		superState                   		SUBCHART
+		subviewer                    		193
+		type                         		FUNC_STATE
+		decomposition                		CLUSTER_STATE
+		eml {
+			isEML                    		1
+			script                   		"function [a0,a1,a2,a3,a4,a5] = fcn(A,B,t)\n"
+						"% This block supports an embeddable subset of the MATLAB la"
+						"nguage.\n"
+						"% See the help menu for details. \n"
+						"T = [t^5/20 t^4/12 t^3/6 t^2/2 t 1;t^4/4 t^3/3 t^2/2 t 1 0;"
+						"t^3 t^2 t 1 0 0;0 0 0 0 0 1;0 0 0 0 1 0;0 0 0 1 0 0];\n"
+						"Ao = inv(T)*[B;0;0;A;0;0];\n"
+						"a0=Ao(1);\n"
+						"a1=Ao(2);\n"
+						"a2=Ao(3);\n"
+						"a3=Ao(4);\n"
+						"a4=Ao(5);\n"
+						"a5=Ao(6);"
+			editorLayout             		"100 M4x1[174 399 1016 538]"
+			fimathString             		"fimath(...\n"
+								"'RoundMode', 'floor',...\n"
+								"'OverflowMode', 'wrap',...\n"
+								"'ProductMode', 'KeepLSB', 'ProductWordLength', 32,..."
+								"\n"
+								"'SumMode', 'KeepLSB', 'SumWordLength', 32,...\n"
+								"'CastBeforeSum', false)"
+			treatIntsAsFixpt         		0
+		}
+	}
+
+	junction {
+		id         		195
+		position   		[23.5747 49.5747 7]
+		chart      		193
+		linkNode   		[193 0 0]
+		subviewer  		193
+		type       		CONNECTIVE_JUNCTION
+	}
+
+	transition {
+		id             		196
+		labelString    		"{eML_blk_kernel();}"
+		labelPosition  		[32.125 19.875 102.544 14.964]
+		fontSize       		12
+		src {
+			intersection		[0 0 1 0 23.5747 14.625 0 0]
+		}
+		dst {
+			id          		195
+			intersection		[7 0 -1 -1 23.5747 42.5747 0 0]
+		}
+		midPoint       		[23.5747 24.9468]
+		chart          		193
+		linkNode       		[193 0 0]
+		dataLimits     		[23.575 23.575 14.625 34.575]
+		subviewer      		193
+		drawStyle      		SMART
+		executionOrder 		1
+	}
+
+	data {
+		id                            		197
+		name                          		"A"
+		linkNode                      		[193 0 198]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		198
+		name                          		"B"
+		linkNode                      		[193 197 199]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		199
+		name                          		"t"
+		linkNode                      		[193 198 200]
+		scope                         		INPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		200
+		name                          		"a0"
+		linkNode                      		[193 199 201]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		201
+		name                          		"a1"
+		linkNode                      		[193 200 202]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		202
+		name                          		"a2"
+		linkNode                      		[193 201 203]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		203
+		name                          		"a3"
+		linkNode                      		[193 202 204]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		204
+		name                          		"a4"
+		linkNode                      		[193 203 205]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	data {
+		id                            		205
+		name                          		"a5"
+		linkNode                      		[193 204 0]
+		scope                         		OUTPUT_DATA
+		machine                       		1
+		props {
+			array {
+				size      		"-1"
+			}
+			type {
+				method    		SF_INHERITED_TYPE
+				primitive 		SF_DOUBLE_TYPE
+				isSigned  		1
+				wordLength		"16"
+			}
+		}
+		dataType                      		"Inherit: Same as Simulink"
+	}
+
+	instance {
+		id     		206
 		name   		"Trajectory design/Trajectory design1/Init/Trajectory design 2"
 		machine		1
-		chart  		165
+		chart  		193
 	}
 
 	target {
-		id                        		179
+		id                        		207
 		name                      		"sfun"
 		description               		"Default Simulink S-Function Target."
 		machine                   		1
-		linkNode                  		[1 0 180]
+		linkNode                  		[1 0 208]
 	}
 
 	target {
-		id                        		180
+		id                        		208
 		name                      		"rtw"
 		codeFlags                 		" comments=1 statebitsets=1 databitsets=1 emitlogicalops=1 el"
 						"seifdetection=1 constantfolding=1 redundantloadelimination=0"
 						" preservenames=0 preservenameswithparent=0 exportcharts=0"
 		machine                   		1
-		linkNode                  		[1 179 0]
+		linkNode                  		[1 207 0]
 	}
 }
